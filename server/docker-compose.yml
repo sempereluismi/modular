@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  php8.2:
+    container_name: 'modular-php-8.2'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    command: php -S 0.0.0.0:8080 -t public
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9003 remote_enable=1
+    volumes:
+      - ./app:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./logs:/var/www/logs
+    working_dir: /var/www/html
+
+    networks:
+      - modularLan
+      - modular
+
+  composer:
+    container_name: 'modular-mycomposer'
+    image: composer:2
+    volumes:
+      - ./app:/var/www/html
+    working_dir: /var/www/html
+    tty: true
+    command: '/bin/bash'
+
+    networks:
+      - modularLan
+      - modular
+
+  mariadb:
+    container_name: 'modular-mariadb'
+    image: mariadb:latest
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: modular
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+
+    networks:
+      - modularLan
+      - modular
+
+  phpmyadmin:
+    container_name: modular-phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    hostname: phpmyadmin
+    ports:
+      - "8002:80"
+    environment:
+      PMA_HOST: modular-mariadb
+      PMA_PORT: 3306 # Funciona con el puerto interno de los contenedores
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: modular
+
+    networks:
+      - modularLan
+      - modular
+
+networks:
+  modularLan:
+    internal: true
+  modular:
+    driver: bridge
