@@ -11,12 +11,12 @@ export function GetHoursPage() {
       </div>
       <div className="teachers-menu">
         <ul>
-          // Por cada profesor se añadira un li
+          {/* // Por cada profesor se añadira un li */}
           <li>Patricia</li>
         </ul>
       </div>
       <div className="container-card">
-        // Se creará tantas cartas como asignaturas
+        {/* // Se creará tantas cartas como asignaturas */}
         <div className="card">DAW 5 Horas</div>
       </div>
     </div>
