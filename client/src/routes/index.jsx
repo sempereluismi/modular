@@ -5,6 +5,8 @@ import { InsertarPlantillaPage } from "../views/InsertarPlantillaPage.jsx";
 import { InsertarProfesorPage } from "../views/InsertarProfesorPage.jsx";
 import { obtenerModulosPage } from "../views/obtenerModulosPage.jsx";
 import { LogInPage } from "../views/LogInPage.jsx";
+import CardModulosPage from "../views/CardModulosPage.jsx";
+import { ListaProfesoresPage } from "../views/ListaProfesoresPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -15,6 +17,16 @@ const router = createBrowserRouter([
   {
     path: "/obtenermodulos",
     element: <obtenerModulosPage />,
+    children: [
+      {
+        path: "/listaprofesores",
+        element: <ListaprofesoresPage />,
+      },
+      {
+        path: "/listamodulos",
+        element: <ListamodulosPage />,
+      },
+    ],
   },
   {
     path: "/login",
