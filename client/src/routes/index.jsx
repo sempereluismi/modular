@@ -3,7 +3,7 @@ import { Ejemplo } from "../views/ejemplo.jsx";
 import { DirunoNocturnoPage } from "../views/DiurnoNocturnoPage.jsx";
 import { InsertarPlantillaPage } from "../views/InsertarPlantillaPage.jsx";
 import { InsertarProfesorPage } from "../views/InsertarProfesorPage.jsx";
-import { GetHoursPage } from "../views/GetHoursPage.jsx";
+import { obtenerModulosPage } from "../views/obtenerModulosPage.jsx";
 import { LogInPage } from "../views/LogInPage.jsx";
 
 
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     element: <Ejemplo />,
   },
   {
-    path: "/gethours",
-    element: <GetHoursPage />,
+    path: "/obtenermodulos",
+    element: <obtenerModulosPage />,
   },
   {
     path: "/login",
