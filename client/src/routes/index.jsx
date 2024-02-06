@@ -26,7 +26,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/insertar",
-    element: <InsertarPlantillaPage />,
     children: [
       {
         path: "plantilla",
