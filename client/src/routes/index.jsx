@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <Ejemplo />,
   },
   {
-    path: "obtenermodulos",
+    path: "/obtenermodulos",
     element: <ObtenerModulosPage />,
     children: [
       {
