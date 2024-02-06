@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     element: <ObtenerModulosPage />,
     children: [
       {
-        path: "/listaprofesores",
+        path: "listaprofesores",
         element: <ListaProfesoresPage />,
       },
       {
-        path: "/listamodulos",
+        path: "listamodulos",
         element: <CardModulosPage />,
       },
     ],
