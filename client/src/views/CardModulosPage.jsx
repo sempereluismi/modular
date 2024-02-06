@@ -1,4 +1,4 @@
-export function obtenerModulosPage() {
+export function CardModulosPage() {
     return (
         <div className="card-modulos">
             <h3>DAW</h3>
