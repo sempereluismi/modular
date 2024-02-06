@@ -7,8 +7,9 @@ namespace App\Application\Actions\Modulo;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\db\Modulos\ModulosModel;
+use App\Application\Actions\Controller;
 
-class ModuloController
+class ModuloController extends Controller
 {
     public function listarModulo(Request $request, Response $response, array $args): Response
     {
@@ -45,13 +46,5 @@ class ModuloController
         $res = ModulosModel::deletarModulo($id);
 
         return $this->returnResponse($response, $res);
-    }
-
-    private function returnResponse(Response $response, array $res, int $statusCode = 200): Response
-    {
-        $responseStatus = $response->withStatus($statusCode);
-        $responseStatus->withHeader('Content-Type', 'application/json');
-        $responseStatus->getBody()->write(json_encode($res));
-        return $responseStatus;
     }
 }
