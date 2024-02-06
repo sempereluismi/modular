@@ -39,8 +39,6 @@ services:
     image: mariadb:latest
     ports:
       - "3307:3306"
-    volumes:
-      - ./data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: modular
