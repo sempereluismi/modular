@@ -24,5 +24,7 @@ return function (App $app) {
             $group->put('/{id}', [ModuloController::class, 'atualizarModulo']);
             $group->delete('/{id}', [ModuloController::class, 'deletarModulo']);
         });
+
+        
     });
 };
