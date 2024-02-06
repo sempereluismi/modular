@@ -10,7 +10,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/insertar",
-    element: <InsertarPlantilla888Page />,
+    element: <InsertarPlantillaPage />,
     children: [
       {
         path: "plantilla",
