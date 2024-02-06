@@ -1,5 +1,5 @@
 export function Ejemplo(){
     return (
-        <h1>Hola Andrea</h1>
+        <h1>Página de inicio</h1>
     )
 }

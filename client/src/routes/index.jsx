@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Ejemplo } from "../views/ejemplo.jsx";
+import { Ejemplo } from "../views/Inicio.jsx";
 import { DiurnoNocturnoPage } from "../views/DiurnoNocturnoPage.jsx";
 import { InsertarPlantillaPage } from "../views/InsertarPlantillaPage.jsx";
 import { InsertarProfesorPage } from "../views/InsertarProfesorPage.jsx";
