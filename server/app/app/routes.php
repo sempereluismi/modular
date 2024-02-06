@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Application\Actions\Modulo\ModuloController;
-
+use App\Application\Actions\Profesor\ProfesorController;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -24,7 +24,12 @@ return function (App $app) {
             $group->put('/{id}', [ModuloController::class, 'atualizarModulo']);
             $group->delete('/{id}', [ModuloController::class, 'deletarModulo']);
         });
-
-        
+        $group->group('/profesor', function (Group $group) {
+            $group->get('', [ProfesorController::class, 'listarProfesor']);
+            $group->get('/{id}', [ProfesorController::class, 'listarProfesor']);
+            $group->post('', [ProfesorController::class, 'inserirProfesor']);
+            $group->put('/{id}', [ProfesorController::class, 'atualizarProfesor']);
+            $group->delete('/{id}', [ProfesorController::class, 'deletarProfesor']);
+        });  
     });
 };
