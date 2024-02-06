@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     element: <DiurnoNocturnoPage />,
   },
   {
-    path: "/insertar"
+    path: "/insertar",
     children: [
       {
         path: "plantilla",

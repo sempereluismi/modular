@@ -5,9 +5,7 @@ export function InsertarProfesorPage() {
         <form>
           <div>
             <label> Nombre</label>
-            <input type="text" name="nombre">
-            
-            </input>
+            <input type="text" name="nombre"></input>
           </div>
           <div>
             <label> Tipo</label>
