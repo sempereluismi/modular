@@ -10,4 +10,3 @@ export function LogInPage() {
       </div>
     );
   }
-  

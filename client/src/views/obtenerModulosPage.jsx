@@ -1,4 +1,4 @@
-export function obtenerModulosPage() {
+export function ObtenerModulosPage() {
   return (
     <div id="gethours">
       <div className="menu-navbar">
