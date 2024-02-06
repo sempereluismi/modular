@@ -1,4 +1,4 @@
-export function DirunoNocturnoPage() {
+export function DiurnoNocturnoPage() {
   return (
     <>
       <nav>

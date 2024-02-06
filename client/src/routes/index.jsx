@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Ejemplo } from "../views/ejemplo.jsx";
-import { DirunoNocturnoPage } from "../views/DiurnoNocturnoPage.jsx";
+import { DiurnoNocturnoPage } from "../views/DiurnoNocturnoPage.jsx";
 import { InsertarPlantillaPage } from "../views/InsertarPlantillaPage.jsx";
 import { InsertarProfesorPage } from "../views/InsertarProfesorPage.jsx";
 import { ObtenerModulosPage } from "../views/obtenerModulosPage.jsx";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <Ejemplo />,
   },
   {
-    path: "/obtenermodulos",
+    path: "obtenermodulos",
     element: <ObtenerModulosPage />,
     children: [
       {
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/quenda",
-    element: <DirunoNocturnoPage />,
+    element: <DiurnoNocturnoPage />,
   },
   {
     path: "/insertar",

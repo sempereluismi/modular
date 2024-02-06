@@ -17,7 +17,7 @@ export function ObtenerModulosPage() {
       </div>
       <div className="container-card">
         {/* // Se creará tantas cartas como asignaturas */}
-        <div className="card">DAW 5 Horas</div>
+        <div className="card">Nombre: DAW Horas: 5</div>
       </div>
     </div>
   );
