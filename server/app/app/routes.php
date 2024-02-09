@@ -30,6 +30,6 @@ return function (App $app) {
             $group->post('', [ProfesorController::class, 'inserirProfesor']);
             $group->put('/{id}', [ProfesorController::class, 'atualizarProfesor']);
             $group->delete('/{id}', [ProfesorController::class, 'deletarProfesor']);
-        });  
+        });
     });
 };
