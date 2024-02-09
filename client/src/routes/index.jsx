@@ -3,8 +3,12 @@ import { Ejemplo } from "../views/ejemplo.jsx";
 import { DirunoNocturnoPage } from "../views/DiurnoNocturnoPage.jsx";
 import { InsertarPlantillaPage } from "../views/InsertarPlantillaPage.jsx";
 import { InsertarProfesorPage } from "../views/InsertarProfesorPage.jsx";
-import { GetHoursPage } from "../views/GetHoursPage.jsx";
+import { RecogerHorasYModulos } from "../views/RecogerHorasYModulos.jsx"; // Import the RecogerHorasYModulos component but not used yet
 import { LogInPage } from "../views/LogInPage.jsx";
+import { Menu } from "../views/Menu.jsx"; // Import the Menu component but not used yet
+import { ListaProfesores } from "../views/ListaProfesores.jsx";
+import { ElegirModulos } from "../views/ElegirModulos.jsx";
+
 
 
 const router = createBrowserRouter([
@@ -13,8 +17,17 @@ const router = createBrowserRouter([
     element: <Ejemplo />,
   },
   {
-    path: "/gethours",
-    element: <GetHoursPage />,
+    path: "/recogerhorasymodulos",
+    children: [
+      {
+        path: "elegirModulos",
+        element: <ElegirModulos />,
+      },
+      {
+        path: "listaProfesores",
+        element: <ListaProfesores />,
+      },
+    ],
   },
   {
     path: "/login",

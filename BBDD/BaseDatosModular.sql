@@ -113,7 +113,7 @@ create table modulo_tematica(
 
 drop table if exists reduccion;
 create table reduccion(
-    id int not null,
+    id int auto_increment not null,
     horas varchar(100) not null,
     nombre int not null,
     primary key (id)
