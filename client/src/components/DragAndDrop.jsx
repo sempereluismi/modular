@@ -9,8 +9,8 @@ function DragDrop () {
     setFile(file)
   }
   return (
-    <FileUploader handleChange={handleChange} name='file' types={fileTypes} >
-        {/* <div><p>this is inside drop area</p></div>  Hacer diseño del drop area */}
+    <FileUploader handleChange={handleChange} name='file' types={fileTypes}>
+      {/* <div><p>this is inside drop area</p></div>  Hacer diseño del drop area */}
     </FileUploader>
   )
 }
