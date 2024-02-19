@@ -31,5 +31,6 @@ return function (App $app) {
             $group->put('/{id}', [ProfesorController::class, 'atualizarProfesor']);
             $group->delete('/{id}', [ProfesorController::class, 'deletarProfesor']);
         });
+        // Aqui creo una clase para la comprobacion de archivo csv.
     });
 };
