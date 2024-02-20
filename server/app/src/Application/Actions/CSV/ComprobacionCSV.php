@@ -14,7 +14,7 @@ class ComprobacionCSV
         $uploadedFiles = $request->getUploadedFiles();
 
         // Verficamos que tengamos un archivo csv
-        if (ComprobacionCSV::esArchivoCSV($uploadedFiles['csvFile'])) {
+        if (ComprobacionCSV::esArchivoCSV($uploadedFiles['file'])) {
             // Procesa el archivo csv
             $response->getBody()->write('Archivo CSV válido');
         } else {
