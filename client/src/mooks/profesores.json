@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Profesor 1",
+        "idRegimen": 1,
+        "especializacion": "Programación",
+        "modulos": []
+    },
+    {
+        "id": 2,
+        "nombre": "Profesor 2",
+        "idRegimen": 2,
+        "especializacion": "Sistemas",
+        "modulos": []
+    },
+    {
+        "id": 3,
+        "nombre": "Profesor 3",
+        "idRegimen": 1,
+        "especializacion": "Programación",
+        "modulos": []
+    },
+    {
+        "id": 4,
+        "nombre": "Profesor 4",
+        "idRegimen": 2,
+        "especializacion": "Sistemas",
+        "modulos": []
+    },
+    {
+        "id": 5,
+        "nombre": "Profesor 5",
+        "idRegimen": 1,
+        "especializacion": "Programación",
+        "modulos": []
+    }
+]

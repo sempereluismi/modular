@@ -1,16 +1,14 @@
-export function DirunoNocturnoPage() {
+import { Board } from '../components/Board'
+import { Profesores } from '../components/Profesores'
+import { ModulosProfesoresProvider } from '../context/ModulosProfesoresContext'
+
+export function DirunoNocturnoPage () {
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <p>Luis Sempere</p>
-          </li>
-          <li>
-            <p>Andrea Tena</p>
-          </li>
-        </ul>
-      </nav>
-    </>
-  );
+    <ModulosProfesoresProvider>
+      <main className='bg-neutral-800 grid grid-cols-[400px_1fr] h-screen text-white'>
+        <Profesores />
+        <Board />
+      </main>
+    </ModulosProfesoresProvider>
+  )
 }
