@@ -9,6 +9,8 @@ use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Application\Actions\Modulo\ModuloController;
 use App\Application\Actions\Profesor\ProfesorController;
+use App\Application\Actions\CSV\ComprobacionCSV;
+
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -31,6 +33,8 @@ return function (App $app) {
             $group->put('/{id}', [ProfesorController::class, 'atualizarProfesor']);
             $group->delete('/{id}', [ProfesorController::class, 'deletarProfesor']);
         });
-        // Aqui creo una clase para la comprobacion de archivo csv.
+        $group->group('/upload', function (Group $group) {
+            $group->post('/profesor', [ComprobacionCSV::class, 'uploadFiles']);
+        });
     });
 };

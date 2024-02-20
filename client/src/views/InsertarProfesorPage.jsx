@@ -1,4 +1,3 @@
-
 import DragAndDrop from '../components/DragAndDrop'
 
 export function InsertarProfesorPage () {
