@@ -5,7 +5,7 @@ import { ModulosProfesoresProvider } from '../context/ModulosProfesoresContext'
 export function DirunoNocturnoPage () {
   return (
     <ModulosProfesoresProvider>
-      <main className='bg-neutral-800 grid grid-cols-[400px_1fr] h-screen text-white'>
+      <main className='bg-white grid grid-cols-[400px_1fr] h-screen text-white'>
         <Profesores />
         <Board />
       </main>

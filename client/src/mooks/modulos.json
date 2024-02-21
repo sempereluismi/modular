@@ -1,51 +1,74 @@
 [
     {
         "id": 1,
-        "nombre": "DWCS",
+        "nombre": "programacion",
         "regimen": "ordinario",
+        "curso": "1º DAW",
         "horasSemanales": 4,
-        "color": "#FF5733"
+        "color": "#b0f2c2"
     },
     {
         "id": 2,
-        "nombre": "DWCC",
+        "nombre": "erp",
         "regimen": "adultos",
+        "curso": "1º DAW",
         "horasSemanales": 6,
-        "color": "#FF5733"
+        "color": "#fdfd96"
     },
     {
         "id": 3,
-        "nombre": "DAW",
+        "nombre": "hardware",
         "regimen": "ordinario",
+        "curso": "1º DAW",
         "horasSemanales": 5,
-        "color": "#F1C40F"
+        "color": "#ffcba4"
     },
     {
         "id": 4,
-        "nombre": "DIW",
+        "nombre": "S. operativos",
         "regimen": "adultos",
+        "curso": "1º DAW",
         "horasSemanales": 7,
-        "color": "#FF5733"
+        "color": "#b0c2f2"
     },
     {
         "id": 5,
-        "nombre": "EIE",
+        "nombre": "ofimatica",
         "regimen": "ordinario",
+        "curso": "1º DAW",
         "horasSemanales": 3,
-        "color": "#F1C40F"
+        "color": "#55d6c2"
     },
     {
         "id": 6,
-        "nombre": "DWCS",
+        "nombre": "bbdd",
         "regimen": "adultos",
+        "curso": "1º DAW",
         "horasSemanales": 4,
-        "color": "#FF5733"
+        "color": "#ffc0cb"
     },
     {
         "id": 7,
-        "nombre": "DWCC",
+        "nombre": "redes",
         "regimen": "ordinario",
+        "curso": "1º DAW",
         "horasSemanales": 6,
-        "color": "#FF5733"
+        "color": "#f9b7ff"
+    },
+    {
+        "id": 8,
+        "nombre": "web",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 6,
+        "color": "#ffcba4"
+    },
+    {
+        "id": 9,
+        "nombre": "sistemas",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 6,
+        "color": "#f9b7ff"
     }
 ]

@@ -6,7 +6,7 @@ export function Profesores () {
   const { profesores, modulos } = useContext(ModulosProfesoresContext)
 
   return (
-    <aside className='m-4 bg-neutral-700 rounded-lg'>
+    <aside className='m-4 bg-neutral-200 rounded-lg text-black'>
       <ul>
         {
             profesores.map((profesor) => {
