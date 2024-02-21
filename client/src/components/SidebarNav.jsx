@@ -4,7 +4,7 @@ import { IconChevronLeft, IconUser, IconMenu, IconSearch, IconFolder, IconCalend
 import { useState } from 'react'
 
 export function SidebarNav ({ children }) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const Menus = [
     { title: 'Menú', icon: <IconMenu /> },
     { title: 'Profesores', icon: <IconUser />, gap: true },
@@ -18,11 +18,11 @@ export function SidebarNav ({ children }) {
       <div className='flex'>
         <div className={`${open ? 'w-72' : 'w-20'} duration-300 h-screen p-5 pt-8 bg-dark-purple relative`}>
           <IconChevronLeft
-            className={`absolute cursor-pointer rounded-full -right-3 top-9 w-7 h-7 border 2 border-dark-purple bg-white ${!open && 'rotate-180'}`}
+            className={`absolute cursor-pointer rounded-full -right-3 top-[38px] w-7 h-7 border 2 border-dark-purple bg-white ${!open && 'rotate-180'}`}
             onClick={() => setOpen(!open)}
           />
           <div className='flex gap-x-4 items-center'>
-            <div>
+            <div onClick={() => setOpen(true)}>
               <IconPuzzle2 width={40} height={40} color='#fff' className={`cursor-pointer duration-500 ${open && 'rotate-[360deg]'}`} />
             </div>
             <h1 className={`text-white origin-left font-medium text-xl duration-300 ${!open && 'scale-0'}`}>Modular</h1>
@@ -36,7 +36,7 @@ export function SidebarNav ({ children }) {
             ))}
           </ul>
         </div>
-        <div className='flex-1 h-screen'>
+        <div className='flex-1 h-screen' onClick={() => setOpen(false)}>
           {children}
         </div>
       </div>
