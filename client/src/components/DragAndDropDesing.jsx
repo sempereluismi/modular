@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { IconFileTypeCsv } from '@tabler/icons-react'
 export const DragAndDropDesing = () => {
   return (
     <div
@@ -8,7 +8,7 @@ export const DragAndDropDesing = () => {
         padding: '40px'
       }}
     >
-      <h2 className='text-lg font-semibold mb-4'>Arrastra y suelta archivos aquí +</h2>
+      <h2 className='text-lg font-semibold mb-4 flex gap-2 items-center'>Arrastra y suelta archivos aquí <IconFileTypeCsv /></h2>
       <p className='text-gray-600'>O haz clic para seleccionar archivos</p>
     </div>
   )

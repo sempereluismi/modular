@@ -28,7 +28,7 @@ export function Board () {
   }
 
   return (
-    <section className='m-4 bg-neutral-700 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
+    <section className='m-4 bg-neutral-200 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
       <ul>
         {modulos.map((modulo) => {
           return (positions.length > 0 &&
@@ -56,15 +56,16 @@ const Modulo = ({ modulo, position }) => {
   return (
     <div
       id={modulo.id.toString()} // Se establece el ID como el índice del módulo
-      className='w-36 h-36 absolute cursor-grab active:cursor-grabbing text-black'
+      className='w-36 h-36 absolute cursor-grab active:cursor-grabbing text-black font-postit flex flex-col justify-center items-center'
       style={{ transform: `translate(${position.x}px, ${position.y}px)`, backgroundColor: modulo.color }}
       draggable='true'
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <h1>{modulo.nombre}</h1>
-      <p>{modulo.regimen}</p>
-      <p>{modulo.horasSemanales}</p>
+      <h2 className='text-xl'>{modulo.curso}</h2>
+      <h2 className='text-xl'>{modulo.nombre}</h2>
+      <p>Régimen: {modulo.regimen}</p>
+      <p>Horas: {modulo.horasSemanales}h</p>
     </div>
   )
 }

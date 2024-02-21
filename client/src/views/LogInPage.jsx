@@ -15,7 +15,7 @@ export function LogInPage () {
               <div>
                 <label htmlFor='user' className='block text-sm font-medium leading-6 text-gray-900'>Usuario</label>
                 <div className='mt-2'>
-                  <input id='user' name='user' type='text' autoComplete='Usuario' required className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' />
+                  <input id='user' name='user' type='text' required className='p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-200 focus:outline-none sm:text-sm sm:leading-6' />
                 </div>
               </div>
 
@@ -27,12 +27,12 @@ export function LogInPage () {
                   </div>
                 </div>
                 <div className='mt-2'>
-                  <input id='password' name='password' type='password' autoComplete='Contraseña' required className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' />
+                  <input id='password' name='password' type='password' required className='p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-200 focus:outline-none sm:text-sm sm:leading-6' />
                 </div>
               </div>
 
               <div>
-                <button type='submit' className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Sign in</button>
+                <button type='submit' className='flex w-full justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Sign in</button>
               </div>
             </form>
           </div>
