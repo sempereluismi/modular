@@ -9,8 +9,9 @@ import { SidebarNav } from './components/SidebarNav'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <SidebarNav />
-      <RouterProvider router={router} />
+      <SidebarNav>
+        <RouterProvider router={router} />
+      </SidebarNav>
     </AuthProvider>
   </React.StrictMode>
 )
