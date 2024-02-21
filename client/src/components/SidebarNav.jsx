@@ -15,8 +15,8 @@ export function SidebarNav ({ children }) {
   ]
   return (
     <>
-      <div className='flex'>
-        <div className={`${open ? 'w-72' : 'w-20'} duration-300 h-screen p-5 pt-8 relative`}>
+      <div className='flex select-none'>
+        <div className={`${open ? 'w-72' : 'w-20'} duration-300 h-screen p-5 pt-8 relative bg-white`}>
           <IconChevronLeft
             className={`absolute cursor-pointer rounded-full -right-4 top-[38px] w-7 h-7 border 2 border-dark-purple bg-white ${!open && 'rotate-180'}`}
             onClick={() => setOpen(!open)}
@@ -29,15 +29,15 @@ export function SidebarNav ({ children }) {
           </div>
           <ul className='pt-6'>
             {Menus.map((menu, index) => (
-              <li key={index} className={`text-text-100 h-9 p-2 text-sm flex items-center gap-x-4 cursor-pointer hover:bg-primary-100 active:bg-primary-200 hover:text-white rounded-md transition-all ${menu.gap ? 'mt-9' : 'mt-2'}`}>
-                <div>{menu.icon}</div>
-                <span className={`${!open && 'hidden'} origin-left text-lg`}>{menu.title}</span>
+              <li key={index} className={`text-text-100 h-9 p-2 text-sm flex items-center gap-x-4 cursor-pointer hover:bg-primary-100 active:bg-primary-200 hover:text-white rounded-md  ${menu.gap ? 'mt-9' : 'mt-2'}`}>
+                <div className=''>{menu.icon}</div>
+                <span className={`${!open && 'scale-0'} transition duration-200 origin-left text-lg`}>{menu.title}</span>
               </li>
             ))}
           </ul>
         </div>
         <div className='h-screen w-[2px] bg-accent-200' />
-        <div className='flex-1 h-screen' onClick={() => setOpen(false)}>
+        <div className='flex-1 h-screen overflow-hidden' onClick={() => setOpen(false)}>
           {children}
         </div>
       </div>
