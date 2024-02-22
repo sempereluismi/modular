@@ -8,7 +8,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class ComprobacionCSV extends Controller
 {
-
     public function uploadFiles(Request $request, Response $response)
     {
         // Obtenemos los archivos subidos
@@ -27,7 +26,6 @@ class ComprobacionCSV extends Controller
             // No se ha enviado ningún archivo o hay un error en la carga
             return $this->returnResponse($response, ["error" => "No se ha enviado ningún archivo o hay un error en la carga"], 400);
         }
-
     }
 
     private function esArchivoCSV($uploadedFile): bool
