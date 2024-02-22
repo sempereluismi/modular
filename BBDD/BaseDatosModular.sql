@@ -121,7 +121,7 @@ create table modulo_tematica(
 
 drop table if exists reduccion;
 create table reduccion(
-    id int not null,
+    id int auto_increment not null,
     horas varchar(100) not null,
     nombre int not null,
     primary key (id)
@@ -145,3 +145,4 @@ create table afin(
     constraint `fk_id_especialidad_afin` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE,
     constraint `fk_id_profesor_afin` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
+

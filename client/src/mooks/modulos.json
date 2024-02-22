@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "nombre": "programacion",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 4,
+        "color": "#b0f2c2"
+    },
+    {
+        "id": 2,
+        "nombre": "erp",
+        "regimen": "adultos",
+        "curso": "1º DAW",
+        "horasSemanales": 6,
+        "color": "#fdfd96"
+    },
+    {
+        "id": 3,
+        "nombre": "hardware",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 5,
+        "color": "#ffcba4"
+    },
+    {
+        "id": 4,
+        "nombre": "S. operativos",
+        "regimen": "adultos",
+        "curso": "1º DAW",
+        "horasSemanales": 7,
+        "color": "#b0c2f2"
+    },
+    {
+        "id": 5,
+        "nombre": "ofimatica",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 3,
+        "color": "#55d6c2"
+    },
+    {
+        "id": 6,
+        "nombre": "bbdd",
+        "regimen": "adultos",
+        "curso": "1º DAW",
+        "horasSemanales": 4,
+        "color": "#ffc0cb"
+    },
+    {
+        "id": 7,
+        "nombre": "redes",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 6,
+        "color": "#f9b7ff"
+    },
+    {
+        "id": 8,
+        "nombre": "web",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 6,
+        "color": "#ffcba4"
+    },
+    {
+        "id": 9,
+        "nombre": "sistemas",
+        "regimen": "ordinario",
+        "curso": "1º DAW",
+        "horasSemanales": 6,
+        "color": "#f9b7ff"
+    }
+]
