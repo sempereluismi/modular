@@ -6,7 +6,7 @@ export function Profesores () {
   const { profesores, modulos } = useContext(ModulosProfesoresContext)
 
   return (
-    <aside className='m-4 bg-neutral-200 rounded-lg text-black'>
+    <aside className='m-4 bg-neutral-200 rounded-lg text-black flex justify-center select-none'>
       <ul>
         {
             profesores.map((profesor) => {
@@ -55,12 +55,13 @@ const Profesor = ({ profesor, modulos }) => {
   return (
     <>
       <li
-        className={`px-3 py-5 
-    ${active ? 'border-white border-2' : 'border-0'}`}
+        className={`px-3 py-5 transition-all duration-100
+        ${active && 'bg-neutral-300'}  `}
         onDragOver={handleDragOver}
         onDragLeave={() => setActive(false)}
         onDrop={handleDrop}
-      >{profesor.nombre}
+      >
+        {profesor.nombre}
         {profesor.modulos.length > 0 &&
           <ul className='flex gap-2 flex-wrap'>
             {profesor.modulos.map(modulo => {
@@ -79,6 +80,7 @@ const Profesor = ({ profesor, modulos }) => {
             })}
           </ul>}
       </li>
+      <hr className='w-56  border-slate-700' />
     </>
   )
 }

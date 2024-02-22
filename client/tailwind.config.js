@@ -20,7 +20,8 @@ export default {
 
       },
       fontFamily: {
-        postit: ['Architects Daughter', 'cursive']
+        postit: ['Architects Daughter', 'cursive'],
+        primary: ['Lato', 'sans-serif']
       }
     }
   },
