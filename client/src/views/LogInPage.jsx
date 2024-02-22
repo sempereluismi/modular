@@ -1,21 +1,12 @@
-export function LogInPage() {
-    return (
-        <div className="container-login">
-          <form action="procesar_login.php" method="post">
-            <h2>Iniciar sesión</h2>
-            <div className="userTextBox">
-              <label for="usuario">Usuario:</label>
-              <input type="text" id="usuario" name="usuario" required/>
-            </div>
-            <div className="passwordTextBoX">
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" id="contrasena" name="contrasena" required/>
-            </div>
-            <div className="submitButton">
-              <input type="submit" value="Enviar"/> 
-            </div>
-          </form>
-        </div>
-    );
-  }
-  
+import { IconPuzzle } from '@tabler/icons-react'
+import { LoginForm } from '../components/LoginForm'
+
+export function LogInPage () {
+  return (
+    <>
+      <IconPuzzle width={1000} height={1000} color='#ff660085' strokeWidth={1} className='fixed -z-10 -top-72 -left-72 rotate-45' />
+      <LoginForm className='z-10' />
+      <IconPuzzle width={1200} height={1200} color='#ff660085' strokeWidth={1} className='fixed -z-10 top-48 -right-[500px] rotate-45' />
+    </>
+  )
+}

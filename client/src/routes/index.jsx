@@ -32,6 +32,10 @@ const router = createBrowserRouter([
     element: <LogInPage />
   },
   {
+    path: '/menu',
+    element: <Menu />
+  },
+  {
     path: '/quenda',
     element: <DirunoNocturnoPage />
   },

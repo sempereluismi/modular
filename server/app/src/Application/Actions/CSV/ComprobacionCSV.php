@@ -17,15 +17,15 @@ class ComprobacionCSV extends Controller
         if (isset($uploadedFiles['csvFile']) && $uploadedFiles['csvFile']->getError() === UPLOAD_ERR_OK) {
             if ($this->esArchivoCSV($uploadedFiles['csvFile'])) {
                 // Procesa el archivo csv
-                return $this->returnResponse($response, ["success" => "Formato de archivo valido"], 200);
+                return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
             } else {
-                return $this->returnResponse($response, ["error" => "Formato de archivo incorrecto"], 400);
+                // El archivo no es un CSV válido
+                return $this->returnResponse($response, ["error" => "El archivo no esun CSV valido "], 400);
             }
         } else {
+            // No se ha enviado ningún archivo o hay un error en la carga
             return $this->returnResponse($response, ["error" => "No se ha enviado ningún archivo o hay un error en la carga"], 400);
         }
-
-        return $response;
     }
 
     private function esArchivoCSV($uploadedFile): bool
