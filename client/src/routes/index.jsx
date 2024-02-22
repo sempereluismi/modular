@@ -26,12 +26,12 @@ const router = createBrowserRouter([
     element: <LogInPage />
   },
   {
-    path: '/quenda',
-    element: <DirunoNocturnoPage />
-  },
-  {
     path: '/darkmode',
     element: <PlantillaDarkMode />
+  },
+  {
+    path: '/quenda',
+    element: <DirunoNocturnoPage />
   },
   {
     path: '/insertar',
