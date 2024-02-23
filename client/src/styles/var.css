@@ -10,10 +10,15 @@
 
 [data-theme='dark'] {
     --background: #05010a;
-    --text-primary: #0f0f0f;
+    --text-primary: #f2f2f2;
     --text-secondary: #a7a4a4;
     --accent: #6a5acd;
     --accent-hover: #5b4cbe; 
     --border: #696969;
     --shadow: 7px 15px 13px -4px #ffffff1b;
+}
+
+body{
+    background-color: var(--background);
+    color: var(--text-primary);
 }

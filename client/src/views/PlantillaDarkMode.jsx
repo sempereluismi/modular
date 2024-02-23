@@ -2,6 +2,7 @@ import { Card } from '../components/Card'
 import { DarkMode } from '../components/DarkMode'
 import { Switch } from '../components/Switch'
 import { Layout } from '../layouts/Layout'
+import '../styles/var.css'
 
 export function PlantillaDarkMode () {
   return (
