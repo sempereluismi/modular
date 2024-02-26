@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
-import { IconChevronLeft, IconUser, IconMenu, IconSearch, IconLogout, IconFolder, IconCalendar, IconSettings, IconPuzzle2 } from '@tabler/icons-react'
-
+import { IconChevronLeft, IconUser, IconLogin, IconSearch, IconLogout, IconBook, IconFolder, IconCalendar, IconSettings, IconPuzzle2 } from '@tabler/icons-react'
+import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 
 export function SidebarNav ({ children }) {
   const [open, setOpen] = useState(false)
   const Menus = [
-    { title: 'Menú', icon: <IconMenu /> },
-    { title: 'Profesores', icon: <IconUser />, gap: true, url: 'http://localhost:5173/insertar/profesores' },
+    { title: 'Login', icon: <IconLogin />, url: '/login' },
+    { title: 'Profesores', icon: <IconUser />, gap: true, url: '/insertar/profesores' },
+    { title: 'Modulos', icon: <IconBook />, url: '/insertar/modulos' },
     { title: 'Buscar', icon: <IconSearch /> },
-    { title: 'Horarios', icon: <IconFolder />, gap: true },
+    { title: 'Horarios', icon: <IconFolder />, gap: true, url: '/quenda' },
     { title: 'Calendario', icon: <IconCalendar /> },
     { title: 'Ajustes', icon: <IconSettings /> },
     { title: 'Logout', icon: <IconLogout />, gap: true }
@@ -32,7 +33,11 @@ export function SidebarNav ({ children }) {
             {Menus.map((menu, index) => (
               <li key={index} className={`text-text-100 h-9 p-2 text-sm flex items-center gap-x-4 cursor-pointer hover:bg-primary-100 active:bg-primary-200 hover:text-white rounded-md  ${menu.gap ? 'mt-9' : 'mt-2'}`}>
                 <div className=''>{menu.icon}</div>
-                <span className={`${!open && 'scale-0'} transition duration-200 origin-left text-lg`}><a href={menu.url} onClick={() => { setOpen(true) }}>{menu.title}</a></span>
+                <span className={`${!open && 'scale-0'} transition duration-200 origin-left text-lg`}><NavLink to={menu.url} activeClassName='active' onClick={() => { setOpen(true) }}>
+                  {menu.title}
+                </NavLink>
+                </span>
+
               </li>
             ))}
           </ul>
