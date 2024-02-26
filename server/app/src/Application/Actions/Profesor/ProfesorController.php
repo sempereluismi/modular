@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\Profesor;
 
+use App\Application\Actions\Controller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\db\Profesor\ProfesorModel;
 
-class ProfesorController
+class ProfesorController extends Controller
 {
     public function listarProfesor(Request $request, Response $response, array $args): Response
     {
@@ -42,16 +43,8 @@ class ProfesorController
     public function deletarProfesor(Request $request, Response $response, array $args): Response
     {
         $id = $args["id"];
-        $res =ProfesorModel::deletarProfesor($id);
+        $res = ProfesorModel::deletarProfesor($id);
 
         return $this->returnResponse($response, $res);
-    }
-
-    private function returnResponse(Response $response, array $res, int $statusCode = 200): Response
-    {
-        $responseStatus = $response->withStatus($statusCode);
-        $responseStatus->withHeader('Content-Type', 'application/json');
-        $responseStatus->getBody()->write(json_encode($res));
-        return $responseStatus;
     }
 }

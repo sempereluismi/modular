@@ -127,3 +127,5 @@ create table reduccion_profesor(
      constraint `fk_id_profesor_rp` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE,
 	 constraint `fk_id_reduccion_rp` foreign key (`id_reduccion`) references `reduccion` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
+
+# TODO añadir columna en modulo_tematica de prioridad
