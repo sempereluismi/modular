@@ -5,6 +5,7 @@ import { InsertarPlantillaPage } from '../views/InsertarPlantillaPage.jsx'
 import { InsertarProfesorPage } from '../views/InsertarProfesorPage.jsx'
 import { LogInPage } from '../views/LogInPage.jsx'
 import { ListaProfesores } from '../views/ListaProfesores.jsx'
+import { PlantillaDarkMode } from '../views/PlantillaDarkMode.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,9 +30,8 @@ const router = createBrowserRouter([
     element: <DirunoNocturnoPage />
   },
   {
-
-    path: '/quenda',
-    element: <DirunoNocturnoPage />
+    path: '/darkmode',
+    element: <PlantillaDarkMode />
   },
   {
     path: '/insertar',

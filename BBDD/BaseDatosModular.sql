@@ -1,12 +1,12 @@
 -- Creación de la base de datos
 
-drop database if exists Institutos;
+drop database if exists Modular;
 
-create database Institutos
+create database Modular
 	character set utf8
 	collate utf8_spanish_ci;
     
-use Institutos;
+use Modular;
 
 -- Creación de las tablas
 
@@ -17,8 +17,8 @@ create table tematica(
 	primary key (id)
 )ENGINE=InnoDB;
 
-drop table if exists especializacion;
-create table especializacion(
+drop table if exists especialidad;
+create table especialidad(
 	id int not null comment 'Id de la especialización',
 	tipo varchar(100) not null comment 'Tipo de la especialización',
 	primary key (id)
@@ -30,10 +30,10 @@ create table modulo(
 	nombre varchar(100) not null comment 'Nombre del módulo',
     descripción varchar(200) not null comment 'Descripción del módulo',
     id_tematica int not null ,
-    id_especializacion int not null,
+    id_especialidad int not null,
     primary key (id),
     constraint `fk_id_tematica` foreign key (`id_tematica`) references `tematica` (`id`) ON UPDATE CASCADE,
-	constraint `fk_id_especializacion` foreign key (`id_especializacion`) references `especializacion` (`id`) ON UPDATE CASCADE
+	constraint `fk_id_especialidad` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
 drop table if exists ciclo;
@@ -71,17 +71,25 @@ create table instituto(
 	primary key (id)
 )ENGINE=InnoDB;
 
+drop table if exists departamento;
+create table departamento(
+	id int auto_increment not null comment 'Id que usaremos nosotros',
+	nombre varchar(100) not null comment 'Nombre del instituto',
+    id_instituto int not null,
+	primary key (id),
+    constraint `fk_id_instituto_departamento` foreign key (`id_instituto`) references `instituto` (`id`) ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+
 drop table if exists profesor;
 create table profesor(
 	id int not null comment 'Código del profesor',
 	nombre varchar(100) not null comment 'Nombre del profesor',
 	fecha_inicio date not null comment 'Fecha en la que empezó el profesor',
     tipo varchar(100) not null,
-    id_especializacion int not null,
-    id_instituto int not null,
+    id_departamento int not null,
 	primary key (id),
-    constraint `fk_id_instituto_profesor` foreign key (`id_instituto`) references `instituto` (`id`) ON UPDATE CASCADE,
-    constraint `fk_id_especializacion_profesor` foreign key (`id_especializacion`) references `especializacion` (`id`) ON UPDATE CASCADE
+    constraint `fk_id_departamento_profesor` foreign key (`id_departamento`) references `departamento` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
 drop table if exists imparte;
@@ -121,11 +129,21 @@ create table reduccion(
 
 drop table if exists reduccion_profesor;
 create table reduccion_profesor(
-    id_reduccion int not null,
+    id_reduccion int auto_increment not null ,
     id_profesor int not null,
     primary key (id_profesor, id_reduccion),
      constraint `fk_id_profesor_rp` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE,
 	 constraint `fk_id_reduccion_rp` foreign key (`id_reduccion`) references `reduccion` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
+
 # TODO añadir columna en modulo_tematica de prioridad
+drop table if exists afin;
+create table afin(
+	id int not null comment 'Id de la especialización',
+    id_profesor int not null,
+    id_especialidad int not null,
+	primary key (id),
+    constraint `fk_id_especialidad_afin` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE,
+    constraint `fk_id_profesor_afin` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
+)ENGINE=InnoDB;
