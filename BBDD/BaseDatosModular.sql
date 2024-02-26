@@ -1,6 +1,5 @@
 	-- Creación de la base de datos
 
-<<<<<<< HEAD
 	drop database if exists Modular;
 
 	create database Modular
@@ -8,15 +7,6 @@
 		collate utf8_spanish_ci;
 		
 	use Modular;
-=======
-drop database if exists Modular;
-
-create database Modular
-	character set utf8
-	collate utf8_spanish_ci;
-    
-use Modular;
->>>>>>> da18feb3e7a4e57b3574c79e0048129e7877a403
 
 	-- Creación de las tablas
 
