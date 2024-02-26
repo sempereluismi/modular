@@ -136,6 +136,8 @@ create table reduccion_profesor(
 	 constraint `fk_id_reduccion_rp` foreign key (`id_reduccion`) references `reduccion` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
+
+# TODO añadir columna en modulo_tematica de prioridad
 drop table if exists afin;
 create table afin(
 	id int not null comment 'Id de la especialización',
@@ -145,4 +147,3 @@ create table afin(
     constraint `fk_id_especialidad_afin` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE,
     constraint `fk_id_profesor_afin` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
-
