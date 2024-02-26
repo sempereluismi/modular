@@ -29,6 +29,11 @@ const router = createBrowserRouter([
     element: <DirunoNocturnoPage />
   },
   {
+
+    path: '/quenda',
+    element: <DirunoNocturnoPage />
+  },
+  {
     path: '/insertar',
     children: [
       {
