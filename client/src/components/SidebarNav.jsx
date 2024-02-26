@@ -23,7 +23,7 @@ export function SidebarNav ({ children }) {
           />
           <div className='flex gap-x-4 items-center select-none'>
             <div onClick={() => setOpen(!open)}>
-              <IconPuzzle2 width={40} height={40} color='#FF6600' className={`cursor-pointer duration-500 active:scale-150 ${open && 'rotate-[360deg]'}`} />
+              <IconPuzzle2 width={40} height={40} color='#FF6600' className={`cursor-pointer duration-500 active:scale-75 ${open && 'rotate-[360deg]'}`} />
             </div>
             <h1 className={`text-text-100 origin-left font-bold text-2xl duration-300 ${!open && 'scale-0'}`}>MODULAR</h1>
           </div>

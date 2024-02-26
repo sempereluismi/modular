@@ -4,8 +4,8 @@ export function LoginForm () {
   return (
     <div className='flex min-h-full flex-col px-6 py-12 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center gap-y-4'>
-        <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>Login</h2>
-        <IconPuzzle2 width={40} height={40} />
+        <IconPuzzle2 width={50} height={50} />
+        <h2 className='text-center text-4xl font-bold leading-9 tracking-tight text-gray-900'>MODULAR</h2>
       </div>
       <div className='container-login'>
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
