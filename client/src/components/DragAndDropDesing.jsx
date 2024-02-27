@@ -5,7 +5,7 @@ import { IconFileTypeCsv } from '@tabler/icons-react'
 export const DragAndDropDesing = ({ urlImage }) => {
   return (
     <div
-      className='bg-repeat border-2 border-dashed border-gray-400 rounded-lg px-4 py-8 text-center cursor-pointer' style={{
+      className='bg-repeat border-2  border-gray-400 rounded-lg px-4 py-8 text-center cursor-pointer' style={{
         backgroundImage: `url("${urlImage}")`,
         padding: '40px'
       }}
