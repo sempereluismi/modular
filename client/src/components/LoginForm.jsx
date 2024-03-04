@@ -1,19 +1,20 @@
 import { IconPuzzle2 } from '@tabler/icons-react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
 export function LoginForm () {
-  const { login, loading, user } = useAuth()
+  const { login, loading } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
     // Obtener los valores de los inputs
     const usuario = event.target.user.value
     const contraseña = event.target.password.value
 
     const res = await login(usuario, contraseña)
     if (res) {
-      console.log('Usuario logeado', user)
+      navigate('/quenda')
     }
   }
 
