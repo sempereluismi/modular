@@ -38,7 +38,7 @@ return function (App $app) {
             $group->post('/profesor', [ComprobacionCSV::class, 'uploadFiles']);
         });
         $group->group('/auth', function (Group $group) {
-            $group->post('/verify', [LoginController::class, 'login']);
+            $group->post('/login', [LoginController::class, 'login']);
         });
     });
 };

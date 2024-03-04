@@ -1,6 +1,9 @@
 import { IconPuzzle2 } from '@tabler/icons-react'
+import { useAuth } from '../hooks/useAuth'
 
 export function LoginForm () {
+  const { login, loading, user } = useAuth()
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -8,25 +11,9 @@ export function LoginForm () {
     const usuario = event.target.user.value
     const contraseña = event.target.password.value
 
-    // Crear el objeto con los datos para enviar en el cuerpo de la solicitud
-    const datos = {
-      email: usuario,
-      password: contraseña
-    }
-
-    const response = await fetch('http://localhost:8000/api/auth/verify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(datos)
-    })
-
-    if (response.ok) {
-      const data = await response.json()
-      console.log(data)
-    } else {
-      console.error('Error en la petición:', response.statusText)
+    const res = await login(usuario, contraseña)
+    if (res) {
+      console.log('Usuario logeado', user)
     }
   }
 
@@ -59,7 +46,7 @@ export function LoginForm () {
             </div>
 
             <div>
-              <button type='submit' className='flex w-full justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Sign in</button>
+              <button type='submit' className='flex w-full justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>{loading ? 'Cargando...' : 'Sing up'}</button>
             </div>
           </form>
         </div>

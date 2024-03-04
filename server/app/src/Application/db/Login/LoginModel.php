@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\db\Login;
 
 use App\Application\db\DatabaseConnection;
+use PDO;
 
 class LoginModel
 {
@@ -18,7 +19,10 @@ class LoginModel
             $res = $stmt->fetch();
             if (sizeof($res) > 0) {
                 if (password_verify($password, $res["password"])) {
-                    return 200;
+                    $sql = "SELECT id, nombre FROM Modular.profesor where email = ?;";
+                    $stmt = $dbInstance->execQuery($sql, [$user]);
+                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $res;
                 }
             }
             return 404;

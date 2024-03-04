@@ -19,6 +19,10 @@ class LoginController extends Controller
 
         $res = LoginModel::login($email, $password);
 
+        if (gettype($res) === "array") {
+            return $this->returnResponse($response, $res);
+        }
+
         if ($res === 200) {
             return $this->returnResponse($response, ["userInfo" => "login completo"]);
         }
