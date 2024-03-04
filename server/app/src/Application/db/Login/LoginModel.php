@@ -10,7 +10,7 @@ class LoginModel
 {
     public static function login($user, $password): array | int
     {
-        $sql = "SELECT email, password FROM Modular.profesor where email = ?;";
+        $sql = "SELECT password FROM Modular.profesor where email = ?;";
         $dbInstance = DatabaseConnection::getInstance();
 
         try {
@@ -19,7 +19,6 @@ class LoginModel
             if (sizeof($res) > 0) {
                 if (password_verify($password, $res["password"])) {
                     return 200;
-                    
                 }
             }
             return 404;
