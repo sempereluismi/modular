@@ -10,6 +10,7 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Application\Actions\Modulo\ModuloController;
 use App\Application\Actions\Profesor\ProfesorController;
 use App\Application\Actions\CSV\ComprobacionCSV;
+use App\Application\Actions\Login\LoginController;
 
 
 return function (App $app) {
@@ -35,6 +36,9 @@ return function (App $app) {
         });
         $group->group('/upload', function (Group $group) {
             $group->post('/profesor', [ComprobacionCSV::class, 'uploadFiles']);
+        });
+        $group->group('/auth', function (Group $group) {
+            $group->post('/verify', [LoginController::class, 'login']);
         });
     });
 };

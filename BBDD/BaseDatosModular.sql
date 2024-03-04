@@ -88,13 +88,23 @@
 	drop table if exists profesor;
 	create table profesor(
 		id int not null auto_increment comment 'Código del profesor',
+        email varchar(255) unique not null,
+        password varchar(255) not null,
 		nombre varchar(100) not null comment 'Nombre del profesor',
 		fecha_inicio date not null comment 'Fecha en la que empezó el profesor',
-		tipo varchar(100) not null,
 		id_departamento int not null,
 		primary key (id),
 		constraint `fk_id_departamento_profesor` foreign key (`id_departamento`) references `departamento` (`id`) ON UPDATE CASCADE
 	)ENGINE=InnoDB;
+    
+    drop table if exists profesor_admin;
+    create table profesor_admin(
+		id int not null auto_increment,
+        id_profesor int not null,
+        
+        primary key (id),
+        constraint `fk_id_profesor_admin` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
+    )ENGINE=InnoDB;
 
 	drop table if exists imparte;
 	create table imparte(
