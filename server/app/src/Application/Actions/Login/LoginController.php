@@ -27,6 +27,26 @@ class LoginController extends Controller
             return $this->returnResponse($response, ["userInfo" => "login completo"]);
         }
 
-        return $this->returnResponse($response, ["error" => "algo fue mal => " . $res]);
+        return $this->returnResponse($response, ["error" => "algo fue mal => " . $res], $res);
+    }
+
+    public function rol(Request $request, Response $response, array $args)
+    {
+        $id = (isset($args["id"])) ? $args["id"] : null;
+        if ($id === null) return $this->returnResponse($response, ["error" => "Method Not Allowed"], 405);
+
+        $res = LoginModel::rol($id);
+        if (gettype($res) === "array") {
+            return $this->returnResponse($response, $res);
+        }
+
+
+        if ($res === 500) {
+            return $this->returnResponse($response, ["error" => "something wrong"], $res);
+        }
+
+        if ($res === 404) return $this->returnResponse($response, ["rol" => "0"], 200);
+
+        return $this->returnResponse($response, ["rol" => 1]);
     }
 }
