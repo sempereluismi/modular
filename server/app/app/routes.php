@@ -39,6 +39,7 @@ return function (App $app) {
         });
         $group->group('/auth', function (Group $group) {
             $group->post('/login', [LoginController::class, 'login']);
+            $group->get('/rol/{id}', [LoginController::class, 'rol']);
         });
     });
 };
