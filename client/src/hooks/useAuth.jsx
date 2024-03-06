@@ -10,6 +10,11 @@ export function useAuth () {
     return user !== null
   }
 
+  function logout () {
+    sessionStorage.removeItem('user')
+    setUser(null)
+  }
+
   function isAdmin () {
     return user.jefe === 1
   }
@@ -66,6 +71,7 @@ export function useAuth () {
     login,
     loading,
     redirectIfNotLogged,
-    isAdmin
+    isAdmin,
+    logout
   }
 }

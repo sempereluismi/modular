@@ -8,12 +8,14 @@ import { ListaProfesores } from '../views/ListaProfesores.jsx'
 import { InsertarModuloPage } from '../views/InsertarModuloPage.jsx'
 import { ProtectedAuthRoutes } from '../views/ProtectedAuthRoutes.jsx'
 import { ProtectedAdminRoutes } from '../views/ProtectedAdminRoutes.jsx'
+import { LogOutPage } from '../views/LogOutPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<Ejemplo />} />
       <Route path='/login' element={<LogInPage />} />
+      <Route path='/logout' element={<LogOutPage />} />
       <Route path='/user' element={<ProtectedAuthRoutes />}>
         <Route path='quenda' element={<DirunoNocturnoPage />} />
         <Route path='plantilla' element={<InsertarPlantillaPage />} />

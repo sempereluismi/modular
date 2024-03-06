@@ -4,8 +4,8 @@ import { useAuth } from '../hooks/useAuth'
 export const ProtectedAdminRoutes = () => {
   const { user } = useAuth()
 
-  if (!user && user.jefe === 1) {
-    return <Navigate to='/login' />
+  if (!user || user.jefe !== 1) {
+    return <Navigate to='/' />
   }
 
   return <Outlet />

@@ -3,7 +3,7 @@ import { IconSearch, IconTemplate, IconLogout2, IconBook, IconLayout, IconSchool
 export const menuProf = [
   { title: 'Plantilla', icon: IconTemplate, url: '/user/plantilla' },
   { title: 'Horarios', icon: IconLayout, gap: true, url: '/user/quenda' },
-  { title: 'Logout', icon: IconLogout2, gap: true, url: '/' }
+  { title: 'Logout', icon: IconLogout2, gap: true, url: '/logout' }
 ]
 
 export const menuAdmin = [
@@ -12,5 +12,5 @@ export const menuAdmin = [
   { title: 'Plantilla', icon: IconTemplate, url: '/user/plantilla' },
   { title: 'Lista Profes', icon: IconSearch, gap: true, url: '/admin/listaProfesores' },
   { title: 'Horarios', icon: IconLayout, gap: true, url: '/user/quenda' },
-  { title: 'Logout', icon: IconLogout2, gap: true, url: '/' }
+  { title: 'Logout', icon: IconLogout2, gap: true, url: '/logout' }
 ]
