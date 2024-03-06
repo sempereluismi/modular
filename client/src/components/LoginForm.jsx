@@ -1,8 +1,25 @@
 import { IconPuzzle2 } from '@tabler/icons-react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 
 export function LoginForm () {
+  const { login, loading } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    // Obtener los valores de los inputs
+    const usuario = event.target.user.value
+    const contraseña = event.target.password.value
+
+    const res = await login(usuario, contraseña)
+    if (res) {
+      navigate('/user/quenda')
+    }
+  }
+
   return (
-    <div className='flex min-h-full flex-col px-6 py-12 lg:px-8'>
+    <div className='flex min-h-full flex-col px-6 py-12 lg:px-8' onSubmit={handleSubmit}>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center gap-y-4'>
         <IconPuzzle2 width={50} height={50} />
         <h2 className='text-center text-4xl font-bold leading-9 tracking-tight text-gray-900'>MODULAR</h2>
@@ -30,7 +47,7 @@ export function LoginForm () {
             </div>
 
             <div>
-              <button type='submit' className='flex w-full justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Sign in</button>
+              <button type='submit' className='flex w-full justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>{loading ? 'Cargando...' : 'Sing up'}</button>
             </div>
           </form>
         </div>

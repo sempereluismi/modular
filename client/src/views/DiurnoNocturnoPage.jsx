@@ -1,9 +1,17 @@
+import { useEffect } from 'react'
 import { Board } from '../components/Board'
 import { Profesores } from '../components/Profesores'
 import { ModulosProfesoresProvider } from '../context/ModulosProfesoresContext'
 import { Layout } from '../layouts/Layout'
+import { useAuth } from '../hooks/useAuth'
 
 export function DirunoNocturnoPage () {
+  const { redirectIfNotLogged } = useAuth()
+
+  useEffect(() => {
+    redirectIfNotLogged()
+  })
+
   return (
     <ModulosProfesoresProvider>
       <Layout>
