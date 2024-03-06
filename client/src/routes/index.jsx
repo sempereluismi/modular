@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 import { Ejemplo } from '../views/ejemplo.jsx'
 import { DirunoNocturnoPage } from '../views/DiurnoNocturnoPage.jsx'
 import { InsertarPlantillaPage } from '../views/InsertarPlantillaPage.jsx'
@@ -6,47 +6,27 @@ import { InsertarProfesorPage } from '../views/InsertarProfesorPage.jsx'
 import { LogInPage } from '../views/LogInPage.jsx'
 import { ListaProfesores } from '../views/ListaProfesores.jsx'
 import { InsertarModuloPage } from '../views/InsertarModuloPage.jsx'
+import { ProtectedAuthRoutes } from '../views/ProtectedAuthRoutes.jsx'
+import { ProtectedAdminRoutes } from '../views/ProtectedAdminRoutes.jsx'
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Ejemplo />
-  },
-  {
-    path: '/recogerhorasymodulos',
-    children: [
-      {
-        path: 'listaProfesores',
-        element: <ListaProfesores />
-      }
-    ]
-  },
-  {
-    path: '/login',
-    element: <LogInPage />
-  },
-  {
-    path: '/quenda',
-    element: <DirunoNocturnoPage />
-  },
-  {
-    path: '/insertar',
-    children: [
-      {
-        path: 'plantilla',
-        element: <InsertarPlantillaPage />
-      },
-      {
-        path: 'profesores',
-        element: <InsertarProfesorPage />
-      },
-      {
-        path: 'modulos',
-        element: <InsertarModuloPage />
-      }
-    ]
-  }
-
-])
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path='/' element={<Ejemplo />} />
+      <Route path='/login' element={<LogInPage />} />
+      <Route path='/user' element={<ProtectedAuthRoutes />}>
+        <Route path='quenda' element={<DirunoNocturnoPage />} />
+        <Route path='plantilla' element={<InsertarPlantillaPage />} />
+      </Route>
+      <Route path='/admin' element={<ProtectedAdminRoutes />}>
+        <Route path='insertar'>
+          <Route path='profesores' element={<InsertarProfesorPage />} />
+          <Route path='modulos' element={<InsertarModuloPage />} />
+        </Route>
+        <Route path='listaProfesores' element={<ListaProfesores />} />
+      </Route>
+    </>
+  )
+)
 
 export default router

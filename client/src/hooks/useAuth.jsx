@@ -10,6 +10,10 @@ export function useAuth () {
     return user !== null
   }
 
+  function isAdmin () {
+    return user.jefe === 1
+  }
+
   function redirectIfNotLogged (path = '/login') {
     if (!isLogged()) {
       navigate(path)
@@ -18,7 +22,7 @@ export function useAuth () {
 
   async function getRol (id) {
     if (!isLogged()) {
-      return
+      return false
     }
 
     const res = await fetch(`http://localhost:8000/api/auth/rol/${id}`, {
@@ -30,7 +34,7 @@ export function useAuth () {
 
     if (res.ok) {
       const data = await res.json()
-      return data.rol
+      return data
     }
   }
 
@@ -61,6 +65,7 @@ export function useAuth () {
     getRol,
     login,
     loading,
-    redirectIfNotLogged
+    redirectIfNotLogged,
+    isAdmin
   }
 }

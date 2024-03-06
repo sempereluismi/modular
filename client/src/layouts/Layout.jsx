@@ -2,10 +2,11 @@
 
 import { SidebarNav } from '../components/SidebarNav'
 
-export function Layout ({ children }) {
+export function Layout ({ children, mostrarSidebar = true }) {
   return (
-    <SidebarNav>
-      {children}
-    </SidebarNav>
+    <>
+      {mostrarSidebar ? <SidebarNav>{children}</SidebarNav> : <main>{children}</main>}
+    </>
+
   )
 }
