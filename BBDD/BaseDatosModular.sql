@@ -16,6 +16,24 @@
 		color varchar(50) comment 'Color de la temática',
 		primary key (id)
 	)ENGINE=InnoDB;
+    
+drop table if exists instituto;
+	create table instituto(
+		id int not null auto_increment comment 'Id que usaremos nosotros',
+		nombre varchar(100) not null comment 'Nombre del instituto',
+		email varchar(100) not null comment 'Correo de contacto',
+		telefono int not null comment 'Número del instituto',
+		primary key (id)
+	)ENGINE=InnoDB;
+
+	drop table if exists departamento;
+	create table departamento(
+		id int auto_increment not null comment 'Id que usaremos nosotros',
+		nombre varchar(100) not null comment 'Nombre del instituto',
+		id_instituto int not null,
+		primary key (id),
+		constraint `fk_id_instituto_departamento` foreign key (`id_instituto`) references `instituto` (`id`) ON UPDATE CASCADE
+	)ENGINE=InnoDB;
 
 	drop table if exists especialidad;
 	create table especialidad(
@@ -36,10 +54,12 @@
 		id INT NOT NULL AUTO_INCREMENT COMMENT 'Id del módulo',
 		nombre VARCHAR(100) NOT NULL COMMENT 'Nombre del módulo',
 		descripción VARCHAR(200) NOT NULL COMMENT 'Descripción del módulo',
+        id_departamento int not null,
 		id_tematica INT NOT NULL,
 		id_especialidad INT NOT NULL,
 		PRIMARY KEY (id),
 		CONSTRAINT fk_id_tematica FOREIGN KEY (id_tematica) REFERENCES tematica (id) ON UPDATE CASCADE,
+        CONSTRAINT fk_id_modulo_departamento FOREIGN KEY (id_departamento) REFERENCES departamento (id) ON UPDATE CASCADE,
 		CONSTRAINT fk_id_especialidad FOREIGN KEY (id_especialidad) REFERENCES especialidad (id) ON UPDATE CASCADE
 	)ENGINE=InnoDB;
 
@@ -64,24 +84,6 @@
 		constraint `fk_id_regimen` foreign key (`id_regimen`) references `regimen` (`id`) ON UPDATE CASCADE,
 		constraint `fk_id_ciclo` foreign key (`id_ciclo`) references `ciclo` (`id`) ON UPDATE CASCADE,
 		constraint `fk_id_modulo` foreign key (`id_modulo`) references `modulo` (`id`) ON UPDATE CASCADE
-	)ENGINE=InnoDB;
-
-	drop table if exists instituto;
-	create table instituto(
-		id int not null auto_increment comment 'Id que usaremos nosotros',
-		nombre varchar(100) not null comment 'Nombre del instituto',
-		email varchar(100) not null comment 'Correo de contacto',
-		telefono int not null comment 'Número del instituto',
-		primary key (id)
-	)ENGINE=InnoDB;
-
-	drop table if exists departamento;
-	create table departamento(
-		id int auto_increment not null comment 'Id que usaremos nosotros',
-		nombre varchar(100) not null comment 'Nombre del instituto',
-		id_instituto int not null,
-		primary key (id),
-		constraint `fk_id_instituto_departamento` foreign key (`id_instituto`) references `instituto` (`id`) ON UPDATE CASCADE
 	)ENGINE=InnoDB;
 
 

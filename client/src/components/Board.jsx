@@ -62,10 +62,10 @@ const Modulo = ({ modulo, position }) => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <h2 className='text-xl'>{modulo.curso}</h2>
+      <h2 className='text-xl'>{modulo.nombre_ciclo}</h2>
       <h2 className='text-xl'>{modulo.nombre}</h2>
       <p>Régimen: {modulo.regimen}</p>
-      <p>Horas: {modulo.horasSemanales}h</p>
+      <p>Horas: {modulo.horas_semanales}h</p>
     </div>
   )
 }
