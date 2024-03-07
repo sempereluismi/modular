@@ -25,24 +25,6 @@ export function useAuth () {
     }
   }
 
-  async function getRol (id) {
-    if (!isLogged()) {
-      return false
-    }
-
-    const res = await fetch(`http://localhost:8000/api/auth/rol/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    if (res.ok) {
-      const data = await res.json()
-      return data
-    }
-  }
-
   async function login (email, password) {
     setLoading(true)
     const res = await fetch('http://localhost:8000/api/auth/login', {
@@ -69,7 +51,6 @@ export function useAuth () {
   return {
     isLogged,
     user,
-    getRol,
     login,
     loading,
     redirectIfNotLogged,

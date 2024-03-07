@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useEffect } from 'react'
-import modulosMook from '../mooks/modulos.json'
+import { createContext, useState } from 'react'
 import profesoresMook from '../mooks/profesores.json'
 
 // Crear el contexto
@@ -8,22 +7,11 @@ export const ModulosProfesoresContext = createContext()
 // Crear el proveedor
 export function ModulosProfesoresProvider ({ children }) {
   const [positions, setPositions] = useState([])
-  const [modulos, setModulos] = useState(modulosMook)
+  const [modulos, setModulos] = useState([])
   const [profesores, setProfesores] = useState(profesoresMook)
   const [draggedModulo, setDraggedModulo] = useState(null)
   const [draggedProfesor, setDraggedProfesor] = useState(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
-
-  useEffect(() => {
-    const positions = modulos.map((modulo) => {
-      return {
-        id: modulo.id,
-        x: randomInt(0, 1000),
-        y: randomInt(0, 500)
-      }
-    })
-    setPositions(positions)
-  }, [])
 
   const contextValue = {
     modulos,
@@ -45,8 +33,4 @@ export function ModulosProfesoresProvider ({ children }) {
       {children}
     </ModulosProfesoresContext.Provider>
   )
-}
-
-function randomInt (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
 }

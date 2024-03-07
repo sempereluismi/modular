@@ -33,7 +33,7 @@ class ModulosModel
             }
         }
 
-        $sql .= " WHERE m.id = ?";
+        $sql .= " WHERE m.id_departamento = ?";
 
         try {
             $stmt = $dbInstance->execQuery($sql, [$id]);
@@ -80,7 +80,8 @@ class ModulosModel
                 $row["color_tematica"],
                 $row["tipo_especialidad"],
                 $row["horas_semanales"],
-                $row["tipo_regimen"]
+                $row["tipo_regimen"],
+                $row["nombre_ciclo"]
             );
             $result[$count] = $result[$count]->getData();
             $count++;
