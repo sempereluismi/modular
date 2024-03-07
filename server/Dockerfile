@@ -5,3 +5,4 @@ RUN mount=type=cache,target='/usr/local/lib/php' \
   pecl install xdebug \
   && docker-php-ext-enable xdebug
 RUN docker-php-ext-install mysqli pdo_mysql && docker-php-ext-enable mysqli pdo_mysql
+RUN a2enmod rewrite

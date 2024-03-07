@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:8080"
-    command: php -S 0.0.0.0:8080 -t public
+      - "8000:80"
+    # command: php -S 0.0.0.0:8080 -t public
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9003 remote_enable=1
     volumes:
