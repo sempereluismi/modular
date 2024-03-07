@@ -59,6 +59,8 @@ export function useAuth () {
       setLoading(false)
       return true
     } else {
+      const errorMessage = await res.text()
+      console.error('Error al iniciar sesión:', errorMessage)
       setLoading(false)
       return false
     }
