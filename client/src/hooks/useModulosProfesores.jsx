@@ -4,15 +4,25 @@ import { useAuth } from './useAuth'
 
 export function useModulosProfesores () {
   const { user } = useAuth()
-  const { setModulos, setPositions } = useContext(ModulosProfesoresContext)
+  const { setPositions } = useContext(ModulosProfesoresContext)
 
   async function getModulos () {
     const data = await fetch(`http://localhost:8000/api/modulos/${user.id_departamento}`)
     const modulos = await data.json()
-    setModulos(modulos)
-    setPositionsModulos(modulos)
+    return modulos
   }
 
+  async function getProfesores () {
+    const data = await fetch(`http://localhost:8000/api/profesor/${user.id_departamento}`)
+    const profesores = await data.json()
+    const newProfesores = profesores.map((profesor) => {
+      return {
+        ...profesor,
+        modulos: []
+      }
+    })
+    return newProfesores
+  }
   function setPositionsModulos (modulos) {
     const positions = modulos.map((modulo) => {
       return {
@@ -29,6 +39,8 @@ export function useModulosProfesores () {
   }
 
   return {
-    getModulos
+    getModulos,
+    getProfesores,
+    setPositionsModulos
   }
 }

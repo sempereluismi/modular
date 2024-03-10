@@ -14,12 +14,12 @@ class Profesor implements ModelInterface
     private string $regimen;
     private array $afin;
 
-    public function __construct(int $id, string $nombre, string $especializacion, string $regimen, array $afin)
+    public function __construct(int $id, string $nombre, string $especializacion, array $afin)
     {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->especializacion = $especializacion;
-        $this->regimen = $regimen;
+        $this->regimen = "Diurno";
         $this->afin = $afin;
     }
 
