@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Models;
 
-class Modulo
+use App\Application\Models\ModelInterface;
+
+class Modulo implements ModelInterface
 {
     private int $id;
     private string $nombre;
@@ -25,7 +27,7 @@ class Modulo
         $this->nombre_ciclo = $nombre_ciclo;
     }
 
-    public function getData()
+    public function getData() : array
     {
         return [
             "id" => $this->id,

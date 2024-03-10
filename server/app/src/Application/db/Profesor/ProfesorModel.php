@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\db\Profesor;
 
+use App\Application\db\DatabaseConnection;
+use App\Application\Models\Profesor;
+
 class ProfesorModel
 {
 
@@ -11,10 +14,31 @@ class ProfesorModel
 
     public static function listarProfesor(string $id = ""): array
     {
+        $sql = "SELECT p.id, p.nombre, e.tipo as especializacion
+        FROM Modular.profesor AS p
+        JOIN especialidad AS e ON p.id_especialidad = e.id";
+        $dbInstance = DatabaseConnection::getInstance();
         if ($id === "") {
-            return ["Listar Todos los Profesores"];
+            try {
+                $stmt = $dbInstance->execQuery($sql);
+                $result = self::addProfesor($stmt);
+                if ($result !== null) return $result;
+                return 404;
+            } catch (\Exception $e) {
+                return ["error" => $e->getMessage()];
+            }
         }
-        return ["Profesor" => $id];
+
+        $sql .= " WHERE p.id_departamento = ?";
+
+        try {
+            $stmt = $dbInstance->execQuery($sql, [$id]);
+            $result = self::addProfesor($stmt);
+            if ($result !== null) return $result;
+            return 404;
+        } catch (\Exception $e) {
+            return ["error" => $e->getMessage()];
+        }
     }
 
     public static function inserirProfesor(array $body): array | false
@@ -39,5 +63,20 @@ class ProfesorModel
     public static function deletarProfesor(string $id): array | bool
     {
         return ["Profesor" => $id, "res" => "Deletar Profesor"];
+    }
+
+    private static function addProfesor($stmt) {
+        $sql = "SELECT e.tipo as afin FROM Modular.afin as a JOIN especialidad AS e ON (a.id_especialidad = e.id) where id_profesor = ?;";
+        while ($row = $stmt->fetch()) {
+            $dbInstance = DatabaseConnection::getInstance();
+            $stmt2 = $dbInstance->execQuery($sql, [$row['id']]);
+            $afin = [];
+            while ($row2 = $stmt2->fetch()) {
+                $afin[] = $row2['afin'];
+            }
+            $profesor = new Profesor($row["id"], $row["nombre"], $row["especializacion"], $afin);
+            $result[] = $profesor->getData();
+        }
+        return $result;
     }
 }

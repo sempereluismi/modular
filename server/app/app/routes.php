@@ -18,7 +18,6 @@ return function (App $app) {
         // CORS Pre-Flight OPTIONS Request Handler
         return $response;
     });
-
     $app->group('/api', function (Group $group) {
         $group->group('/modulos', function (Group $group) {
             $group->get('', [ModuloController::class, 'listarModulo']);
@@ -35,7 +34,8 @@ return function (App $app) {
             $group->delete('/{id}', [ProfesorController::class, 'deletarProfesor']);
         });
         $group->group('/upload', function (Group $group) {
-            $group->post('/profesor', [ComprobacionCSV::class, 'uploadFiles']);
+            $group->post('/profesor/{id}', [ComprobacionCSV::class, 'uploadFiles']);
+            $group->post('/modulos/{id}', [ComprobacionCSV::class, 'uploadFiles']);
         });
         $group->group('/auth', function (Group $group) {
             $group->post('/login', [LoginController::class, 'login']);

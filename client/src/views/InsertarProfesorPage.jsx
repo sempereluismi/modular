@@ -1,5 +1,5 @@
-import DragAndDrop from '../components/DragAndDrop'
 import CardNoteBook from '../components/CardNoteBook'
+import DragAndDrop from '../components/DragAndDrop'
 import { Layout } from '../layouts/Layout'
 
 export function InsertarProfesorPage () {

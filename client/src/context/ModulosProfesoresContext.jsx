@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from 'react'
-import profesoresMook from '../mooks/profesores.json'
 
 // Crear el contexto
 export const ModulosProfesoresContext = createContext()
@@ -8,7 +7,7 @@ export const ModulosProfesoresContext = createContext()
 export function ModulosProfesoresProvider ({ children }) {
   const [positions, setPositions] = useState([])
   const [modulos, setModulos] = useState([])
-  const [profesores, setProfesores] = useState(profesoresMook)
+  const [profesores, setProfesores] = useState([])
   const [draggedModulo, setDraggedModulo] = useState(null)
   const [draggedProfesor, setDraggedProfesor] = useState(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
