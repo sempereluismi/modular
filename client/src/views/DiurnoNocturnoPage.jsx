@@ -15,21 +15,32 @@ export function DirunoNocturnoPage () {
 }
 
 function DirunoNocturnoContent () {
-  const { setModulos, setProfesores } = useContext(ModulosProfesoresContext)
-  const { getModulos, getProfesores, setPositionsModulos } = useModulosProfesores()
-  const [loading, setLoading] = useState(true)
+  const { setModulos, setProfesores, setAllRegimen, setRegimen, regimen, setFilteredModulos } = useContext(ModulosProfesoresContext)
+  const { getModulos, getProfesores, setPositionsModulos, getRegimen } = useModulosProfesores()
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
-    Promise.all([getModulos(), getProfesores()])
-      .then(([modulosResponse, profesoresResponse]) => {
-        // Aquí puedes manejar las respuestas de ambas funciones
-        setModulos(modulosResponse)
-        setPositionsModulos(modulosResponse)
-        setProfesores(profesoresResponse)
-        setLoading(false)
+    setLoading(true)
+    getRegimen()
+      .then((regimenes) => {
+        setAllRegimen(regimenes)
+        setRegimen(regimenes[0].tipo)
+        Promise.all([getModulos(), getProfesores()])
+          .then(([modulosResponse, profesoresResponse]) => {
+            // Aquí puedes manejar las respuestas de ambas funciones
+            setModulos(modulosResponse)
+            setPositionsModulos(modulosResponse)
+            setProfesores(profesoresResponse)
+            const filtered = modulosResponse.filter(modulo => modulo.regimen === regimen)
+            setFilteredModulos(filtered)
+            setLoading(false)
+          })
+          .catch(error => {
+            // Maneja cualquier error que pueda ocurrir en alguna de las peticiones
+            console.error('Error al obtener módulos o profesores:', error)
+          })
       })
       .catch(error => {
-        // Maneja cualquier error que pueda ocurrir en alguna de las peticiones
-        console.error('Error al obtener módulos o profesores:', error)
+        console.error('Error al obtener el régimen:', error)
       })
   }, [])
 

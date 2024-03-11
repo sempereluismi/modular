@@ -4,7 +4,7 @@ import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { usePosition } from '../hooks/usePosition'
 
 export function Board () {
-  const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, positions } = useContext(ModulosProfesoresContext)
+  const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, positions, setRegimen, allRegimen, regimen, filteredModulos } = useContext(ModulosProfesoresContext)
   const { updatePosition } = usePosition()
   const handleDragOver = (event) => {
     event.preventDefault()
@@ -27,12 +27,24 @@ export function Board () {
     setDraggedModulo(null)
   }
 
+  const onHandleChange = (event) => {
+    setRegimen(event.target.value)
+  }
+
   return (
     <section className='m-4 bg-neutral-200 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
+      <select className='absolute top-2 right-2 text-text-100' onChange={onHandleChange} value={regimen}>
+        {
+          allRegimen.map((regimen) => (
+            <option key={regimen.id} value={regimen.tipo}>{regimen.tipo}</option>
+          ))
+        }
+      </select>
       <ul>
-        {modulos.map((modulo) => {
-          return (positions.length > 0 &&
-            <Modulo key={modulo.id} modulo={modulo} position={positions[modulo.id - 1]} />
+        {filteredModulos.map((modulo) => {
+          const moduloPosition = positions.find(pos => pos.id === modulo.id)
+          return moduloPosition && (
+            <Modulo key={modulo.id} modulo={modulo} position={moduloPosition} />
           )
         })}
       </ul>

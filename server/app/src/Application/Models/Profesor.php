@@ -19,7 +19,7 @@ class Profesor implements ModelInterface
         $this->id = $id;
         $this->nombre = $nombre;
         $this->especializacion = $especializacion;
-        $this->regimen = "Diurno";
+        $this->regimen = "Ordinario";
         $this->afin = $afin;
     }
 
