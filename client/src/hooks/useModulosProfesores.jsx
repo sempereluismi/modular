@@ -23,6 +23,13 @@ export function useModulosProfesores () {
     })
     return newProfesores
   }
+
+  async function getRegimen () {
+    const data = await fetch(`http://localhost:8000/api/regimen/${user.id_departamento}`)
+    const regimenes = await data.json()
+    return regimenes
+  }
+
   function setPositionsModulos (modulos) {
     const positions = modulos.map((modulo) => {
       return {
@@ -41,6 +48,7 @@ export function useModulosProfesores () {
   return {
     getModulos,
     getProfesores,
-    setPositionsModulos
+    setPositionsModulos,
+    getRegimen
   }
 }

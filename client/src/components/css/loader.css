@@ -1,6 +1,6 @@
 .loader {
   --background: linear-gradient(135deg, #ff983f, #FF6600);
-  --shadow: rgba(39, 94, 254, 0.28);
+  --shadow: rgba(255, 102, 0, 0.28);
   --text: #6C7486;
   --page: rgba(255, 255, 255, 0.36);
   --page-fold: rgba(255, 255, 255, 0.52);

@@ -94,8 +94,10 @@ drop table if exists instituto;
         password varchar(255) not null,
 		nombre varchar(100) not null comment 'Nombre del profesor',
 		fecha_inicio date not null comment 'Fecha en la que empezó el profesor',
+        id_especialidad int not null,
 		id_departamento int not null,
 		primary key (id),
+        constraint `fk_id_especialidad_profesor` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE,
 		constraint `fk_id_departamento_profesor` foreign key (`id_departamento`) references `departamento` (`id`) ON UPDATE CASCADE
 	)ENGINE=InnoDB;
     

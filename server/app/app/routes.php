@@ -9,6 +9,7 @@ use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use App\Application\Actions\Modulo\ModuloController;
 use App\Application\Actions\Profesor\ProfesorController;
+use App\Application\Actions\Regimen\RegimenController;
 use App\Application\Actions\CSV\ComprobacionCSV;
 use App\Application\Actions\Login\LoginController;
 
@@ -40,6 +41,9 @@ return function (App $app) {
         $group->group('/auth', function (Group $group) {
             $group->post('/login', [LoginController::class, 'login']);
             $group->get('/rol/{id}', [LoginController::class, 'rol']);
+        });
+        $group->group('/regimen', function (Group $group) {
+            $group->get('/{id}', [RegimenController::class, 'listarRegimen']);
         });
     });
 };

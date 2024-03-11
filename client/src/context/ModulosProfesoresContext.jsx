@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 // Crear el contexto
 export const ModulosProfesoresContext = createContext()
@@ -11,6 +11,19 @@ export function ModulosProfesoresProvider ({ children }) {
   const [draggedModulo, setDraggedModulo] = useState(null)
   const [draggedProfesor, setDraggedProfesor] = useState(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
+  const [filteredModulos, setFilteredModulos] = useState([])
+  const [regimen, setRegimen] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedUser = sessionStorage.getItem('regimen')
+    return savedUser ? JSON.parse(savedUser) : null
+  })
+  const [allRegimen, setAllRegimen] = useState([])
+
+  useEffect(() => {
+    sessionStorage.setItem('regimen', JSON.stringify(regimen))
+    const filtered = modulos.filter(modulo => modulo.regimen === regimen)
+    setFilteredModulos(filtered)
+  }, [regimen])
 
   const contextValue = {
     modulos,
@@ -24,7 +37,13 @@ export function ModulosProfesoresProvider ({ children }) {
     draggedProfesor,
     setDraggedProfesor,
     positions,
-    setPositions
+    setPositions,
+    regimen,
+    setRegimen,
+    allRegimen,
+    setAllRegimen,
+    filteredModulos,
+    setFilteredModulos
   }
 
   return (
