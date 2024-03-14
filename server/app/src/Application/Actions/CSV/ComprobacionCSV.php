@@ -23,19 +23,28 @@ class ComprobacionCSV extends Controller
 
                 $file = fopen($tempFilePath, 'r'); // Abre el archivo en modo lectura
                 $profesores = [];
+                $modulos = [];
 
+                while(($row = fgetcsv($file)) == !false){ // Minetras siga leyendo filas en el archivo sigue el bucle
                 for ($i = 0; $i < 3; $i++) {
-                    $row = fgetcsv($file); // Obtiene una fila del archivo CSV
-                    if ($row == !false) {
+                    
+                    $firstColumn = strtolower($row[0]); // Suponemos que el pimer campo es el que determina si entra en profesores o modulos
+
+                    if ($firstColumn === 'nombre') {
                         $profesores[] = [
-                            'nombre' => $row[0],
+                            'nombre' => $row[0], // Suponemos que todas estas filas son x dato (Cambiar seguramente)
                             'apellido' => $row[1],
                             // Las que necesitemos...
                         ];
-                    } else {
-                        break; //Salimos del bucle
+                    } elseif ($firstColumn === 'modulo') {
+                        $modulos[] = [
+                            'modulo' => $row[0], // Suponemos que todas estas filas son x dato (Cambiar seguramente)
+                            'horas' => $row[1],
+                            // Las que necesitemos...
+                        ];
                     }
                 }
+            }
 
                 fclose($file);
                 return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
