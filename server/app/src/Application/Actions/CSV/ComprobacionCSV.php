@@ -17,6 +17,27 @@ class ComprobacionCSV extends Controller
         if (isset($uploadedFiles['csvFile']) && $uploadedFiles['csvFile']->getError() === UPLOAD_ERR_OK) {
             if ($this->esArchivoCSV($uploadedFiles['csvFile'])) { // Comprobar los priemros campos del archivo
                 // Procesa el archivo csv
+
+                $uploadedFile = $uploadedFiles['csvFile']; // Obtiene el archivo
+                $tempFilePath = $uploadedFile->getStream()->getMetadata('uri'); // Obtiene la secuencia de bytes (flujo de datos), despues obtenemos los metadatos en este caso URI. Todo para leer el archivo
+
+                $file = fopen($tempFilePath, 'r'); // Abre el archivo en modo lectura
+                $profesores = [];
+
+                for ($i = 0; $i < 3; $i++) {
+                    $row = fgetcsv($file); // Obtiene una fila del archivo CSV
+                    if ($row == !false) {
+                        $profesores[] = [
+                            'nombre' => $row[0],
+                            'apellido' => $row[1],
+                            // Las que necesitemos...
+                        ];
+                    } else {
+                        break; //Salimos del bucle
+                    }
+                }
+
+                fclose($file);
                 return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
             } else {
                 // El archivo no es un CSV válido
