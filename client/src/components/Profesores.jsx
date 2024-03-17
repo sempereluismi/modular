@@ -3,13 +3,13 @@ import { useState, useContext } from 'react'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 
 export function Profesores () {
-  const { profesores, modulos } = useContext(ModulosProfesoresContext)
+  const { filteredProfesores, modulos } = useContext(ModulosProfesoresContext)
 
   return (
     <aside className='m-4 bg-neutral-200 rounded-lg text-black flex justify-center select-none'>
       <ul>
         {
-            profesores.map((profesor) => {
+            filteredProfesores.map((profesor) => {
               return <Profesor key={profesor.id} profesor={profesor} modulos={modulos} />
             })
         }
@@ -19,7 +19,7 @@ export function Profesores () {
 }
 
 const Profesor = ({ profesor, modulos }) => {
-  const { setModulos, setDraggedModulo, draggedModulo, draggedFromBoard, setDraggedFromBoard, setDraggedProfesor, profesores } = useContext(ModulosProfesoresContext)
+  const { setModulos, setDraggedModulo, draggedModulo, draggedFromBoard, setDraggedFromBoard, setDraggedProfesor, profesores, setFilteredModulos } = useContext(ModulosProfesoresContext)
   const [active, setActive] = useState(false)
 
   const handleDragOver = (event) => {
@@ -33,6 +33,7 @@ const Profesor = ({ profesor, modulos }) => {
       profesor.modulos = [...profesor.modulos, draggedModulo]
       const nuevosModulos = modulos.filter(modulo => modulo.id !== draggedModulo.id)
       setModulos(nuevosModulos)
+      setFilteredModulos(nuevosModulos)
       setDraggedFromBoard(false)
     } else {
       profesores.map((profesor) => {

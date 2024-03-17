@@ -4,7 +4,7 @@ import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { usePosition } from '../hooks/usePosition'
 
 export function Board () {
-  const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, positions, setRegimen, allRegimen, regimen, filteredModulos } = useContext(ModulosProfesoresContext)
+  const { modulos, setDraggedModulo, setFilteredModulos, draggedModulo, setModulos, draggedFromBoard, profesores, positions, setRegimen, allRegimen, regimen, filteredModulos } = useContext(ModulosProfesoresContext)
   const { updatePosition } = usePosition()
   const handleDragOver = (event) => {
     event.preventDefault()
@@ -21,6 +21,7 @@ export function Board () {
         return (profesor.modulos = profesor.modulos.filter(modulo => modulo.id !== draggedModulo.id))
       })
       setModulos(nuevosModulos)
+      setFilteredModulos(nuevosModulos)
       updatePosition(draggedModulo, event)
     }
 
@@ -30,10 +31,9 @@ export function Board () {
   const onHandleChange = (event) => {
     setRegimen(event.target.value)
   }
-
   return (
     <section className='m-4 bg-neutral-200 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
-      <select className='absolute top-2 right-2 text-text-100' onChange={onHandleChange} value={regimen}>
+      <select className='absolute top-2 right-2 text-text-100' onChange={onHandleChange} value={regimen === null ? 'Ordinario' : regimen}>
         {
           allRegimen.map((regimen) => (
             <option key={regimen.id} value={regimen.tipo}>{regimen.tipo}</option>

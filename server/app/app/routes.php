@@ -36,6 +36,7 @@ return function (App $app) {
         });
         $group->group('/regimen', function (Group $group) {
             $group->get('/{id}', [RegimenController::class, 'listarRegimen']);
+            $group->post('', [RegimenController::class, 'inserirRegimen']);
         });
     });
 };

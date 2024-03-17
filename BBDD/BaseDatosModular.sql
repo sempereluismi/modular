@@ -1,5 +1,3 @@
-	-- Creación de la base de datos
-
 	drop database if exists Modular;
 
 	create database Modular
@@ -46,6 +44,8 @@ drop table if exists instituto;
 	create table regimen(
 		id int not null auto_increment comment 'Id del régimen',
 		tipo varchar(100) not null comment 'Tipo del régimen ej:Ordinario o Adulto',
+        id_departamento int not null,
+        constraint fk_id_departamento_regimen foreign key (id_departamento) references departamento (id),
 		primary key (id)
 	)ENGINE=InnoDB;
 
@@ -53,7 +53,6 @@ drop table if exists instituto;
 	CREATE TABLE modulo(
 		id INT NOT NULL AUTO_INCREMENT COMMENT 'Id del módulo',
 		nombre VARCHAR(100) NOT NULL COMMENT 'Nombre del módulo',
-		descripción VARCHAR(200) NOT NULL COMMENT 'Descripción del módulo',
         id_departamento int not null,
 		id_tematica INT NOT NULL,
 		id_especialidad INT NOT NULL,
@@ -94,11 +93,11 @@ drop table if exists instituto;
         password varchar(255) not null,
 		nombre varchar(100) not null comment 'Nombre del profesor',
 		fecha_inicio date not null comment 'Fecha en la que empezó el profesor',
-        id_especialidad int not null,
 		id_departamento int not null,
+        id_especialidad int not null,
 		primary key (id),
-        constraint `fk_id_especialidad_profesor` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE,
-		constraint `fk_id_departamento_profesor` foreign key (`id_departamento`) references `departamento` (`id`) ON UPDATE CASCADE
+		constraint `fk_id_departamento_profesor` foreign key (`id_departamento`) references `departamento` (`id`) ON UPDATE CASCADE,
+        constraint `fk_id_especialidad_profesor` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE
 	)ENGINE=InnoDB;
     
     drop table if exists profesor_admin;
@@ -167,3 +166,13 @@ drop table if exists instituto;
 		constraint `fk_id_especialidad_afin` foreign key (`id_especialidad`) references `especialidad` (`id`) ON UPDATE CASCADE,
 		constraint `fk_id_profesor_afin` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
 	)ENGINE=InnoDB;
+    
+    drop table if exists profesor_regimen;
+    create table profesor_regimen (
+		id int auto_increment not null,
+        id_profesor int not null unique,
+        id_regimen int not null,
+		primary key (id),
+        constraint fk_id_profesor_profesor_regimen foreign key (id_profesor) references profesor (id),
+        constraint fk_id_regimen_profesor_regimen foreign key (id_regimen) references regimen (id)
+    );

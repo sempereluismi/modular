@@ -11,7 +11,7 @@ export function useAuth () {
   }
 
   function logout () {
-    sessionStorage.removeItem('user')
+    sessionStorage.clear()
     setUser(null)
   }
 
