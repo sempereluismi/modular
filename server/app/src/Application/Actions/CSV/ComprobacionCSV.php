@@ -28,7 +28,7 @@ class ComprobacionCSV extends Controller
                 while(($row = fgetcsv($file)) == !false){ // Minetras siga leyendo filas en el archivo sigue el bucle
                 for ($i = 0; $i < 3; $i++) {
                     
-                    $firstColumn = strtolower($row[0]); // Suponemos que el pimer campo es el que determina si entra en profesores o modulos
+                    $firstColumn = strtolower($row[0]); // Suponemos que el primer campo es el que determina si entra en profesores o modulos
 
                     if ($firstColumn === 'nombre') {
                         $profesores[] = [
