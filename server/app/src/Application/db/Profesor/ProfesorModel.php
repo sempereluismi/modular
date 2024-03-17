@@ -19,6 +19,7 @@ class ProfesorModel
         JOIN especialidad AS e ON p.id_especialidad = e.id";
         $dbInstance = DatabaseConnection::getInstance();
         if ($id === "") {
+            $sql .= " order by p.fecha_inicio";
             try {
                 $stmt = $dbInstance->execQuery($sql);
                 $result = self::addProfesor($stmt);
@@ -32,6 +33,7 @@ class ProfesorModel
         $sql .= " WHERE p.id_departamento = ?";
 
         try {
+            $sql .= " order by p.fecha_inicio";
             $stmt = $dbInstance->execQuery($sql, [$id]);
             $result = self::addProfesor($stmt);
             if ($result !== null) return $result;
