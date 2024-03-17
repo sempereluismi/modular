@@ -14,7 +14,7 @@ class ProfesorModel
 
     public static function listarProfesor(string $id = ""): array
     {
-        $sql = "SELECT p.id, p.nombre, e.tipo as especializacion
+        $sql = "SELECT p.id, p.nombre, e.tipo as especializacion, (SELECT tipo FROM profesor_regimen JOIN regimen as r ON id_regimen = r.id WHERE p.id = id_profesor) as id_regimen
         FROM Modular.profesor AS p
         JOIN especialidad AS e ON p.id_especialidad = e.id";
         $dbInstance = DatabaseConnection::getInstance();
@@ -74,7 +74,8 @@ class ProfesorModel
             while ($row2 = $stmt2->fetch()) {
                 $afin[] = $row2['afin'];
             }
-            $profesor = new Profesor($row["id"], $row["nombre"], $row["especializacion"], $afin);
+            $regimen = $row["id_regimen"] === null ? "" : $row["id_regimen"];
+            $profesor = new Profesor($row["id"], $row["nombre"], $row["especializacion"], $afin, $regimen);
             $result[] = $profesor->getData();
         }
         return $result;

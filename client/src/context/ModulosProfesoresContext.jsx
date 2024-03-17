@@ -1,29 +1,56 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 // Crear el contexto
 export const ModulosProfesoresContext = createContext()
 // Crear el proveedor
 export function ModulosProfesoresProvider ({ children }) {
   const [positions, setPositions] = useState([])
-  const [modulos, setModulos] = useState([])
-  const [profesores, setProfesores] = useState([])
   const [draggedModulo, setDraggedModulo] = useState(null)
   const [draggedProfesor, setDraggedProfesor] = useState(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
   const [filteredModulos, setFilteredModulos] = useState([])
+  const [filteredProfesores, setFilteredProfesores] = useState([])
+  const [allRegimen, setAllRegimen] = useState(() => {
+    const savedUser = sessionStorage.getItem('allRegimen')
+    return savedUser ? JSON.parse(savedUser) : []
+  })
   const [regimen, setRegimen] = useState(() => {
     // Intentar obtener el usuario del sessionStorage al inicio
     const savedUser = sessionStorage.getItem('regimen')
     return savedUser ? JSON.parse(savedUser) : null
   })
-  const [allRegimen, setAllRegimen] = useState([])
+  const [profesores, setProfesores] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedUser = sessionStorage.getItem('profesores')
+    return savedUser ? JSON.parse(savedUser) : []
+  })
+
+  const [modulos, setModulos] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedUser = sessionStorage.getItem('modulos')
+    return savedUser ? JSON.parse(savedUser) : []
+  })
+
+  useEffect(() => {
+    sessionStorage.setItem('allRegimen', JSON.stringify(allRegimen))
+  }, [allRegimen])
 
   useEffect(() => {
     sessionStorage.setItem('regimen', JSON.stringify(regimen))
-    const filtered = modulos.filter(modulo => modulo.regimen === regimen)
-    setFilteredModulos(filtered)
+    const filteredModulos = modulos.filter(modulo => modulo.regimen === regimen)
+    setFilteredModulos(filteredModulos)
+    const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
+    setFilteredProfesores(filteredProfesores)
   }, [regimen])
+
+  useEffect(() => {
+    sessionStorage.setItem('profesores', JSON.stringify(profesores))
+  }, [profesores])
+
+  useEffect(() => {
+    sessionStorage.setItem('modulos', JSON.stringify(modulos))
+  }, [modulos])
 
   const contextValue = {
     modulos,
@@ -43,7 +70,9 @@ export function ModulosProfesoresProvider ({ children }) {
     allRegimen,
     setAllRegimen,
     filteredModulos,
-    setFilteredModulos
+    setFilteredModulos,
+    filteredProfesores,
+    setFilteredProfesores
   }
 
   return (

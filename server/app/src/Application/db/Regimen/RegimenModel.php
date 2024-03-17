@@ -21,4 +21,19 @@ class RegimenModel
       return ["error" => $e->getMessage()];
     }
   }
+
+  public static function inserirRegimen(array $data)
+  {
+    $db = DatabaseConnection::getInstance();
+    $sql = "INSERT INTO profesor_regimen (id_regimen, id_profesor) VALUES (?, ?) 
+    ON DUPLICATE KEY UPDATE id_regimen = VALUES(id_regimen);";
+    try {
+      foreach ($data as $regimen) {
+        $stmt = $db->execQuery($sql, [$regimen['id_regimen'], $regimen['id_profesor']]);
+      }
+      return ["message" => "Regimen inserido com sucesso"];
+    } catch (\Exception $e) {
+      return ["error" => $e->getMessage()];
+    }
+  }
 }
