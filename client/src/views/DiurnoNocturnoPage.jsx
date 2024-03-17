@@ -1,23 +1,24 @@
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Board } from '../components/Board'
 import { Loader } from '../components/Loader'
 import { Profesores } from '../components/Profesores'
-import { ModulosProfesoresContext, ModulosProfesoresProvider } from '../context/ModulosProfesoresContext'
+import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { useModulosProfesores } from '../hooks/useModulosProfesores'
 import { Layout } from '../layouts/Layout'
 
 export function DirunoNocturnoPage () {
   return (
-    <ModulosProfesoresProvider>
-      <DirunoNocturnoContent />
-    </ModulosProfesoresProvider>
+    <DirunoNocturnoContent />
   )
 }
 
 function DirunoNocturnoContent () {
-  const { setModulos, setProfesores, setAllRegimen, setRegimen, regimen, setFilteredModulos } = useContext(ModulosProfesoresContext)
+  const { setModulos, setProfesores, setAllRegimen, setRegimen, setFilteredModulos, setFilteredProfesores } = useContext(ModulosProfesoresContext)
   const { getModulos, getProfesores, setPositionsModulos, getRegimen } = useModulosProfesores()
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+
   useEffect(() => {
     setLoading(true)
     getRegimen()
@@ -26,13 +27,19 @@ function DirunoNocturnoContent () {
         setRegimen(regimenes[0].tipo)
         Promise.all([getModulos(), getProfesores()])
           .then(([modulosResponse, profesoresResponse]) => {
-            // Aquí puedes manejar las respuestas de ambas funciones
             setModulos(modulosResponse)
             setPositionsModulos(modulosResponse)
             setProfesores(profesoresResponse)
-            const filtered = modulosResponse.filter(modulo => modulo.regimen === regimen)
-            setFilteredModulos(filtered)
-            setLoading(false)
+            const hasEmptyRegimen = comprobarRegimen(profesoresResponse)
+            if (hasEmptyRegimen) {
+              navigate('/admin/listaProfesores')
+            } else {
+              const filteredModulos = modulosResponse.filter(modulo => modulo.regimen === regimenes[0].tipo)
+              setFilteredModulos(filteredModulos)
+              const filteredProfesores = profesoresResponse.filter(profesor => profesor.regimen === regimenes[0].tipo)
+              setFilteredProfesores(filteredProfesores)
+              setLoading(false)
+            }
           })
           .catch(error => {
             // Maneja cualquier error que pueda ocurrir en alguna de las peticiones
@@ -43,6 +50,10 @@ function DirunoNocturnoContent () {
         console.error('Error al obtener el régimen:', error)
       })
   }, [])
+
+  const comprobarRegimen = (profesores) => {
+    return profesores.some(profesor => profesor.regimen === '')
+  }
 
   return (
     <Layout>
