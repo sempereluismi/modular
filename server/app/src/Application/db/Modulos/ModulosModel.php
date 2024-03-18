@@ -45,30 +45,6 @@ class ModulosModel
         }
     }
 
-    public static function inserirModulo(array $body): array | false
-    {
-        if (!self::validarModulo($body)) {
-            return false;
-        }
-
-        return ["Modulo" => $body];
-    }
-
-    private static function validarModulo(array $body): bool
-    {
-        return array_keys($body) === self::$moduloModel;
-    }
-
-    public static function atualizarModulo(string $id, array $body): array | bool
-    {
-        return ["Modulo" => $id, "body" => $body, "res" => "Atualizar Modulo"];
-    }
-
-    public static function deletarModulo(string $id): array | bool
-    {
-        return ["Modulo" => $id, "res" => "Deletar Modulo"];
-    }
-
     private static function addModulos($stmt)
     {
         $count = 0;

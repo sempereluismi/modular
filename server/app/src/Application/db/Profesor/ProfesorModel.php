@@ -43,30 +43,6 @@ class ProfesorModel
         }
     }
 
-    public static function inserirProfesor(array $body): array | false
-    {
-        if (!self::validarProfesor($body)) {
-            return false;
-        }
-
-        return ["Profesor" => $body];
-    }
-
-    private static function validarProfesor(array $body): bool
-    {
-        return array_keys($body) === self::$profesorModel;
-    }
-
-    public static function atualizarProfesor(string $id, array $body): array | bool
-    {
-        return ["Profesor" => $id, "body" => $body, "res" => "Atualizar Modulo"];
-    }
-
-    public static function deletarProfesor(string $id): array | bool
-    {
-        return ["Profesor" => $id, "res" => "Deletar Profesor"];
-    }
-
     private static function addProfesor($stmt) {
         $sql = "SELECT e.tipo as afin FROM Modular.afin as a JOIN especialidad AS e ON (a.id_especialidad = e.id) where id_profesor = ?;";
         while ($row = $stmt->fetch()) {
