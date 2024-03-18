@@ -13,7 +13,7 @@ function DragDrop ({ urlImage }) {
     formData.append('csvFile', file)
 
     try {
-      const response = await fetch(`http://localhost:8000/api/upload/profesor/${user.id_departamento}`, {
+      const response = await fetch(`http://localhost:8000/api/csv/${user.id_departamento}`, {
         method: 'POST',
         body: formData
       })
