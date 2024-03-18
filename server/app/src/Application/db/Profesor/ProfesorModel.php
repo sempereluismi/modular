@@ -9,9 +9,6 @@ use App\Application\Models\Profesor;
 
 class ProfesorModel
 {
-
-    private static $profesorModel = ["id", "nombre", "fecha_inicio", "instituto", "id_especializacion", "id_instituto"];
-
     public static function listarProfesor(string $id = ""): array
     {
         $sql = "SELECT p.id, p.nombre, e.tipo as especializacion, (SELECT tipo FROM profesor_regimen JOIN regimen as r ON id_regimen = r.id WHERE p.id = id_profesor) as id_regimen
