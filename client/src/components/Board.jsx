@@ -4,7 +4,7 @@ import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { usePosition } from '../hooks/usePosition'
 
 export function Board () {
-  const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, positions } = useContext(ModulosProfesoresContext)
+  const { modulos, setDraggedModulo, setFilteredModulos, draggedModulo, setModulos, draggedFromBoard, profesores, positions, setRegimen, allRegimen, regimen, filteredModulos } = useContext(ModulosProfesoresContext)
   const { updatePosition } = usePosition()
   const handleDragOver = (event) => {
     event.preventDefault()
@@ -21,18 +21,30 @@ export function Board () {
         return (profesor.modulos = profesor.modulos.filter(modulo => modulo.id !== draggedModulo.id))
       })
       setModulos(nuevosModulos)
+      setFilteredModulos(nuevosModulos)
       updatePosition(draggedModulo, event)
     }
 
     setDraggedModulo(null)
   }
 
+  const onHandleChange = (event) => {
+    setRegimen(event.target.value)
+  }
   return (
     <section className='m-4 bg-neutral-200 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
+      <select className='absolute top-2 right-2 text-text-100' onChange={onHandleChange} value={regimen === null ? 'Ordinario' : regimen}>
+        {
+          allRegimen.map((regimen) => (
+            <option key={regimen.id} value={regimen.tipo}>{regimen.tipo}</option>
+          ))
+        }
+      </select>
       <ul>
-        {modulos.map((modulo) => {
-          return (positions.length > 0 &&
-            <Modulo key={modulo.id} modulo={modulo} position={positions[modulo.id - 1]} />
+        {filteredModulos.map((modulo) => {
+          const moduloPosition = positions.find(pos => pos.id === modulo.id)
+          return moduloPosition && (
+            <Modulo key={modulo.id} modulo={modulo} position={moduloPosition} />
           )
         })}
       </ul>
@@ -62,10 +74,10 @@ const Modulo = ({ modulo, position }) => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <h2 className='text-xl'>{modulo.curso}</h2>
+      <h2 className='text-xl'>{modulo.nombre_ciclo}</h2>
       <h2 className='text-xl'>{modulo.nombre}</h2>
       <p>Régimen: {modulo.regimen}</p>
-      <p>Horas: {modulo.horasSemanales}h</p>
+      <p>Horas: {modulo.horas_semanales}h</p>
     </div>
   )
 }

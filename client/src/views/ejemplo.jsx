@@ -1,13 +1,9 @@
-import { useContext, useEffect } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import { useAuth } from '../hooks/useAuth'
 
 export function Ejemplo () {
-  const { user, setUser } = useContext(AuthContext)
+  const { isLogged, user } = useAuth()
 
-  useEffect(() => {
-    setUser('Mundo')
-  }, [setUser])
   return (
-    <h1>hola {user}</h1>
+    isLogged() ? <h1>{user.id}</h1> : <h1>Logueado</h1>
   )
 }

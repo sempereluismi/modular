@@ -1,29 +1,56 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useEffect } from 'react'
-import modulosMook from '../mooks/modulos.json'
-import profesoresMook from '../mooks/profesores.json'
+import { createContext, useEffect, useState } from 'react'
 
 // Crear el contexto
 export const ModulosProfesoresContext = createContext()
 // Crear el proveedor
 export function ModulosProfesoresProvider ({ children }) {
   const [positions, setPositions] = useState([])
-  const [modulos, setModulos] = useState(modulosMook)
-  const [profesores, setProfesores] = useState(profesoresMook)
   const [draggedModulo, setDraggedModulo] = useState(null)
   const [draggedProfesor, setDraggedProfesor] = useState(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
+  const [filteredModulos, setFilteredModulos] = useState([])
+  const [filteredProfesores, setFilteredProfesores] = useState([])
+  const [allRegimen, setAllRegimen] = useState(() => {
+    const savedUser = sessionStorage.getItem('allRegimen')
+    return savedUser ? JSON.parse(savedUser) : []
+  })
+  const [regimen, setRegimen] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedUser = sessionStorage.getItem('regimen')
+    return savedUser ? JSON.parse(savedUser) : null
+  })
+  const [profesores, setProfesores] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedUser = sessionStorage.getItem('profesores')
+    return savedUser ? JSON.parse(savedUser) : []
+  })
+
+  const [modulos, setModulos] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedUser = sessionStorage.getItem('modulos')
+    return savedUser ? JSON.parse(savedUser) : []
+  })
 
   useEffect(() => {
-    const positions = modulos.map((modulo) => {
-      return {
-        id: modulo.id,
-        x: randomInt(0, 1000),
-        y: randomInt(0, 500)
-      }
-    })
-    setPositions(positions)
-  }, [])
+    sessionStorage.setItem('allRegimen', JSON.stringify(allRegimen))
+  }, [allRegimen])
+
+  useEffect(() => {
+    sessionStorage.setItem('regimen', JSON.stringify(regimen))
+    const filteredModulos = modulos.filter(modulo => modulo.regimen === regimen)
+    setFilteredModulos(filteredModulos)
+    const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
+    setFilteredProfesores(filteredProfesores)
+  }, [regimen])
+
+  useEffect(() => {
+    sessionStorage.setItem('profesores', JSON.stringify(profesores))
+  }, [profesores])
+
+  useEffect(() => {
+    sessionStorage.setItem('modulos', JSON.stringify(modulos))
+  }, [modulos])
 
   const contextValue = {
     modulos,
@@ -37,7 +64,15 @@ export function ModulosProfesoresProvider ({ children }) {
     draggedProfesor,
     setDraggedProfesor,
     positions,
-    setPositions
+    setPositions,
+    regimen,
+    setRegimen,
+    allRegimen,
+    setAllRegimen,
+    filteredModulos,
+    setFilteredModulos,
+    filteredProfesores,
+    setFilteredProfesores
   }
 
   return (
@@ -45,8 +80,4 @@ export function ModulosProfesoresProvider ({ children }) {
       {children}
     </ModulosProfesoresContext.Provider>
   )
-}
-
-function randomInt (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
 }
