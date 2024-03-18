@@ -9,14 +9,6 @@ use App\Application\db\DatabaseConnection;
 
 class ModulosModel
 {
-
-    private static array $moduloModel = [
-        "id",
-        "nombre",
-        "id_tematica",
-        "id_especialidad"
-    ];
-
     public static function listarModulos(string $id = ""): array | int
     {
         $sql = "SELECT 
