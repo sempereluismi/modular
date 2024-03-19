@@ -1,5 +1,4 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
-import { Ejemplo } from '../views/ejemplo.jsx'
 import { DirunoNocturnoPage } from '../views/DiurnoNocturnoPage.jsx'
 import { InsertarPlantillaPage } from '../views/InsertarPlantillaPage.jsx'
 import { InsertarProfesorPage } from '../views/InsertarProfesorPage.jsx'
@@ -13,8 +12,7 @@ import { LogOutPage } from '../views/LogOutPage.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path='/' element={<Ejemplo />} />
-      <Route path='/login' element={<LogInPage />} />
+      <Route path='/' element={<LogInPage />} />
       <Route path='/logout' element={<LogOutPage />} />
       <Route path='/user' element={<ProtectedAuthRoutes />}>
         <Route path='quenda' element={<DirunoNocturnoPage />} />

@@ -32,7 +32,7 @@ export function Board () {
     setRegimen(event.target.value)
   }
   return (
-    <section className='m-4 bg-neutral-200 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
+    <section className='m-4 bg-white border-4 border-gray-300 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
       <select className='absolute top-2 right-2 text-text-100' onChange={onHandleChange} value={regimen === null ? 'Ordinario' : regimen}>
         {
           allRegimen.map((regimen) => (
