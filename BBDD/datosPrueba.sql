@@ -30,7 +30,7 @@ INSERT INTO regimen (tipo, id_departamento) VALUES
 -- Insertar datos en la tabla 'modulo'
 INSERT INTO modulo (nombre, id_departamento, id_tematica, id_especialidad) VALUES
 ('DWCS', 1, 1, 1),
-('DWCC', 2, 3, 2);
+('DWCC', 1, 3, 2);
 
 -- Insertar datos en la tabla 'ciclo'
 INSERT INTO ciclo (nombre) VALUES
