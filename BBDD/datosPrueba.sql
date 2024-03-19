@@ -29,13 +29,13 @@ INSERT INTO regimen (tipo, id_departamento) VALUES
 
 -- Insertar datos en la tabla 'modulo'
 INSERT INTO modulo (nombre, id_departamento, id_tematica, id_especialidad) VALUES
-('Programación Avanzada', 1, 1, 1),
-('Gestión Ambiental', 2, 3, 2);
+('DWCS', 1, 1, 1),
+('DWCC', 2, 3, 2);
 
 -- Insertar datos en la tabla 'ciclo'
 INSERT INTO ciclo (nombre) VALUES
-('Ciclo Formativo de Grado Superior en Informática'),
-('Ciclo Formativo de Grado Superior en Medio Ambiente');
+('DAW'),
+('DAM');
 
 -- Insertar datos en la tabla 'regimen_ciclo_modulo'
 INSERT INTO regimen_ciclo_modulo (id_regimen, id_ciclo, id_modulo, horas_semanales) VALUES
@@ -45,12 +45,13 @@ INSERT INTO regimen_ciclo_modulo (id_regimen, id_ciclo, id_modulo, horas_semanal
 -- Insertar datos en la tabla 'profesor'
 INSERT INTO profesor (email, password, nombre, fecha_inicio, id_departamento, id_especialidad) VALUES
 ('profesor1@institutoa.com', '$2y$10$lcuHHjAN0NuOu0ZW/vSvOuohclx4SaHn/YaFM4EqdEn26KuuRMkGG', 'Juan Pérez', '2020-01-15', 1, 1),
+('profesor2@institutoa.com', '$2y$10$lcuHHjAN0NuOu0ZW/vSvOuohclx4SaHn/YaFM4EqdEn26KuuRMkGG', 'Lorena Vázquez', '2019-01-15', 1, 1),
 ('profesor2@itcr.com', '$2y$10$lcuHHjAN0NuOu0ZW/vSvOuohclx4SaHn/YaFM4EqdEn26KuuRMkGG', 'María González', '2018-09-20', 2, 2);
 
 -- Insertar datos en la tabla 'profesor_admin'
 INSERT INTO profesor_admin (id_profesor) VALUES
 (1),
-(2);
+(3);
 
 -- Insertar datos en la tabla 'imparte'
 INSERT INTO imparte (id_profesor, id_regimen) VALUES
