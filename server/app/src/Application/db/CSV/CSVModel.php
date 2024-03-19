@@ -32,7 +32,7 @@ class CSVModel
             }
         }
 
-    $idEspecialidad = $idAfin[$index] ?? null; // ID de la especialidad
+        $idEspecialidad = $idAfin[$index]; // ID de la especialidad
 
         $nuevoProfesor = [
             $profesores['email'],
