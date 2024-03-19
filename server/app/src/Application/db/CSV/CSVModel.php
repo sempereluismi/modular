@@ -86,7 +86,6 @@ class CSVModel
             $idEspecialidad
         ];
 
-        var_dump($nuevoModulo);
 
         $sql = "INSERT INTO modulo (nombre, id_departamento, id_tematica, id_especialidad) VALUES (?, ?, ?, ?);";
 
