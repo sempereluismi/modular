@@ -12,22 +12,24 @@ class ComprobacionCSV extends Controller
 
     const arrayProfesores = ["email", "password", "nombre", "fecha_inicio", "especialidad", "afin"];
     const arrayModulos = ["nombre", "departamento", "tematica", "especialidad"];
-    public function uploadFiles(Request $request, Response $response, array $args)
-    {
 
-        function formatDate($fechaInicio)
-        {
-            $fechaInicioArray = explode('-', $fechaInicio);
+    private function formatDate( $fechaInicio ) {
+        $fechaInicioArray = explode('-', $fechaInicio);
             $año = $fechaInicioArray[2];
             $mes = $fechaInicioArray[1];
             $dia = $fechaInicioArray[0];
             return compact('año', 'mes', 'dia');
-        }
 
-        function hashPassword($password)
-        {
-            return password_hash($password, PASSWORD_DEFAULT);
-        }
+    }
+
+    private function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function uploadFiles(Request $request, Response $response, array $args)
+    {
+        header("Access-Control-Allow-Origin: http://localhost:5173");
 
         // Obtenemos los archivos subidos
         $uploadedFiles = $request->getUploadedFiles();
@@ -52,9 +54,9 @@ class ComprobacionCSV extends Controller
                     while (($row = fgetcsv($file, 0, ";")) !== false) {
                         $profesor = [
                             'email' => $row[0],
-                            'password' => hashPassword($row[1]),
+                            'password' => $this->hashPassword($row[1]),
                             'nombre' => $row[2],
-                            'fecha_inicio' => formatDate($row[3]),
+                            'fecha_inicio' => $this->formatDate($row[3]),
                             'especialidad' => $row[4],
                             'departamento' => $args['id'],
                             'afin' => explode(",", $row[5]) 
@@ -74,7 +76,6 @@ class ComprobacionCSV extends Controller
                     }
                 }
                 
-
                 fclose($file);
                 return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
             } else {
