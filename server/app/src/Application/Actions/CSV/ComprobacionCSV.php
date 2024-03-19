@@ -59,13 +59,13 @@ class ComprobacionCSV extends Controller
                             'departamento' => $args['id'],
                             'afin' => explode(",", $row[5]) 
                         ];
-                        CSVModel::insertarProfesores($profesor);
+                        CSVModel::insertarProfesores($profesor); // Error
                     }
                 } elseif (count(array_diff(self::arrayModulos, $row)) === 0) {
                     // Es un archivo de modulos
 
                     while (($row = fgetcsv($file, 0, ";")) !== false) {
-                        $modulos[] = [
+                        $modulo[] = [
                             'nombre' => $row[0],
                             'departamento' => $row[1],
                             'tematica' => $row[2],
@@ -73,26 +73,7 @@ class ComprobacionCSV extends Controller
                         ];
                     }
                 }
-                //     while(($column = fgetcsv($file, 0, ";")) == !false){ // Minetras siga leyendo filas en el archivo sigue el bucle
-                //     for ($i = 0; $i < 3; $i++) {
-
-                //         $firstColumn = strtolower($column[0]); // Suponemos que el primer campo es el que determina si entra en profesores o modulos
-                //         // Comparar arrays con array diff
-                //         if ($firstColumn === 'nombre') {
-                //             $profesores[] = [
-                //                 'nombre' => $column[0], // Suponemos que todas estas filas son x dato (Cambiar seguramente)
-                //                 'apellido' => $column[1],
-                //                 // Las que necesitemos...
-                //             ];
-                //         } elseif ($firstColumn === 'modulo') {
-                //             $modulos[] = [
-                //                 'modulo' => $column[0], // Suponemos que todas estas filas son x dato (Cambiar seguramente)
-                //                 'horas' => $column[1],
-                //                 // Las que necesitemos...
-                //             ];
-                //         }
-                //     }
-                // }
+                
 
                 fclose($file);
                 return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
