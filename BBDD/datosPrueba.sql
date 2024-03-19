@@ -1,9 +1,9 @@
 -- Insertar datos en la tabla 'tematica'
 INSERT INTO tematica (color) VALUES
-('Rojo'),
-('Azul'),
-('Verde'),
-('Amarillo');
+('red'),
+('blue'),
+('green'),
+('yellow');
 
 -- Insertar datos en la tabla 'instituto'
 INSERT INTO instituto (nombre, email, telefono) VALUES
