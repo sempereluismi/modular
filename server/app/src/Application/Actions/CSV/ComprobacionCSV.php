@@ -14,7 +14,6 @@ class ComprobacionCSV extends Controller
     const arrayModulos = ["nombre", "tematica", "especialidad"];
     public function uploadFiles(Request $request, Response $response, array $args)
     {
-        header("Access-Control-Allow-Origin: http://localhost:5173");
         function formatDate($fechaInicio)
         {
             $fechaInicioArray = explode('-', $fechaInicio);
