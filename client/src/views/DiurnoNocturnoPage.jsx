@@ -18,7 +18,7 @@ export function DirunoNocturnoPage () {
 
 function DirunoNocturnoContent () {
   const { setModulos, setProfesores, setAllRegimen, setRegimen } = useContext(ModulosProfesoresContext)
-  const { getModulos, getProfesores, setPositionsModulos, getRegimen } = useModulosProfesores()
+  const { getModulos, getProfesores, getRegimen } = useModulosProfesores()
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -31,7 +31,6 @@ function DirunoNocturnoContent () {
         Promise.all([getModulos(), getProfesores()])
           .then(([modulosResponse, profesoresResponse]) => {
             setModulos(modulosResponse)
-            setPositionsModulos(modulosResponse)
             const newProfesores = profesoresResponse.map(profesor => {
               return {
                 ...profesor,

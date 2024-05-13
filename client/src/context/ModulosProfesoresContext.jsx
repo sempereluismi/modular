@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react'
+import { setPositionsModulos } from '../helpers/OrderModulos'
 
 // Crear el contexto
 export const ModulosProfesoresContext = createContext()
@@ -35,6 +36,7 @@ export function ModulosProfesoresProvider ({ children }) {
   const HORAS_SEMANALES = [20, 18]
   const MODULO_WIDTH = 144
   const MODULO_HEIGHT = 144
+  const MAX_WIDTH_MODULO = 1300
 
   useEffect(() => {
     sessionStorage.setItem('allRegimen', JSON.stringify(allRegimen))
@@ -63,6 +65,7 @@ export function ModulosProfesoresProvider ({ children }) {
   useEffect(() => {
     sessionStorage.setItem('modulos', JSON.stringify(modulos))
     const filteredModulos = modulos.filter(modulo => modulo.regimen === regimen)
+    setPositionsModulos(filteredModulos, setPositions, MODULO_WIDTH, MODULO_HEIGHT, MAX_WIDTH_MODULO)
     setFilteredModulos(filteredModulos)
   }, [modulos, regimen])
 
@@ -87,7 +90,8 @@ export function ModulosProfesoresProvider ({ children }) {
     filteredProfesores,
     HORAS_SEMANALES,
     MODULO_WIDTH,
-    MODULO_HEIGHT
+    MODULO_HEIGHT,
+    MAX_WIDTH_MODULO
   }
 
   return (
