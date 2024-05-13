@@ -12,25 +12,29 @@ export function ModulosProfesoresProvider ({ children }) {
   const [filteredModulos, setFilteredModulos] = useState([])
   const [filteredProfesores, setFilteredProfesores] = useState([])
   const [allRegimen, setAllRegimen] = useState(() => {
-    const savedUser = sessionStorage.getItem('allRegimen')
-    return savedUser ? JSON.parse(savedUser) : []
+    const savedAllRegimen = sessionStorage.getItem('allRegimen')
+    return savedAllRegimen ? JSON.parse(savedAllRegimen) : []
   })
   const [regimen, setRegimen] = useState(() => {
     // Intentar obtener el usuario del sessionStorage al inicio
-    const savedUser = sessionStorage.getItem('regimen')
-    return savedUser ? JSON.parse(savedUser) : null
+    const savedRegimen = sessionStorage.getItem('regimen')
+    return savedRegimen ? JSON.parse(savedRegimen) : null
   })
   const [profesores, setProfesores] = useState(() => {
     // Intentar obtener el usuario del sessionStorage al inicio
-    const savedUser = sessionStorage.getItem('profesores')
-    return savedUser ? JSON.parse(savedUser) : []
+    const savedProfesores = sessionStorage.getItem('profesores')
+    return savedProfesores ? JSON.parse(savedProfesores) : []
   })
 
   const [modulos, setModulos] = useState(() => {
     // Intentar obtener el usuario del sessionStorage al inicio
-    const savedUser = sessionStorage.getItem('modulos')
-    return savedUser ? JSON.parse(savedUser) : []
+    const savedModulos = sessionStorage.getItem('modulos')
+    return savedModulos ? JSON.parse(savedModulos) : []
   })
+
+  const HORAS_SEMANALES = [20, 18]
+  const MODULO_WIDTH = 144
+  const MODULO_HEIGHT = 144
 
   useEffect(() => {
     sessionStorage.setItem('allRegimen', JSON.stringify(allRegimen))
@@ -46,11 +50,21 @@ export function ModulosProfesoresProvider ({ children }) {
 
   useEffect(() => {
     sessionStorage.setItem('profesores', JSON.stringify(profesores))
-  }, [profesores])
+    const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
+    const newProfesores = filteredProfesores.map(profesor => {
+      return {
+        ...profesor,
+        horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
+      }
+    })
+    setFilteredProfesores(newProfesores)
+  }, [profesores, regimen])
 
   useEffect(() => {
     sessionStorage.setItem('modulos', JSON.stringify(modulos))
-  }, [modulos])
+    const filteredModulos = modulos.filter(modulo => modulo.regimen === regimen)
+    setFilteredModulos(filteredModulos)
+  }, [modulos, regimen])
 
   const contextValue = {
     modulos,
@@ -70,9 +84,10 @@ export function ModulosProfesoresProvider ({ children }) {
     allRegimen,
     setAllRegimen,
     filteredModulos,
-    setFilteredModulos,
     filteredProfesores,
-    setFilteredProfesores
+    HORAS_SEMANALES,
+    MODULO_WIDTH,
+    MODULO_HEIGHT
   }
 
   return (
