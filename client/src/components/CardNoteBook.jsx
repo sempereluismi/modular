@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import CardNoteBookElements from './CardNoteBookElements'
 
-function CardNoteBook () {
+function CardNoteBook ({ text, subtext }) {
   return (
     <div className='bg-sky-200/30 w-[800px] h-96 rounded-t-lg'>
-      <CardNoteBookElements />
+      <CardNoteBookElements text={text} subtext={subtext} />
       <div className='card__content' />
     </div>
   )

@@ -11,17 +11,16 @@ class ComprobacionCSV extends Controller
 {
 
     const arrayProfesores = ["email", "password", "nombre", "fecha_inicio", "especialidad", "afin"];
-    const arrayModulos = ["nombre", "departamento", "tematica", "especialidad"];
+    const arrayModulos = ["nombre", "tematica", "especialidad", "regimen", "ciclo", "horas"];
     public function uploadFiles(Request $request, Response $response, array $args)
     {
-
         function formatDate($fechaInicio)
         {
             $fechaInicioArray = explode('-', $fechaInicio);
             $año = $fechaInicioArray[2];
             $mes = $fechaInicioArray[1];
             $dia = $fechaInicioArray[0];
-            return compact('año', 'mes', 'dia');
+            return "$año-$mes-$dia";
         }
 
         function hashPassword($password)
@@ -46,56 +45,52 @@ class ComprobacionCSV extends Controller
 
 
                 $row = fgetcsv($file, 0, ";"); // Obtengo la primera fila del archivo
-
                 if (count(array_diff(self::arrayProfesores, $row)) === 0) {
                     // Es un archivo de profesores
                     while (($row = fgetcsv($file, 0, ";")) !== false) {
-                        $profesor = [
+                        $profesores = [
                             'email' => $row[0],
                             'password' => hashPassword($row[1]),
                             'nombre' => $row[2],
                             'fecha_inicio' => formatDate($row[3]),
                             'especialidad' => $row[4],
                             'departamento' => $args['id'],
-                            'afin' => explode(",", $row[5]) 
+                            'afin' => explode(",", $row[5])
                         ];
-                        CSVModel::insertarProfesores($profesor);
+                        // A partir de aqui $profesores es un array y devuelve todo bien
+                        try {
+                            CSVModel::insertarProfesores($profesores);
+                        } catch (\Exception $e) {
+                            return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+                        }
                     }
+                    fclose($file);
+                    return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
                 } elseif (count(array_diff(self::arrayModulos, $row)) === 0) {
                     // Es un archivo de modulos
 
                     while (($row = fgetcsv($file, 0, ";")) !== false) {
-                        $modulos[] = [
+                        $modulos = [
                             'nombre' => $row[0],
-                            'departamento' => $row[1],
-                            'tematica' => $row[2],
-                            'especialidad' => $row[3],
+                            'departamento' => $args['id'],
+                            'tematica' => $row[1],
+                            'especialidad' => $row[2],
+                            'regimen' => $row[3],
+                            'ciclo' => $row[4],
+                            'horas' => $row[5]
                         ];
+                        try {
+                            CSVModel::insertarModulos($modulos);
+                        } catch (\Exception $e) {
+                            return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+                        }
                     }
+                    fclose($file);
+                    return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
+
                 }
-                //     while(($column = fgetcsv($file, 0, ";")) == !false){ // Minetras siga leyendo filas en el archivo sigue el bucle
-                //     for ($i = 0; $i < 3; $i++) {
-
-                //         $firstColumn = strtolower($column[0]); // Suponemos que el primer campo es el que determina si entra en profesores o modulos
-                //         // Comparar arrays con array diff
-                //         if ($firstColumn === 'nombre') {
-                //             $profesores[] = [
-                //                 'nombre' => $column[0], // Suponemos que todas estas filas son x dato (Cambiar seguramente)
-                //                 'apellido' => $column[1],
-                //                 // Las que necesitemos...
-                //             ];
-                //         } elseif ($firstColumn === 'modulo') {
-                //             $modulos[] = [
-                //                 'modulo' => $column[0], // Suponemos que todas estas filas son x dato (Cambiar seguramente)
-                //                 'horas' => $column[1],
-                //                 // Las que necesitemos...
-                //             ];
-                //         }
-                //     }
-                // }
-
                 fclose($file);
-                return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
+                return $this->returnResponse($response, ["error" => "El archivo no tiene un formato valido "], 400);
             } else {
                 // El archivo no es un CSV válido
                 return $this->returnResponse($response, ["error" => "El archivo no esun CSV valido "], 400);
