@@ -11,7 +11,7 @@ class ComprobacionCSV extends Controller
 {
 
     const arrayProfesores = ["email", "password", "nombre", "fecha_inicio", "especialidad", "afin"];
-    const arrayModulos = ["nombre", "tematica", "especialidad"];
+    const arrayModulos = ["nombre", "tematica", "especialidad", "regimen", "ciclo", "horas"];
     public function uploadFiles(Request $request, Response $response, array $args)
     {
         function formatDate($fechaInicio)
@@ -45,7 +45,6 @@ class ComprobacionCSV extends Controller
 
 
                 $row = fgetcsv($file, 0, ";"); // Obtengo la primera fila del archivo
-
                 if (count(array_diff(self::arrayProfesores, $row)) === 0) {
                     // Es un archivo de profesores
                     while (($row = fgetcsv($file, 0, ";")) !== false) {
@@ -59,8 +58,14 @@ class ComprobacionCSV extends Controller
                             'afin' => explode(",", $row[5])
                         ];
                         // A partir de aqui $profesores es un array y devuelve todo bien
-                        CSVModel::insertarProfesores($profesores);
+                        try {
+                            CSVModel::insertarProfesores($profesores);
+                        } catch (\Exception $e) {
+                            return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+                        }
                     }
+                    fclose($file);
+                    return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
                 } elseif (count(array_diff(self::arrayModulos, $row)) === 0) {
                     // Es un archivo de modulos
 
@@ -70,12 +75,22 @@ class ComprobacionCSV extends Controller
                             'departamento' => $args['id'],
                             'tematica' => $row[1],
                             'especialidad' => $row[2],
+                            'regimen' => $row[3],
+                            'ciclo' => $row[4],
+                            'horas' => $row[5]
                         ];
-                        CSVModel::insertarModulos($modulos);
+                        try {
+                            CSVModel::insertarModulos($modulos);
+                        } catch (\Exception $e) {
+                            return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+                        }
                     }
+                    fclose($file);
+                    return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
+
                 }
                 fclose($file);
-                return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
+                return $this->returnResponse($response, ["error" => "El archivo no tiene un formato valido "], 400);
             } else {
                 // El archivo no es un CSV válido
                 return $this->returnResponse($response, ["error" => "El archivo no esun CSV valido "], 400);
