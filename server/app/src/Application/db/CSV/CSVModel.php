@@ -12,7 +12,7 @@ class CSVModel
 
     public static function insertarProfesores(array $profesores)
     {
-        $sqlEspecialidadId = "SELECT id from especialidad where tipo = ?;";
+        $sqlEspecialidadId = "SELECT id from especialidad where tipo like ?;";
         $dbInstance = DatabaseConnection::getInstance();
         $dbConexion = $dbInstance->getConnection();
 
@@ -57,7 +57,7 @@ class CSVModel
             }
             return $ultimoId;
         } catch (\Exception $e) {
-            return 500;
+            throw new Exception("Internal server error", 500);
         }
     }
 
@@ -65,7 +65,7 @@ class CSVModel
     public static function insertarModulos(array $modulos)
     {
 
-        $sqlEspecialidadId = "SELECT id from especialidad where tipo = ?;";
+        $sqlEspecialidadId = "SELECT id from especialidad where tipo like ?;";
         $dbInstance = DatabaseConnection::getInstance();
 
         $idEspecialidad = [];
@@ -74,7 +74,7 @@ class CSVModel
         $idEspecialidadId = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($idEspecialidad === false) {
-            return 404;
+            throw new Exception("Especialidad no encontrada", 404);
         }
 
         $idEspecialidad = $idEspecialidadId['id'];
@@ -87,13 +87,28 @@ class CSVModel
         ];
 
 
-        $sql = "INSERT INTO modulo (nombre, id_departamento, id_tematica, id_especialidad) VALUES (?, ?, ?, ?);";
-
+        $insertModulo = "INSERT INTO modulo (nombre, id_departamento, id_tematica, id_especialidad) VALUES (?, ?, ?, ?);";
+        $insertRegimenCicloModulo = "INSERT INTO regimen_ciclo_modulo (id_regimen, id_ciclo, id_modulo, horas_semanales) VALUES (?, ?, ?, ?);";
         try {
-            $stmt = $dbInstance->execQuery($sql, $nuevoModulo);
-            return $stmt;
+            $stmt = $dbInstance->execQuery($insertModulo, $nuevoModulo);
+            $moduloID = $dbInstance->getConnection()->lastInsertId();
+            $regimen = $dbInstance->execQuery("SELECT id from regimen where tipo like ?;", [$modulos['regimen']]);
+            $ciclo = $dbInstance->execQuery("SELECT id from ciclo where nombre like ?;", [$modulos['ciclo']]);
+            $ciclo = $ciclo->fetch(PDO::FETCH_ASSOC)['id'];
+            $regimen = $regimen->fetch(PDO::FETCH_ASSOC)['id'];
+            
+            if($ciclo === false || $regimen === false) throw new Exception("Ciclo o regimen no encontrados", 404);
+
+            $regimenModulo = [
+                $regimen,
+                $ciclo,
+                $moduloID,
+                $modulos['horas']
+            ];
+
+            $stmt = $dbInstance->execQuery($insertRegimenCicloModulo, $regimenModulo);
         } catch (\Exception $e) {
-            return 500;
+            throw new Exception("Internal server error", 500);
         }
     }
 }

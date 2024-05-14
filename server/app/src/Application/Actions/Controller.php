@@ -12,6 +12,7 @@ class Controller
     {
         $responseStatus = $response->withStatus($statusCode);
         $responseStatus->withHeader('Content-Type', 'application/json');
+        $responseStatus->withHeader('Access-Control-Allow-Origin', '*');
         $responseStatus->getBody()->write(json_encode($res));
         return $responseStatus;
     }
