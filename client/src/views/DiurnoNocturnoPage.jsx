@@ -6,9 +6,10 @@ import { Modal } from '../components/Modal'
 import { Profesores } from '../components/Profesores'
 import '../components/css/animations.css'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
-import { comprobarHoras } from '../helpers/CheckProfesores'
+import { checkProfesores } from '../helpers/CheckProfesores'
 import { useModulosProfesores } from '../hooks/useModulosProfesores'
 import { Layout } from '../layouts/Layout'
+import { jsonToCsv } from '../helpers/ManageCsv'
 
 export function DirunoNocturnoPage () {
   return (
@@ -81,10 +82,13 @@ const BoardEntero = () => {
       return
     }
 
-    const hasEmptyHoras = comprobarHoras(filteredProfesores)
-    if (hasEmptyHoras) {
-      setShowModal('Los profesores tienen que estar entre 18 y 20 horas semanales')
+    const correctData = checkProfesores(filteredProfesores)
+    if (correctData !== '') {
+      // A PARTE DE MOSTRAR EL MOODAL SE TIENE QUE GUARDAR EL CSV EN LA BASE DE DATOS
+      setShowModal(correctData)
+      return
     }
+    console.log(jsonToCsv(filteredProfesores)) // esta funcion hay que hacerla bien que lo que esta lo hizo copilot
   }
   return (
     <main className='bg-white grid grid-cols-[300px_1fr] h-screen text-white'>
