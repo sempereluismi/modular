@@ -28,7 +28,12 @@ return function (App $app) {
             $group->get('', [ProfesorController::class, 'listarProfesor']);
             $group->get('/{id}', [ProfesorController::class, 'listarProfesor']);
         });
-        $group->post('/csv/{id}', [ComprobacionCSV::class, 'uploadFiles']);
+        
+        $group->group('/csv', function (Group $group) {
+            $group->post('/upload/{id}', [ComprobacionCSV::class, 'uploadFiles']);
+            $group->post('/save-model/{id}', [ComprobacionCSV::class, 'saveFiles']);
+            $group->get('/list/{id}', [ComprobacionCSV::class, 'listFiles']);
+        });
 
         $group->group('/auth', function (Group $group) {
             $group->post('/login', [LoginController::class, 'login']);

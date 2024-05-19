@@ -2,14 +2,15 @@ import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Board } from '../components/Board'
 import { Loader } from '../components/Loader'
-import { Modal } from '../components/Modal'
 import { Profesores } from '../components/Profesores'
 import '../components/css/animations.css'
+import { ModalContext } from '../context/ModalContext'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { checkProfesores } from '../helpers/CheckProfesores'
+import { ICONS } from '../helpers/Icons.jsx'
+import { jsonToCsv } from '../helpers/ManageCsv'
 import { useModulosProfesores } from '../hooks/useModulosProfesores'
 import { Layout } from '../layouts/Layout'
-import { jsonToCsv } from '../helpers/ManageCsv'
 
 export function DirunoNocturnoPage () {
   return (
@@ -70,22 +71,22 @@ function DirunoNocturnoContent () {
 
 const BoardEntero = () => {
   const { filteredProfesores, filteredModulos } = useContext(ModulosProfesoresContext)
-  const [showModal, setShowModal] = useState(null)
-
-  const onCloseModal = () => {
-    setShowModal(null)
-  }
+  const { setModalInfo } = useContext(ModalContext)
 
   const handleSaveClick = () => {
     if (filteredModulos.length > 0) {
-      setShowModal('Tienes que añadir todos los modulos a los profesores antes de exportar el archivo')
+      setModalInfo({
+        text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
+        // icon: ICONS.ERROR
+      })
       return
     }
 
     const correctData = checkProfesores(filteredProfesores)
     if (correctData !== '') {
+      // TODO: CORREGIR INFO QUE SE MUESTRA POR EL MODAL
       // A PARTE DE MOSTRAR EL MOODAL SE TIENE QUE GUARDAR EL CSV EN LA BASE DE DATOS
-      setShowModal(correctData)
+      setModalInfo(correctData)
       return
     }
     console.log(jsonToCsv(filteredProfesores)) // esta funcion hay que hacerla bien que lo que esta lo hizo copilot
@@ -94,9 +95,6 @@ const BoardEntero = () => {
     <main className='bg-white grid grid-cols-[300px_1fr] h-screen text-white'>
       <Profesores />
       <Board handleSaveClick={handleSaveClick} />
-      <Modal isOpen={showModal} onClose={onCloseModal}>
-        <p className='text-2xl text-center'>{showModal}</p>
-      </Modal>
     </main>
   )
 }
