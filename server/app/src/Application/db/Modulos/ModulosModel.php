@@ -9,14 +9,6 @@ use App\Application\db\DatabaseConnection;
 
 class ModulosModel
 {
-
-    private static array $moduloModel = [
-        "id",
-        "nombre",
-        "id_tematica",
-        "id_especialidad"
-    ];
-
     public static function listarModulos(string $id = ""): array | int
     {
         $sql = "SELECT 
@@ -43,30 +35,6 @@ class ModulosModel
         } catch (\Exception $e) {
             return ["error" => $e->getMessage()];
         }
-    }
-
-    public static function inserirModulo(array $body): array | false
-    {
-        if (!self::validarModulo($body)) {
-            return false;
-        }
-
-        return ["Modulo" => $body];
-    }
-
-    private static function validarModulo(array $body): bool
-    {
-        return array_keys($body) === self::$moduloModel;
-    }
-
-    public static function atualizarModulo(string $id, array $body): array | bool
-    {
-        return ["Modulo" => $id, "body" => $body, "res" => "Atualizar Modulo"];
-    }
-
-    public static function deletarModulo(string $id): array | bool
-    {
-        return ["Modulo" => $id, "res" => "Deletar Modulo"];
     }
 
     private static function addModulos($stmt)

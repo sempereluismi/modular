@@ -17,34 +17,4 @@ class ModuloController extends Controller
         $res = ModulosModel::listarModulos($id);
         return $this->returnResponse($response, $res);
     }
-
-    public function inserirModulo(Request $request, Response $response): Response
-    {
-        // Recoge los datos del body de la peticion que tiene que ser un formato json
-        $body = $request->getParsedBody();
-        $res = ModulosModel::inserirModulo($body);
-
-        if (!$res) {
-            return $this->returnResponse($response, ["error" => "Formato de Modulo incorrecto"], 400);
-        }
-
-        return $this->returnResponse($response, $res, 201);
-    }
-
-    public function atualizarModulo(Request $request, Response $response, array $args): Response
-    {
-        $id = $args["id"];
-        $body = $request->getParsedBody();
-        $res = ModulosModel::atualizarModulo($id, $body);
-
-        return $this->returnResponse($response, $res);
-    }
-
-    public function deletarModulo(Request $request, Response $response, array $args): Response
-    {
-        $id = $args["id"];
-        $res = ModulosModel::deletarModulo($id);
-
-        return $this->returnResponse($response, $res);
-    }
 }

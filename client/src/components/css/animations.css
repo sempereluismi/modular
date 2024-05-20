@@ -1,0 +1,26 @@
+.animate-in {
+  animation: animate-in 0.2s ease-in-out;
+}
+
+.animate-out {
+  transform: scale(0);
+  animation: animate-out 0.2s ease-in-out;
+}
+
+@keyframes animate-in {
+  0% {
+    transform: scale(0)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+@keyframes animate-out {
+  0% {
+    transform: scale(1)
+  }
+  100% {
+    transform: scale(0)
+  }
+}

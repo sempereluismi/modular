@@ -17,9 +17,9 @@ class LoginModel
         try {
             $stmt = $dbInstance->execQuery($sql, [$user]);
             $res = $stmt->fetch();
-            if (sizeof($res) > 0) {
+            if ($res) {
                 if (password_verify($password, $res["password"])) {
-                    $sql = "SELECT pf.id, pf.nombre, count(pfa.id_profesor) as jefe, pf.id_departamento FROM Modular.profesor as pf JOIN profesor_admin as pfa ON (pf.id = pfa.id_profesor) where email = ?;";
+                    $sql = "SELECT pf.id, pf.nombre, (select count(id_profesor) from profesor_admin where id_profesor = pf.id ) as jefe, pf.id_departamento FROM Modular.profesor as pf where email = ?;";
                     $stmt = $dbInstance->execQuery($sql, [$user]);
                     $res = $stmt->fetch(PDO::FETCH_ASSOC);
                     return $res;

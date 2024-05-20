@@ -17,4 +17,11 @@ class RegimenController extends Controller
     $res = RegimenModel::listarRegimen($id);
     return $this->returnResponse($response, $res, 200);
   }
+
+  public function inserirRegimen(Request $request, Response $response, array $args)
+  {
+    $data = $request->getParsedBody();
+    $res = RegimenModel::inserirRegimen($data);
+    return $this->returnResponse($response, $res, 200);
+  }
 }

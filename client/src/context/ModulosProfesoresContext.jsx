@@ -1,29 +1,73 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import { setPositionsModulos } from '../helpers/OrderModulos'
 
 // Crear el contexto
 export const ModulosProfesoresContext = createContext()
 // Crear el proveedor
 export function ModulosProfesoresProvider ({ children }) {
   const [positions, setPositions] = useState([])
-  const [modulos, setModulos] = useState([])
-  const [profesores, setProfesores] = useState([])
   const [draggedModulo, setDraggedModulo] = useState(null)
   const [draggedProfesor, setDraggedProfesor] = useState(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
   const [filteredModulos, setFilteredModulos] = useState([])
+  const [filteredProfesores, setFilteredProfesores] = useState([])
+  const [allRegimen, setAllRegimen] = useState(() => {
+    const savedAllRegimen = sessionStorage.getItem('allRegimen')
+    return savedAllRegimen ? JSON.parse(savedAllRegimen) : []
+  })
   const [regimen, setRegimen] = useState(() => {
     // Intentar obtener el usuario del sessionStorage al inicio
-    const savedUser = sessionStorage.getItem('regimen')
-    return savedUser ? JSON.parse(savedUser) : null
+    const savedRegimen = sessionStorage.getItem('regimen')
+    return savedRegimen ? JSON.parse(savedRegimen) : null
   })
-  const [allRegimen, setAllRegimen] = useState([])
+  const [profesores, setProfesores] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedProfesores = sessionStorage.getItem('profesores')
+    return savedProfesores ? JSON.parse(savedProfesores) : []
+  })
+
+  const [modulos, setModulos] = useState(() => {
+    // Intentar obtener el usuario del sessionStorage al inicio
+    const savedModulos = sessionStorage.getItem('modulos')
+    return savedModulos ? JSON.parse(savedModulos) : []
+  })
+
+  const HORAS_SEMANALES = [20, 18]
+  const MODULO_WIDTH = 144
+  const MODULO_HEIGHT = 144
+  const MAX_WIDTH_MODULO = 1300
+
+  useEffect(() => {
+    sessionStorage.setItem('allRegimen', JSON.stringify(allRegimen))
+  }, [allRegimen])
 
   useEffect(() => {
     sessionStorage.setItem('regimen', JSON.stringify(regimen))
-    const filtered = modulos.filter(modulo => modulo.regimen === regimen)
-    setFilteredModulos(filtered)
+    const filteredModulos = modulos.filter(modulo => modulo.regimen === regimen)
+    setFilteredModulos(filteredModulos)
+    const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
+    setFilteredProfesores(filteredProfesores)
   }, [regimen])
+
+  useEffect(() => {
+    sessionStorage.setItem('profesores', JSON.stringify(profesores))
+    const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
+    const newProfesores = filteredProfesores.map(profesor => {
+      return {
+        ...profesor,
+        horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
+      }
+    })
+    setFilteredProfesores(newProfesores)
+  }, [profesores, regimen])
+
+  useEffect(() => {
+    sessionStorage.setItem('modulos', JSON.stringify(modulos))
+    const filteredModulos = modulos.filter(modulo => modulo.regimen === regimen)
+    setPositionsModulos(filteredModulos, setPositions, MODULO_WIDTH, MODULO_HEIGHT, MAX_WIDTH_MODULO)
+    setFilteredModulos(filteredModulos)
+  }, [modulos, regimen])
 
   const contextValue = {
     modulos,
@@ -43,7 +87,11 @@ export function ModulosProfesoresProvider ({ children }) {
     allRegimen,
     setAllRegimen,
     filteredModulos,
-    setFilteredModulos
+    filteredProfesores,
+    HORAS_SEMANALES,
+    MODULO_WIDTH,
+    MODULO_HEIGHT,
+    MAX_WIDTH_MODULO
   }
 
   return (

@@ -5,13 +5,14 @@ import { AuthContext } from '../context/AuthContext'
 export function useAuth () {
   const { user, setUser } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
   function isLogged () {
     return user !== null
   }
 
   function logout () {
-    sessionStorage.removeItem('user')
+    sessionStorage.clear()
     setUser(null)
   }
 
@@ -41,8 +42,7 @@ export function useAuth () {
       setLoading(false)
       return true
     } else {
-      const errorMessage = await res.text()
-      console.error('Error al iniciar sesión:', errorMessage)
+      setError('Usuario o contraseña incorrectos')
       setLoading(false)
       return false
     }
@@ -55,6 +55,7 @@ export function useAuth () {
     loading,
     redirectIfNotLogged,
     isAdmin,
-    logout
+    logout,
+    error
   }
 }
