@@ -8,15 +8,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:80"
-    command: php -S 0.0.0.0:80 -t public
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9003 remote_enable=1
     volumes:
       - ./app:/var/www/html
       - ./config/php.ini:/usr/local/etc/php/php.ini
       - ./logs:/var/www/logs
+      - ./config/sites-available:/etc/apache2/sites-available
     working_dir: /var/www/html
-
     networks:
       - modularLan
       - modular
@@ -29,7 +28,6 @@ services:
     working_dir: /var/www/html
     tty: true
     command: '/bin/bash'
-
     networks:
       - modularLan
       - modular
@@ -44,7 +42,6 @@ services:
       MYSQL_DATABASE: Modular
       MYSQL_USER: test
       MYSQL_PASSWORD: test
-
     networks:
       - modularLan
       - modular
@@ -57,10 +54,9 @@ services:
       - "8002:80"
     environment:
       PMA_HOST: modular-mariadb
-      PMA_PORT: 3306 # Funciona con el puerto interno de los contenedores
+      PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: modular
-
     networks:
       - modularLan
       - modular
