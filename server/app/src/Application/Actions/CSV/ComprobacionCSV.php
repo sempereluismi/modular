@@ -14,19 +14,7 @@ class ComprobacionCSV extends Controller
     const arrayModulos = ["nombre", "tematica", "especialidad", "regimen", "ciclo", "horas"];
     public function uploadFiles(Request $request, Response $response, array $args)
     {
-        function formatDate($fechaInicio)
-        {
-            $fechaInicioArray = explode('-', $fechaInicio);
-            $año = $fechaInicioArray[2];
-            $mes = $fechaInicioArray[1];
-            $dia = $fechaInicioArray[0];
-            return "$año-$mes-$dia";
-        }
 
-        function hashPassword($password)
-        {
-            return password_hash($password, PASSWORD_DEFAULT);
-        }
 
         // Obtenemos los archivos subidos
         $uploadedFiles = $request->getUploadedFiles();
@@ -99,10 +87,41 @@ class ComprobacionCSV extends Controller
         }
     }
 
+    public function saveFiles(Request $request, Response $response, array $args)
+    {
+        return $this->returnResponse($response, ["success" => "Archivo CSV guardado"], 200);
+        $uploadedFiles = $request->getUploadedFiles();
+        if (isset($uploadedFiles['file']) && $uploadedFiles['file']->getError() === UPLOAD_ERR_OK) {
+            if($this->esArchivoCSV($uploadedFiles['file'])) {
+                $uploadedFile = $uploadedFiles['file'];
+                // try {
+                //     CSVModel::saveFiles($uploadedFile);
+                //     return $this->returnResponse($response, ["success" => "Archivo CSV guardado"], 200);
+                // } catch (\Exception $e) {
+                //     return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+                // }
+            }
+        }
+    }
+
     private function esArchivoCSV($uploadedFile): bool
     {
         // Verifica la extensión del archivo
         $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
         return strtolower($extension) === 'csv';
+    }
+
+    private function formatDate($fechaInicio)
+    {
+        $fechaInicioArray = explode('-', $fechaInicio);
+        $año = $fechaInicioArray[2];
+        $mes = $fechaInicioArray[1];
+        $dia = $fechaInicioArray[0];
+        return "$año-$mes-$dia";
+    }
+
+    private function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 }
