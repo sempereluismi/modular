@@ -29,7 +29,7 @@ class RegimenModel
     ON DUPLICATE KEY UPDATE id_regimen = VALUES(id_regimen);";
     try {
       foreach ($data as $regimen) {
-        $stmt = $db->execQuery($sql, [$regimen['id_regimen'], $regimen['id_profesor']]);
+        $stmt = $db->execQuery($sql, [$regimen['id_regimenes'], $regimen['id_profesor']]);
       }
       return ["message" => "Regimen inserido com sucesso"];
     } catch (\Exception $e) {

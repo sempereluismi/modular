@@ -67,7 +67,7 @@ const Profesor = ({ profesor, modulos }) => {
   return (
     <>
       <li
-        className={` py-5 transition-all duration-100
+        className={` py-5 transition-all duration-100 
         ${active && 'bg-neutral-300'}  `}
         onDragOver={handleDragOver}
         onDragLeave={() => setActive(false)}
@@ -113,7 +113,7 @@ const MiniModulo = ({ profesor }) => {
             return (
               <li
                 key={modulo.id} id={modulo.id}
-                className='w-12 h-12 text-black cursor-grab active:cursor-grabbing'
+                className='w-12 h-12 text-black cursor-grab active:cursor-grabbing animate-zoom-in animate-duration-[200ms]'
                 style={{ backgroundColor: modulo.color }}
                 draggable='true' onDragStart={handleDragStart} onDragEnd={handleDragEnd}
               >
