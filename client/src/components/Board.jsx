@@ -84,7 +84,7 @@ const Modulo = ({ modulo, position }) => {
   return (
     <div
       id={modulo.id.toString()} // Se establece el ID como el índice del módulo
-      className='absolute cursor-grab active:cursor-grabbing text-black font-postit flex flex-col justify-center items-center'
+      className='absolute cursor-grab active:cursor-grabbin text-black font-postit flex flex-col justify-center items-center'
       style={{ transform: `translate(${position.x}px, ${position.y}px)`, backgroundColor: modulo.color, width: `${MODULO_WIDTH}px`, height: `${MODULO_HEIGHT}px` }}
       draggable='true'
       onDragStart={handleDragStart}
@@ -92,7 +92,6 @@ const Modulo = ({ modulo, position }) => {
     >
       <h2 className='text-xl'>{modulo.nombre_ciclo}</h2>
       <h2 className='text-xl'>{modulo.nombre}</h2>
-      <p>Régimen: {modulo.regimen}</p>
       <p>Horas: {modulo.horas_semanales}h</p>
     </div>
   )

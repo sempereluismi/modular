@@ -77,7 +77,7 @@ const BoardEntero = () => {
     if (filteredModulos.length > 0) {
       setModalInfo({
         text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
-        // icon: ICONS.ERROR
+        icon: ICONS.ERROR
       })
       return
     }

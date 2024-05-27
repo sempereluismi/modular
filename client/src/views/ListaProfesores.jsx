@@ -1,21 +1,47 @@
-import { useContext, useState } from 'react'
+/* eslint-disable react/prop-types */
+import React, { useContext, useEffect, useState } from 'react'
+import { CheckBox } from '../components/CheckBox/CheckBox'
+import { LoadComponent } from '../components/LoadComponent'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { Layout } from '../layouts/Layout'
 
 export function ListaProfesores () {
-  const { profesores, allRegimen } = useContext(ModulosProfesoresContext)
+  const { profesores: profesoresContext } = useContext(ModulosProfesoresContext)
+  const [profesores, setProfesores] = useState([])
+
+  useEffect(() => {
+    // Inicializa el estado de los profesores con valores booleanos definidos
+    const profesoresInicializados = profesoresContext.map(profesor => ({
+      nombre: profesor.nombre,
+      id: profesor.id,
+      regimenes: 0
+    }))
+    setProfesores(profesoresInicializados)
+  }, [profesoresContext])
+
   const [loading, setLoading] = useState(false)
 
-  const handleGuardar = async () => {
-    const profesoresSeleccionados = []
-    const listaProfesores = document.querySelectorAll('.profesor')
-
-    listaProfesores.forEach(profesor => {
-      const id = profesor.getAttribute('id')
-      const select = profesor.querySelector('select')
-      const valorSeleccionado = select.value
-      profesoresSeleccionados.push({ id_profesor: id, id_regimen: valorSeleccionado })
+  const handleCheckboxChange = (idProfesor, idRegimen) => {
+    // TODO: CAMBIAR CODIGO PARA PODER PONER VARIOS REGIMENES
+    setProfesores((prevState) => {
+      const profesor = prevState.find(profesor => profesor.id === idProfesor)
+      // const regimenes = profesor.regimenes
+      // if (regimenes.includes(idRegimen)) {
+      //   profesor.regimenes = regimenes.filter(regimen => regimen !== idRegimen)
+      // } else {
+      //   profesor.regimenes = [...regimenes, idRegimen]
+      // }
+      profesor.regimenes = idRegimen
+      return [...prevState]
     })
+  }
+
+  const handleGuardar = async () => {
+    const profesoresSeleccionados = profesores.map(profesor => ({
+      id_profesor: profesor.id,
+      id_regimenes: profesor.regimenes
+    }))
+
     setLoading(true)
     try {
       const response = await fetch('http://localhost:8000/api/regimen', {
@@ -26,54 +52,73 @@ export function ListaProfesores () {
         body: JSON.stringify(profesoresSeleccionados)
       })
 
-      if (response.ok) {
-        setLoading(false)
-      }
-
       if (!response.ok) {
-        setLoading(false)
         throw new Error('Error al enviar la solicitud')
       }
     } catch (error) {
       console.error('Error al enviar la solicitud POST:', error)
+    } finally {
+      // setLoading(false)
     }
   }
 
   return (
     <Layout>
-      <main className='flex flex-col items-center mt-20 gap-y-4 h-screen'>
-        <h1>Selección de Régimen</h1>
-        <ul>
-          {profesores.map((profesor) => {
-            return (
-              <li key={profesor.id} id={profesor.id} className='flex gap-x-4 profesor'>
-                {profesor.nombre}
+      <main className='flex flex-col items-center mt-20 gap-y-4 h-[800px]'>
+        <h1 className='text-3xl font-bold mb-6 text-center'>Selección de Régimen</h1>
+        <div className='w-5 h-5 bg-red-600 rounded-full absolute top-[150px] flex items-center justify-center'>
+          <div className='w-3 h-3 bg-red-500 rounded-full border border-black' />
+        </div>
 
-                <select className='text-text-100'>
-                  {
-                    allRegimen.map((regimen) => (
-                      <option selected={profesor.regimen === regimen.tipo} key={regimen.id} value={regimen.id}>{regimen.tipo}</option>
-                    ))
-                  }
-                </select>
-              </li>
-            )
-          }
-          )}
-        </ul>
-        <button onClick={handleGuardar}>
-          {loading
-            ? (
-              <div role='status'>
-                <svg aria-hidden='true' className='w-6 h-6 text-primary-100 animate-spin fill-white' viewBox='0 0 100 101' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z' fill='currentColor' /><path d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z' fill='currentFill' /></svg>
-                <span className='sr-only'>Loading...</span>
-              </div>
-              )
-            : (
-                'Guardar'
-              )}
-        </button>
+        <section className='w-9/12 bg-white border-4 border-black rounded-lg h-screen mt-28 animate-slide-up-fade'>
+          <header>
+            <div className='w-[50.9%] h-32 absolute -top-[63px] left-[660px] border-t-2 border-black transform rotate-[10deg]' />
+            <div className='w-[50.9%] h-32 absolute -top-[63px] left-[6px] border-t-2 border-black transform -rotate-[10deg]' />
+          </header>
+          <main className='w-full h-full grid grid-cols-3 p-10'>
+            <section className='justify-self-start'>Nombre</section>
+            <section className='justify-self-center'>Ordinario</section>
+            <section className='justify-self-center'>Adultos</section>
+            <ProfesorList profesores={profesores} onCheckboxChange={handleCheckboxChange} />
+            <footer className='col-span-3 flex items-center'>
+              <button onClick={handleGuardar} className='flex w-[89px] h-[36px] justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+                {loading
+                  ? (
+                    <div role='status'>
+                      <LoadComponent color='transparent' fill='#ffffff' />
+                    </div>
+                    )
+                  : (
+                      'Guardar'
+                    )}
+              </button>
+            </footer>
+          </main>
+        </section>
       </main>
     </Layout>
+  )
+}
+
+const ProfesorList = ({ profesores, onCheckboxChange }) => {
+  const { allRegimen } = useContext(ModulosProfesoresContext)
+  return (
+    <>
+      {profesores.map((profesor) => (
+        <React.Fragment key={profesor.id}>
+          <section className='profesor-item justify-self-start flex items-center'>{profesor.nombre}</section>
+          {allRegimen.map((regimen) => (
+            <section key={regimen.id} className='profesor-item justify-self-center flex items-center'>
+              <CheckBox
+                id={`${profesor.id}-${regimen.id}`}
+                // checked={profesor.regimenes && profesor.regimenes.includes(regimen.id)}
+                checked={profesor.regimenes === regimen.id}
+                onChange={() => onCheckboxChange(profesor.id, regimen.id)}
+              />
+            </section>
+          ))}
+        </React.Fragment>
+      ))}
+    </>
   )
 }
