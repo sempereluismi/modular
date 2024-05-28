@@ -5,25 +5,35 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { CheckBox } from '../components/CheckBox/CheckBox'
 import { LoadComponent } from '../components/LoadComponent'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
-import { useListaProfesores } from '../hooks/useListaProfesores'
 import { Layout } from '../layouts/Layout'
 
 export function ListaProfesores () {
-  const { profesores, profesoresPaginados, setProfesoresPaginados, maxPage, fetchProfesores, buttons } = useListaProfesores()
+  const { profesores: profesoresContext } = useContext(ModulosProfesoresContext)
+  const [profesores, setProfesores] = useState([])
   const [loading, setLoading] = useState(false)
+  const pageSize = 8
 
   const { page } = useParams()
   const navigate = useNavigate()
+  const maxPage = Math.ceil(profesoresContext.length / pageSize)
+  const buttons = Array.from({ length: maxPage }, (v, i) => i + 1)
 
   useEffect(() => {
     if (parseInt(page) > maxPage) {
       navigate(`/admin/lista-profesores/${maxPage}`)
     }
-    fetchProfesores(page)
-  }, [page])
+    const profesoresInicializados = profesoresContext.map(profesor => ({
+      nombre: profesor.nombre,
+      id: profesor.id,
+      regimenes: 0
+    }))
+    const paginados = paginate(profesoresInicializados, pageSize)
+    const currentPage = Math.max(1, Math.min(paginados.length, parseInt(page, 10)))
+    setProfesores(paginados[currentPage - 1])
+  }, [profesoresContext, page])
 
   const handleCheckboxChange = (idProfesor, idRegimen) => {
-    setProfesoresPaginados((prevState) => {
+    setProfesores((prevState) => {
       const profesor = prevState.find(profesor => profesor.id === idProfesor)
       profesor.regimenes = idRegimen
       return [...prevState]
@@ -38,17 +48,13 @@ export function ListaProfesores () {
 
     setLoading(true)
     try {
-      const response = await fetch('http://localhost:8000/api/regimen', {
+      await fetch('http://localhost:8000/api/regimen', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(profesoresSeleccionados)
       })
-
-      if (!response.ok) {
-        throw new Error('Error al enviar la solicitud')
-      }
     } catch (error) {
       console.error('Error al enviar la solicitud POST:', error)
     } finally {
@@ -76,7 +82,7 @@ export function ListaProfesores () {
               <section className='justify-self-start'>NOMBRE</section>
               <section className='justify-self-center'>ORDINARIO</section>
               <section className='justify-self-end'>ADULTOS</section>
-              <ProfesorList profesores={profesoresPaginados} onCheckboxChange={handleCheckboxChange} />
+              <ProfesorList profesores={profesores} onCheckboxChange={handleCheckboxChange} />
             </section>
             <footer className='col-span-3 flex items-center justify-between px-5 max-h-[65px] w-full absolute bottom-5'>
               <div className='flex items-center justify-center gap-3'>
@@ -141,4 +147,18 @@ const ProfesorList = ({ profesores, onCheckboxChange }) => {
       ))}
     </>
   )
+}
+
+const paginate = (array, pageSize) => {
+  return array.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / pageSize)
+
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = [] // Inicia un nuevo array
+    }
+
+    resultArray[chunkIndex].push(item)
+
+    return resultArray
+  }, [])
 }
