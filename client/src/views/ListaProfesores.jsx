@@ -6,12 +6,16 @@ import { CheckBox } from '../components/CheckBox/CheckBox'
 import { LoadComponent } from '../components/LoadComponent'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { Layout } from '../layouts/Layout'
+import { uploadRegimen } from '../service/profesores'
+import { ModalContext } from '../context/ModalContext'
+import { ICONS } from '../helpers/Icons'
 
 export function ListaProfesores () {
   const { profesores: profesoresContext } = useContext(ModulosProfesoresContext)
   const [profesores, setProfesores] = useState([])
   const [loading, setLoading] = useState(false)
   const pageSize = 8
+  const { setModalInfo } = useContext(ModalContext)
 
   const { page } = useParams()
   const navigate = useNavigate()
@@ -48,15 +52,12 @@ export function ListaProfesores () {
 
     setLoading(true)
     try {
-      await fetch('http://localhost:8000/api/regimen', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(profesoresSeleccionados)
-      })
+      await uploadRegimen(profesoresSeleccionados)
     } catch (error) {
-      console.error('Error al enviar la solicitud POST:', error)
+      setModalInfo({
+        text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
+        icon: ICONS.ERROR
+      })
     } finally {
       setLoading(false)
     }

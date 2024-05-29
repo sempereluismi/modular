@@ -1,22 +1,31 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { FileUploader } from 'react-drag-drop-files'
 import { DragAndDropDesing } from '../components/DragAndDropDesing.jsx'
 import { useAuth } from '../hooks/useAuth.jsx'
-import { useCsv } from '../hooks/useCsv.jsx'
+import { uploadCsv } from '../service/csv.js'
+import { ICONS } from '../helpers/Icons.jsx'
+import { ModalContext } from '../context/ModalContext.jsx'
 const fileTypes = ['CSV']
 
 function DragDrop ({ urlImage }) {
   const [loading, setLoading] = useState(false)
   const { user } = useAuth()
-  const { uploadCsv } = useCsv()
+  const { setModalInfo } = useContext(ModalContext)
 
   const handleChange = async (file) => {
     setLoading(true)
     try {
-      await uploadCsv(file, user.id_departamento)
+      await uploadCsv(file, `/api/csv/upload/${user.id_departamento}`)
+      setModalInfo({
+        text: 'Archivo subido correctamente',
+        icon: ICONS.SUCCESS
+      })
     } catch (error) {
-      console.error('Error uploading file:', error)
+      setModalInfo({
+        text: 'Hubo un error al subir el archivo, compruebe su archivo e intente de nuevo',
+        icon: ICONS.ERROR
+      })
     } finally {
       setLoading(false)
     }
