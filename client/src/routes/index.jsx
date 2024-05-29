@@ -1,13 +1,13 @@
-import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route } from 'react-router-dom'
 import { DirunoNocturnoPage } from '../views/DiurnoNocturnoPage.jsx'
+import { InsertarModuloPage } from '../views/InsertarModuloPage.jsx'
 import { InsertarPlantillaPage } from '../views/InsertarPlantillaPage.jsx'
 import { InsertarProfesorPage } from '../views/InsertarProfesorPage.jsx'
-import { LogInPage } from '../views/LogInPage.jsx'
 import { ListaProfesores } from '../views/ListaProfesores.jsx'
-import { InsertarModuloPage } from '../views/InsertarModuloPage.jsx'
-import { ProtectedAuthRoutes } from '../views/ProtectedAuthRoutes.jsx'
-import { ProtectedAdminRoutes } from '../views/ProtectedAdminRoutes.jsx'
+import { LogInPage } from '../views/LogInPage.jsx'
 import { LogOutPage } from '../views/LogOutPage.jsx'
+import { ProtectedAdminRoutes } from '../views/ProtectedAdminRoutes.jsx'
+import { ProtectedAuthRoutes } from '../views/ProtectedAuthRoutes.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +23,8 @@ const router = createBrowserRouter(
           <Route path='profesores' element={<InsertarProfesorPage />} />
           <Route path='modulos' element={<InsertarModuloPage />} />
         </Route>
-        <Route path='listaProfesores' element={<ListaProfesores />} />
+        <Route path='lista-profesores' element={<Navigate to='/admin/lista-profesores/1' replace />} />
+        <Route path='lista-profesores/:page' element={<ListaProfesores />} />
       </Route>
     </>
   )

@@ -42,7 +42,7 @@ function DirunoNocturnoContent () {
             setProfesores(newProfesores)
             const hasEmptyRegimen = comprobarRegimen(newProfesores)
             if (hasEmptyRegimen) {
-              navigate('/admin/listaProfesores')
+              navigate('/admin/lista-profesores')
             }
             setLoading(false)
           })

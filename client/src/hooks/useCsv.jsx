@@ -10,10 +10,11 @@ export function useCsv () {
       .then(response => {
         if (response.ok) {
           return response.json()
+            .then(data => console.log('File uploaded:', data))
         } else {
           return response.json()
             .then(data => {
-              throw new Error('Failed to upload file')
+              throw new Error('Failed to upload file:', data.message || 'Unknown error')
             })
         }
       })
