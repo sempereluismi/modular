@@ -15,9 +15,8 @@ class CSVModel
         $sqlEspecialidadId = "SELECT id from especialidad where tipo like ?;";
         $dbInstance = DatabaseConnection::getInstance();
         $dbConexion = $dbInstance->getConnection();
-
+        
         $idAfin = [];
-
         foreach ($profesores['afin'] as $profesor) {
             $stmt = $dbInstance->execQuery($sqlEspecialidadId, [$profesor]);
             $res = $stmt->fetch(PDO::FETCH_ASSOC);
