@@ -17,7 +17,7 @@ export const DragAndDropDesing = ({ urlImage, loading }) => {
         {
         loading
           ? (
-            <LoadComponent color='transparent' fill='#FF6600' height={12} width={12} />
+            <LoadComponent color='#FF6600' height={48} width={48} />
             )
           : (
             <>
