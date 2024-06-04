@@ -105,6 +105,22 @@ class ComprobacionCSV extends Controller
             return $this->returnResponse($response, ["error" => "No se ha subido ningún archivo o ha ocurrido un error"], 400);
         }
     }
+
+    // public function listFilesProfesor(Request $request, Response $response, array $args)
+    // {
+    //     $files = CSVModel::listFilesProfesor($args['id']);
+    //     return $this->returnResponse($response, $files, 200);
+    // }
+
+    public function listFileAdmin(Request $request, Response $response, array $args)
+    {
+        try {
+            $files = CSVModel::listFileAdmin($args['id']);
+        } catch (\Exception $e) {
+            return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+        }
+        return $this->returnResponse($response, $files, 200);
+    }
     
 
     private function esArchivoCSV($uploadedFile): bool
