@@ -1,19 +1,22 @@
 import { API_URL } from '../helpers/constants'
 
-export function uploadCsv (file, url) {
+export async function uploadCsv (file, url) {
   const formData = new FormData()
   formData.append('csvFile', file)
 
-  return fetch(`${API_URL}${url}`, {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error()
-      }
+  try {
+    const res = await fetch(`${API_URL}${url}`, {
+      method: 'POST',
+      body: formData
     })
-    .catch(_ => {
-      throw new Error()
-    })
+
+    if (res.ok) {
+      const data = await res.json()
+      return data
+    }
+
+    throw new Error()
+  } catch (error) {
+    throw new Error()
+  }
 }

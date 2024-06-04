@@ -110,4 +110,18 @@ class CSVModel
             throw new Exception("Internal server error", 500);
         }
     }
+
+    public static function saveFiles($contentFile, $id_profesor) {
+        try {
+            $sql = "INSERT INTO modelo (file, id_profesor) VALUES (?, ?)";
+            $dbInstance = DatabaseConnection::getInstance();
+            $stmt = $dbInstance->execQuery($sql, [$contentFile, $id_profesor]);
+    
+        } catch (PDOException $e) {
+            // Manejar errores
+            error_log("Error al guardar el archivo en la base de datos: " . $e->getMessage());
+        }
+    }
+    
+    
 }
