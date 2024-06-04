@@ -1,30 +1,31 @@
 import { useAuth } from './useAuth'
+import { getModulosAPI, getProfesoresAPI, getRegimenAPI } from '../service/profesores'
 
 export function useModulosProfesores () {
   const { user } = useAuth()
 
   async function getModulos () {
-    const data = await fetch(`http://localhost:8000/api/modulos/${user.id_departamento}`)
-    const modulos = await data.json()
-    return modulos
+    try {
+      return await getModulosAPI(user.id_departamento)
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 
   async function getProfesores () {
-    const data = await fetch(`http://localhost:8000/api/profesor/${user.id_departamento}`)
-    const profesores = await data.json()
-    const newProfesores = profesores.map((profesor) => {
-      return {
-        ...profesor,
-        modulos: []
-      }
-    })
-    return newProfesores
+    try {
+      return getProfesoresAPI(user.id_departamento)
+    } catch (error) {
+      throw new Error()
+    }
   }
 
   async function getRegimen () {
-    const data = await fetch(`http://localhost:8000/api/regimen/${user.id_departamento}`)
-    const regimenes = await data.json()
-    return regimenes
+    try {
+      return getRegimenAPI(user.id_departamento)
+    } catch (error) {
+      throw new Error()
+    }
   }
 
   return {

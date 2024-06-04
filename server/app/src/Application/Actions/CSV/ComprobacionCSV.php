@@ -89,27 +89,59 @@ class ComprobacionCSV extends Controller
 
     public function saveFiles(Request $request, Response $response, array $args)
     {
-        return $this->returnResponse($response, ["success" => "Archivo CSV guardado"], 200);
         $uploadedFiles = $request->getUploadedFiles();
-        if (isset($uploadedFiles['file']) && $uploadedFiles['file']->getError() === UPLOAD_ERR_OK) {
-            if($this->esArchivoCSV($uploadedFiles['file'])) {
-                $uploadedFile = $uploadedFiles['file'];
-                // try {
-                //     CSVModel::saveFiles($uploadedFile);
-                //     return $this->returnResponse($response, ["success" => "Archivo CSV guardado"], 200);
-                // } catch (\Exception $e) {
-                //     return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
-                // }
+        
+        if (isset($uploadedFiles['csvFile']) && $uploadedFiles['csvFile']->getError() === UPLOAD_ERR_OK) {
+            $uploadedFile = $uploadedFiles['csvFile'];
+            
+            if ($this->esArchivoCSV($uploadedFile)) {
+                $contenido = file_get_contents($uploadedFile->getStream()->getMetadata('uri'));
+                CSVModel::saveFiles($contenido, $args['id']);
+                return $this->returnResponse($response, ["success" => "Archivo CSV válido"], 200);
+            } else {
+                return $this->returnResponse($response, ["error" => "El archivo no es un CSV válido"], 400);
             }
+        } else {
+            return $this->returnResponse($response, ["error" => "No se ha subido ningún archivo o ha ocurrido un error"], 400);
         }
     }
+    
 
     private function esArchivoCSV($uploadedFile): bool
     {
-        // Verifica la extensión del archivo
-        $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
-        return strtolower($extension) === 'csv';
+        if (empty($uploadedFile) || !is_uploaded_file($uploadedFile->getStream()->getMetadata('uri'))) {
+            return false;
+        }
+    
+
+        $fileExtension = strtolower(pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION));
+    
+        if ($fileExtension !== 'csv') {
+            return false;
+        }
+
+        $fileMimeType = mime_content_type($uploadedFile->getStream()->getMetadata('uri'));
+
+        $allowedMimeTypes = [
+            'text/csv',
+            'text/plain',
+            'application/csv',
+            'text/comma-separated-values',
+            'application/excel',
+            'application/vnd.ms-excel',
+            'application/vnd.msexcel',
+            'text/anytext',
+            'application/octet-stream',
+            'application/txt',
+        ];
+    
+        if (!in_array($fileMimeType, $allowedMimeTypes)) {
+            return false;
+        }
+    
+        return true;
     }
+    
 
     private function formatDate($fechaInicio)
     {

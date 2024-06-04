@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { usePosition } from '../hooks/usePosition'
 
-export function Board ({ handleSaveClick }) {
+export function Board ({ handleDownloadClick, handleSaveClick }) {
   const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, setProfesores, positions, setRegimen, allRegimen, regimen, filteredModulos } = useContext(ModulosProfesoresContext)
   const { updatePosition } = usePosition()
   const handleDragOver = (event) => {
@@ -52,9 +52,12 @@ export function Board ({ handleSaveClick }) {
           ))
         }
       </select>
-      <button onClick={handleSaveClick} className='absolute rounded-md top-2 left-2 px-2 py-1 flex items-center justify-center bg-primary-100 text-white active:scale-95'>
+      <button onClick={handleDownloadClick} className='absolute rounded-md top-2 left-2 px-2 py-1 flex items-center justify-center bg-primary-100 text-white active:scale-95'>
         <IconBookDownload stroke={2} />
         <span className='font-semibold'>CSV</span>
+      </button>
+      <button onClick={handleSaveClick} className='font-semibold absolute rounded-md top-2 left-24 px-2 py-1 flex items-center justify-center bg-primary-100 text-white active:scale-95'>
+        Save
       </button>
       <ul>
         {filteredModulos.map((modulo) => {

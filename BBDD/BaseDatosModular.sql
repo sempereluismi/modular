@@ -176,3 +176,14 @@ drop table if exists instituto;
         constraint fk_id_profesor_profesor_regimen foreign key (id_profesor) references profesor (id),
         constraint fk_id_regimen_profesor_regimen foreign key (id_regimen) references regimen (id)
     );
+
+	drop table if exists modelo;
+	create table modelo(
+		id int auto_increment not null,
+		nombre varchar(100) not null default CURRENT_DATE,
+		file longblob not null,
+		id_profesor int not null,
+		create_date date not null default CURRENT_TIMESTAMP,
+		primary key (id),
+		constraint `fk_id_profesor_modelo` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
+	)
