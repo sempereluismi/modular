@@ -1,130 +1,204 @@
-import { useContext, useState } from 'react'
+/* eslint-disable react/prop-types */
+import { IconChevronLeft } from '@tabler/icons-react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { CheckBox } from '../components/CheckBox/CheckBox'
+import { LoadComponent } from '../components/LoadComponent'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { Layout } from '../layouts/Layout'
+import { uploadRegimen } from '../service/profesores'
+import { ModalContext } from '../context/ModalContext'
+import { ICONS } from '../helpers/Icons'
 
 export function ListaProfesores () {
-  const { profesores, allRegimen } = useContext(ModulosProfesoresContext)
+  const { profesores: profesoresContext } = useContext(ModulosProfesoresContext)
+  const [profesores, setProfesores] = useState([])
   const [loading, setLoading] = useState(false)
+  const pageSize = 8
+  const { setModalInfo } = useContext(ModalContext)
+
+  const { page } = useParams()
+  const navigate = useNavigate()
+  const maxPage = Math.ceil(profesoresContext.length / pageSize)
+  const buttons = Array.from({ length: maxPage }, (v, i) => i + 1)
+
+  useEffect(() => {
+    if (parseInt(page) > maxPage) {
+      navigate(`/admin/lista-profesores/${maxPage}`)
+    }
+    const profesoresInicializados = profesoresContext.map(profesor => ({
+      nombre: profesor.nombre,
+      id: profesor.id,
+      regimenes: 0
+    }))
+    const paginados = paginate(profesoresInicializados, pageSize)
+    const currentPage = Math.max(1, Math.min(paginados.length, parseInt(page, 10)))
+    setProfesores(paginados[currentPage - 1])
+  }, [profesoresContext, page])
+
+  const handleCheckboxChange = (idProfesor, idRegimen) => {
+    setProfesores((prevState) => {
+      const profesor = prevState.find(profesor => profesor.id === idProfesor)
+      profesor.regimenes = idRegimen
+      return [...prevState]
+    })
+  }
 
   const handleGuardar = async () => {
-    const profesoresSeleccionados = []
-    const listaProfesores = document.querySelectorAll('.profesor')
+    const profesoresSeleccionados = profesores.map(profesor => ({
+      id_profesor: profesor.id,
+      id_regimenes: profesor.regimenes
+    }))
 
-    listaProfesores.forEach(profesor => {
-      const id = profesor.getAttribute('id')
-      const select = profesor.querySelector('select')
-      const valorSeleccionado = select.value
-      profesoresSeleccionados.push({ id_profesor: id, id_regimen: valorSeleccionado })
-    })
     setLoading(true)
     try {
-      const response = await fetch('http://localhost:8000/api/regimen', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(profesoresSeleccionados)
-      })
-
-      if (response.ok) {
-        setLoading(false)
-      }
-
-      if (!response.ok) {
-        setLoading(false)
-        throw new Error('Error al enviar la solicitud')
-      }
+      await uploadRegimen(profesoresSeleccionados)
     } catch (error) {
-      console.error('Error al enviar la solicitud POST:', error)
+      setModalInfo({
+        text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
+        icon: ICONS.ERROR
+      })
+    } finally {
+      setLoading(false)
     }
   }
 
-  return (
-    <ModulosProfesoresProvider>
-      <ProfesoresContent />
-    </ModulosProfesoresProvider>
-  )
-}
-
-function ProfesoresContent () {
-  const { setModulos, setProfesores, setAllRegimen, setRegimen, regimen, setFilteredModulos } = useContext(ModulosProfesoresContext)
-  const { getModulos, getProfesores, setPositionsModulos, getRegimen } = useModulosProfesores()
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    setLoading(true)
-    getRegimen()
-      .then((regimenes) => {
-        setAllRegimen(regimenes)
-        setRegimen(regimenes[0].tipo)
-        Promise.all([getModulos(), getProfesores()])
-          .then(([modulosResponse, profesoresResponse]) => {
-            // Aquí puedes manejar las respuestas de ambas funciones
-            setModulos(modulosResponse)
-            setPositionsModulos(modulosResponse)
-            setProfesores(profesoresResponse)
-            const filtered = modulosResponse.filter(modulo => modulo.regimen === regimen)
-            setFilteredModulos(filtered)
-            setLoading(false)
-          })
-          .catch(error => {
-            // Maneja cualquier error que pueda ocurrir en alguna de las peticiones
-            console.error('Error al obtener módulos o profesores:', error)
-          })
-      })
-      .catch(error => {
-        console.error('Error al obtener el régimen:', error)
-      })
-  }, [])
+  const handlePageChange = (newPage) => {
+    navigate(`/admin/lista-profesores/${newPage}`)
+  }
 
   return (
     <Layout>
-<<<<<<< HEAD
-      <>
-        {loading ? <Loader /> : <BoardEntero />}
-      </>
-=======
-      <main className='flex flex-col items-center mt-20 gap-y-4 h-screen'>
-        <h1>Selección de Régimen</h1>
-        <ul>
-          {profesores.map((profesor) => {
-            return (
-              <li key={profesor.id} id={profesor.id} className='flex gap-x-4 profesor'>
-                {profesor.nombre}
+      <main className='flex flex-col items-center mt-20 gap-y-4 h-[800px]'>
+        <h1 className='text-3xl font-bold mb-6 text-center'>Selección de Régimen</h1>
 
-                <select className='text-text-100'>
-                  {
-                    allRegimen.map((regimen) => (
-                      <option selected={profesor.regimen === regimen.tipo} key={regimen.id} value={regimen.id}>{regimen.tipo}</option>
-                    ))
-                  }
-                </select>
-              </li>
-            )
-          }
-          )}
-        </ul>
-        <button onClick={handleGuardar}>
-          {loading
-            ? (
-              <div role='status'>
-                <svg aria-hidden='true' className='w-6 h-6 text-primary-100 animate-spin fill-white' viewBox='0 0 100 101' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z' fill='currentColor' /><path d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z' fill='currentFill' /></svg>
-                <span className='sr-only'>Loading...</span>
+        <section className='w-9/12 font-postit bg-white border-4 border-black rounded-lg h-screen overflow-hidden mt-10 animate-slide-up-fade'>
+          <header className='w-full flex justify-center mt-1'>
+            <div className='w-6 h-6 bg-red-600 rounded-full absolute flex items-center justify-center'>
+              <div className='w-4 h-4 bg-red-500 rounded-full border border-black' />
+            </div>
+          </header>
+          <main className='w-full h-full'>
+            <section className='grid grid-cols-3 gap-5  pt-10 px-10'>
+              <section className='justify-self-start'>NOMBRE</section>
+              <section className='justify-self-center'>ORDINARIO</section>
+              <section className='justify-self-end'>ADULTOS</section>
+              <ProfesorList profesores={profesores} onCheckboxChange={handleCheckboxChange} />
+            </section>
+            <footer className='col-span-3 flex items-center justify-between px-5 max-h-[65px] w-full absolute bottom-5'>
+              <div className='flex items-center justify-center gap-3'>
+                <button onClick={() => handlePageChange(parseInt(page) - 1)} disabled={parseInt(page) <= 1}>
+                  <IconChevronLeft className='active:scale-95' />
+                </button>
+                {buttons.map((button) => (
+                  <button
+                    key={button}
+                    onClick={() => handlePageChange(button)}
+                    className={'w-4 h-4 rounded-full' +
+                      (parseInt(page) === button ? ' bg-primary-100' : ' bg-primary-200')}
+                  />
+                ))}
+                <button onClick={() => handlePageChange(parseInt(page) + 1)} disabled={parseInt(page) >= maxPage}>
+                  <IconChevronLeft className='active:scale-95 rotate-180' />
+                </button>
               </div>
-              )
-            : (
-                'Guardar'
-              )}
-        </button>
+              <button
+                onClick={handleGuardar}
+                className='flex w-[89px] h-[36px] justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              >
+                {loading
+                  ? (
+                    <div role='status'>
+                      <LoadComponent color='transparent' fill='#ffffff' />
+                    </div>
+                    )
+                  : (
+                      'Guardar'
+                    )}
+              </button>
+
+            </footer>
+          </main>
+        </section>
       </main>
->>>>>>> 40bf3dcc62d76e1afbe6bb8423ed7b3b9a22427b
     </Layout>
   )
 }
-const BoardEntero = () => {
+
+const ProfesorList = ({ profesores, onCheckboxChange }) => {
+  const { allRegimen } = useContext(ModulosProfesoresContext)
   return (
-    <main className='bg-white grid grid-cols-[300px_1fr] h-screen text-white'>
-      <Profesores />
-      <Board />
-    </main>
+    <>
+      {profesores.map((profesor) => (
+        <React.Fragment key={profesor.id}>
+          <section className='profesor-item justify-self-start flex items-center'>{profesor.nombre}</section>
+          {allRegimen.map((regimen, index) => (
+            <section
+              key={regimen.id} className={'profesor-item flex items-center' +
+            (allRegimen.length - 1 === index ? ' justify-self-end' : ' justify-self-center')}
+            >
+              <CheckBox
+                id={`${profesor.id}-${regimen.id}`}
+                checked={profesor.regimenes === regimen.id}
+                onChange={() => onCheckboxChange(profesor.id, regimen.id)}
+              />
+            </section>
+          ))}
+        </React.Fragment>
+      ))}
+    </>
   )
+}
+
+const paginate = (array, pageSize) => {
+  return array.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / pageSize)
+
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = [] // Inicia un nuevo array
+    }
+
+    resultArray[chunkIndex].push(item)
+
+    return resultArray
+  }, [])
+}
+
+const ProfesorList = ({ profesores, onCheckboxChange }) => {
+  const { allRegimen } = useContext(ModulosProfesoresContext)
+  return (
+    <>
+      {profesores.map((profesor) => (
+        <React.Fragment key={profesor.id}>
+          <section className='profesor-item justify-self-start flex items-center'>{profesor.nombre}</section>
+          {allRegimen.map((regimen, index) => (
+            <section
+              key={regimen.id} className={'profesor-item flex items-center' +
+            (allRegimen.length - 1 === index ? ' justify-self-end' : ' justify-self-center')}
+            >
+              <CheckBox
+                id={`${profesor.id}-${regimen.id}`}
+                checked={profesor.regimenes === regimen.id}
+                onChange={() => onCheckboxChange(profesor.id, regimen.id)}
+              />
+            </section>
+          ))}
+        </React.Fragment>
+      ))}
+    </>
+  )
+}
+
+const paginate = (array, pageSize) => {
+  return array.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / pageSize)
+
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = [] // Inicia un nuevo array
+    }
+
+    resultArray[chunkIndex].push(item)
+
+    return resultArray
+  }, [])
 }

@@ -1,20 +1,29 @@
-version: '3'
+version: '3.8'
 
 services:
+  cliente:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+
   php8.2:
     container_name: 'modular-php-8.2'
     build:
-      context: .
+      context: ./server
       dockerfile: Dockerfile
     ports:
       - "8000:80"
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9003 remote_enable=1
     volumes:
-      - ./app:/var/www/html
-      - ./config/php.ini:/usr/local/etc/php/php.ini
-      - ./logs:/var/www/logs
-      - ./config/sites-available:/etc/apache2/sites-available
+      - ./server/app:/var/www/html
+      - ./server/config/php.ini:/usr/local/etc/php/php.ini
+      - ./server/logs:/var/www/logs
+      - ./server/config/sites-available:/etc/apache2/sites-available
     working_dir: /var/www/html
     networks:
       - modularLan
@@ -24,7 +33,7 @@ services:
     container_name: 'modular-mycomposer'
     image: composer:2
     volumes:
-      - ./app:/var/www/html
+      - ./server/app:/var/www/html
     working_dir: /var/www/html
     tty: true
     command: '/bin/bash'
@@ -37,6 +46,8 @@ services:
     image: mariadb:latest
     ports:
       - "3307:3306"
+    volumes:
+      - ./server/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: Modular
@@ -66,3 +77,4 @@ networks:
     internal: true
   modular:
     driver: bridge
+

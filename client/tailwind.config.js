@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import animations from '@midudev/tailwind-animations'
 export default {
   content: [
     './index.html',
@@ -20,10 +21,10 @@ export default {
 
       },
       fontFamily: {
-        postit: ['Caveat', 'cursive'],
+        postit: ['Preahvihear', 'cursive'],
         primary: ['Lato', 'sans-serif']
       }
     }
   },
-  plugins: []
+  plugins: [animations]
 }
