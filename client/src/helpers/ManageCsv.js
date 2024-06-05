@@ -49,3 +49,30 @@ export function jsonToCsvFile (json) {
   const csvText = jsonToCsv(json)
   return jsonToFileCsv(csvText)
 }
+
+export function csvTextToJson (text) {
+  const sections = text.split('\r\nid;nombre;')
+  const result = []
+
+  sections.forEach((section, index) => {
+    if (index === 0) {
+      section = 'id;nombre;' + section
+    } else {
+      section = 'nombre;' + section
+    }
+
+    const [header, ...rows] = section.trim().split('\r\n')
+    const keys = header.split(';')
+    const objects = rows.map(row => {
+      const values = row.split(';').map(value => value.replace(/^"|"$/g, ''))
+      return keys.reduce((obj, key, i) => {
+        obj[key] = values[i]
+        return obj
+      }, {})
+    })
+
+    result.push(objects)
+  })
+
+  return result
+}
