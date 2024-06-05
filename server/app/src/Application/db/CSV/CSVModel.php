@@ -122,9 +122,18 @@ class CSVModel
         }
     }
     
-    // public static function listFilesProfesor($id_profesor) {
+    public static function listFilesProfesor($id_profesor) {
+        $sql = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date DESC";
+        $dbInstance = DatabaseConnection::getInstance();
 
-    // }
+        try {
+            $stmt = $dbInstance->execQuery($sql, [$id_profesor]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            throw new Exception("Internal server error", 500);
+        }
+    }
 
     public static function listFileAdmin($id_departamento) {
         try {

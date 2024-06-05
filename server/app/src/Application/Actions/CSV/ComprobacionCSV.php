@@ -106,11 +106,11 @@ class ComprobacionCSV extends Controller
         }
     }
 
-    // public function listFilesProfesor(Request $request, Response $response, array $args)
-    // {
-    //     $files = CSVModel::listFilesProfesor($args['id']);
-    //     return $this->returnResponse($response, $files, 200);
-    // }
+    public function listFilesProfesor(Request $request, Response $response, array $args)
+    {
+        $files = CSVModel::listFilesProfesor($args['id']);
+        return $this->returnResponse($response, $files, 200);
+    }
 
     public function listFileAdmin(Request $request, Response $response, array $args)
     {
