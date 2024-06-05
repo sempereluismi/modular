@@ -15,16 +15,16 @@ const router = createBrowserRouter(
       <Route path='/' element={<LogInPage />} />
       <Route path='/logout' element={<LogOutPage />} />
       <Route path='/user' element={<ProtectedAuthRoutes />}>
-        <Route path='quenda' element={<DirunoNocturnoPage />} />
-        <Route path='plantilla' element={<InsertarPlantillaPage />} />
+        <Route path='model' element={<DirunoNocturnoPage />} />
+        <Route path='models' element={<InsertarPlantillaPage />} />
       </Route>
       <Route path='/admin' element={<ProtectedAdminRoutes />}>
-        <Route path='insertar'>
-          <Route path='profesores' element={<InsertarProfesorPage />} />
-          <Route path='modulos' element={<InsertarModuloPage />} />
+        <Route path='insert'>
+          <Route path='teachers' element={<InsertarProfesorPage />} />
+          <Route path='modules' element={<InsertarModuloPage />} />
         </Route>
-        <Route path='lista-profesores' element={<Navigate to='/admin/lista-profesores/1' replace />} />
-        <Route path='lista-profesores/:page' element={<ListaProfesores />} />
+        <Route path='teachers-list' element={<Navigate to='/admin/teachers-list/1' replace />} />
+        <Route path='teachers-list/:page' element={<ListaProfesores />} />
       </Route>
     </>
   )

@@ -53,6 +53,7 @@ export function ListaProfesores () {
     setLoading(true)
     try {
       await uploadRegimen(profesoresSeleccionados)
+      navigate('/admin/user/models')
     } catch (error) {
       setModalInfo({
         text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
