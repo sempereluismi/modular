@@ -118,10 +118,57 @@ class CSVModel
             $stmt = $dbInstance->execQuery($sql, [$contentFile, $id_profesor]);
     
         } catch (PDOException $e) {
-            // Manejar errores
-            error_log("Error al guardar el archivo en la base de datos: " . $e->getMessage());
+            $this->returnResponse($response, ["error" => "Error al guardar el archivo"], 500);
         }
     }
     
-    
+    public static function listFilesProfesor($id_profesor) {
+        $sql = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date DESC;";
+        $dbInstance = DatabaseConnection::getInstance();
+
+        try {
+            $stmt = $dbInstance->execQuery($sql, [$id_profesor]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            throw new Exception("Internal server error", 500);
+        }
+    }
+
+    public static function listFileAdmin($id_departamento) {
+        try {
+            $profesores = "SELECT id FROM profesor WHERE id_departamento = ?;";
+            $dbInstance = DatabaseConnection::getInstance();
+            $stmt = $dbInstance->execQuery($profesores, [$id_departamento]);
+            $ids_profesores = $stmt->fetchAll(PDO::FETCH_NUM);
+            $ids_profesores = array_map(function($id) {
+                return $id[0];
+            }, $ids_profesores);
+
+            $admins = [];
+            foreach ($ids_profesores as $id_profesor) {
+                $sql_admin = "SELECT id_profesor FROM profesor_admin WHERE id_profesor = ?";
+                $stmt_admin = $dbInstance->execQuery($sql_admin, [$id_profesor]);
+                $admin = $stmt_admin->fetch(PDO::FETCH_ASSOC);
+                if ($admin) {
+                    $admins[] = $admin['id_profesor'];
+                }
+            }
+
+            $result = [];
+
+            foreach ($admins as $admin_id) {
+                $consulta = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date DESC LIMIT 1;";
+                $stmt = $dbInstance->execQuery($consulta, [$admin_id]);
+                $modelo = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($modelo) {
+                    $result[] = $modelo;
+                }
+            }
+
+            return $result;
+        } catch (PDOException $e) {
+            throw new Exception("Internal server error", 500);
+        }
+    }
 }
