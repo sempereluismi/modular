@@ -183,7 +183,7 @@ drop table if exists instituto;
 		nombre varchar(100) not null default CURRENT_DATE,
 		file longblob not null,
 		id_profesor int not null,
-		create_date date not null default CURRENT_TIMESTAMP,
+		create_date datetime not null default CURRENT_TIMESTAMP,
 		primary key (id),
 		constraint `fk_id_profesor_modelo` foreign key (`id_profesor`) references `profesor` (`id`) ON UPDATE CASCADE
-	)
+	);

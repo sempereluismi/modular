@@ -123,7 +123,7 @@ class CSVModel
     }
     
     public static function listFilesProfesor($id_profesor) {
-        $sql = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date ASC";
+        $sql = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date DESC;";
         $dbInstance = DatabaseConnection::getInstance();
 
         try {
@@ -158,7 +158,7 @@ class CSVModel
             $result = [];
 
             foreach ($admins as $admin_id) {
-                $consulta = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date ASC LIMIT 1";
+                $consulta = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date DESC LIMIT 1;";
                 $stmt = $dbInstance->execQuery($consulta, [$admin_id]);
                 $modelo = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($modelo) {
