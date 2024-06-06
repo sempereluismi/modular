@@ -60,12 +60,18 @@ const BoardEntero = ({ handleNewClick }) => {
 
   const handleSaveClick = async () => {
     const blob = jsonToCsvFile([profesores, modulos])
-    try {
-      const res = await uploadCsv(blob, `/api/csv/save-model/${user.id}`)
-      console.log('res', res)
-    } catch (error) {
-      console.error('Error al guardar el archivo CSV:', error)
-    }
+    uploadCsv(blob, `/api/csv/save-model/${user.id}`).then(() => {
+      setModalInfo({
+        text: 'Archivo guardado correctamente',
+        icon: ICONS.SUCCESS
+      })
+    })
+      .catch(() => {
+        setModalInfo({
+          text: 'Error al guardar el archivo',
+          icon: ICONS.ERROR
+        })
+      })
   }
 
   return (

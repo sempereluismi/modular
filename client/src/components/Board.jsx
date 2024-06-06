@@ -46,18 +46,27 @@ export function Board ({ handleDownloadClick, handleSaveClick, handleNewClick })
     <section className='m-4 bg-white border-4 border-gray-300 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
       <header className='flex items-center justify-between pt-2 px-2'>
         <div className='flex items-center gap-2'>
-          <button onClick={handleDownloadClick} className='rounded-md top-2 left-2 px-2 py-1 flex items-center justify-center bg-primary-100 text-white active:scale-95'>
-            <IconFileDownload stroke={2} />
-            <span className='font-semibold'>Descargar</span>
+          <button onClick={handleDownloadClick} className='relative group grid place-items-center bg-[#ffcba4] w-10 h-10 text-black cursor-pointer animate-duration-[200ms] hover:animate-jiggle rotate-3'>
+            <IconFileDownload />
+            <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 z-10'>
+              Descargar
+            </span>
           </button>
-          <button onClick={handleSaveClick} className='font-semibold rounded-md top-2 left-24 px-2 py-1 flex items-center justify-center bg-primary-100 text-white active:scale-95'>
-            <IconDeviceFloppy stroke={2} />
-            <span className='font-semibold'>Guardar</span>
+
+          <button onClick={handleSaveClick} className='relative group grid place-items-center bg-[#fdfd96] w-10 h-10 text-black cursor-pointer animate-duration-[200ms] hover:animate-jiggle -rotate-2'>
+            <IconDeviceFloppy />
+            <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 z-10'>
+              Guardar
+            </span>
           </button>
-          <button onClick={handleNewClick} className='font-semibold rounded-md top-2 left-48 px-2 py-1 flex items-center justify-center bg-primary-100 text-white active:scale-95'>
-            <IconFilePlus stroke={2} />
-            <span className='font-semibold'>Nuevo</span>
+
+          <button onClick={handleNewClick} className='relative group grid place-items-center bg-[#f9b7ff] w-10 h-10 text-black cursor-pointer animate-duration-[200ms] hover:animate-jiggle -rotate-3'>
+            <IconFilePlus />
+            <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 z-10'>
+              Nuevo
+            </span>
           </button>
+
         </div>
         <select className='text-text-100' onChange={onHandleChange} value={regimen === null ? 'Ordinario' : regimen}>
           {
