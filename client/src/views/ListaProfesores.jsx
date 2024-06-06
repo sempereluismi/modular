@@ -4,11 +4,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CheckBox } from '../components/CheckBox/CheckBox'
 import { LoadComponent } from '../components/LoadComponent'
+import { ModalContext } from '../context/ModalContext'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
+import { ICONS } from '../helpers/Icons'
 import { Layout } from '../layouts/Layout'
 import { uploadRegimen } from '../service/profesores'
-import { ModalContext } from '../context/ModalContext'
-import { ICONS } from '../helpers/Icons'
 
 export function ListaProfesores () {
   const { profesores: profesoresContext } = useContext(ModulosProfesoresContext)
@@ -24,7 +24,7 @@ export function ListaProfesores () {
 
   useEffect(() => {
     if (parseInt(page) > maxPage) {
-      navigate(`/admin/lista-profesores/${maxPage}`)
+      navigate(`/admin/teachers-list/${maxPage}`)
     }
     const profesoresInicializados = profesoresContext.map(profesor => ({
       nombre: profesor.nombre,
@@ -53,7 +53,7 @@ export function ListaProfesores () {
     setLoading(true)
     try {
       await uploadRegimen(profesoresSeleccionados)
-      navigate('/admin/user/models')
+      navigate('/user/models')
     } catch (error) {
       setModalInfo({
         text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
@@ -65,7 +65,7 @@ export function ListaProfesores () {
   }
 
   const handlePageChange = (newPage) => {
-    navigate(`/admin/lista-profesores/${newPage}`)
+    navigate(`/admin/teachers-list/${newPage}`)
   }
 
   return (

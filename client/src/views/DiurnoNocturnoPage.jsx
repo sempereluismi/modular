@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import { Board } from '../components/Board'
 import { Loader } from '../components/Loader'
 import { Profesores } from '../components/Profesores'
@@ -10,7 +9,7 @@ import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { checkProfesores } from '../helpers/CheckProfesores'
 import { ICONS } from '../helpers/Icons.jsx'
 import { jsonToCsvFile } from '../helpers/ManageCsv'
-import { useModulosProfesores } from '../hooks/useModulosProfesores'
+import { useModulosProfesores } from '../hooks/useModulosProfesores.jsx'
 import { Layout } from '../layouts/Layout'
 import { uploadCsv } from '../service/csv.js'
 
@@ -21,58 +20,24 @@ export function DirunoNocturnoPage () {
 }
 
 function DirunoNocturnoContent () {
-  const { setModulos, setProfesores, setAllRegimen, setRegimen } = useContext(ModulosProfesoresContext)
-  const { getModulos, getProfesores, getRegimen } = useModulosProfesores()
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const { getModulosProfesores } = useModulosProfesores()
 
-  useEffect(() => {
+  const handleNewClick = () => {
     setLoading(true)
-    getRegimen()
-      .then((regimenes) => {
-        setAllRegimen(regimenes)
-        setRegimen(regimenes[0].tipo)
-        Promise.all([getModulos(), getProfesores()])
-          .then(([modulosResponse, profesoresResponse]) => {
-            setModulos(modulosResponse)
-            const newProfesores = profesoresResponse.map(profesor => {
-              return {
-                ...profesor,
-                horasTotal: 0
-              }
-            })
-            setProfesores(newProfesores)
-            const hasEmptyRegimen = comprobarRegimen(newProfesores)
-            if (hasEmptyRegimen) {
-              navigate('/admin/lista-profesores')
-            }
-            setLoading(false)
-          })
-          .catch(error => {
-            // Maneja cualquier error que pueda ocurrir en alguna de las peticiones
-            console.error('Error al obtener módulos o profesores:', error)
-          })
-      })
-      .catch(error => {
-        console.error('Error al obtener el régimen:', error)
-      })
-  }, [])
-
-  const comprobarRegimen = (profesores) => {
-    return profesores.some(profesor => profesor.regimen === '')
+    getModulosProfesores().then(() => setLoading(false))
   }
-
   return (
     <Layout>
       <>
-        {loading ? <Loader /> : <BoardEntero />}
+        {loading ? <Loader /> : <BoardEntero handleNewClick={handleNewClick} />}
       </>
     </Layout>
   )
 }
 
-const BoardEntero = () => {
-  const { filteredProfesores, filteredModulos } = useContext(ModulosProfesoresContext)
+const BoardEntero = ({ handleNewClick }) => {
+  const { filteredProfesores, filteredModulos, profesores, modulos } = useContext(ModulosProfesoresContext)
   const { setModalInfo } = useContext(ModalContext)
   const { user } = useContext(AuthContext)
 
@@ -94,7 +59,7 @@ const BoardEntero = () => {
   }
 
   const handleSaveClick = async () => {
-    const blob = jsonToCsvFile([filteredProfesores, filteredModulos])
+    const blob = jsonToCsvFile([profesores, modulos])
     try {
       const res = await uploadCsv(blob, `/api/csv/save-model/${user.id}`)
       console.log('res', res)
@@ -102,10 +67,11 @@ const BoardEntero = () => {
       console.error('Error al guardar el archivo CSV:', error)
     }
   }
+
   return (
     <main className='bg-white grid grid-cols-[300px_1fr] h-screen text-white'>
       <Profesores />
-      <Board handleDownloadClick={handleDownloadClick} handleSaveClick={handleSaveClick} />
+      <Board handleDownloadClick={handleDownloadClick} handleSaveClick={handleSaveClick} handleNewClick={handleNewClick} />
     </main>
   )
 }

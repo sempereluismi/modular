@@ -15,7 +15,7 @@ export function LoginForm () {
 
     const res = await login(usuario, contraseña)
     if (res) {
-      navigate('/user/model')
+      navigate('/user/models')
     }
   }
 
