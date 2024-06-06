@@ -8,7 +8,7 @@ export function LogInPage () {
   const { user } = useAuth()
 
   if (user) {
-    return <Navigate to='/user/quenda' />
+    return <Navigate to='/user/models' />
   }
 
   return (
