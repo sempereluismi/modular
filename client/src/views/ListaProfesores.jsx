@@ -23,6 +23,12 @@ export function ListaProfesores () {
   const buttons = Array.from({ length: maxPage }, (v, i) => i + 1)
 
   useEffect(() => {
+    if (profesoresContext.length === 0) {
+      console.log('No hay profesores')
+    }
+  }, [profesoresContext])
+
+  useEffect(() => {
     if (parseInt(page) > maxPage) {
       navigate(`/admin/teachers-list/${maxPage}`)
     }
@@ -80,45 +86,61 @@ export function ListaProfesores () {
             </div>
           </header>
           <main className='w-full h-full'>
-            <section className='grid grid-cols-3 gap-5  pt-10 px-10'>
-              <section className='justify-self-start'>NOMBRE</section>
-              <section className='justify-self-center'>ORDINARIO</section>
-              <section className='justify-self-end'>ADULTOS</section>
-              <ProfesorList profesores={profesores} onCheckboxChange={handleCheckboxChange} />
-            </section>
-            <footer className='col-span-3 flex items-center justify-between px-5 max-h-[65px] w-full absolute bottom-5'>
-              <div className='flex items-center justify-center gap-3'>
-                <button onClick={() => handlePageChange(parseInt(page) - 1)} disabled={parseInt(page) <= 1}>
-                  <IconChevronLeft className='active:scale-95' />
-                </button>
-                {buttons.map((button) => (
-                  <button
-                    key={button}
-                    onClick={() => handlePageChange(button)}
-                    className={'w-4 h-4 rounded-full' +
-                      (parseInt(page) === button ? ' bg-primary-100' : ' bg-primary-200')}
-                  />
-                ))}
-                <button onClick={() => handlePageChange(parseInt(page) + 1)} disabled={parseInt(page) >= maxPage}>
-                  <IconChevronLeft className='active:scale-95 rotate-180' />
-                </button>
-              </div>
-              <button
-                onClick={handleGuardar}
-                className='flex w-[89px] h-[36px] justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-              >
-                {loading
-                  ? (
-                    <div role='status'>
-                      <LoadComponent color='transparent' fill='#ffffff' />
+            {
+              profesoresContext.length > 0
+                ? (
+                  <>
+                    <div className='grid grid-cols-4 gap-2 h-full'>
+                      <header className='col-span-4 flex items-center justify-between px-5'>
+                        <section className='profesor-item justify-self-start'>Profesor</section>
+                        <section className='profesor-item justify-self-center'>Mañana</section>
+                        <section className='profesor-item justify-self-center'>Tarde</section>
+                        <section className='profesor-item justify-self-end'>Noche</section>
+                      </header>
+                      <ProfesorList profesores={profesores} onCheckboxChange={handleCheckboxChange} />
                     </div>
-                    )
-                  : (
-                      'Guardar'
-                    )}
-              </button>
+                    <footer className='col-span-3 flex items-center justify-between px-5 max-h-[65px] w-full absolute bottom-5'>
+                      <div className='flex items-center justify-center gap-3'>
+                        <button onClick={() => handlePageChange(parseInt(page) - 1)} disabled={parseInt(page) <= 1}>
+                          <IconChevronLeft className='active:scale-95' />
+                        </button>
+                        {buttons.map((button) => (
+                          <button
+                            key={button}
+                            onClick={() => handlePageChange(button)}
+                            className={'w-4 h-4 rounded-full' +
+                      (parseInt(page) === button ? ' bg-primary-100' : ' bg-primary-200')}
+                          />
+                        ))}
+                        <button onClick={() => handlePageChange(parseInt(page) + 1)} disabled={parseInt(page) >= maxPage}>
+                          <IconChevronLeft className='active:scale-95 rotate-180' />
+                        </button>
+                      </div>
+                      <button
+                        onClick={handleGuardar}
+                        className='flex w-[89px] h-[36px] justify-center rounded-md bg-primary-100 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm active:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                      >
+                        {loading
+                          ? (
+                            <div role='status'>
+                              <LoadComponent color='transparent' fill='#ffffff' />
+                            </div>
+                            )
+                          : (
+                              'Guardar'
+                            )}
+                      </button>
 
-            </footer>
+                    </footer>
+                  </>
+
+                  )
+                : (
+                  <div className='flex items-center justify-center h-full'>
+                    <LoadComponent color='transparent' fill='#ffffff' />
+                  </div>
+                  )
+            }
           </main>
         </section>
       </main>
