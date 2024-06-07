@@ -1,13 +1,15 @@
 import './css/LoadComponent.css'
 
-export function LoadComponent (width, height, color) {
+export function LoadComponent () {
   return (
     <div
-      className='spinner' style={{
-        width,
-        height,
-        borderColor: color
-      }}
-    />
+      className='load-container'
+    >
+      <div className='dot' />
+      <div className='dot' />
+      <div className='dot' />
+      <div className='dot' />
+    </div>
+
   )
 }
