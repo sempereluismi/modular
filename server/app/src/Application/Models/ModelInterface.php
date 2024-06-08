@@ -5,5 +5,7 @@ namespace App\Application\Models;
 
 Interface ModelInterface
 {
+
+    
     public function getData() : array;
 }

@@ -18,7 +18,7 @@ class SessionMiddleware implements Middleware
      *
      * @param $request La solicitud HTTP.
      * @param $handler El controlador de solicitudes.
-     * @return Response La respuesta HTTP.
+     * @return Response 
      */
     public function process(Request $request, RequestHandler $handler): Response
     {
