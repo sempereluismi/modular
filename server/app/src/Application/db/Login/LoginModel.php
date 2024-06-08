@@ -9,6 +9,16 @@ use PDO;
 
 class LoginModel
 {
+    /**
+ * Verifica las credenciales de un usuario y devuelve su información.
+ *
+ * @param string $user El correo electrónico del usuario.
+ * @param string $password La contraseña del usuario.
+ * @return array|int Arreglo con la información del usuario si las credenciales son correctas, 
+ *                   404 si las credenciales son incorrectas, 
+ *                   o 500 si ocurre un error interno.
+ */
+
     public static function login(string $user, string $password): array | int
     {
         $sql = "SELECT password FROM Modular.profesor where email = ?;";
@@ -32,6 +42,15 @@ class LoginModel
             unset($stmt);
         }
     }
+
+    /**
+ * Verifica si un profesor tiene el rol de administrador.
+ *
+ * @param string $id El ID del profesor.
+ * @return int 200 si el profesor tiene el rol de administrador,
+ *             404 si no tiene el rol de administrador,
+ *             o 500 si ocurre un error interno.
+ */
 
     public static function rol(string $id): array | int
     {

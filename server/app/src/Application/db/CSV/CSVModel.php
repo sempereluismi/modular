@@ -10,6 +10,17 @@ use PDO;
 class CSVModel
 {
 
+/**
+ * Inserta un nuevo profesor en la base de datos.
+ *
+ * @param array $profesores Arreglo con los datos del profesor a insertar.
+ *                          Debe contener las claves: 'email', 'password', 'nombre', 
+ *                          'fecha_inicio', 'departamento', 'especialidad' y 'afin'.
+ *                          'afin' es un arreglo de especialidades en las que el profesor tiene afinidad.
+ * @return int El ID del nuevo profesor insertado.
+ * @throws Exception Si ocurre un error en la inserción o si la especialidad no se encuentra.
+ */
+
     public static function insertarProfesores(array $profesores)
     {
         $sqlEspecialidadId = "SELECT id from especialidad where tipo like ?;";
@@ -60,6 +71,14 @@ class CSVModel
         }
     }
 
+/**
+ * Inserta un nuevo módulo en la base de datos.
+ *
+ * @param array $modulos Arreglo con los datos del módulo a insertar.
+ *                       Debe contener las claves: 'nombre', 'departamento', 'tematica', 
+ *                       'especialidad', 'regimen', 'ciclo' y 'horas'.
+ * @throws Exception Si ocurre un error en la inserción o si la especialidad, régimen o ciclo no se encuentran.
+ */
 
     public static function insertarModulos(array $modulos)
     {
@@ -110,6 +129,14 @@ class CSVModel
             throw new Exception("Internal server error", 500);
         }
     }
+
+    /**
+ * Guarda un archivo en la base de datos asociado a un profesor.
+ *
+ * @param string $contentFile El contenido del archivo a guardar.
+ * @param int $id_profesor El ID del profesor al que se asocia el archivo.
+ * @throws Exception Si ocurre un error al guardar el archivo.
+ */
 
     public static function saveFiles($contentFile, $id_profesor) {
         try {
