@@ -23,8 +23,8 @@ class ComprobacionCSV extends Controller
      * @param $response La respuesta HTTP que se enviará.
      * @param $args Argumentos adicionales, que incluyen el 'id' necesario para la inserción de datos.
      * @return $response devuelve success si los profesores/modulos se han añadido correctamente, error si ha ocurrido algún fallo
+     * 
      */
-
     public function uploadFiles(Request $request, Response $response, array $args)
     {
 
@@ -177,7 +177,6 @@ class ComprobacionCSV extends Controller
      * @return date La fecha ya formateada
      * 
      */
-
     private function formatDate($fechaInicio)
     {
         return date('Y-m-d', strtotime($fechaInicio));
@@ -191,7 +190,6 @@ class ComprobacionCSV extends Controller
      * @return $password_hash La contraseña ya hasheada
      * 
      */
-
     private function hashPassword($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);

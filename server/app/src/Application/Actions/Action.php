@@ -21,14 +21,28 @@ abstract class Action
 
     protected array $args;
 
+
+    /**
+     * Constructor de la clase Action.
+     *
+     * @param LoggerInterface $logger El logger para registrar información y errores.
+     */
+
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
 
     /**
-     * @throws HttpNotFoundException
-     * @throws HttpBadRequestException
+     * Invoca la acción y maneja las excepciones comunes.
+     *
+     * @param $request La solicitud HTTP.
+     * @param $response La respuesta HTTP.
+     * @param $args Argumentos adicionales.
+     * @return Response devuelve la acción.
+     * @throws HttpNotFoundException Si no se encuentra el registro de dominio.
+     * @throws HttpBadRequestException Si hay un error en la solicitud.
+     * 
      */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
@@ -44,13 +58,21 @@ abstract class Action
     }
 
     /**
-     * @throws DomainRecordNotFoundException
-     * @throws HttpBadRequestException
+     * Ejecuta la acción.
+     *
+     * Este método debe ser implementado por las subclases para definir la lógica específica de la acción.
+     *
+     * @return Response La respuesta HTTP resultante de la acción.
+     * @throws DomainRecordNotFoundException Si no se encuentra el registro de dominio.
+     * @throws HttpBadRequestException Si hay un error en la solicitud.
+     * 
      */
     abstract protected function action(): Response;
 
     /**
-     * @return array|object
+     * Obtiene los datos del formulario de la solicitud.
+     *
+     * @return array|object Los datos del formulario.
      */
     protected function getFormData()
     {
@@ -58,8 +80,11 @@ abstract class Action
     }
 
     /**
-     * @return mixed
-     * @throws HttpBadRequestException
+     * Resuelve un argumento de la solicitud.
+     *
+     * @param $name El nombre del argumento.
+     * @return mixed El valor del argumento.
+     * @throws HttpBadRequestException Si no se puede resolver el argumento.
      */
     protected function resolveArg(string $name)
     {
@@ -71,7 +96,12 @@ abstract class Action
     }
 
     /**
-     * @param array|object|null $data
+     * Responde con los datos proporcionados y un código de estado.
+     *
+     * @param $data Los datos para incluir en la respuesta.
+     * @param $statusCode El código de estado HTTP (por defecto es 200).
+     * @return Response La respuesta HTTP.
+     * 
      */
     protected function respondWithData($data = null, int $statusCode = 200): Response
     {
@@ -80,6 +110,13 @@ abstract class Action
         return $this->respond($payload);
     }
 
+    /**
+     * Responde con el payload proporcionado.
+     *
+     * @param $payload El payload para incluir en la respuesta.
+     * @return Response La respuesta HTTP.
+     * 
+     */
     protected function respond(ActionPayload $payload): Response
     {
         $json = json_encode($payload, JSON_PRETTY_PRINT);

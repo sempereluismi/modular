@@ -23,7 +23,6 @@ class LoginController extends Controller
      * @return $response devuelve si algo salió mal o si se ha logeado bien.
      *
      */
-
     public function login(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
