@@ -11,6 +11,19 @@ use App\Application\db\Login\LoginModel;
 
 class LoginController extends Controller
 {
+
+    /**
+     * Maneja el proceso de inicio de sesión.
+     *
+     * Este método recibe las credenciales de inicio de sesión, las valida y retorna el resultado del intento de inicio de sesión.
+     *
+     * @param $request contiene los datos de inicio de sesión.
+     * @param $response La respuesta HTTP que se enviará.
+     * @param $args Argumentos adicionales.
+     * @return $response devuelve si algo salió mal o si se ha logeado bien.
+     *
+     */
+
     public function login(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
@@ -30,6 +43,17 @@ class LoginController extends Controller
         return $this->returnResponse($response, ["error" => "algo fue mal => " . $res], $res);
     }
 
+    /**
+     * Obtiene el rol de un usuario basado en su ID.
+     *
+     * Este método recibe un ID de usuario y retorna el rol asociado con ese ID.
+     *
+     * @param $request La solicitud HTTP.
+     * @param $response La respuesta HTTP que se enviará.
+     * @param $args Argumentos adicionales que contienen el 'id' del usuario.
+     * @return $response devuelve el rol que tiene el usuario o si algo salió mal.
+     * 
+     */
     public function rol(Request $request, Response $response, array $args)
     {
         $id = (isset($args["id"])) ? $args["id"] : null;
