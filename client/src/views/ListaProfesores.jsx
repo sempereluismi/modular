@@ -7,6 +7,7 @@ import { LoadComponent } from '../components/LoadComponent'
 import { ModalContext } from '../context/ModalContext'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { ICONS } from '../helpers/Icons'
+import { useModulosProfesores } from '../hooks/useModulosProfesores'
 import { Layout } from '../layouts/Layout'
 import { uploadRegimen } from '../service/profesores'
 
@@ -17,19 +18,28 @@ export function ListaProfesores () {
   const pageSize = 10
   const { setModalInfo } = useContext(ModalContext)
   const { allRegimen } = useContext(ModulosProfesoresContext)
+  const { getModulosProfesores } = useModulosProfesores()
 
   const { page } = useParams()
   const navigate = useNavigate()
   const maxPage = Math.ceil(profesoresContext.length / pageSize)
   const buttons = Array.from({ length: maxPage }, (v, i) => i + 1)
 
+  const getBoardInfo = async () => {
+    await getModulosProfesores()
+  }
+
   useEffect(() => {
     if (profesoresContext.length === 0) {
-      console.log('No hay profesores')
+      getBoardInfo()
     }
   }, [profesoresContext])
 
   useEffect(() => {
+    if (parseInt(page) === 0) {
+      navigate('/admin/teachers-list/1')
+    }
+
     if (parseInt(page) > maxPage) {
       navigate(`/admin/teachers-list/${maxPage}`)
     }
@@ -38,6 +48,7 @@ export function ListaProfesores () {
       id: profesor.id,
       regimenes: allRegimen.find(regimen => regimen.tipo === profesor.regimen)?.id || 0
     }))
+    console.log(profesoresInicializados)
     const paginados = paginate(profesoresInicializados, pageSize)
     const currentPage = Math.max(1, Math.min(paginados.length, parseInt(page, 10)))
     setProfesores(paginados[currentPage - 1])
@@ -88,7 +99,7 @@ export function ListaProfesores () {
           </header>
           <main className='w-full h-full'>
             {
-              profesoresContext.length > 0
+              profesores
                 ? (
                   <>
                     <section className='pt-10 px-16'>
@@ -140,8 +151,8 @@ export function ListaProfesores () {
 
                   )
                 : (
-                  <div className='flex items-center justify-center h-full'>
-                    <LoadComponent color='transparent' fill='#ffffff' />
+                  <div className='flex items-center justify-center h-full text-2xl'>
+                    Cargando ...
                   </div>
                   )
             }
@@ -183,7 +194,7 @@ const paginate = (array, pageSize) => {
     const chunkIndex = Math.floor(index / pageSize)
 
     if (!resultArray[chunkIndex]) {
-      resultArray[chunkIndex] = [] // Inicia un nuevo array
+      resultArray[chunkIndex] = []
     }
 
     resultArray[chunkIndex].push(item)

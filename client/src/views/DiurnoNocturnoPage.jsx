@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Board } from '../components/Board'
 import { Loader } from '../components/Loader'
 import { Profesores } from '../components/Profesores'
@@ -6,9 +6,8 @@ import '../components/css/animations.css'
 import { AuthContext } from '../context/AuthContext.jsx'
 import { ModalContext } from '../context/ModalContext'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
-import { checkProfesores } from '../helpers/CheckProfesores'
 import { ICONS } from '../helpers/Icons.jsx'
-import { jsonToCsvFile } from '../helpers/ManageCsv'
+import { downloadCsv, jsonToCsvFile } from '../helpers/ManageCsv'
 import { useModulosProfesores } from '../hooks/useModulosProfesores.jsx'
 import { Layout } from '../layouts/Layout'
 import { uploadCsv } from '../service/csv.js'
@@ -22,10 +21,25 @@ export function DirunoNocturnoPage () {
 function DirunoNocturnoContent () {
   const [loading, setLoading] = useState(false)
   const { getModulosProfesores } = useModulosProfesores()
+  const { profesores, modulos } = useContext(ModulosProfesoresContext)
 
-  const handleNewClick = () => {
+  const getBoardInfo = async () => {
     setLoading(true)
-    getModulosProfesores().then(() => setLoading(false))
+    try {
+      await getModulosProfesores()
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (profesores.length === 0 && modulos.length === 0) {
+      getBoardInfo()
+    }
+  }, [])
+
+  const handleNewClick = async () => {
+    getBoardInfo()
   }
   return (
     <Layout>
@@ -37,25 +51,12 @@ function DirunoNocturnoContent () {
 }
 
 const BoardEntero = ({ handleNewClick }) => {
-  const { filteredProfesores, filteredModulos, profesores, modulos } = useContext(ModulosProfesoresContext)
+  const { profesores, modulos } = useContext(ModulosProfesoresContext)
   const { setModalInfo } = useContext(ModalContext)
   const { user } = useContext(AuthContext)
 
   const handleDownloadClick = () => {
-    if (filteredModulos.length > 0) {
-      setModalInfo({
-        text: 'Tienes que añadir todos los modulos a los profesores antes de exportar el archivo',
-        icon: ICONS.ERROR
-      })
-      return
-    }
-
-    const correctData = checkProfesores(filteredProfesores)
-    if (correctData !== '') {
-      // TODO: CORREGIR INFO QUE SE MUESTRA POR EL MODAL
-      // A PARTE DE MOSTRAR EL MOODAL SE TIENE QUE GUARDAR EL CSV EN LA BASE DE DATOS
-      setModalInfo(correctData)
-    }
+    downloadCsv([profesores, modulos])
   }
 
   const handleSaveClick = async () => {

@@ -1,5 +1,5 @@
 function comprobarHoras (profesores) {
-  return profesores.some(profesor => profesor.horasTotal < 18 || profesor.horasTotal > 20) ? true : 'Todos los profesores deben estar entre 18 y 20 horas'
+  return profesores.some(profesor => profesor.horasTotal < 18 || profesor.horasTotal > 20)
 }
 
 export function checkProfesores (profesores) {

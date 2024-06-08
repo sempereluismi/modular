@@ -1,12 +1,19 @@
 /* eslint-disable react/prop-types */
 import { IconDeviceFloppy, IconFileDownload, IconFilePlus } from '@tabler/icons-react'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
+import { getRandomColors } from '../helpers/utils'
 import { usePosition } from '../hooks/usePosition'
+import { SelectRegimen } from './SelectRegimen'
 
 export function Board ({ handleDownloadClick, handleSaveClick, handleNewClick }) {
-  const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, setProfesores, positions, setRegimen, allRegimen, regimen, filteredModulos } = useContext(ModulosProfesoresContext)
+  const { modulos, setDraggedModulo, draggedModulo, setModulos, draggedFromBoard, profesores, setProfesores, positions, filteredModulos } = useContext(ModulosProfesoresContext)
   const { updatePosition } = usePosition()
+  const [randomColors, setRandomColors] = useState([])
+
+  useEffect(() => {
+    setRandomColors(getRandomColors(3))
+  }, [])
 
   const handleDragOver = (event) => {
     event.preventDefault()
@@ -38,29 +45,37 @@ export function Board ({ handleDownloadClick, handleSaveClick, handleNewClick })
 
     setDraggedModulo(null)
   }
-
-  const onHandleChange = (event) => {
-    setRegimen(event.target.value)
-  }
   return (
     <section className='m-4 bg-white border-4 border-gray-300 rounded-lg relative' onDragOver={handleDragOver} onDrop={handleDrop}>
       <header className='flex items-center justify-between pt-2 px-2'>
         <div className='flex items-center gap-2'>
-          <button onClick={handleDownloadClick} className='relative group grid place-items-center bg-[#ffcba4] w-10 h-10 text-black cursor-pointer animate-duration-[100ms] hover:animate-jiggle rotate-3'>
+          <button
+            onClick={handleDownloadClick} className='relative group grid place-items-center w-10 h-10 text-black cursor-pointer animate-duration-[100ms] hover:animate-jiggle rotate-3' style={{
+              backgroundColor: randomColors[0]
+            }}
+          >
             <IconFileDownload />
             <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 z-10'>
               Descargar
             </span>
           </button>
 
-          <button onClick={handleSaveClick} className='relative group grid place-items-center bg-[#fdfd96] w-10 h-10 text-black cursor-pointer animate-duration-[100ms] hover:animate-jiggle -rotate-2'>
+          <button
+            onClick={handleSaveClick} className='relative group grid place-items-center w-10 h-10 text-black cursor-pointer animate-duration-[100ms] hover:animate-jiggle -rotate-2' style={{
+              backgroundColor: randomColors[1]
+            }}
+          >
             <IconDeviceFloppy />
             <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 z-10'>
               Guardar
             </span>
           </button>
 
-          <button onClick={handleNewClick} className='relative group grid place-items-center bg-[#f9b7ff] w-10 h-10 text-black cursor-pointer animate-duration-[100ms] hover:animate-jiggle -rotate-3'>
+          <button
+            onClick={handleNewClick} className='relative group grid place-items-center bg-[#f9b7ff] w-10 h-10 text-black cursor-pointer animate-duration-[100ms] hover:animate-jiggle -rotate-3' style={{
+              backgroundColor: randomColors[2]
+            }}
+          >
             <IconFilePlus />
             <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 z-10'>
               Nuevo
@@ -68,15 +83,7 @@ export function Board ({ handleDownloadClick, handleSaveClick, handleNewClick })
           </button>
 
         </div>
-        <select className='text-text-100' onChange={onHandleChange} value={regimen === null ? 'Ordinario' : regimen}>
-          {
-          allRegimen.map((regimen) => (
-            <option key={regimen.id} value={regimen.tipo}>
-              {regimen.tipo}
-            </option>
-          ))
-        }
-        </select>
+        <SelectRegimen />
       </header>
       <ul>
         {filteredModulos.map((modulo) => {
