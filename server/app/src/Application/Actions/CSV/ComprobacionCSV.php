@@ -12,23 +12,36 @@ class ComprobacionCSV extends Controller
 
     const arrayProfesores = ["email", "password", "nombre", "fecha_inicio", "especialidad", "afin"];
     const arrayModulos = ["nombre", "tematica", "especialidad", "regimen", "ciclo", "horas"];
+
+    /**
+     * Maneja la carga de archivos CSV y procesa su contenido.
+     *
+     * Este método procesa archivos CSV subidos y los inserta en la base de datos.
+     * Soporta archivos de profesores y módulos, identificados por los encabezados del CSV.
+     *
+     * @param $request La solicitud HTTP que contiene los archivos subidos.
+     * @param $response La respuesta HTTP que se enviará.
+     * @param $args Argumentos adicionales, que incluyen el 'id' necesario para la inserción de datos.
+     * @return $response devuelve success si los profesores/modulos se han añadido correctamente, error si ha ocurrido algún fallo
+     */
+
     public function uploadFiles(Request $request, Response $response, array $args)
     {
 
         // Obtenemos los archivos subidos
         $uploadedFiles = $request->getUploadedFiles();
-        
+
         // Verificamos que se haya enviado un archivo y es un CSV
         if (isset($uploadedFiles['csvFile']) && $uploadedFiles['csvFile']->getError() === UPLOAD_ERR_OK) {
             if ($this->esArchivoCSV($uploadedFiles['csvFile'])) { // Comprobar los priemros campos del archivo
                 $uploadedFile = $uploadedFiles['csvFile']; // Obtiene el archivo
                 $tempFilePath = $uploadedFile->getStream()->getMetadata('uri'); // Obtiene la secuencia de bytes (flujo de datos), despues obtenemos los metadatos en este caso URI. Todo para leer el archivo
-                
+
                 $file = fopen($tempFilePath, 'r'); // Abre el archivo en modo lectura
                 $profesores = [];
                 $modulos = [];
-                
-                
+
+
                 $row = fgetcsv($file, 0, ";"); // Obtengo la primera fila del archivo
                 if (count(array_diff(self::arrayProfesores, $row)) === 0) {
                     // Es un archivo de profesores
@@ -45,7 +58,6 @@ class ComprobacionCSV extends Controller
                         // A partir de aqui $profesores es un array y devuelve todo bien
                         try {
                             $res = CSVModel::insertarProfesores($profesores);
-
                         } catch (\Exception $e) {
                             return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
                         }
@@ -73,7 +85,6 @@ class ComprobacionCSV extends Controller
                     }
                     fclose($file);
                     return $this->returnResponse($response, ["success" => "Archivo CSV valido"], 200);
-
                 }
                 fclose($file);
                 return $this->returnResponse($response, ["error" => "El archivo no tiene un formato valido"], 400);
@@ -87,13 +98,22 @@ class ComprobacionCSV extends Controller
         }
     }
 
+    /**
+     * Maneja la carga de archivos CSV y guarda su contenido.
+     *
+     * @param $request La solicitud HTTP que contiene los archivos subidos.
+     * @param $response La respuesta HTTP que se enviará.
+     * @param $args Argumentos adicionales, que incluyen el 'id' necesario para guardar los archivos.
+     * @return $response devuelve Success si se ha hecho correctamento, error si el archivo no es un csv válido o algo ha fallado.
+     * 
+     */
     public function saveFiles(Request $request, Response $response, array $args)
     {
         $uploadedFiles = $request->getUploadedFiles();
-        
+
         if (isset($uploadedFiles['csvFile']) && $uploadedFiles['csvFile']->getError() === UPLOAD_ERR_OK) {
             $uploadedFile = $uploadedFiles['csvFile'];
-            
+
             if ($this->esArchivoCSV($uploadedFile)) {
                 $contenido = file_get_contents($uploadedFile->getStream()->getMetadata('uri'));
                 CSVModel::saveFiles($contenido, $args['id']);
@@ -105,17 +125,23 @@ class ComprobacionCSV extends Controller
             return $this->returnResponse($response, ["error" => "No se ha subido ningún archivo o ha ocurrido un error"], 400);
         }
     }
-    
 
+    /**
+     * Verifica si un archivo subido es un archivo CSV.
+     *
+     * @param $uploadedFile El archivo subido a verificar.
+     * @return bool True si el archivo es un archivo CSV válido, de lo contrario false.
+     * 
+     */
     private function esArchivoCSV($uploadedFile): bool
     {
         if (empty($uploadedFile) || !is_uploaded_file($uploadedFile->getStream()->getMetadata('uri'))) {
             return false;
         }
-    
+
 
         $fileExtension = strtolower(pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION));
-    
+
         if ($fileExtension !== 'csv') {
             return false;
         }
@@ -134,19 +160,37 @@ class ComprobacionCSV extends Controller
             'application/octet-stream',
             'application/txt',
         ];
-    
+
         if (!in_array($fileMimeType, $allowedMimeTypes)) {
             return false;
         }
-    
+
         return true;
     }
-    
+
+    /**
+     * Esta función lo que hace es pasar un String a formato de fecha.
+     * 
+     * Se le pasa como parámetro un String y devuelve un date.
+     * 
+     * @param $fechaInicio La fecha en String
+     * @return date La fecha ya formateada
+     * 
+     */
 
     private function formatDate($fechaInicio)
     {
         return date('Y-m-d', strtotime($fechaInicio));
     }
+
+    /**
+     * 
+     * Como parámetro recibe una contraseña y la devuelve hasheada.
+     * 
+     * @param $password La contraseña
+     * @return $password_hash La contraseña ya hasheada
+     * 
+     */
 
     private function hashPassword($password)
     {

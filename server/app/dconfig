@@ -957,7 +957,7 @@ FILE_PATTERNS          = *.c \
                          *.l \
                          *.cs \
                          *.d \
-			 *.js \
+			             *.js \
                          *.php \
                          *.php4 \
                          *.php5 \
