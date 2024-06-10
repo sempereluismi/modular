@@ -1,4 +1,4 @@
-# Doxyfile 1.9.4
+    # Doxyfile 1.9.4
 
 # This file describes the settings to be used by the documentation system
 # doxygen (www.doxygen.org) for a project.
@@ -957,7 +957,7 @@ FILE_PATTERNS          = *.c \
                          *.l \
                          *.cs \
                          *.d \
-			 *.js \
+			             *.js \
                          *.php \
                          *.php4 \
                          *.php5 \
