@@ -20,6 +20,8 @@ use Throwable;
 class HttpErrorHandler extends SlimErrorHandler
 {
     /**
+     * Sobrescribe el método respond() para personalizar la respuesta de error.
+     *
      * @inheritdoc
      */
     protected function respond(): Response
