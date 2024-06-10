@@ -12,10 +12,10 @@ class ProfesorModel
     /**
  * Lista los profesores, con opción de filtrarlos por departamento.
  *
- * @param string $id El ID del departamento (opcional).
- * @return array Arreglo con la información de los profesores si se encuentran,
+ * @param $id El ID del departamento (opcional).
+ * @return La información de los profesores si se encuentran,
  *               404 si no se encuentran,
- *               o un arreglo con un mensaje de error si ocurre una excepción.
+ *               o un mensaje de error si ocurre una excepción.
  */
 
     public static function listarProfesor(string $id = ""): array
@@ -53,7 +53,7 @@ class ProfesorModel
  * Procesa los resultados de una consulta y los convierte en instancias de la clase Profesor.
  *
  * @param $stmt El objeto PDOStatement que contiene los resultados de la consulta.
- * @return array|null Un arreglo con la información de los profesores si se encuentran,
+ * @return La información de los profesores si se encuentran,
  *                    o null si no se encuentran profesores.
  */
 

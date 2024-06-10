@@ -70,8 +70,8 @@ class DatabaseConnection
     /**
  * Ejecuta una consulta preparada con los parámetros proporcionados.
  *
- * @param string $query La consulta SQL a ejecutar.
- * @param array $params Los parámetros para la consulta SQL.
+ * @param $query La consulta SQL a ejecutar.
+ * @param $params Los parámetros para la consulta SQL.
  * @return \PDOStatement|false El objeto PDOStatement si la ejecución es exitosa, o false si ocurre un error.
  */
 

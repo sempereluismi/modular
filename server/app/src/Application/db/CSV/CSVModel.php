@@ -74,7 +74,7 @@ class CSVModel
 /**
  * Inserta un nuevo módulo en la base de datos.
  *
- * @param array $modulos Arreglo con los datos del módulo a insertar.
+ * @param $modulos Arreglo con los datos del módulo a insertar.
  *                       Debe contener las claves: 'nombre', 'departamento', 'tematica', 
  *                       'especialidad', 'regimen', 'ciclo' y 'horas'.
  * @throws Exception Si ocurre un error en la inserción o si la especialidad, régimen o ciclo no se encuentran.
@@ -133,8 +133,8 @@ class CSVModel
     /**
  * Guarda un archivo en la base de datos asociado a un profesor.
  *
- * @param string $contentFile El contenido del archivo a guardar.
- * @param int $id_profesor El ID del profesor al que se asocia el archivo.
+ * @param $contentFile El contenido del archivo a guardar.
+ * @param $id_profesor El ID del profesor al que se asocia el archivo.
  * @throws Exception Si ocurre un error al guardar el archivo.
  */
 
@@ -148,7 +148,5 @@ class CSVModel
             // Manejar errores
             error_log("Error al guardar el archivo en la base de datos: " . $e->getMessage());
         }
-    }
-    
-    
+    } 
 }
