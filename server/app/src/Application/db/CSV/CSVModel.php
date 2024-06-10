@@ -7,6 +7,9 @@ namespace App\Application\db\CSV;
 use App\Application\db\DatabaseConnection;
 use PDO;
 
+/**
+ * Clase para interactuar con la base de datos utilizando datos provenientes de archivos CSV.
+ */
 class CSVModel
 {
 

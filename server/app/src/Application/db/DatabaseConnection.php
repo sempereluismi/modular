@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\db;
 
+/**
+ * Clase para la gestión de la conexión a la base de datos.
+ */
 class DatabaseConnection
 {
     private static $instance; // Instancia única de la clase

@@ -9,6 +9,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\Actions\Controller;
 use App\Application\db\Login\LoginModel;
 
+/**
+ * Clase LoginController
+ *
+ * Esta clase maneja las operaciones relacionadas con el inicio de sesión y la obtención de roles de usuario.
+ */
 class LoginController extends Controller
 {
 

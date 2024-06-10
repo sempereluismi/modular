@@ -7,6 +7,12 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\db\CSV\CSVModel;
 
+
+/**
+ * Clase ComprobacionCSV
+ *
+ * Esta clase maneja la carga, verificación y procesamiento de archivos CSV para profesores y módulos.
+ */
 class ComprobacionCSV extends Controller
 {
 
@@ -19,10 +25,10 @@ class ComprobacionCSV extends Controller
      * Este método procesa archivos CSV subidos y los inserta en la base de datos.
      * Soporta archivos de profesores y módulos, identificados por los encabezados del CSV.
      *
-     * @param $request La solicitud HTTP que contiene los archivos subidos.
-     * @param $response La respuesta HTTP que se enviará.
-     * @param $args Argumentos adicionales, que incluyen el 'id' necesario para la inserción de datos.
-     * @return $response devuelve success si los profesores/modulos se han añadido correctamente, error si ha ocurrido algún fallo
+     * @param Request $request La solicitud HTTP que contiene los archivos subidos.
+     * @param Response $response La respuesta HTTP que se enviará.
+     * @param array $args Argumentos adicionales, que incluyen el 'id' necesario para la inserción de datos.
+     * @return Response Devuelve success si los profesores/módulos se han añadido correctamente, error si ha ocurrido algún fallo.
      * 
      */
     public function uploadFiles(Request $request, Response $response, array $args)

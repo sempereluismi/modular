@@ -9,6 +9,11 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use App\Application\db\Regimen\RegimenModel;
 
+/**
+ * Clase RegimenController
+ *
+ * Esta clase maneja las operaciones relacionadas con los regímenes.
+ */
 class RegimenController extends Controller
 {
 

@@ -1,0 +1,24 @@
+\hypertarget{Controller_8php_source}{}\doxysection{Controller.\+php}
+\label{Controller_8php_source}\index{src/Application/Actions/Controller.php@{src/Application/Actions/Controller.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)Actions;}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00007}00007 use Psr\(\backslash\)Http\(\backslash\)Message\(\backslash\)ResponseInterface as Response;}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00009}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller}{00009}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller}{Controller}}}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00010}00010 \{}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00024}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{00024}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(Response \$response, array \$res, \textcolor{keywordtype}{int} \$statusCode = 200): Response}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00026}00026         \$responseStatus = \$response-\/>withStatus(\$statusCode);}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00027}00027         \$responseStatus-\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'});}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00028}00028         \$responseStatus-\/>getBody()-\/>write(json\_encode(\$res));}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00029}00029         \textcolor{keywordflow}{return} \$responseStatus;}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00030}00030     \}}
+\DoxyCodeLine{\Hypertarget{Controller_8php_source_l00031}00031 \}}
+
+\end{DoxyCode}

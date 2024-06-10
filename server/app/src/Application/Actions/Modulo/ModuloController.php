@@ -9,6 +9,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\db\Modulos\ModulosModel;
 use App\Application\Actions\Controller;
 
+/**
+ * Clase ModuloController
+ *
+ * Esta clase maneja las operaciones relacionadas con los módulos.
+ */
 class ModuloController extends Controller
 {
 

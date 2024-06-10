@@ -6,6 +6,11 @@ namespace App\Application\Actions;
 
 use JsonSerializable;
 
+/**
+ * Clase ActionError
+ *
+ * Representa un error en la aplicación.
+ */
 class ActionError implements JsonSerializable
 {
     /**

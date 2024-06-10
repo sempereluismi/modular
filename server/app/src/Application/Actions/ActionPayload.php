@@ -6,6 +6,12 @@ namespace App\Application\Actions;
 
 use JsonSerializable;
 
+/**
+ * Clase ActionPayload
+ *
+ * Representa el payload de una acción en la aplicación, que incluye el código de estado HTTP,
+ * los datos y cualquier error asociado con la acción.
+ */
 class ActionPayload implements JsonSerializable
 {
     private int $statusCode;

@@ -9,6 +9,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\db\Profesor\ProfesorModel;
 
+/**
+ * Clase ProfesorController
+ *
+ * Esta clase maneja las operaciones relacionadas con los profesores.
+ */
 class ProfesorController extends Controller
 {
 

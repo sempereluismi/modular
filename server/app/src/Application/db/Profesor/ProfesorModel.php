@@ -7,6 +7,9 @@ namespace App\Application\db\Profesor;
 use App\Application\db\DatabaseConnection;
 use App\Application\Models\Profesor;
 
+/**
+ * Modelo para la gestión de profesores.
+ */
 class ProfesorModel
 {
     /**

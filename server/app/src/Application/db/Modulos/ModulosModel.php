@@ -7,6 +7,9 @@ namespace App\Application\db\Modulos;
 use App\Application\Models\Modulo;
 use App\Application\db\DatabaseConnection;
 
+/**
+ * Modelo para la gestión de módulos.
+ */
 class ModulosModel
 {
     /**

@@ -7,6 +7,9 @@ namespace App\Application\db\Regimen;
 
 use App\Application\db\DatabaseConnection;
 
+/**
+ * Modelo para la gestión de regímenes.
+ */
 class RegimenModel
 {
 

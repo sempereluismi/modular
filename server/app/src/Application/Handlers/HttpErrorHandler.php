@@ -17,6 +17,12 @@ use Slim\Exception\HttpUnauthorizedException;
 use Slim\Handlers\ErrorHandler as SlimErrorHandler;
 use Throwable;
 
+
+/**
+ * campelo rico
+ * 
+ * @param $campelo f
+ */
 class HttpErrorHandler extends SlimErrorHandler
 {
     /**

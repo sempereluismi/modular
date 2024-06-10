@@ -11,6 +11,12 @@ use Psr\Log\LoggerInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 
+/**
+ * Clase abstracta Action
+ *
+ * Esta clase proporciona una base para todas las acciones de la aplicación,
+ * gestionando la solicitud, la respuesta y los argumentos, así como manejando excepciones comunes.
+ */
 abstract class Action
 {
     protected LoggerInterface $logger;

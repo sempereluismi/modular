@@ -7,6 +7,9 @@ namespace App\Application\db\Login;
 use App\Application\db\DatabaseConnection;
 use PDO;
 
+/**
+ * Modelo para la gestión de inicio de sesión de usuarios.
+ */
 class LoginModel
 {
     /**

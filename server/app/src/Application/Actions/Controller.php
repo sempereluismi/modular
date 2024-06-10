@@ -6,6 +6,11 @@ namespace App\Application\Actions;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Clase Controller
+ *
+ * Esta clase proporciona métodos comunes que pueden ser utilizados por controladores específicos.
+ */
 class Controller
 {
     /**
