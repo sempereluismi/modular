@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Settings;
 
+/**
+ * Clase que representa la configuración de la aplicación.
+ */
 class Settings implements SettingsInterface
 {
     private array $settings;

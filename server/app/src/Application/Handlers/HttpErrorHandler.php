@@ -19,9 +19,7 @@ use Throwable;
 
 
 /**
- * campelo rico
- * 
- * @param $campelo f
+ * Clase para manejar errores HTTP personalizados.
  */
 class HttpErrorHandler extends SlimErrorHandler
 {

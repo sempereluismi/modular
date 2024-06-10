@@ -8,6 +8,9 @@ use App\Application\ResponseEmitter\ResponseEmitter;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpInternalServerErrorException;
 
+/**
+ * Clase para manejar los errores fatales.
+ */
 class ShutdownHandler
 {
     private Request $request;

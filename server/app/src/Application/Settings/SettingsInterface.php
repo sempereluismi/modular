@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Settings;
 
+/**
+ * Interfaz para la obtención de configuraciones.
+ */
 interface SettingsInterface
 {
     /**

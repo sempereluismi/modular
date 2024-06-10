@@ -7,6 +7,9 @@ namespace App\Application\ResponseEmitter;
 use Psr\Http\Message\ResponseInterface;
 use Slim\ResponseEmitter as SlimResponseEmitter;
 
+/**
+ * Clase para emitir respuestas HTTP con encabezados de control de acceso.
+ */
 class ResponseEmitter extends SlimResponseEmitter
 {
     /**

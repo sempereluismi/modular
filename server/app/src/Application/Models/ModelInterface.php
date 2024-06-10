@@ -1,11 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Application\Models;
 
-Interface ModelInterface
+/**
+ * Interfaz que define el método para obtener los datos de un modelo.
+ */
+interface ModelInterface
 {
-
-    
-    public function getData() : array;
+    /**
+     * Método para obtener los datos de un modelo.
+     *
+     * @return array Los datos del modelo.
+     */
+    public function getData(): array;
 }
