@@ -77,18 +77,18 @@ $(function() {
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>use Psr\Http\Message\ResponseInterface as Response;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classApp_1_1Application_1_1Actions_1_1Controller.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classApp_1_1Application_1_1Actions_1_1Controller.html">Controller</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classApp_1_1Application_1_1Actions_1_1Controller.html#aac9fe26dc8d186be5155968e5e23afe9">   24</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="classApp_1_1Application_1_1Actions_1_1Controller.html#aac9fe26dc8d186be5155968e5e23afe9">returnResponse</a>(Response $response, array $res, <span class="keywordtype">int</span> $statusCode = 200): Response</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        $responseStatus = $response-&gt;withStatus($statusCode);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        $responseStatus-&gt;withHeader(<span class="stringliteral">&#39;Content-Type&#39;</span>, <span class="stringliteral">&#39;application/json&#39;</span>);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        $responseStatus-&gt;getBody()-&gt;write(json_encode($res));</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> $responseStatus;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
-<div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Controller_html"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Controller.html">App\Application\Actions\Controller</a></div><div class="ttdef"><b>Definition:</b> <a href="Controller_8php_source.html#l00009">Controller.php:10</a></div></div>
-<div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Controller_html_aac9fe26dc8d186be5155968e5e23afe9"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Controller.html#aac9fe26dc8d186be5155968e5e23afe9">App\Application\Actions\Controller\returnResponse</a></div><div class="ttdeci">returnResponse(Response $response, array $res, int $statusCode=200)</div><div class="ttdef"><b>Definition:</b> <a href="Controller_8php_source.html#l00024">Controller.php:24</a></div></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classApp_1_1Application_1_1Actions_1_1Controller.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classApp_1_1Application_1_1Actions_1_1Controller.html">Controller</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classApp_1_1Application_1_1Actions_1_1Controller.html#aac9fe26dc8d186be5155968e5e23afe9">   29</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="classApp_1_1Application_1_1Actions_1_1Controller.html#aac9fe26dc8d186be5155968e5e23afe9">returnResponse</a>(Response $response, array $res, <span class="keywordtype">int</span> $statusCode = 200): Response</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        $responseStatus = $response-&gt;withStatus($statusCode);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        $responseStatus-&gt;withHeader(<span class="stringliteral">&#39;Content-Type&#39;</span>, <span class="stringliteral">&#39;application/json&#39;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        $responseStatus-&gt;getBody()-&gt;write(json_encode($res));</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> $responseStatus;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Controller_html"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Controller.html">App\Application\Actions\Controller</a></div><div class="ttdef"><b>Definition:</b> <a href="Controller_8php_source.html#l00014">Controller.php:15</a></div></div>
+<div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Controller_html_aac9fe26dc8d186be5155968e5e23afe9"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Controller.html#aac9fe26dc8d186be5155968e5e23afe9">App\Application\Actions\Controller\returnResponse</a></div><div class="ttdeci">returnResponse(Response $response, array $res, int $statusCode=200)</div><div class="ttdef"><b>Definition:</b> <a href="Controller_8php_source.html#l00029">Controller.php:29</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

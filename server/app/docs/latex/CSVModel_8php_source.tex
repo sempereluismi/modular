@@ -1,0 +1,130 @@
+\hypertarget{CSVModel_8php_source}{}\doxysection{CSVModel.\+php}
+\label{CSVModel_8php_source}\index{src/Application/db/CSV/CSVModel.php@{src/Application/db/CSV/CSVModel.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)db\(\backslash\)CSV;}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00007}00007 use \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{App\(\backslash\)Application\(\backslash\)db\(\backslash\)DatabaseConnection}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00008}00008 use PDO;}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00013}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel}{CSVModel}}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00027}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_af8eb14ba33aef4cd34a27624bebac51d}{00027}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_af8eb14ba33aef4cd34a27624bebac51d}{insertarProfesores}}(array \$profesores)}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00028}00028     \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00029}00029         \$sqlEspecialidadId = \textcolor{stringliteral}{"{}SELECT id from especialidad where tipo like ?;"{}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00030}00030         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00031}00031         \$dbConexion = \$dbInstance-\/>getConnection();}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00032}00032         }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00033}00033         \$idAfin = [];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00034}00034         \textcolor{keywordflow}{foreach} (\$profesores[\textcolor{stringliteral}{'afin'}] as \$profesor) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00035}00035             \$stmt = \$dbInstance-\/>execQuery(\$sqlEspecialidadId, [\$profesor]);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00036}00036             \$res = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00037}00037             \$idAfin[] = \$res[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00038}00038         \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00040}00040         \$index = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00041}00041         \textcolor{keywordflow}{foreach} (\$profesores[\textcolor{stringliteral}{'afin'}] as \$key => \$afinidad) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00042}00042             \textcolor{keywordflow}{if} (\$afinidad === \$profesores[\textcolor{stringliteral}{'especialidad'}]) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00043}00043                 \$index = \$key;}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00044}00044                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00045}00045             \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00046}00046         \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00048}00048         \$idEspecialidad = \$idAfin[\$index]; \textcolor{comment}{// ID de la especialidad}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00050}00050         \$nuevoProfesor = [}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00051}00051             \$profesores[\textcolor{stringliteral}{'email'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00052}00052             \$profesores[\textcolor{stringliteral}{'password'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00053}00053             \$profesores[\textcolor{stringliteral}{'nombre'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00054}00054             \$profesores[\textcolor{stringliteral}{'fecha\_inicio'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00055}00055             \$profesores[\textcolor{stringliteral}{'departamento'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00056}00056             \$idEspecialidad}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00057}00057         ];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00060}00060         \$sql = \textcolor{stringliteral}{"{}INSERT INTO profesor (email, password, nombre, fecha\_inicio, id\_departamento, id\_especialidad) VALUES (?, ?, ?, ?, ?, ?)"{}}; \textcolor{comment}{// Ver que valores se insertaran y editarlo}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00062}00062         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00063}00063             \$stmt = \$dbInstance-\/>execQuery(\$sql, \$nuevoProfesor);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00064}00064             \$ultimoId = \$dbConexion-\/>lastInsertId();}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00066}00066             \$slqAfin = \textcolor{stringliteral}{"{}INSERT INTO afin (id\_profesor, id\_especialidad) VALUES (?, ?);"{}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00068}00068             \textcolor{keywordflow}{foreach} (\$idAfin as \$id) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00069}00069                 \$stmt = \$dbInstance-\/>execQuery(\$slqAfin, [\$ultimoId, \$id]);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00070}00070             \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00071}00071             \textcolor{keywordflow}{return} \$ultimoId;}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00072}00072         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00073}00073             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Internal server error"{}}, 500);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00074}00074         \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00075}00075     \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00086}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8ec28f9664bd544e6061d48c6cd58e83}{00086}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8ec28f9664bd544e6061d48c6cd58e83}{insertarModulos}}(array \$modulos)}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00087}00087     \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00089}00089         \$sqlEspecialidadId = \textcolor{stringliteral}{"{}SELECT id from especialidad where tipo like ?;"{}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00090}00090         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00092}00092         \$idEspecialidad = [];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00094}00094         \$stmt = \$dbInstance-\/>execQuery(\$sqlEspecialidadId, [\$modulos[\textcolor{stringliteral}{'especialidad'}]]);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00095}00095         \$idEspecialidadId = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00097}00097         \textcolor{keywordflow}{if} (\$idEspecialidad === \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00098}00098             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Especialidad no encontrada"{}}, 404);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00099}00099         \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00101}00101         \$idEspecialidad = \$idEspecialidadId[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00103}00103         \$nuevoModulo = [}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00104}00104             \$modulos[\textcolor{stringliteral}{'nombre'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00105}00105             \$modulos[\textcolor{stringliteral}{'departamento'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00106}00106             \$modulos[\textcolor{stringliteral}{'tematica'}],}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00107}00107             \$idEspecialidad}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00108}00108         ];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00111}00111         \$insertModulo = \textcolor{stringliteral}{"{}INSERT INTO modulo (nombre, id\_departamento, id\_tematica, id\_especialidad) VALUES (?, ?, ?, ?);"{}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00112}00112         \$insertRegimenCicloModulo = \textcolor{stringliteral}{"{}INSERT INTO regimen\_ciclo\_modulo (id\_regimen, id\_ciclo, id\_modulo, horas\_semanales) VALUES (?, ?, ?, ?);"{}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00113}00113         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00114}00114             \$stmt = \$dbInstance-\/>execQuery(\$insertModulo, \$nuevoModulo);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00115}00115             \$moduloID = \$dbInstance-\/>getConnection()-\/>lastInsertId();}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00116}00116             \$regimen = \$dbInstance-\/>execQuery(\textcolor{stringliteral}{"{}SELECT id from regimen where tipo like ?;"{}}, [\$modulos[\textcolor{stringliteral}{'regimen'}]]);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00117}00117             \$ciclo = \$dbInstance-\/>execQuery(\textcolor{stringliteral}{"{}SELECT id from ciclo where nombre like ?;"{}}, [\$modulos[\textcolor{stringliteral}{'ciclo'}]]);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00118}00118             \$ciclo = \$ciclo-\/>fetch(PDO::FETCH\_ASSOC)[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00119}00119             \$regimen = \$regimen-\/>fetch(PDO::FETCH\_ASSOC)[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00120}00120             }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00121}00121             \textcolor{keywordflow}{if}(\$ciclo === \textcolor{keyword}{false} || \$regimen === \textcolor{keyword}{false}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Ciclo o regimen no encontrados"{}}, 404);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00123}00123             \$regimenModulo = [}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00124}00124                 \$regimen,}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00125}00125                 \$ciclo,}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00126}00126                 \$moduloID,}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00127}00127                 \$modulos[\textcolor{stringliteral}{'horas'}]}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00128}00128             ];}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00130}00130             \$stmt = \$dbInstance-\/>execQuery(\$insertRegimenCicloModulo, \$regimenModulo);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00131}00131         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00132}00132             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Internal server error"{}}, 500);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00133}00133         \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00134}00134     \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00144}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8b0f2a79784843b191a966bf6eaa9948}{00144}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8b0f2a79784843b191a966bf6eaa9948}{saveFiles}}(\$contentFile, \$id\_profesor) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00145}00145         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00146}00146             \$sql = \textcolor{stringliteral}{"{}INSERT INTO modelo (file, id\_profesor) VALUES (?, ?)"{}};}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00147}00147             \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00148}00148             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$contentFile, \$id\_profesor]);}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00149}00149     }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00150}00150         \} \textcolor{keywordflow}{catch} (PDOException \$e) \{}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00151}00151             \textcolor{comment}{// Manejar errores}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00152}00152             error\_log(\textcolor{stringliteral}{"{}Error al guardar el archivo en la base de datos: "{}} . \$e-\/>getMessage());}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00153}00153         \}}
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00154}00154     \} }
+\DoxyCodeLine{\Hypertarget{CSVModel_8php_source_l00155}00155 \}}
+
+\end{DoxyCode}

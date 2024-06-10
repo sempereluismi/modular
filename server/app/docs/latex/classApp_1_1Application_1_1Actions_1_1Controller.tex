@@ -1,5 +1,15 @@
 \hypertarget{classApp_1_1Application_1_1Actions_1_1Controller}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller Class Reference}
 \label{classApp_1_1Application_1_1Actions_1_1Controller}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classApp_1_1Application_1_1Actions_1_1Controller__inherit__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,9 +18,11 @@
 
 
 \doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller}{Controller}}
 
+Esta clase proporciona métodos comunes que pueden ser utilizados por controladores específicos. 
 
-Definition at line \mbox{\hyperlink{Controller_8php_source_l00009}{9}} of file \mbox{\hyperlink{Controller_8php_source}{Controller.\+php}}.
+Definition at line \mbox{\hyperlink{Controller_8php_source_l00014}{14}} of file \mbox{\hyperlink{Controller_8php_source}{Controller.\+php}}.
 
 
 
@@ -39,17 +51,17 @@ Este método configura la respuesta HTTP con el código de estado dado, establec
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Controller_8php_source_l00024}{24}} of file \mbox{\hyperlink{Controller_8php_source}{Controller.\+php}}.
+Definition at line \mbox{\hyperlink{Controller_8php_source_l00029}{29}} of file \mbox{\hyperlink{Controller_8php_source}{Controller.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00024                                                                                          : Response}
-\DoxyCodeLine{00025     \{}
-\DoxyCodeLine{00026         \$responseStatus = \$response-\/>withStatus(\$statusCode);}
-\DoxyCodeLine{00027         \$responseStatus-\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'});}
-\DoxyCodeLine{00028         \$responseStatus-\/>getBody()-\/>write(json\_encode(\$res));}
-\DoxyCodeLine{00029         \textcolor{keywordflow}{return} \$responseStatus;}
-\DoxyCodeLine{00030     \}}
+\DoxyCodeLine{00029                                                                                          : Response}
+\DoxyCodeLine{00030     \{}
+\DoxyCodeLine{00031         \$responseStatus = \$response-\/>withStatus(\$statusCode);}
+\DoxyCodeLine{00032         \$responseStatus-\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'});}
+\DoxyCodeLine{00033         \$responseStatus-\/>getBody()-\/>write(json\_encode(\$res));}
+\DoxyCodeLine{00034         \textcolor{keywordflow}{return} \$responseStatus;}
+\DoxyCodeLine{00035     \}}
 
 \end{DoxyCode}
 

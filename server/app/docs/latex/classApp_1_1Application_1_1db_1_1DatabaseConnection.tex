@@ -1,0 +1,111 @@
+\hypertarget{classApp_1_1Application_1_1db_1_1DatabaseConnection}{}\doxysection{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Database\+Connection Class Reference}
+\label{classApp_1_1Application_1_1db_1_1DatabaseConnection}\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_ae780c6130ea1da8e41971728597e15cc}{get\+Connection}} ()
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a3e75de5806fef4fc425c4f0d69238c71}{exec\+Query}} (\$query, \$params=\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{get\+Instance}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para la gestión de la conexión a la base de datos. 
+
+Definition at line \mbox{\hyperlink{DatabaseConnection_8php_source_l00010}{10}} of file \mbox{\hyperlink{DatabaseConnection_8php_source}{Database\+Connection.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1DatabaseConnection_a3e75de5806fef4fc425c4f0d69238c71}\label{classApp_1_1Application_1_1db_1_1DatabaseConnection_a3e75de5806fef4fc425c4f0d69238c71}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}!execQuery@{execQuery}}
+\index{execQuery@{execQuery}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{execQuery()}{execQuery()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Database\+Connection\+::exec\+Query (\begin{DoxyParamCaption}\item[{}]{\$query,  }\item[{}]{\$params = {\ttfamily \mbox{[}\mbox{]}} }\end{DoxyParamCaption})}
+
+Ejecuta una consulta preparada con los parámetros proporcionados.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$query} & La consulta SQL a ejecutar. \\
+\hline
+{\em \$params} & Los parámetros para la consulta SQL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+PDOStatement$\vert$false El objeto PDOStatement si la ejecución es exitosa, o false si ocurre un error. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DatabaseConnection_8php_source_l00081}{81}} of file \mbox{\hyperlink{DatabaseConnection_8php_source}{Database\+Connection.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082     \{}
+\DoxyCodeLine{00083         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00084             \$stmt = \$this-\/>connection-\/>prepare(\$query);}
+\DoxyCodeLine{00085             \$stmt-\/>execute(\$params);}
+\DoxyCodeLine{00086             \textcolor{keywordflow}{return} \$stmt;}
+\DoxyCodeLine{00087         \} \textcolor{keywordflow}{catch} (\(\backslash\)PDOException \$e) \{}
+\DoxyCodeLine{00088             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00089         \}}
+\DoxyCodeLine{00090     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1DatabaseConnection_ae780c6130ea1da8e41971728597e15cc}\label{classApp_1_1Application_1_1db_1_1DatabaseConnection_ae780c6130ea1da8e41971728597e15cc}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}!getConnection@{getConnection}}
+\index{getConnection@{getConnection}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{getConnection()}{getConnection()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Database\+Connection\+::get\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Obtiene la conexión PDO.
+
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+PDO La conexión PDO. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DatabaseConnection_8php_source_l00060}{60}} of file \mbox{\hyperlink{DatabaseConnection_8php_source}{Database\+Connection.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061     \{}
+\DoxyCodeLine{00062         \textcolor{keywordflow}{return} \$this-\/>connection;}
+\DoxyCodeLine{00063     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}\label{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Database\+Connection\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Obtiene la instancia única de la clase (patrón Singleton).
+
+\begin{DoxyReturn}{Returns}
+self La instancia única de la clase. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{DatabaseConnection_8php_source_l00046}{46}} of file \mbox{\hyperlink{DatabaseConnection_8php_source}{Database\+Connection.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047     \{}
+\DoxyCodeLine{00048         \textcolor{keywordflow}{if} (!isset(self::\$instance)) \{}
+\DoxyCodeLine{00049             self::\$instance = \textcolor{keyword}{new} \textcolor{keyword}{self}();}
+\DoxyCodeLine{00050         \}}
+\DoxyCodeLine{00051         \textcolor{keywordflow}{return} self::\$instance;}
+\DoxyCodeLine{00052     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/db/Database\+Connection.\+php\end{DoxyCompactItemize}

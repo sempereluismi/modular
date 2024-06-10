@@ -1,0 +1,216 @@
+\hypertarget{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel}{}\doxysection{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel Class Reference}
+\label{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel}\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_af8eb14ba33aef4cd34a27624bebac51d}{insertar\+Profesores}} (array \$profesores)
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8ec28f9664bd544e6061d48c6cd58e83}{insertar\+Modulos}} (array \$modulos)
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8b0f2a79784843b191a966bf6eaa9948}{save\+Files}} (\$content\+File, \$id\+\_\+profesor)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para interactuar con la base de datos utilizando datos provenientes de archivos CSV. 
+
+Definition at line \mbox{\hyperlink{CSVModel_8php_source_l00013}{13}} of file \mbox{\hyperlink{CSVModel_8php_source}{CSVModel.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8ec28f9664bd544e6061d48c6cd58e83}\label{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8ec28f9664bd544e6061d48c6cd58e83}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}!insertarModulos@{insertarModulos}}
+\index{insertarModulos@{insertarModulos}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}}
+\doxysubsubsection{\texorpdfstring{insertarModulos()}{insertarModulos()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+CSV\textbackslash{}\+CSVModel\+::insertar\+Modulos (\begin{DoxyParamCaption}\item[{array}]{\$modulos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Inserta un nuevo módulo en la base de datos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$modulos} & Arreglo con los datos del módulo a insertar. Debe contener las claves\+: \textquotesingle{}nombre\textquotesingle{}, \textquotesingle{}departamento\textquotesingle{}, \textquotesingle{}tematica\textquotesingle{}, \textquotesingle{}especialidad\textquotesingle{}, \textquotesingle{}regimen\textquotesingle{}, \textquotesingle{}ciclo\textquotesingle{} y \textquotesingle{}horas\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si ocurre un error en la inserción o si la especialidad, régimen o ciclo no se encuentran. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{CSVModel_8php_source_l00086}{86}} of file \mbox{\hyperlink{CSVModel_8php_source}{CSVModel.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087     \{}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089         \$sqlEspecialidadId = \textcolor{stringliteral}{"{}SELECT id from especialidad where tipo like ?;"{}};}
+\DoxyCodeLine{00090         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00091 }
+\DoxyCodeLine{00092         \$idEspecialidad = [];}
+\DoxyCodeLine{00093 }
+\DoxyCodeLine{00094         \$stmt = \$dbInstance-\/>execQuery(\$sqlEspecialidadId, [\$modulos[\textcolor{stringliteral}{'especialidad'}]]);}
+\DoxyCodeLine{00095         \$idEspecialidadId = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097         \textcolor{keywordflow}{if} (\$idEspecialidad === \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00098             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Especialidad no encontrada"{}}, 404);}
+\DoxyCodeLine{00099         \}}
+\DoxyCodeLine{00100 }
+\DoxyCodeLine{00101         \$idEspecialidad = \$idEspecialidadId[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103         \$nuevoModulo = [}
+\DoxyCodeLine{00104             \$modulos[\textcolor{stringliteral}{'nombre'}],}
+\DoxyCodeLine{00105             \$modulos[\textcolor{stringliteral}{'departamento'}],}
+\DoxyCodeLine{00106             \$modulos[\textcolor{stringliteral}{'tematica'}],}
+\DoxyCodeLine{00107             \$idEspecialidad}
+\DoxyCodeLine{00108         ];}
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110 }
+\DoxyCodeLine{00111         \$insertModulo = \textcolor{stringliteral}{"{}INSERT INTO modulo (nombre, id\_departamento, id\_tematica, id\_especialidad) VALUES (?, ?, ?, ?);"{}};}
+\DoxyCodeLine{00112         \$insertRegimenCicloModulo = \textcolor{stringliteral}{"{}INSERT INTO regimen\_ciclo\_modulo (id\_regimen, id\_ciclo, id\_modulo, horas\_semanales) VALUES (?, ?, ?, ?);"{}};}
+\DoxyCodeLine{00113         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00114             \$stmt = \$dbInstance-\/>execQuery(\$insertModulo, \$nuevoModulo);}
+\DoxyCodeLine{00115             \$moduloID = \$dbInstance-\/>getConnection()-\/>lastInsertId();}
+\DoxyCodeLine{00116             \$regimen = \$dbInstance-\/>execQuery(\textcolor{stringliteral}{"{}SELECT id from regimen where tipo like ?;"{}}, [\$modulos[\textcolor{stringliteral}{'regimen'}]]);}
+\DoxyCodeLine{00117             \$ciclo = \$dbInstance-\/>execQuery(\textcolor{stringliteral}{"{}SELECT id from ciclo where nombre like ?;"{}}, [\$modulos[\textcolor{stringliteral}{'ciclo'}]]);}
+\DoxyCodeLine{00118             \$ciclo = \$ciclo-\/>fetch(PDO::FETCH\_ASSOC)[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{00119             \$regimen = \$regimen-\/>fetch(PDO::FETCH\_ASSOC)[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{00120             }
+\DoxyCodeLine{00121             \textcolor{keywordflow}{if}(\$ciclo === \textcolor{keyword}{false} || \$regimen === \textcolor{keyword}{false}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Ciclo o regimen no encontrados"{}}, 404);}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123             \$regimenModulo = [}
+\DoxyCodeLine{00124                 \$regimen,}
+\DoxyCodeLine{00125                 \$ciclo,}
+\DoxyCodeLine{00126                 \$moduloID,}
+\DoxyCodeLine{00127                 \$modulos[\textcolor{stringliteral}{'horas'}]}
+\DoxyCodeLine{00128             ];}
+\DoxyCodeLine{00129 }
+\DoxyCodeLine{00130             \$stmt = \$dbInstance-\/>execQuery(\$insertRegimenCicloModulo, \$regimenModulo);}
+\DoxyCodeLine{00131         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00132             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Internal server error"{}}, 500);}
+\DoxyCodeLine{00133         \}}
+\DoxyCodeLine{00134     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_af8eb14ba33aef4cd34a27624bebac51d}\label{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_af8eb14ba33aef4cd34a27624bebac51d}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}!insertarProfesores@{insertarProfesores}}
+\index{insertarProfesores@{insertarProfesores}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}}
+\doxysubsubsection{\texorpdfstring{insertarProfesores()}{insertarProfesores()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+CSV\textbackslash{}\+CSVModel\+::insertar\+Profesores (\begin{DoxyParamCaption}\item[{array}]{\$profesores }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Inserta un nuevo profesor en la base de datos.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$profesores} & Arreglo con los datos del profesor a insertar. Debe contener las claves\+: \textquotesingle{}email\textquotesingle{}, \textquotesingle{}password\textquotesingle{}, \textquotesingle{}nombre\textquotesingle{}, \textquotesingle{}fecha\+\_\+inicio\textquotesingle{}, \textquotesingle{}departamento\textquotesingle{}, \textquotesingle{}especialidad\textquotesingle{} y \textquotesingle{}afin\textquotesingle{}. \textquotesingle{}afin\textquotesingle{} es un arreglo de especialidades en las que el profesor tiene afinidad. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int El ID del nuevo profesor insertado. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si ocurre un error en la inserción o si la especialidad no se encuentra. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{CSVModel_8php_source_l00027}{27}} of file \mbox{\hyperlink{CSVModel_8php_source}{CSVModel.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028     \{}
+\DoxyCodeLine{00029         \$sqlEspecialidadId = \textcolor{stringliteral}{"{}SELECT id from especialidad where tipo like ?;"{}};}
+\DoxyCodeLine{00030         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00031         \$dbConexion = \$dbInstance-\/>getConnection();}
+\DoxyCodeLine{00032         }
+\DoxyCodeLine{00033         \$idAfin = [];}
+\DoxyCodeLine{00034         \textcolor{keywordflow}{foreach} (\$profesores[\textcolor{stringliteral}{'afin'}] as \$profesor) \{}
+\DoxyCodeLine{00035             \$stmt = \$dbInstance-\/>execQuery(\$sqlEspecialidadId, [\$profesor]);}
+\DoxyCodeLine{00036             \$res = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{00037             \$idAfin[] = \$res[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{00038         \}}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040         \$index = \textcolor{keyword}{null};}
+\DoxyCodeLine{00041         \textcolor{keywordflow}{foreach} (\$profesores[\textcolor{stringliteral}{'afin'}] as \$key => \$afinidad) \{}
+\DoxyCodeLine{00042             \textcolor{keywordflow}{if} (\$afinidad === \$profesores[\textcolor{stringliteral}{'especialidad'}]) \{}
+\DoxyCodeLine{00043                 \$index = \$key;}
+\DoxyCodeLine{00044                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00045             \}}
+\DoxyCodeLine{00046         \}}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048         \$idEspecialidad = \$idAfin[\$index]; \textcolor{comment}{// ID de la especialidad}}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050         \$nuevoProfesor = [}
+\DoxyCodeLine{00051             \$profesores[\textcolor{stringliteral}{'email'}],}
+\DoxyCodeLine{00052             \$profesores[\textcolor{stringliteral}{'password'}],}
+\DoxyCodeLine{00053             \$profesores[\textcolor{stringliteral}{'nombre'}],}
+\DoxyCodeLine{00054             \$profesores[\textcolor{stringliteral}{'fecha\_inicio'}],}
+\DoxyCodeLine{00055             \$profesores[\textcolor{stringliteral}{'departamento'}],}
+\DoxyCodeLine{00056             \$idEspecialidad}
+\DoxyCodeLine{00057         ];}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059 }
+\DoxyCodeLine{00060         \$sql = \textcolor{stringliteral}{"{}INSERT INTO profesor (email, password, nombre, fecha\_inicio, id\_departamento, id\_especialidad) VALUES (?, ?, ?, ?, ?, ?)"{}}; \textcolor{comment}{// Ver que valores se insertaran y editarlo}}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00063             \$stmt = \$dbInstance-\/>execQuery(\$sql, \$nuevoProfesor);}
+\DoxyCodeLine{00064             \$ultimoId = \$dbConexion-\/>lastInsertId();}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066             \$slqAfin = \textcolor{stringliteral}{"{}INSERT INTO afin (id\_profesor, id\_especialidad) VALUES (?, ?);"{}};}
+\DoxyCodeLine{00067 }
+\DoxyCodeLine{00068             \textcolor{keywordflow}{foreach} (\$idAfin as \$id) \{}
+\DoxyCodeLine{00069                 \$stmt = \$dbInstance-\/>execQuery(\$slqAfin, [\$ultimoId, \$id]);}
+\DoxyCodeLine{00070             \}}
+\DoxyCodeLine{00071             \textcolor{keywordflow}{return} \$ultimoId;}
+\DoxyCodeLine{00072         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00073             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception(\textcolor{stringliteral}{"{}Internal server error"{}}, 500);}
+\DoxyCodeLine{00074         \}}
+\DoxyCodeLine{00075     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8b0f2a79784843b191a966bf6eaa9948}\label{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8b0f2a79784843b191a966bf6eaa9948}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}!saveFiles@{saveFiles}}
+\index{saveFiles@{saveFiles}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}CSV\textbackslash{}CSVModel}}
+\doxysubsubsection{\texorpdfstring{saveFiles()}{saveFiles()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+CSV\textbackslash{}\+CSVModel\+::save\+Files (\begin{DoxyParamCaption}\item[{}]{\$content\+File,  }\item[{}]{\$id\+\_\+profesor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Guarda un archivo en la base de datos asociado a un profesor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$content\+File} & El contenido del archivo a guardar. \\
+\hline
+{\em \$id\+\_\+profesor} & El ID del profesor al que se asocia el archivo. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si ocurre un error al guardar el archivo. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{CSVModel_8php_source_l00144}{144}} of file \mbox{\hyperlink{CSVModel_8php_source}{CSVModel.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00144                                                                  \{}
+\DoxyCodeLine{00145         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00146             \$sql = \textcolor{stringliteral}{"{}INSERT INTO modelo (file, id\_profesor) VALUES (?, ?)"{}};}
+\DoxyCodeLine{00147             \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00148             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$contentFile, \$id\_profesor]);}
+\DoxyCodeLine{00149     }
+\DoxyCodeLine{00150         \} \textcolor{keywordflow}{catch} (PDOException \$e) \{}
+\DoxyCodeLine{00151             \textcolor{comment}{// Manejar errores}}
+\DoxyCodeLine{00152             error\_log(\textcolor{stringliteral}{"{}Error al guardar el archivo en la base de datos: "{}} . \$e-\/>getMessage());}
+\DoxyCodeLine{00153         \}}
+\DoxyCodeLine{00154     \} }
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/db/\+CSV/CSVModel.\+php\end{DoxyCompactItemize}

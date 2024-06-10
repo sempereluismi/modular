@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['jsonserialize_0',['jsonSerialize',['../classApp_1_1Application_1_1Actions_1_1ActionError.html#a725a2d839d8a5ee35d397b6642450dff',1,'App\Application\Actions\ActionError\jsonSerialize()'],['../classApp_1_1Application_1_1Actions_1_1ActionPayload.html#a6c1b0a950ec016956361d12010dc1367',1,'App\Application\Actions\ActionPayload\jsonSerialize()']]]
+  ['emit_0',['emit',['../classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter.html#ac065b185f4a7feda63e6a92a1c024e4e',1,'App::Application::ResponseEmitter::ResponseEmitter']]],
+  ['execquery_1',['execQuery',['../classApp_1_1Application_1_1db_1_1DatabaseConnection.html#a3e75de5806fef4fc425c4f0d69238c71',1,'App::Application::db::DatabaseConnection']]]
 ];

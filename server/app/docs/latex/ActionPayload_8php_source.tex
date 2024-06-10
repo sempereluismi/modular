@@ -10,53 +10,53 @@
 \DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00006}00006 }
 \DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00007}00007 use JsonSerializable;}
 \DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00008}00008 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00009}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{00009}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{ActionPayload}} \textcolor{keyword}{implements} JsonSerializable}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00010}00010 \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00011}00011     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \$statusCode;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00012}00012 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00016}00016     \textcolor{keyword}{private} \$data;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00017}00017 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00018}00018     \textcolor{keyword}{private} ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}} \$error;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00019}00019 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00028}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ae0c6a53b0b3d1847159dab6b18403cf7}{00028}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ae0c6a53b0b3d1847159dab6b18403cf7}{\_\_construct}}(}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00029}00029         \textcolor{keywordtype}{int} \$statusCode = 200,}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00030}00030         \$data = \textcolor{keyword}{null},}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00031}00031         ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}} \$error = \textcolor{keyword}{null}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00032}00032     ) \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00033}00033         \$this-\/>statusCode = \$statusCode;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00034}00034         \$this-\/>data = \$data;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00035}00035         \$this-\/>error = \$error;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00036}00036     \}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00037}00037 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00044}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_acd05e16a22bd0a56f95355f107ccc0ff}{00044}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_acd05e16a22bd0a56f95355f107ccc0ff}{getStatusCode}}(): int}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00045}00045     \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00046}00046         \textcolor{keywordflow}{return} \$this-\/>statusCode;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00047}00047     \}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00048}00048 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00055}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a3ee4485a0c36c90b459d5f4c5b769930}{00055}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a3ee4485a0c36c90b459d5f4c5b769930}{getData}}()}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00056}00056     \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00057}00057         \textcolor{keywordflow}{return} \$this-\/>data;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00058}00058     \}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00059}00059 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00066}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ad653e0c581859edbfad26763f9a59186}{00066}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ad653e0c581859edbfad26763f9a59186}{getError}}(): ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00067}00067     \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00068}00068         \textcolor{keywordflow}{return} \$this-\/>error;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00069}00069     \}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00076}00076 \textcolor{preprocessor}{    \#[\(\backslash\)ReturnTypeWillChange]}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00077}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a6c1b0a950ec016956361d12010dc1367}{00077}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a6c1b0a950ec016956361d12010dc1367}{jsonSerialize}}(): array}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00078}00078     \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00079}00079         \$payload = [}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00080}00080             \textcolor{stringliteral}{'statusCode'} => \$this-\/>statusCode,}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00081}00081         ];}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00082}00082 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00083}00083         \textcolor{keywordflow}{if} (\$this-\/>data !== \textcolor{keyword}{null}) \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00084}00084             \$payload[\textcolor{stringliteral}{'data'}] = \$this-\/>data;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00085}00085         \} elseif (\$this-\/>error !== \textcolor{keyword}{null}) \{}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00086}00086             \$payload[\textcolor{stringliteral}{'error'}] = \$this-\/>error;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00087}00087         \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00015}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{00015}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{ActionPayload}} \textcolor{keyword}{implements} JsonSerializable}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00016}00016 \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00017}00017     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \$statusCode;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00022}00022     \textcolor{keyword}{private} \$data;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00024}00024     \textcolor{keyword}{private} ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}} \$error;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00034}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ae0c6a53b0b3d1847159dab6b18403cf7}{00034}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ae0c6a53b0b3d1847159dab6b18403cf7}{\_\_construct}}(}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00035}00035         \textcolor{keywordtype}{int} \$statusCode = 200,}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00036}00036         \$data = \textcolor{keyword}{null},}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00037}00037         ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}} \$error = \textcolor{keyword}{null}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00038}00038     ) \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00039}00039         \$this-\/>statusCode = \$statusCode;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00040}00040         \$this-\/>data = \$data;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00041}00041         \$this-\/>error = \$error;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00042}00042     \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00050}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_acd05e16a22bd0a56f95355f107ccc0ff}{00050}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_acd05e16a22bd0a56f95355f107ccc0ff}{getStatusCode}}(): int}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00051}00051     \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00052}00052         \textcolor{keywordflow}{return} \$this-\/>statusCode;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00053}00053     \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00061}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a3ee4485a0c36c90b459d5f4c5b769930}{00061}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a3ee4485a0c36c90b459d5f4c5b769930}{getData}}()}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00062}00062     \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00063}00063         \textcolor{keywordflow}{return} \$this-\/>data;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00064}00064     \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00072}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ad653e0c581859edbfad26763f9a59186}{00072}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_ad653e0c581859edbfad26763f9a59186}{getError}}(): ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00073}00073     \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00074}00074         \textcolor{keywordflow}{return} \$this-\/>error;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00075}00075     \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00082}00082 \textcolor{preprocessor}{    \#[\(\backslash\)ReturnTypeWillChange]}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00083}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a6c1b0a950ec016956361d12010dc1367}{00083}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload_a6c1b0a950ec016956361d12010dc1367}{jsonSerialize}}(): array}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00084}00084     \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00085}00085         \$payload = [}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00086}00086             \textcolor{stringliteral}{'statusCode'} => \$this-\/>statusCode,}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00087}00087         ];}
 \DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00088}00088 }
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00089}00089         \textcolor{keywordflow}{return} \$payload;}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00090}00090     \}}
-\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00091}00091 \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00089}00089         \textcolor{keywordflow}{if} (\$this-\/>data !== \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00090}00090             \$payload[\textcolor{stringliteral}{'data'}] = \$this-\/>data;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00091}00091         \} elseif (\$this-\/>error !== \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00092}00092             \$payload[\textcolor{stringliteral}{'error'}] = \$this-\/>error;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00093}00093         \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00095}00095         \textcolor{keywordflow}{return} \$payload;}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00096}00096     \}}
+\DoxyCodeLine{\Hypertarget{ActionPayload_8php_source_l00097}00097 \}}
 
 \end{DoxyCode}

@@ -1,0 +1,26 @@
+\hypertarget{Settings_8php_source}{}\doxysection{Settings.\+php}
+\label{Settings_8php_source}\index{src/Application/Settings/Settings.php@{src/Application/Settings/Settings.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)Settings;}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00010}\mbox{\hyperlink{classApp_1_1Application_1_1Settings_1_1Settings}{00010}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Settings_1_1Settings}{Settings}} \textcolor{keyword}{implements} \mbox{\hyperlink{interfaceApp_1_1Application_1_1Settings_1_1SettingsInterface}{SettingsInterface}}}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00012}00012     \textcolor{keyword}{private} array \$settings;}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00014}00014     \textcolor{keyword}{public} \textcolor{keyword}{function} \_\_construct(array \$settings)}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00015}00015     \{}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00016}00016         \$this-\/>settings = \$settings;}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00017}00017     \}}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00022}\mbox{\hyperlink{classApp_1_1Application_1_1Settings_1_1Settings_a64068232a3f3ec8dc61f3c9c852b66a5}{00022}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \textcolor{keyword}{get}(\textcolor{keywordtype}{string} \$key = \textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00023}00023     \{}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00024}00024         \textcolor{keywordflow}{return} (empty(\$key)) ? \$this-\/>settings : \$this-\/>settings[\$key];}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{Settings_8php_source_l00026}00026 \}}
+
+\end{DoxyCode}

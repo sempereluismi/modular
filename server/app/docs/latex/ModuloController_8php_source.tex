@@ -1,0 +1,27 @@
+\hypertarget{ModuloController_8php_source}{}\doxysection{Modulo\+Controller.\+php}
+\label{ModuloController_8php_source}\index{src/Application/Actions/Modulo/ModuloController.php@{src/Application/Actions/Modulo/ModuloController.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)Actions\(\backslash\)Modulo;}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00007}00007 use Psr\(\backslash\)Http\(\backslash\)Message\(\backslash\)ResponseInterface as Response;}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00008}00008 use Psr\(\backslash\)Http\(\backslash\)Message\(\backslash\)ServerRequestInterface as Request;}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00009}00009 use \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel}{App\(\backslash\)Application\(\backslash\)db\(\backslash\)Modulos\(\backslash\)ModulosModel}};}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00010}00010 use \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller}{App\(\backslash\)Application\(\backslash\)Actions\(\backslash\)Controller}};}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00017}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController}{00017}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController}{ModuloController}} \textcolor{keyword}{extends} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller}{Controller}}}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00018}00018 \{}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00032}\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController_a757163bace35ba980b4201bf533f212d}{00032}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController_a757163bace35ba980b4201bf533f212d}{listarModulo}}(Request \$request, Response \$response, array \$args): Response}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00033}00033     \{}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00034}00034         \$id = (isset(\$args[\textcolor{stringliteral}{"{}id"{}}])) ? \$args[\textcolor{stringliteral}{"{}id"{}}] : \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00035}00035         \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}{ModulosModel::listarModulos}}(\$id);}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00036}00036         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res);}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00037}00037     \}}
+\DoxyCodeLine{\Hypertarget{ModuloController_8php_source_l00038}00038 \}}
+
+\end{DoxyCode}

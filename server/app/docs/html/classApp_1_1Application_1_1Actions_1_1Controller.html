@@ -72,6 +72,19 @@ $(function() {
   <div class="headertitle"><div class="title">App\Application\Actions\Controller Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for App\Application\Actions\Controller:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApp_1_1Application_1_1Actions_1_1Controller__inherit__graph.png" border="0" usemap="#aApp_0cApplication_0cActions_0cController_inherit__map" alt="Inheritance graph"/></div>
+<map name="aApp_0cApplication_0cActions_0cController_inherit__map" id="aApp_0cApplication_0cActions_0cController_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,136,181,177"/>
+<area shape="rect" href="classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV.html" title=" " alt="" coords="247,5,423,47"/>
+<area shape="rect" href="classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController.html" title=" " alt="" coords="247,71,423,112"/>
+<area shape="rect" href="classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController.html" title=" " alt="" coords="239,136,430,177"/>
+<area shape="rect" href="classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController.html" title=" " alt="" coords="233,201,436,243"/>
+<area shape="rect" href="classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController.html" title=" " alt="" coords="229,267,440,308"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -79,8 +92,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aac9fe26dc8d186be5155968e5e23afe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Controller_8php_source.html#l00009">9</a> of file <a class="el" href="Controller_8php_source.html">Controller.php</a>.</p>
+<div class="textblock"><p >Clase <a class="el" href="classApp_1_1Application_1_1Actions_1_1Controller.html">Controller</a></p>
+<p >Esta clase proporciona métodos comunes que pueden ser utilizados por controladores específicos. </p>
+
+<p class="definition">Definition at line <a class="el" href="Controller_8php_source.html#l00014">14</a> of file <a class="el" href="Controller_8php_source.html">Controller.php</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aac9fe26dc8d186be5155968e5e23afe9" name="aac9fe26dc8d186be5155968e5e23afe9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aac9fe26dc8d186be5155968e5e23afe9">&#9670;&nbsp;</a></span>returnResponse()</h2>
@@ -125,14 +140,14 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>$responseStatus devuelve el status configurado. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Controller_8php_source.html#l00024">24</a> of file <a class="el" href="Controller_8php_source.html">Controller.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                                                         : Response</div>
-<div class="line"><span class="lineno">   25</span>    {</div>
-<div class="line"><span class="lineno">   26</span>        $responseStatus = $response-&gt;withStatus($statusCode);</div>
-<div class="line"><span class="lineno">   27</span>        $responseStatus-&gt;withHeader(<span class="stringliteral">&#39;Content-Type&#39;</span>, <span class="stringliteral">&#39;application/json&#39;</span>);</div>
-<div class="line"><span class="lineno">   28</span>        $responseStatus-&gt;getBody()-&gt;write(json_encode($res));</div>
-<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">return</span> $responseStatus;</div>
-<div class="line"><span class="lineno">   30</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Controller_8php_source.html#l00029">29</a> of file <a class="el" href="Controller_8php_source.html">Controller.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>                                                                                         : Response</div>
+<div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        $responseStatus = $response-&gt;withStatus($statusCode);</div>
+<div class="line"><span class="lineno">   32</span>        $responseStatus-&gt;withHeader(<span class="stringliteral">&#39;Content-Type&#39;</span>, <span class="stringliteral">&#39;application/json&#39;</span>);</div>
+<div class="line"><span class="lineno">   33</span>        $responseStatus-&gt;getBody()-&gt;write(json_encode($res));</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">return</span> $responseStatus;</div>
+<div class="line"><span class="lineno">   35</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>

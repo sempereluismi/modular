@@ -36,9 +36,11 @@ Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\
 
 
 \doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{Action\+Payload}}
 
+Representa el payload de una acción en la aplicación, que incluye el código de estado HTTP, los datos y cualquier error asociado con la acción. 
 
-Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00009}{9}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
+Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00015}{15}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
 
 
 
@@ -62,15 +64,15 @@ Constructor de la clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1A
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00028}{28}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
+Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00034}{34}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00032       \{}
-\DoxyCodeLine{00033         \$this-\/>statusCode = \$statusCode;}
-\DoxyCodeLine{00034         \$this-\/>data = \$data;}
-\DoxyCodeLine{00035         \$this-\/>error = \$error;}
-\DoxyCodeLine{00036     \}}
+\DoxyCodeLine{00038       \{}
+\DoxyCodeLine{00039         \$this-\/>statusCode = \$statusCode;}
+\DoxyCodeLine{00040         \$this-\/>data = \$data;}
+\DoxyCodeLine{00041         \$this-\/>error = \$error;}
+\DoxyCodeLine{00042     \}}
 
 \end{DoxyCode}
 
@@ -89,13 +91,13 @@ array$\vert$object$\vert$null Los datos del payload.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00055}{55}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
+Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00061}{61}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00056     \{}
-\DoxyCodeLine{00057         \textcolor{keywordflow}{return} \$this-\/>data;}
-\DoxyCodeLine{00058     \}}
+\DoxyCodeLine{00062     \{}
+\DoxyCodeLine{00063         \textcolor{keywordflow}{return} \$this-\/>data;}
+\DoxyCodeLine{00064     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1ActionPayload_ad653e0c581859edbfad26763f9a59186}\label{classApp_1_1Application_1_1Actions_1_1ActionPayload_ad653e0c581859edbfad26763f9a59186}} 
@@ -111,14 +113,14 @@ Action\+Error$\vert$null El error del payload.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00066}{66}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
+Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00072}{72}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00066                               : ?ActionError}
-\DoxyCodeLine{00067     \{}
-\DoxyCodeLine{00068         \textcolor{keywordflow}{return} \$this-\/>error;}
-\DoxyCodeLine{00069     \}}
+\DoxyCodeLine{00072                               : ?\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError}{ActionError}}}
+\DoxyCodeLine{00073     \{}
+\DoxyCodeLine{00074         \textcolor{keywordflow}{return} \$this-\/>error;}
+\DoxyCodeLine{00075     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1ActionPayload_acd05e16a22bd0a56f95355f107ccc0ff}\label{classApp_1_1Application_1_1Actions_1_1ActionPayload_acd05e16a22bd0a56f95355f107ccc0ff}} 
@@ -134,14 +136,14 @@ int El código de estado HTTP.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00044}{44}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
+Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00050}{50}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00044                                    : \textcolor{keywordtype}{int}}
-\DoxyCodeLine{00045     \{}
-\DoxyCodeLine{00046         \textcolor{keywordflow}{return} \$this-\/>statusCode;}
-\DoxyCodeLine{00047     \}}
+\DoxyCodeLine{00050                                    : \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00051     \{}
+\DoxyCodeLine{00052         \textcolor{keywordflow}{return} \$this-\/>statusCode;}
+\DoxyCodeLine{00053     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1ActionPayload_a6c1b0a950ec016956361d12010dc1367}\label{classApp_1_1Application_1_1Actions_1_1ActionPayload_a6c1b0a950ec016956361d12010dc1367}} 
@@ -157,24 +159,24 @@ array El array serializado del objeto.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00077}{77}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
+Definition at line \mbox{\hyperlink{ActionPayload_8php_source_l00083}{83}} of file \mbox{\hyperlink{ActionPayload_8php_source}{Action\+Payload.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00077                                    : array}
-\DoxyCodeLine{00078     \{}
-\DoxyCodeLine{00079         \$payload = [}
-\DoxyCodeLine{00080             \textcolor{stringliteral}{'statusCode'} => \$this-\/>statusCode,}
-\DoxyCodeLine{00081         ];}
-\DoxyCodeLine{00082 }
-\DoxyCodeLine{00083         \textcolor{keywordflow}{if} (\$this-\/>data !== \textcolor{keyword}{null}) \{}
-\DoxyCodeLine{00084             \$payload[\textcolor{stringliteral}{'data'}] = \$this-\/>data;}
-\DoxyCodeLine{00085         \} elseif (\$this-\/>error !== \textcolor{keyword}{null}) \{}
-\DoxyCodeLine{00086             \$payload[\textcolor{stringliteral}{'error'}] = \$this-\/>error;}
-\DoxyCodeLine{00087         \}}
+\DoxyCodeLine{00083                                    : array}
+\DoxyCodeLine{00084     \{}
+\DoxyCodeLine{00085         \$payload = [}
+\DoxyCodeLine{00086             \textcolor{stringliteral}{'statusCode'} => \$this-\/>statusCode,}
+\DoxyCodeLine{00087         ];}
 \DoxyCodeLine{00088 }
-\DoxyCodeLine{00089         \textcolor{keywordflow}{return} \$payload;}
-\DoxyCodeLine{00090     \}}
+\DoxyCodeLine{00089         \textcolor{keywordflow}{if} (\$this-\/>data !== \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{00090             \$payload[\textcolor{stringliteral}{'data'}] = \$this-\/>data;}
+\DoxyCodeLine{00091         \} elseif (\$this-\/>error !== \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{00092             \$payload[\textcolor{stringliteral}{'error'}] = \$this-\/>error;}
+\DoxyCodeLine{00093         \}}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095         \textcolor{keywordflow}{return} \$payload;}
+\DoxyCodeLine{00096     \}}
 
 \end{DoxyCode}
 

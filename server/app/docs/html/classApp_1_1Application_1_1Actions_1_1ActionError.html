@@ -129,8 +129,10 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ade34e713ed195f00d30c3f377af7b9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00009">9</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="textblock"><p >Clase <a class="el" href="classApp_1_1Application_1_1Actions_1_1ActionError.html">ActionError</a></p>
+<p >Representa un error en la aplicación. </p>
+
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00014">14</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a001192b9bd33e96834a2391799bedee7" name="a001192b9bd33e96834a2391799bedee7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a001192b9bd33e96834a2391799bedee7">&#9670;&nbsp;</a></span>__construct()</h2>
@@ -166,11 +168,11 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00036">36</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   37</span>    {</div>
-<div class="line"><span class="lineno">   38</span>        $this-&gt;type = $type;</div>
-<div class="line"><span class="lineno">   39</span>        $this-&gt;description = $description;</div>
-<div class="line"><span class="lineno">   40</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00041">41</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>    {</div>
+<div class="line"><span class="lineno">   43</span>        $this-&gt;type = $type;</div>
+<div class="line"><span class="lineno">   44</span>        $this-&gt;description = $description;</div>
+<div class="line"><span class="lineno">   45</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -192,11 +194,11 @@ Public Attributes</h2></td></tr>
 <p >Obtiene la descripción del error.</p>
 <dl class="section return"><dt>Returns</dt><dd>string|null La descripción del error, o null si no hay descripción. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00071">71</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                                    : ?<span class="keywordtype">string</span></div>
-<div class="line"><span class="lineno">   72</span>    {</div>
-<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> $this-&gt;description;</div>
-<div class="line"><span class="lineno">   74</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00076">76</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>                                    : ?<span class="keywordtype">string</span></div>
+<div class="line"><span class="lineno">   77</span>    {</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> $this-&gt;description;</div>
+<div class="line"><span class="lineno">   79</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -217,11 +219,11 @@ Public Attributes</h2></td></tr>
 <p >Obtiene el tipo de error.</p>
 <dl class="section return"><dt>Returns</dt><dd>string El tipo de error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00048">48</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>                             : <span class="keywordtype">string</span></div>
-<div class="line"><span class="lineno">   49</span>    {</div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">return</span> $this-&gt;type;</div>
-<div class="line"><span class="lineno">   51</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00053">53</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                             : <span class="keywordtype">string</span></div>
+<div class="line"><span class="lineno">   54</span>    {</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> $this-&gt;type;</div>
+<div class="line"><span class="lineno">   56</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,14 +244,14 @@ Public Attributes</h2></td></tr>
 <p >Serializa el objeto a un array para su representación JSON.</p>
 <dl class="section return"><dt>Returns</dt><dd>array El array serializado del objeto. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00095">95</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   95</span>                                   : array</div>
-<div class="line"><span class="lineno">   96</span>    {</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">return</span> [</div>
-<div class="line"><span class="lineno">   98</span>            <span class="stringliteral">&#39;type&#39;</span> =&gt; $this-&gt;type,</div>
-<div class="line"><span class="lineno">   99</span>            <span class="stringliteral">&#39;description&#39;</span> =&gt; $this-&gt;description,</div>
-<div class="line"><span class="lineno">  100</span>        ];</div>
-<div class="line"><span class="lineno">  101</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00100">100</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>                                   : array</div>
+<div class="line"><span class="lineno">  101</span>    {</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">return</span> [</div>
+<div class="line"><span class="lineno">  103</span>            <span class="stringliteral">&#39;type&#39;</span> =&gt; $this-&gt;type,</div>
+<div class="line"><span class="lineno">  104</span>            <span class="stringliteral">&#39;description&#39;</span> =&gt; $this-&gt;description,</div>
+<div class="line"><span class="lineno">  105</span>        ];</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -277,12 +279,12 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>self </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00082">82</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>                                                               : <span class="keyword">self</span></div>
-<div class="line"><span class="lineno">   83</span>    {</div>
-<div class="line"><span class="lineno">   84</span>        $this-&gt;description = $description;</div>
-<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">return</span> $this;</div>
-<div class="line"><span class="lineno">   86</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00087">87</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>                                                               : <span class="keyword">self</span></div>
+<div class="line"><span class="lineno">   88</span>    {</div>
+<div class="line"><span class="lineno">   89</span>        $this-&gt;description = $description;</div>
+<div class="line"><span class="lineno">   90</span>        <span class="keywordflow">return</span> $this;</div>
+<div class="line"><span class="lineno">   91</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -310,12 +312,12 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>self </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00060">60</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   60</span>                                         : <span class="keyword">self</span></div>
-<div class="line"><span class="lineno">   61</span>    {</div>
-<div class="line"><span class="lineno">   62</span>        $this-&gt;type = $type;</div>
-<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">return</span> $this;</div>
-<div class="line"><span class="lineno">   64</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00065">65</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>                                         : <span class="keyword">self</span></div>
+<div class="line"><span class="lineno">   66</span>    {</div>
+<div class="line"><span class="lineno">   67</span>        $this-&gt;type = $type;</div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">return</span> $this;</div>
+<div class="line"><span class="lineno">   69</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -333,7 +335,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >Tipos predefinidos de errores. </p>
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00015">15</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00020">20</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -349,7 +351,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00016">16</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00021">21</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -365,7 +367,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00017">17</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00022">22</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -381,7 +383,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00018">18</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00023">23</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -397,7 +399,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00019">19</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00024">24</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -413,7 +415,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00020">20</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00025">25</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -429,7 +431,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00021">21</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00026">26</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -445,7 +447,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00022">22</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00027">27</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>
@@ -461,7 +463,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00023">23</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ActionError_8php_source.html#l00028">28</a> of file <a class="el" href="ActionError_8php_source.html">ActionError.php</a>.</p>
 
 </div>
 </div>

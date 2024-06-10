@@ -1,0 +1,43 @@
+\hypertarget{Profesor_8php_source}{}\doxysection{Profesor.\+php}
+\label{Profesor_8php_source}\index{src/Application/Models/Profesor.php@{src/Application/Models/Profesor.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)Models;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00007}00007 use \mbox{\hyperlink{interfaceApp_1_1Application_1_1Models_1_1ModelInterface}{App\(\backslash\)Application\(\backslash\)Models\(\backslash\)ModelInterface}};}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00012}\mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor}{00012}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor}{Profesor}} \textcolor{keyword}{implements} \mbox{\hyperlink{interfaceApp_1_1Application_1_1Models_1_1ModelInterface}{ModelInterface}}}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00014}00014     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \$id;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00015}00015     \textcolor{keyword}{private} \textcolor{keywordtype}{string} \$nombre;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00016}00016     \textcolor{keyword}{private} \textcolor{keywordtype}{string} \$especializacion;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00017}00017     \textcolor{keyword}{private} \textcolor{keywordtype}{string} \$regimen;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00018}00018     \textcolor{keyword}{private} array \$afin;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00029}\mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor_a05343441233ee725f3d6be7a20086e98}{00029}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor_a05343441233ee725f3d6be7a20086e98}{\_\_construct}}(\textcolor{keywordtype}{int} \$id, \textcolor{keywordtype}{string} \$nombre, \textcolor{keywordtype}{string} \$especializacion, array \$afin, \textcolor{keywordtype}{string} \$regimen = \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00030}00030     \{}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00031}00031         \$this-\/>\textcolor{keywordtype}{id} = \$id;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00032}00032         \$this-\/>nombre = \$nombre;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00033}00033         \$this-\/>especializacion = \$especializacion;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00034}00034         \$this-\/>regimen = \$regimen;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00035}00035         \$this-\/>afin = \$afin;}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00036}00036     \}}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00043}\mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor_a400214e8171d8a8862879986a5161cec}{00043}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor_a400214e8171d8a8862879986a5161cec}{getData}}() : array}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00044}00044     \{}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00045}00045         \textcolor{keywordflow}{return} [}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00046}00046             \textcolor{stringliteral}{"{}id"{}} => \$this-\/>id,}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00047}00047             \textcolor{stringliteral}{"{}nombre"{}} => \$this-\/>nombre,}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00048}00048             \textcolor{stringliteral}{"{}especializacion"{}} => \$this-\/>especializacion,}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00049}00049             \textcolor{stringliteral}{"{}regimen"{}} => \$this-\/>regimen,}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00050}00050             \textcolor{stringliteral}{"{}afin"{}} => \$this-\/>afin}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00051}00051         ];}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00052}00052     \}}
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{Profesor_8php_source_l00054}00054 \}}
+
+\end{DoxyCode}

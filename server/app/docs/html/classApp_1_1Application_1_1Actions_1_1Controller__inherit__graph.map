@@ -1,0 +1,8 @@
+<map id="App\Application\Actions\Controller" name="App\Application\Actions\Controller">
+<area shape="rect" id="node1" title=" " alt="" coords="5,136,181,177"/>
+<area shape="rect" id="node2" href="$classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV.html" title=" " alt="" coords="247,5,423,47"/>
+<area shape="rect" id="node3" href="$classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController.html" title=" " alt="" coords="247,71,423,112"/>
+<area shape="rect" id="node4" href="$classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController.html" title=" " alt="" coords="239,136,430,177"/>
+<area shape="rect" id="node5" href="$classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController.html" title=" " alt="" coords="233,201,436,243"/>
+<area shape="rect" id="node6" href="$classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController.html" title=" " alt="" coords="229,267,440,308"/>
+</map>

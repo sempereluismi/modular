@@ -79,8 +79,10 @@ Collaboration diagram for App\Application\Actions\Action:</div>
 <div class="dyncontent">
 <div class="center"><img src="classApp_1_1Application_1_1Actions_1_1Action__coll__graph.png" border="0" usemap="#aApp_0cApplication_0cActions_0cAction_coll__map" alt="Collaboration graph"/></div>
 <map name="aApp_0cApplication_0cActions_0cAction_coll__map" id="aApp_0cApplication_0cActions_0cAction_coll__map">
-<area shape="rect" title=" " alt="" coords="5,95,181,136"/>
-<area shape="rect" title=" " alt="" coords="31,5,155,32"/>
+<area shape="rect" title=" " alt="" coords="103,95,279,136"/>
+<area shape="rect" title=" " alt="" coords="5,5,129,32"/>
+<area shape="rect" title=" " alt="" coords="154,5,229,32"/>
+<area shape="rect" title=" " alt="" coords="253,5,338,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -116,8 +118,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a3545c914e700112f870286536f004357"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00014">14</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="textblock"><p >Clase abstracta <a class="el" href="classApp_1_1Application_1_1Actions_1_1Action.html">Action</a></p>
+<p >Esta clase proporciona una base para todas las acciones de la aplicación, gestionando la solicitud, la respuesta y los argumentos, así como manejando excepciones comunes. </p>
+
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00020">20</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab157f9fc18a4c1464c7b162983ec6610" name="ab157f9fc18a4c1464c7b162983ec6610"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab157f9fc18a4c1464c7b162983ec6610">&#9670;&nbsp;</a></span>__construct()</h2>
@@ -142,10 +146,10 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00031">31</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>    {</div>
-<div class="line"><span class="lineno">   33</span>        $this-&gt;logger = $logger;</div>
-<div class="line"><span class="lineno">   34</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00037">37</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   38</span>    {</div>
+<div class="line"><span class="lineno">   39</span>        $this-&gt;logger = $logger;</div>
+<div class="line"><span class="lineno">   40</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -199,19 +203,19 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00047">47</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>                                                                               : Response</div>
-<div class="line"><span class="lineno">   48</span>    {</div>
-<div class="line"><span class="lineno">   49</span>        $this-&gt;request = $request;</div>
-<div class="line"><span class="lineno">   50</span>        $this-&gt;response = $response;</div>
-<div class="line"><span class="lineno">   51</span>        $this-&gt;args = $args;</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">   54</span>            <span class="keywordflow">return</span> $this-&gt;<a class="code hl_function" href="classApp_1_1Application_1_1Actions_1_1Action.html#a9431ceeaff80e858ffe5349f3c2b6cfb">action</a>();</div>
-<div class="line"><span class="lineno">   55</span>        } <span class="keywordflow">catch</span> (DomainRecordNotFoundException $e) {</div>
-<div class="line"><span class="lineno">   56</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> HttpNotFoundException($this-&gt;request, $e-&gt;getMessage());</div>
-<div class="line"><span class="lineno">   57</span>        }</div>
-<div class="line"><span class="lineno">   58</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00053">53</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                                               : Response</div>
+<div class="line"><span class="lineno">   54</span>    {</div>
+<div class="line"><span class="lineno">   55</span>        $this-&gt;request = $request;</div>
+<div class="line"><span class="lineno">   56</span>        $this-&gt;response = $response;</div>
+<div class="line"><span class="lineno">   57</span>        $this-&gt;args = $args;</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">   60</span>            <span class="keywordflow">return</span> $this-&gt;<a class="code hl_function" href="classApp_1_1Application_1_1Actions_1_1Action.html#a9431ceeaff80e858ffe5349f3c2b6cfb">action</a>();</div>
+<div class="line"><span class="lineno">   61</span>        } <span class="keywordflow">catch</span> (DomainRecordNotFoundException $e) {</div>
+<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> HttpNotFoundException($this-&gt;request, $e-&gt;getMessage());</div>
+<div class="line"><span class="lineno">   63</span>        }</div>
+<div class="line"><span class="lineno">   64</span>    }</div>
 <div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Action_html_a9431ceeaff80e858ffe5349f3c2b6cfb"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Action.html#a9431ceeaff80e858ffe5349f3c2b6cfb">App\Application\Actions\Action\action</a></div><div class="ttdeci">action()</div></div>
 </div><!-- fragment -->
 </div>
@@ -276,10 +280,10 @@ Protected Attributes</h2></td></tr>
 <p >Obtiene los datos del formulario de la solicitud.</p>
 <dl class="section return"><dt>Returns</dt><dd>array|object Los datos del formulario. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00077">77</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   78</span>    {</div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span> $this-&gt;request-&gt;getParsedBody();</div>
-<div class="line"><span class="lineno">   80</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00083">83</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>    {</div>
+<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">return</span> $this-&gt;request-&gt;getParsedBody();</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -321,14 +325,14 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00089">89</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   90</span>    {</div>
-<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">if</span> (!isset($this-&gt;args[$name])) {</div>
-<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> HttpBadRequestException($this-&gt;request, <span class="stringliteral">&quot;Could not resolve argument `{$name}`.&quot;</span>);</div>
-<div class="line"><span class="lineno">   93</span>        }</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> $this-&gt;args[$name];</div>
-<div class="line"><span class="lineno">   96</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00095">95</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   96</span>    {</div>
+<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">if</span> (!isset($this-&gt;args[$name])) {</div>
+<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> HttpBadRequestException($this-&gt;request, <span class="stringliteral">&quot;Could not resolve argument `{$name}`.&quot;</span>);</div>
+<div class="line"><span class="lineno">   99</span>        }</div>
+<div class="line"><span class="lineno">  100</span> </div>
+<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">return</span> $this-&gt;args[$name];</div>
+<div class="line"><span class="lineno">  102</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,16 +368,16 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Response La respuesta HTTP. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00120">120</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  120</span>                                                      : Response</div>
-<div class="line"><span class="lineno">  121</span>    {</div>
-<div class="line"><span class="lineno">  122</span>        $json = json_encode($payload, JSON_PRETTY_PRINT);</div>
-<div class="line"><span class="lineno">  123</span>        $this-&gt;response-&gt;getBody()-&gt;write($json);</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">return</span> $this-&gt;response</div>
-<div class="line"><span class="lineno">  126</span>                    -&gt;withHeader(<span class="stringliteral">&#39;Content-Type&#39;</span>, <span class="stringliteral">&#39;application/json&#39;</span>)</div>
-<div class="line"><span class="lineno">  127</span>                    -&gt;withStatus($payload-&gt;getStatusCode());</div>
-<div class="line"><span class="lineno">  128</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00126">126</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  126</span>                                                      : Response</div>
+<div class="line"><span class="lineno">  127</span>    {</div>
+<div class="line"><span class="lineno">  128</span>        $json = json_encode($payload, JSON_PRETTY_PRINT);</div>
+<div class="line"><span class="lineno">  129</span>        $this-&gt;response-&gt;getBody()-&gt;write($json);</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">return</span> $this-&gt;response</div>
+<div class="line"><span class="lineno">  132</span>                    -&gt;withHeader(<span class="stringliteral">&#39;Content-Type&#39;</span>, <span class="stringliteral">&#39;application/json&#39;</span>)</div>
+<div class="line"><span class="lineno">  133</span>                    -&gt;withStatus($payload-&gt;getStatusCode());</div>
+<div class="line"><span class="lineno">  134</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -420,14 +424,14 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Response La respuesta HTTP. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00106">106</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>                                                                           : Response</div>
-<div class="line"><span class="lineno">  107</span>    {</div>
-<div class="line"><span class="lineno">  108</span>        $payload = <span class="keyword">new</span> ActionPayload($statusCode, $data);</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> $this-&gt;<a class="code hl_function" href="classApp_1_1Application_1_1Actions_1_1Action.html#a92599eb193becbb0e458e97ea0c44680">respond</a>($payload);</div>
-<div class="line"><span class="lineno">  111</span>    }</div>
-<div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Action_html_a92599eb193becbb0e458e97ea0c44680"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Action.html#a92599eb193becbb0e458e97ea0c44680">App\Application\Actions\Action\respond</a></div><div class="ttdeci">respond(ActionPayload $payload)</div><div class="ttdef"><b>Definition:</b> <a href="Action_8php_source.html#l00120">Action.php:120</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00112">112</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                                           : Response</div>
+<div class="line"><span class="lineno">  113</span>    {</div>
+<div class="line"><span class="lineno">  114</span>        $payload = <span class="keyword">new</span> ActionPayload($statusCode, $data);</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">return</span> $this-&gt;<a class="code hl_function" href="classApp_1_1Application_1_1Actions_1_1Action.html#a92599eb193becbb0e458e97ea0c44680">respond</a>($payload);</div>
+<div class="line"><span class="lineno">  117</span>    }</div>
+<div class="ttc" id="aclassApp_1_1Application_1_1Actions_1_1Action_html_a92599eb193becbb0e458e97ea0c44680"><div class="ttname"><a href="classApp_1_1Application_1_1Actions_1_1Action.html#a92599eb193becbb0e458e97ea0c44680">App\Application\Actions\Action\respond</a></div><div class="ttdeci">respond(ActionPayload $payload)</div><div class="ttdef"><b>Definition:</b> <a href="Action_8php_source.html#l00126">Action.php:126</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -452,7 +456,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00022">22</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00028">28</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
 
 </div>
 </div>
@@ -476,7 +480,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00016">16</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00022">22</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
 
 </div>
 </div>
@@ -500,7 +504,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00018">18</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00024">24</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
 
 </div>
 </div>
@@ -524,7 +528,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00020">20</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Action_8php_source.html#l00026">26</a> of file <a class="el" href="Action_8php_source.html">Action.php</a>.</p>
 
 </div>
 </div>

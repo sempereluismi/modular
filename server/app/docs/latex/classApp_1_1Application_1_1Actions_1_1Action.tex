@@ -7,7 +7,7 @@ Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{classApp_1_1Application_1_1Actions_1_1Action__coll__graph}
+\includegraphics[width=333pt]{classApp_1_1Application_1_1Actions_1_1Action__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -44,9 +44,11 @@ array \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a3545c914e70
 
 
 \doxysubsection{Detailed Description}
+Clase abstracta \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action}{Action}}
 
+Esta clase proporciona una base para todas las acciones de la aplicación, gestionando la solicitud, la respuesta y los argumentos, así como manejando excepciones comunes. 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00014}{14}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00020}{20}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 
@@ -66,13 +68,13 @@ Logger\+Interface & {\em \$logger} & El logger para registrar información y err
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00031}{31}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00037}{37}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00032     \{}
-\DoxyCodeLine{00033         \$this-\/>logger = \$logger;}
-\DoxyCodeLine{00034     \}}
+\DoxyCodeLine{00038     \{}
+\DoxyCodeLine{00039         \$this-\/>logger = \$logger;}
+\DoxyCodeLine{00040     \}}
 
 \end{DoxyCode}
 
@@ -107,22 +109,22 @@ Response devuelve la acción.
 \end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00047}{47}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00053}{53}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00047                                                                                : Response}
-\DoxyCodeLine{00048     \{}
-\DoxyCodeLine{00049         \$this-\/>request = \$request;}
-\DoxyCodeLine{00050         \$this-\/>response = \$response;}
-\DoxyCodeLine{00051         \$this-\/>args = \$args;}
-\DoxyCodeLine{00052 }
-\DoxyCodeLine{00053         \textcolor{keywordflow}{try} \{}
-\DoxyCodeLine{00054             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}{action}}();}
-\DoxyCodeLine{00055         \} \textcolor{keywordflow}{catch} (DomainRecordNotFoundException \$e) \{}
-\DoxyCodeLine{00056             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} HttpNotFoundException(\$this-\/>request, \$e-\/>getMessage());}
-\DoxyCodeLine{00057         \}}
-\DoxyCodeLine{00058     \}}
+\DoxyCodeLine{00053                                                                                : Response}
+\DoxyCodeLine{00054     \{}
+\DoxyCodeLine{00055         \$this-\/>request = \$request;}
+\DoxyCodeLine{00056         \$this-\/>response = \$response;}
+\DoxyCodeLine{00057         \$this-\/>args = \$args;}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00060             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}{action}}();}
+\DoxyCodeLine{00061         \} \textcolor{keywordflow}{catch} (DomainRecordNotFoundException \$e) \{}
+\DoxyCodeLine{00062             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} HttpNotFoundException(\$this-\/>request, \$e-\/>getMessage());}
+\DoxyCodeLine{00063         \}}
+\DoxyCodeLine{00064     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}\label{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}} 
@@ -158,13 +160,13 @@ array$\vert$object Los datos del formulario.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00077}{77}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00083}{83}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00078     \{}
-\DoxyCodeLine{00079         \textcolor{keywordflow}{return} \$this-\/>request-\/>getParsedBody();}
-\DoxyCodeLine{00080     \}}
+\DoxyCodeLine{00084     \{}
+\DoxyCodeLine{00085         \textcolor{keywordflow}{return} \$this-\/>request-\/>getParsedBody();}
+\DoxyCodeLine{00086     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a4363b48e7b97f2ea6474b3bae8d7aa21}\label{classApp_1_1Application_1_1Actions_1_1Action_a4363b48e7b97f2ea6474b3bae8d7aa21}} 
@@ -190,17 +192,17 @@ mixed El valor del argumento.
 \end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00089}{89}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00095}{95}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00090     \{}
-\DoxyCodeLine{00091         \textcolor{keywordflow}{if} (!isset(\$this-\/>args[\$name])) \{}
-\DoxyCodeLine{00092             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} HttpBadRequestException(\$this-\/>request, \textcolor{stringliteral}{"{}Could not resolve argument `\{\$name\}`."{}});}
-\DoxyCodeLine{00093         \}}
-\DoxyCodeLine{00094 }
-\DoxyCodeLine{00095         \textcolor{keywordflow}{return} \$this-\/>args[\$name];}
-\DoxyCodeLine{00096     \}}
+\DoxyCodeLine{00096     \{}
+\DoxyCodeLine{00097         \textcolor{keywordflow}{if} (!isset(\$this-\/>args[\$name])) \{}
+\DoxyCodeLine{00098             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} HttpBadRequestException(\$this-\/>request, \textcolor{stringliteral}{"{}Could not resolve argument `\{\$name\}`."{}});}
+\DoxyCodeLine{00099         \}}
+\DoxyCodeLine{00100 }
+\DoxyCodeLine{00101         \textcolor{keywordflow}{return} \$this-\/>args[\$name];}
+\DoxyCodeLine{00102     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}\label{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}} 
@@ -221,19 +223,19 @@ Response La respuesta HTTP.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00120}{120}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00126}{126}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00120                                                       : Response}
-\DoxyCodeLine{00121     \{}
-\DoxyCodeLine{00122         \$json = json\_encode(\$payload, JSON\_PRETTY\_PRINT);}
-\DoxyCodeLine{00123         \$this-\/>response-\/>getBody()-\/>write(\$json);}
-\DoxyCodeLine{00124 }
-\DoxyCodeLine{00125         \textcolor{keywordflow}{return} \$this-\/>response}
-\DoxyCodeLine{00126                     -\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'})}
-\DoxyCodeLine{00127                     -\/>withStatus(\$payload-\/>getStatusCode());}
-\DoxyCodeLine{00128     \}}
+\DoxyCodeLine{00126                                                       : Response}
+\DoxyCodeLine{00127     \{}
+\DoxyCodeLine{00128         \$json = json\_encode(\$payload, JSON\_PRETTY\_PRINT);}
+\DoxyCodeLine{00129         \$this-\/>response-\/>getBody()-\/>write(\$json);}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{return} \$this-\/>response}
+\DoxyCodeLine{00132                     -\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'})}
+\DoxyCodeLine{00133                     -\/>withStatus(\$payload-\/>getStatusCode());}
+\DoxyCodeLine{00134     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a77c3f28203d8978c33e4ad13f9f5ad53}\label{classApp_1_1Application_1_1Actions_1_1Action_a77c3f28203d8978c33e4ad13f9f5ad53}} 
@@ -256,16 +258,16 @@ Response La respuesta HTTP.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00106}{106}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00112}{112}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00106                                                                            : Response}
-\DoxyCodeLine{00107     \{}
-\DoxyCodeLine{00108         \$payload = \textcolor{keyword}{new} ActionPayload(\$statusCode, \$data);}
-\DoxyCodeLine{00109 }
-\DoxyCodeLine{00110         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}{respond}}(\$payload);}
-\DoxyCodeLine{00111     \}}
+\DoxyCodeLine{00112                                                                            : Response}
+\DoxyCodeLine{00113     \{}
+\DoxyCodeLine{00114         \$payload = \textcolor{keyword}{new} ActionPayload(\$statusCode, \$data);}
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}{respond}}(\$payload);}
+\DoxyCodeLine{00117     \}}
 
 \end{DoxyCode}
 
@@ -279,7 +281,7 @@ Definition at line \mbox{\hyperlink{Action_8php_source_l00106}{106}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00022}{22}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00028}{28}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a4545892b99aed7217984c70c9d630558}\label{classApp_1_1Application_1_1Actions_1_1Action_a4545892b99aed7217984c70c9d630558}} 
 \index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$logger@{\$logger}}
@@ -289,7 +291,7 @@ Definition at line \mbox{\hyperlink{Action_8php_source_l00022}{22}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00016}{16}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00022}{22}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_ab44adf3b7625cce5c47e3f08c7b01fca}\label{classApp_1_1Application_1_1Actions_1_1Action_ab44adf3b7625cce5c47e3f08c7b01fca}} 
 \index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$request@{\$request}}
@@ -299,7 +301,7 @@ Definition at line \mbox{\hyperlink{Action_8php_source_l00016}{16}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00018}{18}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00024}{24}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 \mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a2aaede2b654be91929e0930bb70f6e09}\label{classApp_1_1Application_1_1Actions_1_1Action_a2aaede2b654be91929e0930bb70f6e09}} 
 \index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$response@{\$response}}
@@ -309,7 +311,7 @@ Definition at line \mbox{\hyperlink{Action_8php_source_l00018}{18}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{Action_8php_source_l00020}{20}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+Definition at line \mbox{\hyperlink{Action_8php_source_l00026}{26}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
 
 
 

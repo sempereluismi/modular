@@ -1,0 +1,80 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}Profesor\+Controller Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}ProfesorController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}ProfesorController}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}Profesor\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}Profesor\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController_a46c09338f560781fe84d72e42de8cb05}{listar\+Profesor}} (Request \$request, Response \$response, array \$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController}{Profesor\+Controller}}
+
+Esta clase maneja las operaciones relacionadas con los profesores. 
+
+Definition at line \mbox{\hyperlink{ProfesorController_8php_source_l00017}{17}} of file \mbox{\hyperlink{ProfesorController_8php_source}{Profesor\+Controller.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController_a46c09338f560781fe84d72e42de8cb05}\label{classApp_1_1Application_1_1Actions_1_1Profesor_1_1ProfesorController_a46c09338f560781fe84d72e42de8cb05}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}ProfesorController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}ProfesorController}!listarProfesor@{listarProfesor}}
+\index{listarProfesor@{listarProfesor}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}ProfesorController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Profesor\textbackslash{}ProfesorController}}
+\doxysubsubsection{\texorpdfstring{listarProfesor()}{listarProfesor()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Profesor\textbackslash{}\+Profesor\+Controller\+::listar\+Profesor (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Lista los profesores según el ID de departamento.
+
+Este método recibe un ID de departamento y retorna una lista de profesores asociados a ese departamento. Si no se proporciona un ID, se listan todos los profesores.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales que contienen el \textquotesingle{}id\textquotesingle{} del departamento. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve la lista de profesores. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ProfesorController_8php_source_l00032}{32}} of file \mbox{\hyperlink{ProfesorController_8php_source}{Profesor\+Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032                                                                                      : Response}
+\DoxyCodeLine{00033     \{}
+\DoxyCodeLine{00034         \$id = (isset(\$args[\textcolor{stringliteral}{"{}id"{}}])) ? \$args[\textcolor{stringliteral}{"{}id"{}}] : \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00035         \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel_ad6db2876c015f774719f1a533e7fd946}{ProfesorModel::listarProfesor}}(\$id);}
+\DoxyCodeLine{00036         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res);}
+\DoxyCodeLine{00037     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/\+Profesor/Profesor\+Controller.\+php\end{DoxyCompactItemize}

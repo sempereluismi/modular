@@ -1,0 +1,79 @@
+\hypertarget{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware}{}\doxysection{App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}Session\+Middleware Class Reference}
+\label{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware}\index{App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}SessionMiddleware@{App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}SessionMiddleware}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}Session\+Middleware\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}Session\+Middleware\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware_aa501307e6a95f325253b07e80328908a}{process}} (Request \$request, Request\+Handler \$handler)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Middleware para gestionar la autorización basada en sesiones. 
+
+Definition at line \mbox{\hyperlink{SessionMiddleware_8php_source_l00015}{15}} of file \mbox{\hyperlink{SessionMiddleware_8php_source}{Session\+Middleware.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware_aa501307e6a95f325253b07e80328908a}\label{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware_aa501307e6a95f325253b07e80328908a}} 
+\index{App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}SessionMiddleware@{App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}SessionMiddleware}!process@{process}}
+\index{process@{process}!App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}SessionMiddleware@{App\textbackslash{}Application\textbackslash{}Middleware\textbackslash{}SessionMiddleware}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Middleware\textbackslash{}\+Session\+Middleware\+::process (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Request\+Handler}]{\$handler }\end{DoxyParamCaption})}
+
+Procesa la solicitud HTTP y gestiona la autorización basada en sesiones.
+
+\{\}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP. \\
+\hline
+{\em \$handler} & El controlador de solicitudes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{SessionMiddleware_8php_source_l00026}{26}} of file \mbox{\hyperlink{SessionMiddleware_8php_source}{Session\+Middleware.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026                                                                       : Response}
+\DoxyCodeLine{00027     \{}
+\DoxyCodeLine{00028         \textcolor{keywordflow}{if} (isset(\$\_SERVER[\textcolor{stringliteral}{'HTTP\_AUTHORIZATION'}])) \{}
+\DoxyCodeLine{00029             session\_start();}
+\DoxyCodeLine{00030             \$request = \$request-\/>withAttribute(\textcolor{stringliteral}{'session'}, \$\_SESSION);}
+\DoxyCodeLine{00031         \}}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033         \textcolor{keywordflow}{return} \$handler-\/>handle(\$request);}
+\DoxyCodeLine{00034     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Middleware/Session\+Middleware.\+php\end{DoxyCompactItemize}
