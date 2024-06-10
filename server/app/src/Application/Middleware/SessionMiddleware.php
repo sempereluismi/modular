@@ -12,7 +12,13 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 class SessionMiddleware implements Middleware
 {
     /**
+     * Procesa la solicitud HTTP y gestiona la autorización basada en sesiones.
+     *
      * {@inheritdoc}
+     *
+     * @param $request La solicitud HTTP.
+     * @param $handler El controlador de solicitudes.
+     * @return Response 
      */
     public function process(Request $request, RequestHandler $handler): Response
     {

@@ -17,6 +17,14 @@ class ActionPayload implements JsonSerializable
 
     private ?ActionError $error;
 
+    /**
+     * Constructor de la clase ActionPayload.
+     *
+     * @param $statusCode El código de estado HTTP (por defecto es 200).
+     * @param $data Los datos del payload (opcional).
+     * @param $error El error del payload (opcional).
+     * 
+     */
     public function __construct(
         int $statusCode = 200,
         $data = null,
@@ -27,24 +35,44 @@ class ActionPayload implements JsonSerializable
         $this->error = $error;
     }
 
+    /**
+     * Obtiene el código de estado HTTP.
+     *
+     * @return int El código de estado HTTP.
+     * 
+     */
     public function getStatusCode(): int
     {
         return $this->statusCode;
     }
 
     /**
-     * @return array|null|object
+     * Obtiene los datos del payload.
+     *
+     * @return array|object|null Los datos del payload.
+     * 
      */
     public function getData()
     {
         return $this->data;
     }
 
+    /**
+     * Obtiene el error del payload.
+     *
+     * @return ActionError|null El error del payload.
+     * 
+     */
     public function getError(): ?ActionError
     {
         return $this->error;
     }
-
+    /**
+     * Serializa el objeto a un array para su representación JSON.
+     *
+     * @return array El array serializado del objeto.
+     * 
+     */
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
