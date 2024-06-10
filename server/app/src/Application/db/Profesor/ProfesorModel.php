@@ -9,6 +9,15 @@ use App\Application\Models\Profesor;
 
 class ProfesorModel
 {
+    /**
+ * Lista los profesores, con opción de filtrarlos por departamento.
+ *
+ * @param $id El ID del departamento (opcional).
+ * @return La información de los profesores si se encuentran,
+ *               404 si no se encuentran,
+ *               o un mensaje de error si ocurre una excepción.
+ */
+
     public static function listarProfesor(string $id = ""): array
     {
         $sql = "SELECT p.id, p.nombre, e.tipo as especializacion, (SELECT tipo FROM profesor_regimen JOIN regimen as r ON id_regimen = r.id WHERE p.id = id_profesor) as id_regimen
@@ -39,6 +48,15 @@ class ProfesorModel
             return ["error" => $e->getMessage()];
         }
     }
+
+    /**
+ * Procesa los resultados de una consulta y los convierte en instancias de la clase Profesor.
+ *
+ * @param $stmt El objeto PDOStatement que contiene los resultados de la consulta.
+ * @return La información de los profesores si se encuentran,
+ *                    o null si no se encuentran profesores.
+ */
+
 
     private static function addProfesor($stmt) {
         $sql = "SELECT e.tipo as afin FROM Modular.afin as a JOIN especialidad AS e ON (a.id_especialidad = e.id) where id_profesor = ?;";
