@@ -6,7 +6,9 @@
  * \mainpage MODULAR
  * 
  * \section descripcion Descripción General:
- * Este proyecto es una aplicación diseñada para facilitar la gestión de profesores, módulos y modelos creados por los profesores en el ámbito educativo. Su propósito es simplificar y agilizar el proceso de asignación de materias para el próximo curso académico. Ofrece una interfaz intuitiva y eficiente para que los profesores elijan las materias que desean impartir, mientras que el administrador puede gestionar la asignación de horarios y materias de manera centralizada.
+ * Este proyecto es una aplicación diseñada para facilitar la gestión de profesores, módulos y modelos creados por los profesores en el ámbito educativo. 
+ * Su propósito es simplificar y agilizar el proceso de asignación de materias para el próximo curso académico. 
+ * Ofrece una interfaz intuitiva y eficiente para que los profesores elijan las materias que desean impartir, mientras que el administrador puede gestionar la asignación de horarios y materias de manera centralizada.
  * 
  * \section funcionalidades Funcionalidades Principales:
  * - Gestión de usuarios (profesores y administradores).
