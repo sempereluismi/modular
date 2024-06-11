@@ -3,9 +3,9 @@ function CardNoteBookElements ({ text, subtext }) {
   return (
     <div className='flex flex-col p-2 gap-1'>
       <div className='w-full relative'>
-        <div className='absolute top-4 left-16 text-xl font-semibold'>{text}</div>
+        <div className='absolute top-4 left-16 text-lg font-semibold'>{text}</div>
         <div className='bg-blue-500/70 w-full h-[2px] rounded-full mb-6 mt-10' />
-        <div className='absolute top-10 left-16 text-lg font-semibold'>{subtext}</div>
+        <div className='absolute top-10 left-16 text-lg text-nowrap font-semibold'>{subtext}</div>
         <div className='bg-blue-500/70 w-full h-[2px] rounded-full mb-6' />
         <div className='bg-blue-500/70 w-full h-[2px] rounded-full mb-6' />
         <div className='bg-blue-500/70 w-full h-[2px] rounded-full mb-6' />

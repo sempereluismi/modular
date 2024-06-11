@@ -1,10 +1,10 @@
-export function jsonToCsv (jsons) {
+export function jsonToCsv (arrayJson) {
   const csv = []
 
   // Define the manual header for empty JSONs
   const manualHeader = 'id;nombre;color;especialidad;horas_semanales;regimen;nombre_ciclo'
 
-  jsons.forEach(json => {
+  arrayJson.forEach(json => {
     const items = json
     if (items.length === 0) {
       // Add manual header for empty JSONs
@@ -31,14 +31,17 @@ export function jsonToFileCsv (csvText, fileName) {
   return new File([blob], fileName || 'modulos.csv', { type: 'text/csv' })
 }
 
-export function downloadCsv (json) {
-  const csvText = jsonToCsv(json)
+export function downloadCsv (arrayJson) {
+  const csvText = jsonToCsv(arrayJson)
   const blob = jsonToFileCsv(csvText)
   const url = window.URL.createObjectURL(blob)
   const a = document.createElement('a')
+  const date = new Date().toISOString().split('T')[0]
+  const fileName = `modelo-${date}.csv`
+
   a.setAttribute('hidden', '')
   a.setAttribute('href', url)
-  a.setAttribute('download', 'modulos.csv')
+  a.setAttribute('download', fileName)
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)

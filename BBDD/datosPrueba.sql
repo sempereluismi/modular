@@ -1,3 +1,4 @@
+use Modular;
 -- Insertar datos en la tabla 'tematica'
 INSERT INTO tematica (color) VALUES
 ('#b0f2c2'),
