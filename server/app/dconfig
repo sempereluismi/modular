@@ -906,7 +906,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  =    "./src/Application/Actions" "./src/Application/Actions/CSV" "./src/Application/Actions/Login" "./src/Application/Actions/Modulo" "./src/Application/Actions/Profesor" "./src/Application/Actions/Regimen" "./src/Application/db" "./src/Application/db/CSV" "./src/Application/db/Login" "./src/Application/db/Modulos" "./src/Application/db/Profesor" "./src/Application/db/Regimen" "./src/Application/Handlers" "./src/Application/Middleware" "./src/Application/Models" "./src/Application/ResponseEmitter" "./src/Application/Settings" "./app/routes.php"
+INPUT                  =    "./src/Application/Actions" "./src/Application/Actions/CSV" "./src/Application/Actions/Login" "./src/Application/Actions/Modulo" "./src/Application/Actions/Profesor" "./src/Application/Actions/Regimen" "./src/Application/db" "./src/Application/db/CSV" "./src/Application/db/Login" "./src/Application/db/Modulos" "./src/Application/db/Profesor" "./src/Application/db/Regimen" "./src/Application/Handlers" "./src/Application/Middleware" "./src/Application/Models" "./src/Application/ResponseEmitter" "./src/Application/Settings" "./app/routes.php" "./doxygen.php"
 
 
 # This tag can be used to specify the character encoding of the source files
