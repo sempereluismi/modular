@@ -132,13 +132,28 @@ class ComprobacionCSV extends Controller
         }
     }
 
-
+    /**
+     * Maneja la solicitud para listar los archivos de un profesor específico.
+     *
+     * @param $request La solicitud HTTP.
+     * @param $response La respuesta HTTP.
+     * @param $args Los argumentos de la ruta, incluyendo el ID del profesor.
+     * @return Response la lista de archivos del profesor.
+     */
     public function listFilesProfesor(Request $request, Response $response, array $args)
     {
         $files = CSVModel::listFilesProfesor($args['id']);
         return $this->returnResponse($response, $files, 200);
     }
 
+    /**
+     * Maneja la solicitud para listar el archivo más reciente de los administradores.
+     * 
+     * @param $request La solicitud HTTP.
+     * @param $response La respuesta HTTP.
+     * @param $args Los argumentos de la ruta, incluyendo el ID del departamento.
+     * @return Response la lista de archivos o un mensaje de error si ocurre una excepción.
+     */
     public function listFileAdmin(Request $request, Response $response, array $args)
     {
         try {

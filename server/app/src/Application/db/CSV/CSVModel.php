@@ -74,14 +74,14 @@ class CSVModel
         }
     }
 
-/**
- * Inserta un nuevo módulo en la base de datos.
- *
- * @param $modulos Arreglo con los datos del módulo a insertar.
- *                       Debe contener las claves: 'nombre', 'departamento', 'tematica', 
- *                       'especialidad', 'regimen', 'ciclo' y 'horas'.
- * @throws Exception Si ocurre un error en la inserción o si la especialidad, régimen o ciclo no se encuentran.
- */
+    /**
+    * Inserta un nuevo módulo en la base de datos.
+    *
+    * @param $modulos Arreglo con los datos del módulo a insertar.
+    *                       Debe contener las claves: 'nombre', 'departamento', 'tematica', 
+    *                       'especialidad', 'regimen', 'ciclo' y 'horas'.
+    * @throws Exception Si ocurre un error en la inserción o si la especialidad, régimen o ciclo no se encuentran.
+    */
 
     public static function insertarModulos(array $modulos)
     {
@@ -134,12 +134,12 @@ class CSVModel
     }
 
     /**
- * Guarda un archivo en la base de datos asociado a un profesor.
- *
- * @param $contentFile El contenido del archivo a guardar.
- * @param $id_profesor El ID del profesor al que se asocia el archivo.
- * @throws Exception Si ocurre un error al guardar el archivo.
- */
+    * Guarda un archivo en la base de datos asociado a un profesor.
+    *
+    * @param $contentFile El contenido del archivo a guardar.
+    * @param $id_profesor El ID del profesor al que se asocia el archivo.
+    * @throws Exception Si ocurre un error al guardar el archivo.
+    */
 
     public static function saveFiles($contentFile, $id_profesor) {
         try {
@@ -152,7 +152,14 @@ class CSVModel
         }
 
     }
-    
+
+    /**
+     * Lista los archivos de un profesor específico.
+     *
+     * @param $id_profesor El ID del profesor.
+     * @return Un arreglo con la información de los archivos.
+     * @throws Exception Si ocurre un error al ejecutar la consulta.
+     */
     public static function listFilesProfesor($id_profesor) {
         $sql = "SELECT * FROM modelo WHERE id_profesor = ? ORDER BY create_date DESC;";
         $dbInstance = DatabaseConnection::getInstance();
@@ -166,6 +173,13 @@ class CSVModel
         }
     }
 
+    /**
+     * Lista el archivo más reciente de los profesores administradores de un departamento específico.
+     *
+     * @param $id_departamento El ID del departamento.
+     * @return Un arreglo con la información del archivo más reciente de cada profesor administrador.
+     * @throws Exception Si ocurre un error al ejecutar la consulta.
+     */
     public static function listFileAdmin($id_departamento) {
         try {
             $profesores = "SELECT id FROM profesor WHERE id_departamento = ?;";
