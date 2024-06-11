@@ -8,3 +8,7 @@ export const COLORS = {
   PINK: '#ffC0CB',
   PURPLE: '#F9B7FF'
 }
+
+export const MAX_HORAS_SEMANALES = 20
+export const MIN_HORAS_SEMANALES = 18
+export const MAX_TIPOS_MODULOS = 2

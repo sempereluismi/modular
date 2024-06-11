@@ -48,7 +48,6 @@ export function ListaProfesores () {
       id: profesor.id,
       regimenes: allRegimen.find(regimen => regimen.tipo === profesor.regimen)?.id || 0
     }))
-    console.log(profesoresInicializados)
     const paginados = paginate(profesoresInicializados, pageSize)
     const currentPage = Math.max(1, Math.min(paginados.length, parseInt(page, 10)))
     setProfesores(paginados[currentPage - 1])
