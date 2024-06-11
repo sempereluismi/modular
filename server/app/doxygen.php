@@ -1,5 +1,7 @@
 <?php
 
+//Archivo para el main de la documentación
+
 /**
  * \mainpage MODULAR
  * 
