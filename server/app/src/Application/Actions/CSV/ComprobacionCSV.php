@@ -132,6 +132,23 @@ class ComprobacionCSV extends Controller
         }
     }
 
+
+    public function listFilesProfesor(Request $request, Response $response, array $args)
+    {
+        $files = CSVModel::listFilesProfesor($args['id']);
+        return $this->returnResponse($response, $files, 200);
+    }
+
+    public function listFileAdmin(Request $request, Response $response, array $args)
+    {
+        try {
+            $files = CSVModel::listFileAdmin($args['id']);
+        } catch (\Exception $e) {
+            return $this->returnResponse($response, ["error" => $e->getMessage()], $e->getCode());
+        }
+        return $this->returnResponse($response, $files, 200);
+    }
+
     /**
      * Verifica si un archivo subido es un archivo CSV.
      *

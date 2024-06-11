@@ -62,7 +62,8 @@ return function (App $app) {
         $group->group('/csv', function (Group $group) {
             $group->post('/upload/{id}', [ComprobacionCSV::class, 'uploadFiles']);
             $group->post('/save-model/{id}', [ComprobacionCSV::class, 'saveFiles']);
-            $group->get('/list/{id}', [ComprobacionCSV::class, 'listFiles']);
+            $group->get('/list-profesor/{id}', [ComprobacionCSV::class, 'listFilesProfesor']);
+            $group->get('/list-admin/{id}', [ComprobacionCSV::class, 'listFileAdmin']);
         });
 
         $group->group('/auth', function (Group $group) {

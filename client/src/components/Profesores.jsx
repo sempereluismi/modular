@@ -113,7 +113,7 @@ const MiniModulo = ({ profesor }) => {
             return (
               <li
                 key={modulo.id} id={modulo.id}
-                className='w-12 h-12 text-black cursor-grab active:cursor-grabbing animate-zoom-in animate-duration-[200ms]'
+                className='font-postit w-12 h-12 text-black cursor-grab active:cursor-grabbing animate-zoom-in animate-duration-[200ms]'
                 style={{ backgroundColor: modulo.color }}
                 draggable='true' onDragStart={handleDragStart} onDragEnd={handleDragEnd}
               >
