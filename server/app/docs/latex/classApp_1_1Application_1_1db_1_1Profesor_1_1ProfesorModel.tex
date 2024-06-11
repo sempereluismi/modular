@@ -1,0 +1,76 @@
+\hypertarget{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel}{}\doxysection{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}Profesor\+Model Class Reference}
+\label{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel}\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}ProfesorModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}ProfesorModel}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel_ad6db2876c015f774719f1a533e7fd946}{listar\+Profesor}} (string \$id=\char`\"{}\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Modelo para la gestión de profesores. 
+
+Definition at line \mbox{\hyperlink{ProfesorModel_8php_source_l00013}{13}} of file \mbox{\hyperlink{ProfesorModel_8php_source}{Profesor\+Model.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel_ad6db2876c015f774719f1a533e7fd946}\label{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel_ad6db2876c015f774719f1a533e7fd946}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}ProfesorModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}ProfesorModel}!listarProfesor@{listarProfesor}}
+\index{listarProfesor@{listarProfesor}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}ProfesorModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Profesor\textbackslash{}ProfesorModel}}
+\doxysubsubsection{\texorpdfstring{listarProfesor()}{listarProfesor()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Profesor\textbackslash{}\+Profesor\+Model\+::listar\+Profesor (\begin{DoxyParamCaption}\item[{string}]{\$id = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Lista los profesores, con opción de filtrarlos por departamento.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id} & El ID del departamento (opcional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La información de los profesores si se encuentran, 404 si no se encuentran, o un mensaje de error si ocurre una excepción. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ProfesorModel_8php_source_l00024}{24}} of file \mbox{\hyperlink{ProfesorModel_8php_source}{Profesor\+Model.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024                                                           : array}
+\DoxyCodeLine{00025     \{}
+\DoxyCodeLine{00026         \$sql = \textcolor{stringliteral}{"{}SELECT p.id, p.nombre, e.tipo as especializacion, (SELECT tipo FROM profesor\_regimen JOIN regimen as r ON id\_regimen = r.id WHERE p.id = id\_profesor) as id\_regimen}}
+\DoxyCodeLine{00027 \textcolor{stringliteral}{        FROM Modular.profesor AS p}}
+\DoxyCodeLine{00028 \textcolor{stringliteral}{        JOIN especialidad AS e ON p.id\_especialidad = e.id"{}};}
+\DoxyCodeLine{00029         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00030         \textcolor{keywordflow}{if} (\$id === \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{00031             \$sql .= \textcolor{stringliteral}{"{} order by p.fecha\_inicio"{}};}
+\DoxyCodeLine{00032             \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00033                 \$stmt = \$dbInstance-\/>execQuery(\$sql);}
+\DoxyCodeLine{00034                 \$result = self::addProfesor(\$stmt);}
+\DoxyCodeLine{00035                 \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{00036                 \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{00037             \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00038                 \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{00039             \}}
+\DoxyCodeLine{00040         \}}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00042         \$sql .= \textcolor{stringliteral}{"{} WHERE p.id\_departamento = ?"{}};}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00045             \$sql .= \textcolor{stringliteral}{"{} order by p.fecha\_inicio"{}};}
+\DoxyCodeLine{00046             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{00047             \$result = self::addProfesor(\$stmt);}
+\DoxyCodeLine{00048             \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{00049             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{00050         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00051             \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{00052         \}}
+\DoxyCodeLine{00053     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/db/\+Profesor/Profesor\+Model.\+php\end{DoxyCompactItemize}

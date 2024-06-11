@@ -1,0 +1,88 @@
+\hypertarget{classApp_1_1Application_1_1Settings_1_1Settings}{}\doxysection{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings Class Reference}
+\label{classApp_1_1Application_1_1Settings_1_1Settings}\index{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings@{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classApp_1_1Application_1_1Settings_1_1Settings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classApp_1_1Application_1_1Settings_1_1Settings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Settings_1_1Settings_aad1d3e35fcd83bfa90fc63a480217f05}{\+\_\+\+\_\+construct}} (array \$settings)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Settings_1_1Settings_a64068232a3f3ec8dc61f3c9c852b66a5}{get}} (string \$key=\textquotesingle{}\textquotesingle{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa la configuración de la aplicación. 
+
+Definition at line \mbox{\hyperlink{Settings_8php_source_l00010}{10}} of file \mbox{\hyperlink{Settings_8php_source}{Settings.\+php}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Settings_1_1Settings_aad1d3e35fcd83bfa90fc63a480217f05}\label{classApp_1_1Application_1_1Settings_1_1Settings_aad1d3e35fcd83bfa90fc63a480217f05}} 
+\index{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings@{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings@{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Settings\textbackslash{}\+Settings\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{array}]{\$settings }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Settings_8php_source_l00014}{14}} of file \mbox{\hyperlink{Settings_8php_source}{Settings.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015     \{}
+\DoxyCodeLine{00016         \$this-\/>settings = \$settings;}
+\DoxyCodeLine{00017     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Settings_1_1Settings_a64068232a3f3ec8dc61f3c9c852b66a5}\label{classApp_1_1Application_1_1Settings_1_1Settings_a64068232a3f3ec8dc61f3c9c852b66a5}} 
+\index{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings@{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings}!get@{get}}
+\index{get@{get}!App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings@{App\textbackslash{}Application\textbackslash{}Settings\textbackslash{}Settings}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Settings\textbackslash{}\+Settings\+::get (\begin{DoxyParamCaption}\item[{string}]{\$key = {\ttfamily \textquotesingle{}\textquotesingle{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interfaceApp_1_1Application_1_1Settings_1_1SettingsInterface_a36d831deebb9b8132f5314e9033617fa}{App\textbackslash{}\+Application\textbackslash{}\+Settings\textbackslash{}\+Settings\+Interface}}.
+
+
+
+Definition at line \mbox{\hyperlink{Settings_8php_source_l00022}{22}} of file \mbox{\hyperlink{Settings_8php_source}{Settings.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023     \{}
+\DoxyCodeLine{00024         \textcolor{keywordflow}{return} (empty(\$key)) ? \$this-\/>settings : \$this-\/>settings[\$key];}
+\DoxyCodeLine{00025     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Settings/Settings.\+php\end{DoxyCompactItemize}

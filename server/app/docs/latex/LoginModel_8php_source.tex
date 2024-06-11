@@ -1,0 +1,58 @@
+\hypertarget{LoginModel_8php_source}{}\doxysection{Login\+Model.\+php}
+\label{LoginModel_8php_source}\index{src/Application/db/Login/LoginModel.php@{src/Application/db/Login/LoginModel.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)db\(\backslash\)Login;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00007}00007 use \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{App\(\backslash\)Application\(\backslash\)db\(\backslash\)DatabaseConnection}};}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00008}00008 use PDO;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00013}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel}{LoginModel}}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00025}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_acbc9f74090cb0871688f5175592183a8}{00025}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_acbc9f74090cb0871688f5175592183a8}{login}}(\textcolor{keywordtype}{string} \$user, \textcolor{keywordtype}{string} \$password): array | int}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00026}00026     \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00027}00027         \$sql = \textcolor{stringliteral}{"{}SELECT password FROM Modular.profesor where email = ?;"{}};}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00028}00028         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00030}00030         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00031}00031             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$user]);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00032}00032             \$res = \$stmt-\/>fetch();}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00033}00033             \textcolor{keywordflow}{if} (\$res) \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00034}00034                 \textcolor{keywordflow}{if} (password\_verify(\$password, \$res[\textcolor{stringliteral}{"{}password"{}}])) \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00035}00035                     \$sql = \textcolor{stringliteral}{"{}SELECT pf.id, pf.nombre, (select count(id\_profesor) from profesor\_admin where id\_profesor = pf.id ) as jefe, pf.id\_departamento FROM Modular.profesor as pf where email = ?;"{}};}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00036}00036                     \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$user]);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00037}00037                     \$res = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00038}00038                     \textcolor{keywordflow}{return} \$res;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00039}00039                 \}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00040}00040             \}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00041}00041             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00042}00042         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00043}00043             \textcolor{keywordflow}{return} 500;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00044}00044         \} \textcolor{keywordflow}{finally} \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00045}00045             unset(\$stmt);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00046}00046         \}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00047}00047     \}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00058}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_a26d20fbd3d815fe6691f9eff7ea656e8}{00058}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_a26d20fbd3d815fe6691f9eff7ea656e8}{rol}}(\textcolor{keywordtype}{string} \$id): array | int}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00059}00059     \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00060}00060         \$sql = \textcolor{stringliteral}{"{}SELECT count(id\_profesor) as num FROM Modular.profesor\_admin where id\_profesor = ?;"{}};}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00061}00061         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00063}00063         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00064}00064             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00065}00065             \$res = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00066}00066             \textcolor{keywordflow}{if} (\$res[\textcolor{stringliteral}{"{}num"{}}] === 1) \textcolor{keywordflow}{return} 200;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00067}00067             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00068}00068         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00069}00069             \textcolor{keywordflow}{return} 500;}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00070}00070         \} \textcolor{keywordflow}{finally} \{}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00071}00071             unset(\$stmt);}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00072}00072         \}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00073}00073     \}}
+\DoxyCodeLine{\Hypertarget{LoginModel_8php_source_l00074}00074 \}}
+
+\end{DoxyCode}

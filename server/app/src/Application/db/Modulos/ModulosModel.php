@@ -7,8 +7,20 @@ namespace App\Application\db\Modulos;
 use App\Application\Models\Modulo;
 use App\Application\db\DatabaseConnection;
 
+/**
+ * Modelo para la gestión de módulos.
+ */
 class ModulosModel
 {
+    /**
+ * Lista los módulos, con opción de filtrarlos por departamento.
+ *
+ * @param $id El ID del departamento (opcional).
+ * @return La información de los módulos si se encuentran, 
+ *                   404 si no se encuentran, 
+ *                   o un mensaje de error si ocurre una excepción.
+ */
+
     public static function listarModulos(string $id = ""): array | int
     {
         $sql = "SELECT 
@@ -36,6 +48,14 @@ class ModulosModel
             return ["error" => $e->getMessage()];
         }
     }
+
+    /**
+ * Procesa los resultados de una consulta y los convierte en instancias de la clase Modulo.
+ *
+ * @param $stmt El objeto PDOStatement que contiene los resultados de la consulta.
+ * @return La información de los módulos si se encuentran, 
+ *                    o null si no se encuentran módulos.
+ */
 
     private static function addModulos($stmt)
     {

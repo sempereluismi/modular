@@ -1,0 +1,71 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1Controller}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1Controller}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classApp_1_1Application_1_1Actions_1_1Controller__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{return\+Response}} (Response \$response, array \$res, int \$status\+Code=200)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller}{Controller}}
+
+Esta clase proporciona métodos comunes que pueden ser utilizados por controladores específicos. 
+
+Definition at line \mbox{\hyperlink{Controller_8php_source_l00014}{14}} of file \mbox{\hyperlink{Controller_8php_source}{Controller.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}\label{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller}!returnResponse@{returnResponse}}
+\index{returnResponse@{returnResponse}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{returnResponse()}{returnResponse()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Controller\+::return\+Response (\begin{DoxyParamCaption}\item[{Response}]{\$response,  }\item[{array}]{\$res,  }\item[{int}]{\$status\+Code = {\ttfamily 200} }\end{DoxyParamCaption})}
+
+Retorna una respuesta HTTP con el contenido y el código de estado especificados.
+
+Este método configura la respuesta HTTP con el código de estado dado, establece el tipo de contenido a JSON y escribe el cuerpo de la respuesta con los datos proporcionados.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$response} & La respuesta HTTP que se configurará. \\
+\hline
+{\em \$res} & Los datos que se incluirán en el cuerpo de la respuesta. \\
+\hline
+{\em \$status\+Code} & El código de estado HTTP (por defecto es 200). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response\+Status devuelve el status configurado. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Controller_8php_source_l00029}{29}} of file \mbox{\hyperlink{Controller_8php_source}{Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029                                                                                          : Response}
+\DoxyCodeLine{00030     \{}
+\DoxyCodeLine{00031         \$responseStatus = \$response-\/>withStatus(\$statusCode);}
+\DoxyCodeLine{00032         \$responseStatus-\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'});}
+\DoxyCodeLine{00033         \$responseStatus-\/>getBody()-\/>write(json\_encode(\$res));}
+\DoxyCodeLine{00034         \textcolor{keywordflow}{return} \$responseStatus;}
+\DoxyCodeLine{00035     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/Controller.\+php\end{DoxyCompactItemize}

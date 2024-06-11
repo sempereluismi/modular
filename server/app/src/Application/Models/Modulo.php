@@ -6,6 +6,9 @@ namespace App\Application\Models;
 
 use App\Application\Models\ModelInterface;
 
+/**
+ * Clase que representa un módulo.
+ */
 class Modulo implements ModelInterface
 {
     private int $id;
@@ -16,6 +19,17 @@ class Modulo implements ModelInterface
     private int $horas_semanales;
     private string $nombre_ciclo;
 
+    /**
+     * Constructor de la clase Modulo.
+     *
+     * @param int $id El ID del módulo.
+     * @param string $nombre El nombre del módulo.
+     * @param string $color El color del módulo.
+     * @param string $especialidad La especialidad del módulo.
+     * @param int $horas_semanales Las horas semanales del módulo.
+     * @param string $regimen El régimen del módulo.
+     * @param string $nombre_ciclo El nombre del ciclo del módulo.
+     */
     public function __construct(int $id, string $nombre, string $color, string $especialidad, int $horas_semanales, string $regimen, string $nombre_ciclo)
     {
         $this->id = $id;
@@ -27,6 +41,11 @@ class Modulo implements ModelInterface
         $this->nombre_ciclo = $nombre_ciclo;
     }
 
+    /**
+     * Método para obtener los datos del módulo.
+     *
+     * @return array Los datos del módulo.
+     */
     public function getData() : array
     {
         return [

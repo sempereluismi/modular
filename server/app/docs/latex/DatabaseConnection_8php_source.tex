@@ -1,0 +1,63 @@
+\hypertarget{DatabaseConnection_8php_source}{}\doxysection{Database\+Connection.\+php}
+\label{DatabaseConnection_8php_source}\index{src/Application/db/DatabaseConnection.php@{src/Application/db/DatabaseConnection.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)db;}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00010}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{00010}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{DatabaseConnection}}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00012}00012     \textcolor{keyword}{private} \textcolor{keyword}{static} \$instance; \textcolor{comment}{// Instancia única de la clase}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00013}00013     \textcolor{keyword}{private} \$connection;}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00022}00022     \textcolor{keyword}{private} \textcolor{keyword}{function} \_\_construct()}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00023}00023     \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00024}00024         \$config = parse\_ini\_file(\_\_DIR\_\_ . \textcolor{stringliteral}{"{}/../../config/configbd.ini"{}}, \textcolor{keyword}{true})[\textcolor{stringliteral}{"{}bbdd"{}}];}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00025}00025         \$host = \$config[\textcolor{stringliteral}{"{}HOST"{}}];}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00026}00026         \$dbname = \$config[\textcolor{stringliteral}{"{}BBDD"{}}];}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00027}00027         \$username = \$config[\textcolor{stringliteral}{"{}USERNAME"{}}];}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00028}00028         \$password = \$config[\textcolor{stringliteral}{"{}PASSWORD"{}}];}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00030}00030         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00031}00031             \$this-\/>connection = new \(\backslash\)PDO(\textcolor{stringliteral}{"{}mysql:host=\$host;dbname=\$dbname"{}}, \$username, \$password);}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00032}00032             \textcolor{comment}{// Configuración adicional si es necesario}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00033}00033             \$this-\/>connection-\/>setAttribute(\(\backslash\)PDO::ATTR\_ERRMODE, \(\backslash\)PDO::ERRMODE\_EXCEPTION);}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00034}00034             \$this-\/>connection-\/>setAttribute(\(\backslash\)PDO::ATTR\_EMULATE\_PREPARES, \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00035}00035         \} \textcolor{keywordflow}{catch} (\(\backslash\)PDOException \$e) \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00036}00036             \textcolor{keywordflow}{throw} new \(\backslash\)Exception(\textcolor{stringliteral}{"{}Error al conectar a la base de datos: "{}} . \$e-\/>getMessage());}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00037}00037         \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00038}00038     \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00046}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{00046}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{getInstance}}()}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00047}00047     \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00048}00048         \textcolor{keywordflow}{if} (!isset(self::\$instance)) \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00049}00049             self::\$instance = \textcolor{keyword}{new} \textcolor{keyword}{self}();}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00050}00050         \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00051}00051         \textcolor{keywordflow}{return} self::\$instance;}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00052}00052     \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00060}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_ae780c6130ea1da8e41971728597e15cc}{00060}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_ae780c6130ea1da8e41971728597e15cc}{getConnection}}()}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00061}00061     \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00062}00062         \textcolor{keywordflow}{return} \$this-\/>connection;}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00063}00063     \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00069}00069     \textcolor{keyword}{private} \textcolor{keyword}{function} \_\_clone()}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00070}00070     \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00071}00071     \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00081}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a3e75de5806fef4fc425c4f0d69238c71}{00081}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a3e75de5806fef4fc425c4f0d69238c71}{execQuery}}(\$query, \$params = [])}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00082}00082     \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00083}00083         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00084}00084             \$stmt = \$this-\/>connection-\/>prepare(\$query);}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00085}00085             \$stmt-\/>execute(\$params);}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00086}00086             \textcolor{keywordflow}{return} \$stmt;}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00087}00087         \} \textcolor{keywordflow}{catch} (\(\backslash\)PDOException \$e) \{}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00088}00088             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00089}00089         \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00090}00090     \}}
+\DoxyCodeLine{\Hypertarget{DatabaseConnection_8php_source_l00091}00091 \}}
+
+\end{DoxyCode}

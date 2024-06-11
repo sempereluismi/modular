@@ -1,0 +1,66 @@
+\hypertarget{ModulosModel_8php_source}{}\doxysection{Modulos\+Model.\+php}
+\label{ModulosModel_8php_source}\index{src/Application/db/Modulos/ModulosModel.php@{src/Application/db/Modulos/ModulosModel.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)db\(\backslash\)Modulos;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00007}00007 use \mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Modulo}{App\(\backslash\)Application\(\backslash\)Models\(\backslash\)Modulo}};}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00008}00008 use \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{App\(\backslash\)Application\(\backslash\)db\(\backslash\)DatabaseConnection}};}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00013}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel}{ModulosModel}}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00024}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}{00024}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}{listarModulos}}(\textcolor{keywordtype}{string} \$id = \textcolor{stringliteral}{"{}"{}}): array | int}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00026}00026         \$sql = \textcolor{stringliteral}{"{}SELECT }}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00027}00027 \textcolor{stringliteral}{        rcm.id as id\_modulo, m.nombre as nombre\_modulo, t.color as color\_tematica, es.tipo as tipo\_especialidad, rcm.horas\_semanales as horas\_semanales, c.nombre as nombre\_ciclo, re.tipo as tipo\_regimen FROM modulo AS m JOIN tematica AS t JOIN especialidad AS es JOIN regimen\_ciclo\_modulo AS rcm JOIN ciclo AS c JOIN regimen AS re ON (m.id\_tematica = t.id AND m.id\_especialidad = es.id AND (m.id = rcm.id\_modulo) AND c.id = rcm.id\_ciclo AND re.id = rcm.id\_regimen)"{}};}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00028}00028         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00029}00029         \textcolor{keywordflow}{if} (\$id === \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00030}00030             \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00031}00031                 \$stmt = \$dbInstance-\/>execQuery(\$sql);}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00032}00032                 \$result = self::addModulos(\$stmt);}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00033}00033                 \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00034}00034                 \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00035}00035             \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00036}00036                 \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00037}00037             \}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00038}00038         \}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00040}00040         \$sql .= \textcolor{stringliteral}{"{} WHERE m.id\_departamento = ?"{}};}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00042}00042         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00043}00043             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00044}00044             \$result = self::addModulos(\$stmt);}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00045}00045             \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00046}00046             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00047}00047         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00048}00048             \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00049}00049         \}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00050}00050     \}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00060}00060     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{function} addModulos(\$stmt)}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00061}00061     \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00062}00062         \$count = 0;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00063}00063         \$result = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00064}00064         \textcolor{keywordflow}{while} (\$row = \$stmt-\/>fetch()) \{}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00065}00065             \$result[\$count] = \textcolor{keyword}{new} \mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Modulo}{Modulo}}(}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00066}00066                 \$row[\textcolor{stringliteral}{"{}id\_modulo"{}}],}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00067}00067                 \$row[\textcolor{stringliteral}{"{}nombre\_modulo"{}}],}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00068}00068                 \$row[\textcolor{stringliteral}{"{}color\_tematica"{}}],}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00069}00069                 \$row[\textcolor{stringliteral}{"{}tipo\_especialidad"{}}],}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00070}00070                 \$row[\textcolor{stringliteral}{"{}horas\_semanales"{}}],}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00071}00071                 \$row[\textcolor{stringliteral}{"{}tipo\_regimen"{}}],}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00072}00072                 \$row[\textcolor{stringliteral}{"{}nombre\_ciclo"{}}]}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00073}00073             );}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00074}00074             \$result[\$count] = \$result[\$count]-\/>getData();}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00075}00075             \$count++;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00076}00076         \}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00078}00078         \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00079}00079     \}}
+\DoxyCodeLine{\Hypertarget{ModulosModel_8php_source_l00080}00080 \}}
+
+\end{DoxyCode}

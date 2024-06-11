@@ -1,0 +1,46 @@
+\hypertarget{RegimenModel_8php_source}{}\doxysection{Regimen\+Model.\+php}
+\label{RegimenModel_8php_source}\index{src/Application/db/Regimen/RegimenModel.php@{src/Application/db/Regimen/RegimenModel.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)db\(\backslash\)Regimen;}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00008}00008 use \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{App\(\backslash\)Application\(\backslash\)db\(\backslash\)DatabaseConnection}};}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00013}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel}{RegimenModel}}}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00024}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_a7103e8ad9b44e1137bca59f147ad94f9}{00024}}   \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_a7103e8ad9b44e1137bca59f147ad94f9}{listarRegimen}}(\textcolor{keywordtype}{string} \$id)}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00025}00025   \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00026}00026     \$db = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00027}00027     \$sql = \textcolor{stringliteral}{"{}SELECT id, tipo FROM regimen where id\_departamento = ?;"{}};}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00028}00028     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00029}00029       \$stmt = \$db-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00030}00030       \$res = \$stmt-\/>fetchAll(\(\backslash\)PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00031}00031       \textcolor{keywordflow}{return} \$res;}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00032}00032     \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00033}00033       \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00034}00034     \}}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00035}00035   \}}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00046}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_abe988b4724ffcb9bf7a0801065b040bb}{00046}}   \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_abe988b4724ffcb9bf7a0801065b040bb}{inserirRegimen}}(array \$data)}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00047}00047   \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00048}00048     \$db = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00049}00049     \$sql = \textcolor{stringliteral}{"{}INSERT INTO profesor\_regimen (id\_regimen, id\_profesor) VALUES (?, ?) }}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00050}00050 \textcolor{stringliteral}{    ON DUPLICATE KEY UPDATE id\_regimen = VALUES(id\_regimen);"{}};}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00051}00051     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00052}00052       \textcolor{keywordflow}{foreach} (\$data as \$regimen) \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00053}00053         \$stmt = \$db-\/>execQuery(\$sql, [\$regimen[\textcolor{stringliteral}{'id\_regimenes'}], \$regimen[\textcolor{stringliteral}{'id\_profesor'}]]);}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00054}00054       \}}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00055}00055       \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}message"{}} => \textcolor{stringliteral}{"{}Regimen inserido com sucesso"{}}];}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00056}00056     \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00057}00057       \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00058}00058     \}}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00059}00059   \}}
+\DoxyCodeLine{\Hypertarget{RegimenModel_8php_source_l00060}00060 \}}
+
+\end{DoxyCode}

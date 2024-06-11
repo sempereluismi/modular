@@ -1,0 +1,113 @@
+\hypertarget{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel}{}\doxysection{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}Login\+Model Class Reference}
+\label{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel}\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_acbc9f74090cb0871688f5175592183a8}{login}} (string \$user, string \$password)
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_a26d20fbd3d815fe6691f9eff7ea656e8}{rol}} (string \$id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Modelo para la gestión de inicio de sesión de usuarios. 
+
+Definition at line \mbox{\hyperlink{LoginModel_8php_source_l00013}{13}} of file \mbox{\hyperlink{LoginModel_8php_source}{Login\+Model.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_acbc9f74090cb0871688f5175592183a8}\label{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_acbc9f74090cb0871688f5175592183a8}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel}!login@{login}}
+\index{login@{login}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Login\textbackslash{}\+Login\+Model\+::login (\begin{DoxyParamCaption}\item[{string}]{\$user,  }\item[{string}]{\$password }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Verifica las credenciales de un usuario y devuelve su información.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$user} & El correo electrónico del usuario. \\
+\hline
+{\em \$password} & La contraseña del usuario. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La información del usuario si las credenciales son correctas, 404 si las credenciales son incorrectas, o 500 si ocurre un error interno. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{LoginModel_8php_source_l00025}{25}} of file \mbox{\hyperlink{LoginModel_8php_source}{Login\+Model.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025                                                                 : array | \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00026     \{}
+\DoxyCodeLine{00027         \$sql = \textcolor{stringliteral}{"{}SELECT password FROM Modular.profesor where email = ?;"{}};}
+\DoxyCodeLine{00028         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00029 }
+\DoxyCodeLine{00030         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00031             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$user]);}
+\DoxyCodeLine{00032             \$res = \$stmt-\/>fetch();}
+\DoxyCodeLine{00033             \textcolor{keywordflow}{if} (\$res) \{}
+\DoxyCodeLine{00034                 \textcolor{keywordflow}{if} (password\_verify(\$password, \$res[\textcolor{stringliteral}{"{}password"{}}])) \{}
+\DoxyCodeLine{00035                     \$sql = \textcolor{stringliteral}{"{}SELECT pf.id, pf.nombre, (select count(id\_profesor) from profesor\_admin where id\_profesor = pf.id ) as jefe, pf.id\_departamento FROM Modular.profesor as pf where email = ?;"{}};}
+\DoxyCodeLine{00036                     \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$user]);}
+\DoxyCodeLine{00037                     \$res = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{00038                     \textcolor{keywordflow}{return} \$res;}
+\DoxyCodeLine{00039                 \}}
+\DoxyCodeLine{00040             \}}
+\DoxyCodeLine{00041             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{00042         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00043             \textcolor{keywordflow}{return} 500;}
+\DoxyCodeLine{00044         \} \textcolor{keywordflow}{finally} \{}
+\DoxyCodeLine{00045             unset(\$stmt);}
+\DoxyCodeLine{00046         \}}
+\DoxyCodeLine{00047     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_a26d20fbd3d815fe6691f9eff7ea656e8}\label{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_a26d20fbd3d815fe6691f9eff7ea656e8}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel}!rol@{rol}}
+\index{rol@{rol}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Login\textbackslash{}LoginModel}}
+\doxysubsubsection{\texorpdfstring{rol()}{rol()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Login\textbackslash{}\+Login\+Model\+::rol (\begin{DoxyParamCaption}\item[{string}]{\$id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Verifica si un profesor tiene el rol de administrador.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id} & El ID del profesor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+200 si el profesor tiene el rol de administrador, 404 si no tiene el rol de administrador, o 500 si ocurre un error interno. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{LoginModel_8php_source_l00058}{58}} of file \mbox{\hyperlink{LoginModel_8php_source}{Login\+Model.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058                                           : array | \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00059     \{}
+\DoxyCodeLine{00060         \$sql = \textcolor{stringliteral}{"{}SELECT count(id\_profesor) as num FROM Modular.profesor\_admin where id\_profesor = ?;"{}};}
+\DoxyCodeLine{00061         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00064             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{00065             \$res = \$stmt-\/>fetch(PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{00066             \textcolor{keywordflow}{if} (\$res[\textcolor{stringliteral}{"{}num"{}}] === 1) \textcolor{keywordflow}{return} 200;}
+\DoxyCodeLine{00067             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{00068         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00069             \textcolor{keywordflow}{return} 500;}
+\DoxyCodeLine{00070         \} \textcolor{keywordflow}{finally} \{}
+\DoxyCodeLine{00071             unset(\$stmt);}
+\DoxyCodeLine{00072         \}}
+\DoxyCodeLine{00073     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/db/\+Login/Login\+Model.\+php\end{DoxyCompactItemize}

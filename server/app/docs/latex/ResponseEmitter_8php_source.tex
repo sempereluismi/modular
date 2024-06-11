@@ -1,0 +1,41 @@
+\hypertarget{ResponseEmitter_8php_source}{}\doxysection{Response\+Emitter.\+php}
+\label{ResponseEmitter_8php_source}\index{src/Application/ResponseEmitter/ResponseEmitter.php@{src/Application/ResponseEmitter/ResponseEmitter.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)ResponseEmitter;}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00007}00007 use Psr\(\backslash\)Http\(\backslash\)Message\(\backslash\)ResponseInterface;}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00008}00008 use Slim\(\backslash\)ResponseEmitter as SlimResponseEmitter;}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00013}\mbox{\hyperlink{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter}{ResponseEmitter}} \textcolor{keyword}{extends} SlimResponseEmitter}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00023}\mbox{\hyperlink{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter_ac065b185f4a7feda63e6a92a1c024e4e}{00023}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter_ac065b185f4a7feda63e6a92a1c024e4e}{emit}}(ResponseInterface \$response): void}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00024}00024     \{}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00025}00025         \textcolor{comment}{// This variable should be set to the allowed host from which your API can be accessed with}}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00026}00026         \$origin = \$\_SERVER[\textcolor{stringliteral}{'HTTP\_ORIGIN'}] ?? \textcolor{stringliteral}{''};}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00028}00028         \$response = \$response}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00029}00029             -\/>withHeader(\textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Credentials'}, \textcolor{stringliteral}{'true'})}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00030}00030             -\/>withHeader(\textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Origin'}, \$origin)}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00031}00031             -\/>withHeader(}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00032}00032                 \textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Headers'},}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00033}00033                 \textcolor{stringliteral}{'X-\/Requested-\/With, Content-\/Type, Accept, Origin, Authorization'},}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00034}00034             )}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00035}00035             -\/>withHeader(\textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Methods'}, \textcolor{stringliteral}{'GET, POST, PUT, PATCH, DELETE, OPTIONS'})}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00036}00036             -\/>withHeader(\textcolor{stringliteral}{'Cache-\/Control'}, \textcolor{stringliteral}{'no-\/store, no-\/cache, must-\/revalidate, max-\/age=0'})}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00037}00037             -\/>withAddedHeader(\textcolor{stringliteral}{'Cache-\/Control'}, \textcolor{stringliteral}{'post-\/check=0, pre-\/check=0'})}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00038}00038             -\/>withHeader(\textcolor{stringliteral}{'Pragma'}, \textcolor{stringliteral}{'no-\/cache'});}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00040}00040         \textcolor{keywordflow}{if} (ob\_get\_contents()) \{}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00041}00041             ob\_clean();}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00042}00042         \}}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00044}00044         parent::emit(\$response);}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00045}00045     \}}
+\DoxyCodeLine{\Hypertarget{ResponseEmitter_8php_source_l00046}00046 \}}
+
+\end{DoxyCode}

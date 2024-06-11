@@ -1,0 +1,320 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1Action}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1Action}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{classApp_1_1Application_1_1Actions_1_1Action__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_ab157f9fc18a4c1464c7b162983ec6610}{\+\_\+\+\_\+construct}} (Logger\+Interface \$logger)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a36904060f766249f65ad68ad2c801ade}{\+\_\+\+\_\+invoke}} (Request \$request, Response \$response, array \$args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}{action}} ()
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a39f39863a5231765cd657d56a2dd57de}{get\+Form\+Data}} ()
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a4363b48e7b97f2ea6474b3bae8d7aa21}{resolve\+Arg}} (string \$name)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a77c3f28203d8978c33e4ad13f9f5ad53}{respond\+With\+Data}} (\$data=null, int \$status\+Code=200)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}{respond}} (\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{Action\+Payload}} \$payload)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Logger\+Interface \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a4545892b99aed7217984c70c9d630558}{\$logger}}
+\item 
+Request \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_ab44adf3b7625cce5c47e3f08c7b01fca}{\$request}}
+\item 
+Response \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a2aaede2b654be91929e0930bb70f6e09}{\$response}}
+\item 
+array \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a3545c914e700112f870286536f004357}{\$args}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase abstracta \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action}{Action}}
+
+Esta clase proporciona una base para todas las acciones de la aplicación, gestionando la solicitud, la respuesta y los argumentos, así como manejando excepciones comunes. 
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00020}{20}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_ab157f9fc18a4c1464c7b162983ec6610}\label{classApp_1_1Application_1_1Actions_1_1Action_ab157f9fc18a4c1464c7b162983ec6610}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Logger\+Interface}]{\$logger }\end{DoxyParamCaption})}
+
+Constructor de la clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action}{Action}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+Logger\+Interface & {\em \$logger} & El logger para registrar información y errores. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00037}{37}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038     \{}
+\DoxyCodeLine{00039         \$this-\/>logger = \$logger;}
+\DoxyCodeLine{00040     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a36904060f766249f65ad68ad2c801ade}\label{classApp_1_1Application_1_1Actions_1_1Action_a36904060f766249f65ad68ad2c801ade}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\_\_invoke@{\_\_invoke}}
+\index{\_\_invoke@{\_\_invoke}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{\_\_invoke()}{\_\_invoke()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::\+\_\+\+\_\+invoke (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Invoca la acción y maneja las excepciones comunes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP. \\
+\hline
+{\em \$response} & La respuesta HTTP. \\
+\hline
+{\em \$args} & Argumentos adicionales. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response devuelve la acción. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Http\+Not\+Found\+Exception} & Si no se encuentra el registro de dominio. \\
+\hline
+{\em Http\+Bad\+Request\+Exception} & Si hay un error en la solicitud. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00053}{53}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053                                                                                : Response}
+\DoxyCodeLine{00054     \{}
+\DoxyCodeLine{00055         \$this-\/>request = \$request;}
+\DoxyCodeLine{00056         \$this-\/>response = \$response;}
+\DoxyCodeLine{00057         \$this-\/>args = \$args;}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00060             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}{action}}();}
+\DoxyCodeLine{00061         \} \textcolor{keywordflow}{catch} (DomainRecordNotFoundException \$e) \{}
+\DoxyCodeLine{00062             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} HttpNotFoundException(\$this-\/>request, \$e-\/>getMessage());}
+\DoxyCodeLine{00063         \}}
+\DoxyCodeLine{00064     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}\label{classApp_1_1Application_1_1Actions_1_1Action_a9431ceeaff80e858ffe5349f3c2b6cfb}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!action@{action}}
+\index{action@{action}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}, {\ttfamily [protected]}}
+
+Ejecuta la acción.
+
+Este método debe ser implementado por las subclases para definir la lógica específica de la acción.
+
+\begin{DoxyReturn}{Returns}
+Response La respuesta HTTP resultante de la acción. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Domain\+Record\+Not\+Found\+Exception} & Si no se encuentra el registro de dominio. \\
+\hline
+{\em Http\+Bad\+Request\+Exception} & Si hay un error en la solicitud. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a39f39863a5231765cd657d56a2dd57de}\label{classApp_1_1Application_1_1Actions_1_1Action_a39f39863a5231765cd657d56a2dd57de}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!getFormData@{getFormData}}
+\index{getFormData@{getFormData}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{getFormData()}{getFormData()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::get\+Form\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Obtiene los datos del formulario de la solicitud.
+
+\begin{DoxyReturn}{Returns}
+array$\vert$object Los datos del formulario. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00083}{83}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084     \{}
+\DoxyCodeLine{00085         \textcolor{keywordflow}{return} \$this-\/>request-\/>getParsedBody();}
+\DoxyCodeLine{00086     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a4363b48e7b97f2ea6474b3bae8d7aa21}\label{classApp_1_1Application_1_1Actions_1_1Action_a4363b48e7b97f2ea6474b3bae8d7aa21}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!resolveArg@{resolveArg}}
+\index{resolveArg@{resolveArg}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{resolveArg()}{resolveArg()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::resolve\+Arg (\begin{DoxyParamCaption}\item[{string}]{\$name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Resuelve un argumento de la solicitud.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$name} & El nombre del argumento. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed El valor del argumento. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Http\+Bad\+Request\+Exception} & Si no se puede resolver el argumento. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00095}{95}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00096     \{}
+\DoxyCodeLine{00097         \textcolor{keywordflow}{if} (!isset(\$this-\/>args[\$name])) \{}
+\DoxyCodeLine{00098             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} HttpBadRequestException(\$this-\/>request, \textcolor{stringliteral}{"{}Could not resolve argument `\{\$name\}`."{}});}
+\DoxyCodeLine{00099         \}}
+\DoxyCodeLine{00100 }
+\DoxyCodeLine{00101         \textcolor{keywordflow}{return} \$this-\/>args[\$name];}
+\DoxyCodeLine{00102     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}\label{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!respond@{respond}}
+\index{respond@{respond}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{respond()}{respond()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::respond (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionPayload}{Action\+Payload}}}]{\$payload }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Responde con el payload proporcionado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$payload} & El payload para incluir en la respuesta. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response La respuesta HTTP. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00126}{126}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126                                                       : Response}
+\DoxyCodeLine{00127     \{}
+\DoxyCodeLine{00128         \$json = json\_encode(\$payload, JSON\_PRETTY\_PRINT);}
+\DoxyCodeLine{00129         \$this-\/>response-\/>getBody()-\/>write(\$json);}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{return} \$this-\/>response}
+\DoxyCodeLine{00132                     -\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'})}
+\DoxyCodeLine{00133                     -\/>withStatus(\$payload-\/>getStatusCode());}
+\DoxyCodeLine{00134     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a77c3f28203d8978c33e4ad13f9f5ad53}\label{classApp_1_1Application_1_1Actions_1_1Action_a77c3f28203d8978c33e4ad13f9f5ad53}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!respondWithData@{respondWithData}}
+\index{respondWithData@{respondWithData}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{respondWithData()}{respondWithData()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::respond\+With\+Data (\begin{DoxyParamCaption}\item[{}]{\$data = {\ttfamily null},  }\item[{int}]{\$status\+Code = {\ttfamily 200} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Responde con los datos proporcionados y un código de estado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$data} & Los datos para incluir en la respuesta. \\
+\hline
+{\em \$status\+Code} & El código de estado HTTP (por defecto es 200). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response La respuesta HTTP. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00112}{112}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112                                                                            : Response}
+\DoxyCodeLine{00113     \{}
+\DoxyCodeLine{00114         \$payload = \textcolor{keyword}{new} ActionPayload(\$statusCode, \$data);}
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Action_a92599eb193becbb0e458e97ea0c44680}{respond}}(\$payload);}
+\DoxyCodeLine{00117     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a3545c914e700112f870286536f004357}\label{classApp_1_1Application_1_1Actions_1_1Action_a3545c914e700112f870286536f004357}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$args@{\$args}}
+\index{\$args@{\$args}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{\$args}{$args}}
+{\footnotesize\ttfamily array App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::\$args\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00028}{28}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a4545892b99aed7217984c70c9d630558}\label{classApp_1_1Application_1_1Actions_1_1Action_a4545892b99aed7217984c70c9d630558}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$logger@{\$logger}}
+\index{\$logger@{\$logger}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{\$logger}{$logger}}
+{\footnotesize\ttfamily Logger\+Interface App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::\$logger\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00022}{22}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_ab44adf3b7625cce5c47e3f08c7b01fca}\label{classApp_1_1Application_1_1Actions_1_1Action_ab44adf3b7625cce5c47e3f08c7b01fca}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$request@{\$request}}
+\index{\$request@{\$request}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{\$request}{$request}}
+{\footnotesize\ttfamily Request App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::\$request\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00024}{24}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Action_a2aaede2b654be91929e0930bb70f6e09}\label{classApp_1_1Application_1_1Actions_1_1Action_a2aaede2b654be91929e0930bb70f6e09}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}!\$response@{\$response}}
+\index{\$response@{\$response}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Action}}
+\doxysubsubsection{\texorpdfstring{\$response}{$response}}
+{\footnotesize\ttfamily Response App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Action\+::\$response\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{Action_8php_source_l00026}{26}} of file \mbox{\hyperlink{Action_8php_source}{Action.\+php}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/Action.\+php\end{DoxyCompactItemize}

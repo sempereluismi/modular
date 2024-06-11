@@ -1,0 +1,29 @@
+\hypertarget{SessionMiddleware_8php_source}{}\doxysection{Session\+Middleware.\+php}
+\label{SessionMiddleware_8php_source}\index{src/Application/Middleware/SessionMiddleware.php@{src/Application/Middleware/SessionMiddleware.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)Middleware;}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00007}00007 use Psr\(\backslash\)Http\(\backslash\)Message\(\backslash\)ResponseInterface as Response;}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00008}00008 use Psr\(\backslash\)Http\(\backslash\)Message\(\backslash\)ServerRequestInterface as Request;}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00009}00009 use Psr\(\backslash\)Http\(\backslash\)Server\(\backslash\)MiddlewareInterface as Middleware;}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00010}00010 use Psr\(\backslash\)Http\(\backslash\)Server\(\backslash\)RequestHandlerInterface as RequestHandler;}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00015}\mbox{\hyperlink{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware}{00015}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware}{SessionMiddleware}} \textcolor{keyword}{implements} Middleware}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00016}00016 \{}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00026}\mbox{\hyperlink{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware_aa501307e6a95f325253b07e80328908a}{00026}}     \textcolor{keyword}{public} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1Middleware_1_1SessionMiddleware_aa501307e6a95f325253b07e80328908a}{process}}(Request \$request, RequestHandler \$handler): Response}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00027}00027     \{}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00028}00028         \textcolor{keywordflow}{if} (isset(\$\_SERVER[\textcolor{stringliteral}{'HTTP\_AUTHORIZATION'}])) \{}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00029}00029             session\_start();}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00030}00030             \$request = \$request-\/>withAttribute(\textcolor{stringliteral}{'session'}, \$\_SESSION);}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00031}00031         \}}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00033}00033         \textcolor{keywordflow}{return} \$handler-\/>handle(\$request);}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00034}00034     \}}
+\DoxyCodeLine{\Hypertarget{SessionMiddleware_8php_source_l00035}00035 \}}
+
+\end{DoxyCode}

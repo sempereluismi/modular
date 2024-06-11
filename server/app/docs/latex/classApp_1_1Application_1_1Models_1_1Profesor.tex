@@ -1,0 +1,116 @@
+\hypertarget{classApp_1_1Application_1_1Models_1_1Profesor}{}\doxysection{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor Class Reference}
+\label{classApp_1_1Application_1_1Models_1_1Profesor}\index{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor@{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classApp_1_1Application_1_1Models_1_1Profesor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classApp_1_1Application_1_1Models_1_1Profesor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor_a05343441233ee725f3d6be7a20086e98}{\+\_\+\+\_\+construct}} (int \$id, string \$nombre, string \$especializacion, array \$afin, string \$regimen=\char`\"{}\char`\"{})
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor_a400214e8171d8a8862879986a5161cec}{get\+Data}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa un profesor. 
+
+Definition at line \mbox{\hyperlink{Profesor_8php_source_l00012}{12}} of file \mbox{\hyperlink{Profesor_8php_source}{Profesor.\+php}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Models_1_1Profesor_a05343441233ee725f3d6be7a20086e98}\label{classApp_1_1Application_1_1Models_1_1Profesor_a05343441233ee725f3d6be7a20086e98}} 
+\index{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor@{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor@{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Models\textbackslash{}\+Profesor\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{int}]{\$id,  }\item[{string}]{\$nombre,  }\item[{string}]{\$especializacion,  }\item[{array}]{\$afin,  }\item[{string}]{\$regimen = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+Constructor de la clase \mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor}{Profesor}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & El ID del profesor. \\
+\hline
+string & {\em \$nombre} & El nombre del profesor. \\
+\hline
+string & {\em \$especializacion} & La especialización del profesor. \\
+\hline
+array & {\em \$afin} & Las especialidades en las que el profesor tiene afinidad. \\
+\hline
+string & {\em \$regimen} & El régimen del profesor (opcional). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Profesor_8php_source_l00029}{29}} of file \mbox{\hyperlink{Profesor_8php_source}{Profesor.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030     \{}
+\DoxyCodeLine{00031         \$this-\/>\textcolor{keywordtype}{id} = \$id;}
+\DoxyCodeLine{00032         \$this-\/>nombre = \$nombre;}
+\DoxyCodeLine{00033         \$this-\/>especializacion = \$especializacion;}
+\DoxyCodeLine{00034         \$this-\/>regimen = \$regimen;}
+\DoxyCodeLine{00035         \$this-\/>afin = \$afin;}
+\DoxyCodeLine{00036     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Models_1_1Profesor_a400214e8171d8a8862879986a5161cec}\label{classApp_1_1Application_1_1Models_1_1Profesor_a400214e8171d8a8862879986a5161cec}} 
+\index{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor@{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor}!getData@{getData}}
+\index{getData@{getData}!App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor@{App\textbackslash{}Application\textbackslash{}Models\textbackslash{}Profesor}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Models\textbackslash{}\+Profesor\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Método para obtener los datos del profesor.
+
+\begin{DoxyReturn}{Returns}
+array Los datos del profesor. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interfaceApp_1_1Application_1_1Models_1_1ModelInterface_a4a995dd2dcc387b74ee4e14e081fc1a4}{App\textbackslash{}\+Application\textbackslash{}\+Models\textbackslash{}\+Model\+Interface}}.
+
+
+
+Definition at line \mbox{\hyperlink{Profesor_8php_source_l00043}{43}} of file \mbox{\hyperlink{Profesor_8php_source}{Profesor.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043                               : array}
+\DoxyCodeLine{00044     \{}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{return} [}
+\DoxyCodeLine{00046             \textcolor{stringliteral}{"{}id"{}} => \$this-\/>id,}
+\DoxyCodeLine{00047             \textcolor{stringliteral}{"{}nombre"{}} => \$this-\/>nombre,}
+\DoxyCodeLine{00048             \textcolor{stringliteral}{"{}especializacion"{}} => \$this-\/>especializacion,}
+\DoxyCodeLine{00049             \textcolor{stringliteral}{"{}regimen"{}} => \$this-\/>regimen,}
+\DoxyCodeLine{00050             \textcolor{stringliteral}{"{}afin"{}} => \$this-\/>afin}
+\DoxyCodeLine{00051         ];}
+\DoxyCodeLine{00052     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Models/Profesor.\+php\end{DoxyCompactItemize}

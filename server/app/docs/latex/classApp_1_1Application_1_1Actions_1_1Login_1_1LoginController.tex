@@ -1,0 +1,142 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}Login\+Controller Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}Login\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}Login\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController_a671a2d6c3de1eb308c7771b7a50011b4}{login}} (Request \$request, Response \$response, array \$args)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController_a409cd06dc456056c048082db0de080eb}{rol}} (Request \$request, Response \$response, array \$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController}{Login\+Controller}}
+
+Esta clase maneja las operaciones relacionadas con el inicio de sesión y la obtención de roles de usuario. 
+
+Definition at line \mbox{\hyperlink{LoginController_8php_source_l00017}{17}} of file \mbox{\hyperlink{LoginController_8php_source}{Login\+Controller.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController_a671a2d6c3de1eb308c7771b7a50011b4}\label{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController_a671a2d6c3de1eb308c7771b7a50011b4}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController}!login@{login}}
+\index{login@{login}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Login\textbackslash{}\+Login\+Controller\+::login (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Maneja el proceso de inicio de sesión.
+
+Este método recibe las credenciales de inicio de sesión, las valida y retorna el resultado del intento de inicio de sesión.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & contiene los datos de inicio de sesión. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve si algo salió mal o si se ha logeado bien. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{LoginController_8php_source_l00031}{31}} of file \mbox{\hyperlink{LoginController_8php_source}{Login\+Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031                                                                             : Response}
+\DoxyCodeLine{00032     \{}
+\DoxyCodeLine{00033         \$data = \$request-\/>getParsedBody();}
+\DoxyCodeLine{00034         \$email = \$data[\textcolor{stringliteral}{"{}email"{}}];}
+\DoxyCodeLine{00035         \$password = \$data[\textcolor{stringliteral}{"{}password"{}}];}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037         \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_acbc9f74090cb0871688f5175592183a8}{LoginModel::login}}(\$email, \$password);}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039         \textcolor{keywordflow}{if} (gettype(\$res) === \textcolor{stringliteral}{"{}array"{}}) \{}
+\DoxyCodeLine{00040             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res);}
+\DoxyCodeLine{00041         \}}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043         \textcolor{keywordflow}{if} (\$res === 200) \{}
+\DoxyCodeLine{00044             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}userInfo"{}} => \textcolor{stringliteral}{"{}login completo"{}}]);}
+\DoxyCodeLine{00045         \}}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}algo fue mal => "{}} . \$res], \$res);}
+\DoxyCodeLine{00048     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController_a409cd06dc456056c048082db0de080eb}\label{classApp_1_1Application_1_1Actions_1_1Login_1_1LoginController_a409cd06dc456056c048082db0de080eb}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController}!rol@{rol}}
+\index{rol@{rol}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Login\textbackslash{}LoginController}}
+\doxysubsubsection{\texorpdfstring{rol()}{rol()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Login\textbackslash{}\+Login\+Controller\+::rol (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Obtiene el rol de un usuario basado en su ID.
+
+Este método recibe un ID de usuario y retorna el rol asociado con ese ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales que contienen el \textquotesingle{}id\textquotesingle{} del usuario. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve el rol que tiene el usuario o si algo salió mal. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{LoginController_8php_source_l00061}{61}} of file \mbox{\hyperlink{LoginController_8php_source}{Login\+Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062     \{}
+\DoxyCodeLine{00063         \$id = (isset(\$args[\textcolor{stringliteral}{"{}id"{}}])) ? \$args[\textcolor{stringliteral}{"{}id"{}}] : \textcolor{keyword}{null};}
+\DoxyCodeLine{00064         \textcolor{keywordflow}{if} (\$id === \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}Method Not Allowed"{}}], 405);}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066         \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Login_1_1LoginModel_a26d20fbd3d815fe6691f9eff7ea656e8}{LoginModel::rol}}(\$id);}
+\DoxyCodeLine{00067         \textcolor{keywordflow}{if} (gettype(\$res) === \textcolor{stringliteral}{"{}array"{}}) \{}
+\DoxyCodeLine{00068             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res);}
+\DoxyCodeLine{00069         \}}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072         \textcolor{keywordflow}{if} (\$res === 500) \{}
+\DoxyCodeLine{00073             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}something wrong"{}}], \$res);}
+\DoxyCodeLine{00074         \}}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076         \textcolor{keywordflow}{if} (\$res === 404) \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}rol"{}} => \textcolor{stringliteral}{"{}0"{}}], 200);}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}rol"{}} => 1]);}
+\DoxyCodeLine{00079     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/\+Login/Login\+Controller.\+php\end{DoxyCompactItemize}

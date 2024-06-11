@@ -1,0 +1,80 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}Modulo\+Controller Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}ModuloController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}ModuloController}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}Modulo\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}Modulo\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController_a757163bace35ba980b4201bf533f212d}{listar\+Modulo}} (Request \$request, Response \$response, array \$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController}{Modulo\+Controller}}
+
+Esta clase maneja las operaciones relacionadas con los módulos. 
+
+Definition at line \mbox{\hyperlink{ModuloController_8php_source_l00017}{17}} of file \mbox{\hyperlink{ModuloController_8php_source}{Modulo\+Controller.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController_a757163bace35ba980b4201bf533f212d}\label{classApp_1_1Application_1_1Actions_1_1Modulo_1_1ModuloController_a757163bace35ba980b4201bf533f212d}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}ModuloController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}ModuloController}!listarModulo@{listarModulo}}
+\index{listarModulo@{listarModulo}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}ModuloController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Modulo\textbackslash{}ModuloController}}
+\doxysubsubsection{\texorpdfstring{listarModulo()}{listarModulo()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Modulo\textbackslash{}\+Modulo\+Controller\+::listar\+Modulo (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Lista los módulos según el ID de departamento.
+
+Este método recibe un ID de departamento y retorna una lista de módulos asociados a ese departamento. Si no se proporciona un ID, se listan todos los módulos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales que contienen el \textquotesingle{}id\textquotesingle{} del departamento. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve la lista de módulos 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ModuloController_8php_source_l00032}{32}} of file \mbox{\hyperlink{ModuloController_8php_source}{Modulo\+Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032                                                                                    : Response}
+\DoxyCodeLine{00033     \{}
+\DoxyCodeLine{00034         \$id = (isset(\$args[\textcolor{stringliteral}{"{}id"{}}])) ? \$args[\textcolor{stringliteral}{"{}id"{}}] : \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00035         \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}{ModulosModel::listarModulos}}(\$id);}
+\DoxyCodeLine{00036         \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res);}
+\DoxyCodeLine{00037     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/\+Modulo/Modulo\+Controller.\+php\end{DoxyCompactItemize}

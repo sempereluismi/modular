@@ -1,0 +1,73 @@
+\hypertarget{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel}{}\doxysection{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}Modulos\+Model Class Reference}
+\label{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel}\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}ModulosModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}ModulosModel}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}{listar\+Modulos}} (string \$id=\char`\"{}\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Modelo para la gestión de módulos. 
+
+Definition at line \mbox{\hyperlink{ModulosModel_8php_source_l00013}{13}} of file \mbox{\hyperlink{ModulosModel_8php_source}{Modulos\+Model.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}\label{classApp_1_1Application_1_1db_1_1Modulos_1_1ModulosModel_a938746fb5ad0897f6036be53099c9ee3}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}ModulosModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}ModulosModel}!listarModulos@{listarModulos}}
+\index{listarModulos@{listarModulos}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}ModulosModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Modulos\textbackslash{}ModulosModel}}
+\doxysubsubsection{\texorpdfstring{listarModulos()}{listarModulos()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Modulos\textbackslash{}\+Modulos\+Model\+::listar\+Modulos (\begin{DoxyParamCaption}\item[{string}]{\$id = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Lista los módulos, con opción de filtrarlos por departamento.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id} & El ID del departamento (opcional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La información de los módulos si se encuentran, 404 si no se encuentran, o un mensaje de error si ocurre una excepción. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ModulosModel_8php_source_l00024}{24}} of file \mbox{\hyperlink{ModulosModel_8php_source}{Modulos\+Model.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024                                                          : array | \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00025     \{}
+\DoxyCodeLine{00026         \$sql = \textcolor{stringliteral}{"{}SELECT }}
+\DoxyCodeLine{00027 \textcolor{stringliteral}{        rcm.id as id\_modulo, m.nombre as nombre\_modulo, t.color as color\_tematica, es.tipo as tipo\_especialidad, rcm.horas\_semanales as horas\_semanales, c.nombre as nombre\_ciclo, re.tipo as tipo\_regimen FROM modulo AS m JOIN tematica AS t JOIN especialidad AS es JOIN regimen\_ciclo\_modulo AS rcm JOIN ciclo AS c JOIN regimen AS re ON (m.id\_tematica = t.id AND m.id\_especialidad = es.id AND (m.id = rcm.id\_modulo) AND c.id = rcm.id\_ciclo AND re.id = rcm.id\_regimen)"{}};}
+\DoxyCodeLine{00028         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00029         \textcolor{keywordflow}{if} (\$id === \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{00030             \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00031                 \$stmt = \$dbInstance-\/>execQuery(\$sql);}
+\DoxyCodeLine{00032                 \$result = self::addModulos(\$stmt);}
+\DoxyCodeLine{00033                 \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{00034                 \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{00035             \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00036                 \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{00037             \}}
+\DoxyCodeLine{00038         \}}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040         \$sql .= \textcolor{stringliteral}{"{} WHERE m.id\_departamento = ?"{}};}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00042         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00043             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{00044             \$result = self::addModulos(\$stmt);}
+\DoxyCodeLine{00045             \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{00046             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{00047         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00048             \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{00049         \}}
+\DoxyCodeLine{00050     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/db/\+Modulos/Modulos\+Model.\+php\end{DoxyCompactItemize}

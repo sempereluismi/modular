@@ -1,0 +1,64 @@
+\hypertarget{ProfesorModel_8php_source}{}\doxysection{Profesor\+Model.\+php}
+\label{ProfesorModel_8php_source}\index{src/Application/db/Profesor/ProfesorModel.php@{src/Application/db/Profesor/ProfesorModel.php}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00001}00001 <?php}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00003}00003 declare(strict\_types=1);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00005}00005 \textcolor{keyword}{namespace }App\(\backslash\)Application\(\backslash\)db\(\backslash\)Profesor;}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00007}00007 use \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection}{App\(\backslash\)Application\(\backslash\)db\(\backslash\)DatabaseConnection}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00008}00008 use \mbox{\hyperlink{classApp_1_1Application_1_1Models_1_1Profesor}{App\(\backslash\)Application\(\backslash\)Models\(\backslash\)Profesor}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00013}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel}{ProfesorModel}}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00024}\mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel_ad6db2876c015f774719f1a533e7fd946}{00024}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{function} \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Profesor_1_1ProfesorModel_ad6db2876c015f774719f1a533e7fd946}{listarProfesor}}(\textcolor{keywordtype}{string} \$id = \textcolor{stringliteral}{"{}"{}}): array}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00026}00026         \$sql = \textcolor{stringliteral}{"{}SELECT p.id, p.nombre, e.tipo as especializacion, (SELECT tipo FROM profesor\_regimen JOIN regimen as r ON id\_regimen = r.id WHERE p.id = id\_profesor) as id\_regimen}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00027}00027 \textcolor{stringliteral}{        FROM Modular.profesor AS p}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00028}00028 \textcolor{stringliteral}{        JOIN especialidad AS e ON p.id\_especialidad = e.id"{}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00029}00029         \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00030}00030         \textcolor{keywordflow}{if} (\$id === \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00031}00031             \$sql .= \textcolor{stringliteral}{"{} order by p.fecha\_inicio"{}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00032}00032             \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00033}00033                 \$stmt = \$dbInstance-\/>execQuery(\$sql);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00034}00034                 \$result = self::addProfesor(\$stmt);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00035}00035                 \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00036}00036                 \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00037}00037             \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00038}00038                 \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00039}00039             \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00040}00040         \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00042}00042         \$sql .= \textcolor{stringliteral}{"{} WHERE p.id\_departamento = ?"{}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00044}00044         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00045}00045             \$sql .= \textcolor{stringliteral}{"{} order by p.fecha\_inicio"{}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00046}00046             \$stmt = \$dbInstance-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00047}00047             \$result = self::addProfesor(\$stmt);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00048}00048             \textcolor{keywordflow}{if} (\$result !== \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00049}00049             \textcolor{keywordflow}{return} 404;}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00050}00050         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00051}00051             \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00052}00052         \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00053}00053     \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00064}00064     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{function} addProfesor(\$stmt) \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00065}00065         \$sql = \textcolor{stringliteral}{"{}SELECT e.tipo as afin FROM Modular.afin as a JOIN especialidad AS e ON (a.id\_especialidad = e.id) where id\_profesor = ?;"{}};}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00066}00066         \textcolor{keywordflow}{while} (\$row = \$stmt-\/>fetch()) \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00067}00067             \$dbInstance = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00068}00068             \$stmt2 = \$dbInstance-\/>execQuery(\$sql, [\$row[\textcolor{stringliteral}{'id'}]]);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00069}00069             \$afin = [];}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00070}00070             \textcolor{keywordflow}{while} (\$row2 = \$stmt2-\/>fetch()) \{}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00071}00071                 \$afin[] = \$row2[\textcolor{stringliteral}{'afin'}];}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00072}00072             \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00073}00073             \$regimen = \$row[\textcolor{stringliteral}{"{}id\_regimen"{}}] === \textcolor{keyword}{null} ? \textcolor{stringliteral}{"{}"{}} : \$row[\textcolor{stringliteral}{"{}id\_regimen"{}}];}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00074}00074             \$profesor = \textcolor{keyword}{new} Profesor(\$row[\textcolor{stringliteral}{"{}id"{}}], \$row[\textcolor{stringliteral}{"{}nombre"{}}], \$row[\textcolor{stringliteral}{"{}especializacion"{}}], \$afin, \$regimen);}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00075}00075             \$result[] = \$profesor-\/>getData();}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00076}00076         \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00077}00077         \textcolor{keywordflow}{return} \$result;}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00078}00078     \}}
+\DoxyCodeLine{\Hypertarget{ProfesorModel_8php_source_l00079}00079 \}}
+
+\end{DoxyCode}
