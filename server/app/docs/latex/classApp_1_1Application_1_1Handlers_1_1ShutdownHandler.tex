@@ -1,0 +1,115 @@
+\hypertarget{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler}{}\doxysection{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}Shutdown\+Handler Class Reference}
+\label{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler}\index{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler_a082984fe3ff27abc1f67f58d9a628922}{\+\_\+\+\_\+construct}} (Request \$request, \mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler}{Http\+Error\+Handler}} \$error\+Handler, bool \$display\+Error\+Details)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler_a4afa42662573fc6e4dde42965db4a2aa}{\+\_\+\+\_\+invoke}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para manejar los errores fatales. 
+
+Definition at line \mbox{\hyperlink{ShutdownHandler_8php_source_l00014}{14}} of file \mbox{\hyperlink{ShutdownHandler_8php_source}{Shutdown\+Handler.\+php}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler_a082984fe3ff27abc1f67f58d9a628922}\label{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler_a082984fe3ff27abc1f67f58d9a628922}} 
+\index{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Handlers\textbackslash{}\+Shutdown\+Handler\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler}{Http\+Error\+Handler}}}]{\$error\+Handler,  }\item[{bool}]{\$display\+Error\+Details }\end{DoxyParamCaption})}
+
+Constructor de la clase \mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler}{Shutdown\+Handler}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP actual. \\
+\hline
+{\em \$error\+Handler} & El manejador de errores HTTP. \\
+\hline
+{\em \$display\+Error\+Details} & Indica si se deben mostrar detalles del error. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{ShutdownHandler_8php_source_l00029}{29}} of file \mbox{\hyperlink{ShutdownHandler_8php_source}{Shutdown\+Handler.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033       \{}
+\DoxyCodeLine{00034         \$this-\/>request = \$request;}
+\DoxyCodeLine{00035         \$this-\/>errorHandler = \$errorHandler;}
+\DoxyCodeLine{00036         \$this-\/>displayErrorDetails = \$displayErrorDetails;}
+\DoxyCodeLine{00037     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler_a4afa42662573fc6e4dde42965db4a2aa}\label{classApp_1_1Application_1_1Handlers_1_1ShutdownHandler_a4afa42662573fc6e4dde42965db4a2aa}} 
+\index{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler}!\_\_invoke@{\_\_invoke}}
+\index{\_\_invoke@{\_\_invoke}!App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}ShutdownHandler}}
+\doxysubsubsection{\texorpdfstring{\_\_invoke()}{\_\_invoke()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Handlers\textbackslash{}\+Shutdown\+Handler\+::\+\_\+\+\_\+invoke (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Método invocable que se ejecuta cuando ocurre un error fatal. 
+
+Definition at line \mbox{\hyperlink{ShutdownHandler_8php_source_l00042}{42}} of file \mbox{\hyperlink{ShutdownHandler_8php_source}{Shutdown\+Handler.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043     \{}
+\DoxyCodeLine{00044         \$error = error\_get\_last();}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{if} (\$error) \{}
+\DoxyCodeLine{00046             \$errorFile = \$error[\textcolor{stringliteral}{'file'}];}
+\DoxyCodeLine{00047             \$errorLine = \$error[\textcolor{stringliteral}{'line'}];}
+\DoxyCodeLine{00048             \$errorMessage = \$error[\textcolor{stringliteral}{'message'}];}
+\DoxyCodeLine{00049             \$errorType = \$error[\textcolor{stringliteral}{'type'}];}
+\DoxyCodeLine{00050             \$message = \textcolor{stringliteral}{'An error while processing your request. Please try again later.'};}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052             \textcolor{keywordflow}{if} (\$this-\/>displayErrorDetails) \{}
+\DoxyCodeLine{00053                 \textcolor{keywordflow}{switch} (\$errorType) \{}
+\DoxyCodeLine{00054                     \textcolor{keywordflow}{case} E\_USER\_ERROR:}
+\DoxyCodeLine{00055                         \$message = \textcolor{stringliteral}{"{}FATAL ERROR: \{\$errorMessage\}. "{}};}
+\DoxyCodeLine{00056                         \$message .= \textcolor{stringliteral}{"{} on line \{\$errorLine\} in file \{\$errorFile\}."{}};}
+\DoxyCodeLine{00057                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059                     \textcolor{keywordflow}{case} E\_USER\_WARNING:}
+\DoxyCodeLine{00060                         \$message = \textcolor{stringliteral}{"{}WARNING: \{\$errorMessage\}"{}};}
+\DoxyCodeLine{00061                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063                     \textcolor{keywordflow}{case} E\_USER\_NOTICE:}
+\DoxyCodeLine{00064                         \$message = \textcolor{stringliteral}{"{}NOTICE: \{\$errorMessage\}"{}};}
+\DoxyCodeLine{00065                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067                     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00068                         \$message = \textcolor{stringliteral}{"{}ERROR: \{\$errorMessage\}"{}};}
+\DoxyCodeLine{00069                         \$message .= \textcolor{stringliteral}{"{} on line \{\$errorLine\} in file \{\$errorFile\}."{}};}
+\DoxyCodeLine{00070                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00071                 \}}
+\DoxyCodeLine{00072             \}}
+\DoxyCodeLine{00073 }
+\DoxyCodeLine{00074             \$exception = \textcolor{keyword}{new} HttpInternalServerErrorException(\$this-\/>request, \$message);}
+\DoxyCodeLine{00075             \$response = \$this-\/>errorHandler-\/>\_\_invoke(}
+\DoxyCodeLine{00076                 \$this-\/>request,}
+\DoxyCodeLine{00077                 \$exception,}
+\DoxyCodeLine{00078                 \$this-\/>displayErrorDetails,}
+\DoxyCodeLine{00079                 \textcolor{keyword}{false},}
+\DoxyCodeLine{00080                 \textcolor{keyword}{false},}
+\DoxyCodeLine{00081             );}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083             \$responseEmitter = \textcolor{keyword}{new} ResponseEmitter();}
+\DoxyCodeLine{00084             \$responseEmitter-\/>emit(\$response);}
+\DoxyCodeLine{00085         \}}
+\DoxyCodeLine{00086     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Handlers/Shutdown\+Handler.\+php\end{DoxyCompactItemize}

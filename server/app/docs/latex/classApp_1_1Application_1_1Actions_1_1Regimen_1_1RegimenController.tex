@@ -1,0 +1,116 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}Regimen\+Controller Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}Regimen\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}Regimen\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController_a561a3d7979af58aef1f31235aab29250}{listar\+Regimen}} (Request \$request, Response \$response, array \$args)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController_aa2eab45ae30a7be089884cf7d1d79b05}{inserir\+Regimen}} (Request \$request, Response \$response, array \$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController}{Regimen\+Controller}}
+
+Esta clase maneja las operaciones relacionadas con los regímenes. 
+
+Definition at line \mbox{\hyperlink{RegimenController_8php_source_l00017}{17}} of file \mbox{\hyperlink{RegimenController_8php_source}{Regimen\+Controller.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController_aa2eab45ae30a7be089884cf7d1d79b05}\label{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController_aa2eab45ae30a7be089884cf7d1d79b05}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController}!inserirRegimen@{inserirRegimen}}
+\index{inserirRegimen@{inserirRegimen}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController}}
+\doxysubsubsection{\texorpdfstring{inserirRegimen()}{inserirRegimen()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Regimen\textbackslash{}\+Regimen\+Controller\+::inserir\+Regimen (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Inserta un nuevo régimen en la base de datos.
+
+Este método recibe los datos de un nuevo régimen desde la solicitud HTTP y los inserta en la base de datos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP que contiene los datos del nuevo régimen. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve el resultado de la inserción. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{RegimenController_8php_source_l00050}{50}} of file \mbox{\hyperlink{RegimenController_8php_source}{Regimen\+Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051   \{}
+\DoxyCodeLine{00052     \$data = \$request-\/>getParsedBody();}
+\DoxyCodeLine{00053     \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_abe988b4724ffcb9bf7a0801065b040bb}{RegimenModel::inserirRegimen}}(\$data);}
+\DoxyCodeLine{00054     \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res, 200);}
+\DoxyCodeLine{00055   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController_a561a3d7979af58aef1f31235aab29250}\label{classApp_1_1Application_1_1Actions_1_1Regimen_1_1RegimenController_a561a3d7979af58aef1f31235aab29250}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController}!listarRegimen@{listarRegimen}}
+\index{listarRegimen@{listarRegimen}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}Regimen\textbackslash{}RegimenController}}
+\doxysubsubsection{\texorpdfstring{listarRegimen()}{listarRegimen()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+Regimen\textbackslash{}\+Regimen\+Controller\+::listar\+Regimen (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Lista los regímenes según en el ID.
+
+Este método recibe un ID y retorna una lista de regímenes asociados a ese ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales que contienen el \textquotesingle{}id\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve la lista de regímenes. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{RegimenController_8php_source_l00032}{32}} of file \mbox{\hyperlink{RegimenController_8php_source}{Regimen\+Controller.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033   \{}
+\DoxyCodeLine{00034     \$id = \$args[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{00035     \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_a7103e8ad9b44e1137bca59f147ad94f9}{RegimenModel::listarRegimen}}(\$id);}
+\DoxyCodeLine{00036     \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, \$res, 200);}
+\DoxyCodeLine{00037   \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/\+Regimen/Regimen\+Controller.\+php\end{DoxyCompactItemize}

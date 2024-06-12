@@ -17,9 +17,15 @@ use Slim\Exception\HttpUnauthorizedException;
 use Slim\Handlers\ErrorHandler as SlimErrorHandler;
 use Throwable;
 
+
+/**
+ * Clase para manejar errores HTTP personalizados.
+ */
 class HttpErrorHandler extends SlimErrorHandler
 {
     /**
+     * Sobrescribe el método respond() para personalizar la respuesta de error.
+     *
      * @inheritdoc
      */
     protected function respond(): Response

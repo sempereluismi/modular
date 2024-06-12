@@ -1,0 +1,222 @@
+\hypertarget{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV}{}\doxysection{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}Comprobacion\+CSV Class Reference}
+\label{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV}\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}Comprobacion\+CSV\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}Comprobacion\+CSV\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_af1401067b9ed8e3daee70be51fa791a1}{upload\+Files}} (Request \$request, Response \$response, array \$args)
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_adfec628bf0e56203ef18401966d65bc5}{save\+Files}} (Request \$request, Response \$response, array \$args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_a965a8b269c5de70a938a869fc8b4b3cc}{array\+Profesores}} = \mbox{[}\char`\"{}email\char`\"{}, \char`\"{}password\char`\"{}, \char`\"{}nombre\char`\"{}, \char`\"{}fecha\+\_\+inicio\char`\"{}, \char`\"{}especialidad\char`\"{}, \char`\"{}afin\char`\"{}\mbox{]}
+\item 
+const \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_abe6fa1c94af987d51e5a0d560e9ea9d4}{array\+Modulos}} = \mbox{[}\char`\"{}nombre\char`\"{}, \char`\"{}tematica\char`\"{}, \char`\"{}especialidad\char`\"{}, \char`\"{}regimen\char`\"{}, \char`\"{}ciclo\char`\"{}, \char`\"{}horas\char`\"{}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase \mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV}{Comprobacion\+CSV}}
+
+Esta clase maneja la carga, verificación y procesamiento de archivos CSV para profesores y módulos. 
+
+Definition at line \mbox{\hyperlink{ComprobacionCSV_8php_source_l00016}{16}} of file \mbox{\hyperlink{ComprobacionCSV_8php_source}{Comprobacion\+CSV.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_adfec628bf0e56203ef18401966d65bc5}\label{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_adfec628bf0e56203ef18401966d65bc5}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}!saveFiles@{saveFiles}}
+\index{saveFiles@{saveFiles}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}}
+\doxysubsubsection{\texorpdfstring{saveFiles()}{saveFiles()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+CSV\textbackslash{}\+Comprobacion\+CSV\+::save\+Files (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Maneja la carga de archivos CSV y guarda su contenido.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$request} & La solicitud HTTP que contiene los archivos subidos. \\
+\hline
+{\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+{\em \$args} & Argumentos adicionales, que incluyen el \textquotesingle{}id\textquotesingle{} necesario para guardar los archivos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$response devuelve Success si se ha hecho correctamento, error si el archivo no es un csv válido o algo ha fallado. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ComprobacionCSV_8php_source_l00116}{116}} of file \mbox{\hyperlink{ComprobacionCSV_8php_source}{Comprobacion\+CSV.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117     \{}
+\DoxyCodeLine{00118         \$uploadedFiles = \$request-\/>getUploadedFiles();}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120         \textcolor{keywordflow}{if} (isset(\$uploadedFiles[\textcolor{stringliteral}{'csvFile'}]) \&\& \$uploadedFiles[\textcolor{stringliteral}{'csvFile'}]-\/>getError() === UPLOAD\_ERR\_OK) \{}
+\DoxyCodeLine{00121             \$uploadedFile = \$uploadedFiles[\textcolor{stringliteral}{'csvFile'}];}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123             \textcolor{keywordflow}{if} (\$this-\/>esArchivoCSV(\$uploadedFile)) \{}
+\DoxyCodeLine{00124                 \$contenido = file\_get\_contents(\$uploadedFile-\/>getStream()-\/>getMetadata(\textcolor{stringliteral}{'uri'}));}
+\DoxyCodeLine{00125                 \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8b0f2a79784843b191a966bf6eaa9948}{CSVModel::saveFiles}}(\$contenido, \$args[\textcolor{stringliteral}{'id'}]);}
+\DoxyCodeLine{00126                 \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}success"{}} => \textcolor{stringliteral}{"{}Archivo CSV válido"{}}], 200);}
+\DoxyCodeLine{00127             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00128                 \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}El archivo no es un CSV válido"{}}], 400);}
+\DoxyCodeLine{00129             \}}
+\DoxyCodeLine{00130         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00131             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}No se ha subido ningún archivo o ha ocurrido un error"{}}], 400);}
+\DoxyCodeLine{00132         \}}
+\DoxyCodeLine{00133     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_af1401067b9ed8e3daee70be51fa791a1}\label{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_af1401067b9ed8e3daee70be51fa791a1}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}!uploadFiles@{uploadFiles}}
+\index{uploadFiles@{uploadFiles}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}}
+\doxysubsubsection{\texorpdfstring{uploadFiles()}{uploadFiles()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+CSV\textbackslash{}\+Comprobacion\+CSV\+::upload\+Files (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Response}]{\$response,  }\item[{array}]{\$args }\end{DoxyParamCaption})}
+
+Maneja la carga de archivos CSV y procesa su contenido.
+
+Este método procesa archivos CSV subidos y los inserta en la base de datos. Soporta archivos de profesores y módulos, identificados por los encabezados del CSV.
+
+
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & La solicitud HTTP que contiene los archivos subidos. \\
+\hline
+Response & {\em \$response} & La respuesta HTTP que se enviará. \\
+\hline
+array & {\em \$args} & Argumentos adicionales, que incluyen el \textquotesingle{}id\textquotesingle{} necesario para la inserción de datos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response Devuelve success si los profesores/módulos se han añadido correctamente, error si ha ocurrido algún fallo. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ComprobacionCSV_8php_source_l00034}{34}} of file \mbox{\hyperlink{ComprobacionCSV_8php_source}{Comprobacion\+CSV.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035     \{}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037         \textcolor{comment}{// Obtenemos los archivos subidos}}
+\DoxyCodeLine{00038         \$uploadedFiles = \$request-\/>getUploadedFiles();}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040         \textcolor{comment}{// Verificamos que se haya enviado un archivo y es un CSV}}
+\DoxyCodeLine{00041         \textcolor{keywordflow}{if} (isset(\$uploadedFiles[\textcolor{stringliteral}{'csvFile'}]) \&\& \$uploadedFiles[\textcolor{stringliteral}{'csvFile'}]-\/>getError() === UPLOAD\_ERR\_OK) \{}
+\DoxyCodeLine{00042             \textcolor{keywordflow}{if} (\$this-\/>esArchivoCSV(\$uploadedFiles[\textcolor{stringliteral}{'csvFile'}])) \{ \textcolor{comment}{// Comprobar los priemros campos del archivo}}
+\DoxyCodeLine{00043                 \$uploadedFile = \$uploadedFiles[\textcolor{stringliteral}{'csvFile'}]; \textcolor{comment}{// Obtiene el archivo}}
+\DoxyCodeLine{00044                 \$tempFilePath = \$uploadedFile-\/>getStream()-\/>getMetadata(\textcolor{stringliteral}{'uri'}); \textcolor{comment}{// Obtiene la secuencia de bytes (flujo de datos), despues obtenemos los metadatos en este caso URI. Todo para leer el archivo}}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046                 \$file = fopen(\$tempFilePath, \textcolor{charliteral}{'r'}); \textcolor{comment}{// Abre el archivo en modo lectura}}
+\DoxyCodeLine{00047                 \$profesores = [];}
+\DoxyCodeLine{00048                 \$modulos = [];}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050 }
+\DoxyCodeLine{00051                 \$row = fgetcsv(\$file, 0, \textcolor{stringliteral}{"{};"{}}); \textcolor{comment}{// Obtengo la primera fila del archivo}}
+\DoxyCodeLine{00052                 \textcolor{keywordflow}{if} (count(array\_diff(self::arrayProfesores, \$row)) === 0) \{}
+\DoxyCodeLine{00053                     \textcolor{comment}{// Es un archivo de profesores}}
+\DoxyCodeLine{00054                     \textcolor{keywordflow}{while} ((\$row = fgetcsv(\$file, 0, \textcolor{stringliteral}{"{};"{}})) !== \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00055                         \$profesores = [}
+\DoxyCodeLine{00056                             \textcolor{stringliteral}{'email'} => \$row[0],}
+\DoxyCodeLine{00057                             \textcolor{stringliteral}{'password'} => \$this-\/>hashPassword(\$row[1]),}
+\DoxyCodeLine{00058                             \textcolor{stringliteral}{'nombre'} => \$row[2],}
+\DoxyCodeLine{00059                             \textcolor{stringliteral}{'fecha\_inicio'} => \$this-\/>formatDate(\$row[3]),}
+\DoxyCodeLine{00060                             \textcolor{stringliteral}{'especialidad'} => \$row[4],}
+\DoxyCodeLine{00061                             \textcolor{stringliteral}{'departamento'} => \$args[\textcolor{stringliteral}{'id'}],}
+\DoxyCodeLine{00062                             \textcolor{stringliteral}{'afin'} => explode(\textcolor{stringliteral}{"{},"{}}, \$row[5])}
+\DoxyCodeLine{00063                         ];}
+\DoxyCodeLine{00064                         \textcolor{comment}{// A partir de aqui \$profesores es un array y devuelve todo bien}}
+\DoxyCodeLine{00065                         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00066                             \$res = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_af8eb14ba33aef4cd34a27624bebac51d}{CSVModel::insertarProfesores}}(\$profesores);}
+\DoxyCodeLine{00067                         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00068                             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()], \$e-\/>getCode());}
+\DoxyCodeLine{00069                         \}}
+\DoxyCodeLine{00070                     \}}
+\DoxyCodeLine{00071                     fclose(\$file);}
+\DoxyCodeLine{00072                     \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}success"{}} => \textcolor{stringliteral}{"{}Profesores añadidos con exito"{}}], 200);}
+\DoxyCodeLine{00073                 \} elseif (count(array\_diff(self::arrayModulos, \$row)) === 0) \{}
+\DoxyCodeLine{00074                     \textcolor{comment}{// Es un archivo de modulos}}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076                     \textcolor{keywordflow}{while} ((\$row = fgetcsv(\$file, 0, \textcolor{stringliteral}{"{};"{}})) !== \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{00077                         \$modulos = [}
+\DoxyCodeLine{00078                             \textcolor{stringliteral}{'nombre'} => \$row[0],}
+\DoxyCodeLine{00079                             \textcolor{stringliteral}{'departamento'} => \$args[\textcolor{stringliteral}{'id'}],}
+\DoxyCodeLine{00080                             \textcolor{stringliteral}{'tematica'} => \$row[1],}
+\DoxyCodeLine{00081                             \textcolor{stringliteral}{'especialidad'} => \$row[2],}
+\DoxyCodeLine{00082                             \textcolor{stringliteral}{'regimen'} => \$row[3],}
+\DoxyCodeLine{00083                             \textcolor{stringliteral}{'ciclo'} => \$row[4],}
+\DoxyCodeLine{00084                             \textcolor{stringliteral}{'horas'} => \$row[5]}
+\DoxyCodeLine{00085                         ];}
+\DoxyCodeLine{00086                         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00087                             \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1CSV_1_1CSVModel_a8ec28f9664bd544e6061d48c6cd58e83}{CSVModel::insertarModulos}}(\$modulos);}
+\DoxyCodeLine{00088                         \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00089                             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()], \$e-\/>getCode());}
+\DoxyCodeLine{00090                         \}}
+\DoxyCodeLine{00091                     \}}
+\DoxyCodeLine{00092                     fclose(\$file);}
+\DoxyCodeLine{00093                     \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}success"{}} => \textcolor{stringliteral}{"{}Archivo CSV valido"{}}], 200);}
+\DoxyCodeLine{00094                 \}}
+\DoxyCodeLine{00095                 fclose(\$file);}
+\DoxyCodeLine{00096                 \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}El archivo no tiene un formato valido"{}}], 400);}
+\DoxyCodeLine{00097             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00098                 \textcolor{comment}{// El archivo no es un CSV válido}}
+\DoxyCodeLine{00099                 \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}El archivo no esun CSV valido "{}}], 400);}
+\DoxyCodeLine{00100             \}}
+\DoxyCodeLine{00101         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00102             \textcolor{comment}{// No se ha enviado ningún archivo o hay un error en la carga}}
+\DoxyCodeLine{00103             \textcolor{keywordflow}{return} \$this-\/>\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1Controller_aac9fe26dc8d186be5155968e5e23afe9}{returnResponse}}(\$response, [\textcolor{stringliteral}{"{}error"{}} => \textcolor{stringliteral}{"{}No se ha enviado ningún archivo o hay un error en la carga"{}}], 400);}
+\DoxyCodeLine{00104         \}}
+\DoxyCodeLine{00105     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_abe6fa1c94af987d51e5a0d560e9ea9d4}\label{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_abe6fa1c94af987d51e5a0d560e9ea9d4}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}!arrayModulos@{arrayModulos}}
+\index{arrayModulos@{arrayModulos}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}}
+\doxysubsubsection{\texorpdfstring{arrayModulos}{arrayModulos}}
+{\footnotesize\ttfamily const App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+CSV\textbackslash{}\+Comprobacion\+CSV\+::array\+Modulos = \mbox{[}\char`\"{}nombre\char`\"{}, \char`\"{}tematica\char`\"{}, \char`\"{}especialidad\char`\"{}, \char`\"{}regimen\char`\"{}, \char`\"{}ciclo\char`\"{}, \char`\"{}horas\char`\"{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{ComprobacionCSV_8php_source_l00020}{20}} of file \mbox{\hyperlink{ComprobacionCSV_8php_source}{Comprobacion\+CSV.\+php}}.
+
+\mbox{\Hypertarget{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_a965a8b269c5de70a938a869fc8b4b3cc}\label{classApp_1_1Application_1_1Actions_1_1CSV_1_1ComprobacionCSV_a965a8b269c5de70a938a869fc8b4b3cc}} 
+\index{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}!arrayProfesores@{arrayProfesores}}
+\index{arrayProfesores@{arrayProfesores}!App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV@{App\textbackslash{}Application\textbackslash{}Actions\textbackslash{}CSV\textbackslash{}ComprobacionCSV}}
+\doxysubsubsection{\texorpdfstring{arrayProfesores}{arrayProfesores}}
+{\footnotesize\ttfamily const App\textbackslash{}\+Application\textbackslash{}\+Actions\textbackslash{}\+CSV\textbackslash{}\+Comprobacion\+CSV\+::array\+Profesores = \mbox{[}\char`\"{}email\char`\"{}, \char`\"{}password\char`\"{}, \char`\"{}nombre\char`\"{}, \char`\"{}fecha\+\_\+inicio\char`\"{}, \char`\"{}especialidad\char`\"{}, \char`\"{}afin\char`\"{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{ComprobacionCSV_8php_source_l00019}{19}} of file \mbox{\hyperlink{ComprobacionCSV_8php_source}{Comprobacion\+CSV.\+php}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Actions/\+CSV/Comprobacion\+CSV.\+php\end{DoxyCompactItemize}

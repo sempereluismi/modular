@@ -4,10 +4,20 @@ declare(strict_types=1);
 
 namespace App\Application\db;
 
+/**
+ * Clase para la gestión de la conexión a la base de datos.
+ */
 class DatabaseConnection
 {
     private static $instance; // Instancia única de la clase
     private $connection;
+
+    /**
+ * Constructor privado para evitar la creación directa de instancias.
+ * Lee la configuración de la base de datos desde un archivo INI y establece la conexión PDO.
+ *
+ * @throws \Exception Si ocurre un error al conectar a la base de datos.
+ */
 
     private function __construct()
     {
@@ -27,7 +37,12 @@ class DatabaseConnection
         }
     }
 
-    // Método para obtener la instancia única de la clase
+    /**
+ * Obtiene la instancia única de la clase (patrón Singleton).
+ *
+ * @return self La instancia única de la clase.
+ */
+
     public static function getInstance()
     {
         if (!isset(self::$instance)) {
@@ -36,16 +51,32 @@ class DatabaseConnection
         return self::$instance;
     }
 
-    // Método para obtener la conexión PDO
+    /**
+ * Obtiene la conexión PDO.
+ *
+ * @return \PDO La conexión PDO.
+ */
+
     public function getConnection()
     {
         return $this->connection;
     }
 
-    // Evitar que se cree otra instancia mediante clonación
+    /**
+ * Método privado para evitar que se cree otra instancia mediante clonación.
+ */
+
     private function __clone()
     {
     }
+
+    /**
+ * Ejecuta una consulta preparada con los parámetros proporcionados.
+ *
+ * @param $query La consulta SQL a ejecutar.
+ * @param $params Los parámetros para la consulta SQL.
+ * @return \PDOStatement|false El objeto PDOStatement si la ejecución es exitosa, o false si ocurre un error.
+ */
 
     public function execQuery($query, $params = [])
     {

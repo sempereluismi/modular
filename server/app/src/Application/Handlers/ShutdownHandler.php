@@ -8,6 +8,9 @@ use App\Application\ResponseEmitter\ResponseEmitter;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpInternalServerErrorException;
 
+/**
+ * Clase para manejar los errores fatales.
+ */
 class ShutdownHandler
 {
     private Request $request;
@@ -16,6 +19,13 @@ class ShutdownHandler
 
     private bool $displayErrorDetails;
 
+    /**
+     * Constructor de la clase ShutdownHandler.
+     *
+     * @param $request La solicitud HTTP actual.
+     * @param $errorHandler El manejador de errores HTTP.
+     * @param $displayErrorDetails Indica si se deben mostrar detalles del error.
+     */
     public function __construct(
         Request $request,
         HttpErrorHandler $errorHandler,
@@ -26,6 +36,9 @@ class ShutdownHandler
         $this->displayErrorDetails = $displayErrorDetails;
     }
 
+    /**
+     * Método invocable que se ejecuta cuando ocurre un error fatal.
+     */
     public function __invoke()
     {
         $error = error_get_last();

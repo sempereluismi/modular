@@ -7,8 +7,22 @@ namespace App\Application\db\CSV;
 use App\Application\db\DatabaseConnection;
 use PDO;
 
+/**
+ * Clase para interactuar con la base de datos utilizando datos provenientes de archivos CSV.
+ */
 class CSVModel
 {
+
+/**
+ * Inserta un nuevo profesor en la base de datos.
+ *
+ * @param array $profesores Arreglo con los datos del profesor a insertar.
+ *                          Debe contener las claves: 'email', 'password', 'nombre', 
+ *                          'fecha_inicio', 'departamento', 'especialidad' y 'afin'.
+ *                          'afin' es un arreglo de especialidades en las que el profesor tiene afinidad.
+ * @return int El ID del nuevo profesor insertado.
+ * @throws Exception Si ocurre un error en la inserción o si la especialidad no se encuentra.
+ */
 
     public static function insertarProfesores(array $profesores)
     {
@@ -60,6 +74,14 @@ class CSVModel
         }
     }
 
+/**
+ * Inserta un nuevo módulo en la base de datos.
+ *
+ * @param $modulos Arreglo con los datos del módulo a insertar.
+ *                       Debe contener las claves: 'nombre', 'departamento', 'tematica', 
+ *                       'especialidad', 'regimen', 'ciclo' y 'horas'.
+ * @throws Exception Si ocurre un error en la inserción o si la especialidad, régimen o ciclo no se encuentran.
+ */
 
     public static function insertarModulos(array $modulos)
     {
@@ -111,6 +133,14 @@ class CSVModel
         }
     }
 
+    /**
+ * Guarda un archivo en la base de datos asociado a un profesor.
+ *
+ * @param $contentFile El contenido del archivo a guardar.
+ * @param $id_profesor El ID del profesor al que se asocia el archivo.
+ * @throws Exception Si ocurre un error al guardar el archivo.
+ */
+
     public static function saveFiles($contentFile, $id_profesor) {
         try {
             $sql = "INSERT INTO modelo (file, id_profesor) VALUES (?, ?)";
@@ -120,6 +150,7 @@ class CSVModel
         } catch (PDOException $e) {
             $this->returnResponse($response, ["error" => "Error al guardar el archivo"], 500);
         }
+
     }
     
     public static function listFilesProfesor($id_profesor) {

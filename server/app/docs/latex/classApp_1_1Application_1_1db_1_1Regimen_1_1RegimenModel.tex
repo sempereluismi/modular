@@ -1,0 +1,96 @@
+\hypertarget{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel}{}\doxysection{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}Regimen\+Model Class Reference}
+\label{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel}\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_a7103e8ad9b44e1137bca59f147ad94f9}{listar\+Regimen}} (string \$id)
+\item 
+static \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_abe988b4724ffcb9bf7a0801065b040bb}{inserir\+Regimen}} (array \$data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Modelo para la gestión de regímenes. 
+
+Definition at line \mbox{\hyperlink{RegimenModel_8php_source_l00013}{13}} of file \mbox{\hyperlink{RegimenModel_8php_source}{Regimen\+Model.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_abe988b4724ffcb9bf7a0801065b040bb}\label{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_abe988b4724ffcb9bf7a0801065b040bb}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel}!inserirRegimen@{inserirRegimen}}
+\index{inserirRegimen@{inserirRegimen}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel}}
+\doxysubsubsection{\texorpdfstring{inserirRegimen()}{inserirRegimen()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Regimen\textbackslash{}\+Regimen\+Model\+::inserir\+Regimen (\begin{DoxyParamCaption}\item[{array}]{\$data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Inserta o actualiza regímenes para un profesor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$data} & Arreglo con los datos de los regímenes a insertar. Cada elemento del arreglo debe contener\+: \textquotesingle{}id\+\_\+regimenes\textquotesingle{} =\texorpdfstring{$>$}{>} ID del régimen, \textquotesingle{}id\+\_\+profesor\textquotesingle{} =\texorpdfstring{$>$}{>} ID del profesor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array Arreglo con un mensaje de éxito o un mensaje de error si ocurre una excepción. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{RegimenModel_8php_source_l00046}{46}} of file \mbox{\hyperlink{RegimenModel_8php_source}{Regimen\+Model.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047   \{}
+\DoxyCodeLine{00048     \$db = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00049     \$sql = \textcolor{stringliteral}{"{}INSERT INTO profesor\_regimen (id\_regimen, id\_profesor) VALUES (?, ?) }}
+\DoxyCodeLine{00050 \textcolor{stringliteral}{    ON DUPLICATE KEY UPDATE id\_regimen = VALUES(id\_regimen);"{}};}
+\DoxyCodeLine{00051     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00052       \textcolor{keywordflow}{foreach} (\$data as \$regimen) \{}
+\DoxyCodeLine{00053         \$stmt = \$db-\/>execQuery(\$sql, [\$regimen[\textcolor{stringliteral}{'id\_regimenes'}], \$regimen[\textcolor{stringliteral}{'id\_profesor'}]]);}
+\DoxyCodeLine{00054       \}}
+\DoxyCodeLine{00055       \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}message"{}} => \textcolor{stringliteral}{"{}Regimen inserido com sucesso"{}}];}
+\DoxyCodeLine{00056     \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00057       \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{00058     \}}
+\DoxyCodeLine{00059   \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_a7103e8ad9b44e1137bca59f147ad94f9}\label{classApp_1_1Application_1_1db_1_1Regimen_1_1RegimenModel_a7103e8ad9b44e1137bca59f147ad94f9}} 
+\index{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel}!listarRegimen@{listarRegimen}}
+\index{listarRegimen@{listarRegimen}!App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel@{App\textbackslash{}Application\textbackslash{}db\textbackslash{}Regimen\textbackslash{}RegimenModel}}
+\doxysubsubsection{\texorpdfstring{listarRegimen()}{listarRegimen()}}
+{\footnotesize\ttfamily static App\textbackslash{}\+Application\textbackslash{}db\textbackslash{}\+Regimen\textbackslash{}\+Regimen\+Model\+::listar\+Regimen (\begin{DoxyParamCaption}\item[{string}]{\$id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Lista los regímenes de un departamento específico.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$id} & El ID del departamento. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array Arreglo con la información de los regímenes, o un arreglo con un mensaje de error si ocurre una excepción. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{RegimenModel_8php_source_l00024}{24}} of file \mbox{\hyperlink{RegimenModel_8php_source}{Regimen\+Model.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025   \{}
+\DoxyCodeLine{00026     \$db = \mbox{\hyperlink{classApp_1_1Application_1_1db_1_1DatabaseConnection_a34437305e4369f8da0cd027cc7ba7639}{DatabaseConnection::getInstance}}();}
+\DoxyCodeLine{00027     \$sql = \textcolor{stringliteral}{"{}SELECT id, tipo FROM regimen where id\_departamento = ?;"{}};}
+\DoxyCodeLine{00028     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{00029       \$stmt = \$db-\/>execQuery(\$sql, [\$id]);}
+\DoxyCodeLine{00030       \$res = \$stmt-\/>fetchAll(\(\backslash\)PDO::FETCH\_ASSOC);}
+\DoxyCodeLine{00031       \textcolor{keywordflow}{return} \$res;}
+\DoxyCodeLine{00032     \} \textcolor{keywordflow}{catch} (\(\backslash\)Exception \$e) \{}
+\DoxyCodeLine{00033       \textcolor{keywordflow}{return} [\textcolor{stringliteral}{"{}error"{}} => \$e-\/>getMessage()];}
+\DoxyCodeLine{00034     \}}
+\DoxyCodeLine{00035   \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/db/\+Regimen/Regimen\+Model.\+php\end{DoxyCompactItemize}

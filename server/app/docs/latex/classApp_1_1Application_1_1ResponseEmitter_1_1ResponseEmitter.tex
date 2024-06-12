@@ -1,0 +1,88 @@
+\hypertarget{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter}{}\doxysection{App\textbackslash{}Application\textbackslash{}Response\+Emitter\textbackslash{}Response\+Emitter Class Reference}
+\label{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter}\index{App\textbackslash{}Application\textbackslash{}ResponseEmitter\textbackslash{}ResponseEmitter@{App\textbackslash{}Application\textbackslash{}ResponseEmitter\textbackslash{}ResponseEmitter}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Response\+Emitter\textbackslash{}Response\+Emitter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Response\+Emitter\textbackslash{}Response\+Emitter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter_ac065b185f4a7feda63e6a92a1c024e4e}{emit}} (Response\+Interface \$response)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para emitir respuestas HTTP con encabezados de control de acceso. 
+
+Definition at line \mbox{\hyperlink{ResponseEmitter_8php_source_l00013}{13}} of file \mbox{\hyperlink{ResponseEmitter_8php_source}{Response\+Emitter.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter_ac065b185f4a7feda63e6a92a1c024e4e}\label{classApp_1_1Application_1_1ResponseEmitter_1_1ResponseEmitter_ac065b185f4a7feda63e6a92a1c024e4e}} 
+\index{App\textbackslash{}Application\textbackslash{}ResponseEmitter\textbackslash{}ResponseEmitter@{App\textbackslash{}Application\textbackslash{}ResponseEmitter\textbackslash{}ResponseEmitter}!emit@{emit}}
+\index{emit@{emit}!App\textbackslash{}Application\textbackslash{}ResponseEmitter\textbackslash{}ResponseEmitter@{App\textbackslash{}Application\textbackslash{}ResponseEmitter\textbackslash{}ResponseEmitter}}
+\doxysubsubsection{\texorpdfstring{emit()}{emit()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Response\+Emitter\textbackslash{}\+Response\+Emitter\+::emit (\begin{DoxyParamCaption}\item[{Response\+Interface}]{\$response }\end{DoxyParamCaption})}
+
+Método para emitir una respuesta HTTP con encabezados de control de acceso.
+
+\{\}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Response\+Interface} & . \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{ResponseEmitter_8php_source_l00023}{23}} of file \mbox{\hyperlink{ResponseEmitter_8php_source}{Response\+Emitter.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023                                                      : \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00024     \{}
+\DoxyCodeLine{00025         \textcolor{comment}{// This variable should be set to the allowed host from which your API can be accessed with}}
+\DoxyCodeLine{00026         \$origin = \$\_SERVER[\textcolor{stringliteral}{'HTTP\_ORIGIN'}] ?? \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028         \$response = \$response}
+\DoxyCodeLine{00029             -\/>withHeader(\textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Credentials'}, \textcolor{stringliteral}{'true'})}
+\DoxyCodeLine{00030             -\/>withHeader(\textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Origin'}, \$origin)}
+\DoxyCodeLine{00031             -\/>withHeader(}
+\DoxyCodeLine{00032                 \textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Headers'},}
+\DoxyCodeLine{00033                 \textcolor{stringliteral}{'X-\/Requested-\/With, Content-\/Type, Accept, Origin, Authorization'},}
+\DoxyCodeLine{00034             )}
+\DoxyCodeLine{00035             -\/>withHeader(\textcolor{stringliteral}{'Access-\/Control-\/Allow-\/Methods'}, \textcolor{stringliteral}{'GET, POST, PUT, PATCH, DELETE, OPTIONS'})}
+\DoxyCodeLine{00036             -\/>withHeader(\textcolor{stringliteral}{'Cache-\/Control'}, \textcolor{stringliteral}{'no-\/store, no-\/cache, must-\/revalidate, max-\/age=0'})}
+\DoxyCodeLine{00037             -\/>withAddedHeader(\textcolor{stringliteral}{'Cache-\/Control'}, \textcolor{stringliteral}{'post-\/check=0, pre-\/check=0'})}
+\DoxyCodeLine{00038             -\/>withHeader(\textcolor{stringliteral}{'Pragma'}, \textcolor{stringliteral}{'no-\/cache'});}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040         \textcolor{keywordflow}{if} (ob\_get\_contents()) \{}
+\DoxyCodeLine{00041             ob\_clean();}
+\DoxyCodeLine{00042         \}}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044         parent::emit(\$response);}
+\DoxyCodeLine{00045     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Response\+Emitter/Response\+Emitter.\+php\end{DoxyCompactItemize}

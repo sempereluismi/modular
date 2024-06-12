@@ -1,8 +1,8 @@
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 import { getModulosAPI, getProfesoresAPI, getRegimenAPI } from '../service/profesores'
 import { useAuth } from './useAuth'
-import { useContext } from 'react'
-import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
 
 export function useModulosProfesores () {
   const { user } = useAuth()
@@ -34,33 +34,29 @@ export function useModulosProfesores () {
   }
 
   async function getModulosProfesores () {
-    getRegimen()
-      .then((regimenes) => {
-        setAllRegimen(regimenes)
-        setRegimen(regimenes[0].tipo)
-        Promise.all([getModulos(), getProfesores()])
-          .then(([modulosResponse, profesoresResponse]) => {
-            setModulos(modulosResponse)
-            const newProfesores = profesoresResponse.map(profesor => {
-              return {
-                ...profesor,
-                horasTotal: 0
-              }
-            })
-            setProfesores(newProfesores)
-            const hasEmptyRegimen = comprobarRegimen(newProfesores)
-            if (hasEmptyRegimen) {
-              navigate('/admin/teachers-list/1')
-            }
-          })
-          .catch(error => {
-            // Maneja cualquier error que pueda ocurrir en alguna de las peticiones
-            console.error('Error al obtener módulos o profesores:', error)
-          })
-      })
-      .catch(error => {
-        console.error('Error al obtener el régimen:', error)
-      })
+    try {
+      const regimenes = await getRegimen()
+      setAllRegimen(regimenes)
+      setRegimen(regimenes[0].tipo)
+
+      const [modulosResponse, profesoresResponse] = await Promise.all([getModulos(), getProfesores()])
+
+      setModulos(modulosResponse)
+
+      const newProfesores = profesoresResponse.map(profesor => ({
+        ...profesor,
+        horasTotal: 0,
+        info: {}
+      }))
+      setProfesores(newProfesores)
+
+      const hasEmptyRegimen = comprobarRegimen(newProfesores)
+      if (hasEmptyRegimen) {
+        navigate('/admin/teachers-list/1')
+      }
+    } catch (error) {
+      console.error('Error al obtener datos:', error)
+    }
   }
 
   const comprobarRegimen = (profesores) => {

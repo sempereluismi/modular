@@ -7,8 +7,20 @@ namespace App\Application\db\Regimen;
 
 use App\Application\db\DatabaseConnection;
 
+/**
+ * Modelo para la gestión de regímenes.
+ */
 class RegimenModel
 {
+
+  /**
+ * Lista los regímenes de un departamento específico.
+ *
+ * @param string $id El ID del departamento.
+ * @return array Arreglo con la información de los regímenes,
+ *               o un arreglo con un mensaje de error si ocurre una excepción.
+ */
+
   public static function listarRegimen(string $id)
   {
     $db = DatabaseConnection::getInstance();
@@ -21,6 +33,15 @@ class RegimenModel
       return ["error" => $e->getMessage()];
     }
   }
+
+  /**
+ * Inserta o actualiza regímenes para un profesor.
+ *
+ * @param array $data Arreglo con los datos de los regímenes a insertar. Cada elemento del arreglo debe contener:
+ *                    'id_regimenes' => ID del régimen,
+ *                    'id_profesor' => ID del profesor.
+ * @return array Arreglo con un mensaje de éxito o un mensaje de error si ocurre una excepción.
+ */
 
   public static function inserirRegimen(array $data)
   {

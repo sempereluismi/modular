@@ -1,0 +1,100 @@
+\hypertarget{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler}{}\doxysection{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}Http\+Error\+Handler Class Reference}
+\label{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler}\index{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}HttpErrorHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}HttpErrorHandler}}
+
+
+Inheritance diagram for App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}Http\+Error\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}Http\+Error\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler_a0183eb4033cdb10b29434e4e98436ff3}{respond}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para manejar errores HTTP personalizados. 
+
+Definition at line \mbox{\hyperlink{HttpErrorHandler_8php_source_l00024}{24}} of file \mbox{\hyperlink{HttpErrorHandler_8php_source}{Http\+Error\+Handler.\+php}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler_a0183eb4033cdb10b29434e4e98436ff3}\label{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler_a0183eb4033cdb10b29434e4e98436ff3}} 
+\index{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}HttpErrorHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}HttpErrorHandler}!respond@{respond}}
+\index{respond@{respond}!App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}HttpErrorHandler@{App\textbackslash{}Application\textbackslash{}Handlers\textbackslash{}HttpErrorHandler}}
+\doxysubsubsection{\texorpdfstring{respond()}{respond()}}
+{\footnotesize\ttfamily App\textbackslash{}\+Application\textbackslash{}\+Handlers\textbackslash{}\+Http\+Error\+Handler\+::respond (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Sobrescribe el método \mbox{\hyperlink{classApp_1_1Application_1_1Handlers_1_1HttpErrorHandler_a0183eb4033cdb10b29434e4e98436ff3}{respond()}} para personalizar la respuesta de error.
+
+Definition at line \mbox{\hyperlink{HttpErrorHandler_8php_source_l00031}{31}} of file \mbox{\hyperlink{HttpErrorHandler_8php_source}{Http\+Error\+Handler.\+php}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031                                 : Response}
+\DoxyCodeLine{00032     \{}
+\DoxyCodeLine{00033         \$exception = \$this-\/>exception;}
+\DoxyCodeLine{00034         \$statusCode = 500;}
+\DoxyCodeLine{00035         \$error = \textcolor{keyword}{new} ActionError(}
+\DoxyCodeLine{00036             ActionError::SERVER\_ERROR,}
+\DoxyCodeLine{00037             \textcolor{stringliteral}{'An internal error has occurred while processing your request.'}}
+\DoxyCodeLine{00038         );}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040         \textcolor{keywordflow}{if} (\$exception instanceof HttpException) \{}
+\DoxyCodeLine{00041             \$statusCode = \$exception-\/>getCode();}
+\DoxyCodeLine{00042             \$error-\/>setDescription(\$exception-\/>getMessage());}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044             \textcolor{keywordflow}{if} (\$exception instanceof HttpNotFoundException) \{}
+\DoxyCodeLine{00045                 \$error-\/>setType(ActionError::RESOURCE\_NOT\_FOUND);}
+\DoxyCodeLine{00046             \} elseif (\$exception instanceof HttpMethodNotAllowedException) \{}
+\DoxyCodeLine{00047                 \$error-\/>setType(ActionError::NOT\_ALLOWED);}
+\DoxyCodeLine{00048             \} elseif (\$exception instanceof HttpUnauthorizedException) \{}
+\DoxyCodeLine{00049                 \$error-\/>setType(ActionError::UNAUTHENTICATED);}
+\DoxyCodeLine{00050             \} elseif (\$exception instanceof HttpForbiddenException) \{}
+\DoxyCodeLine{00051                 \$error-\/>setType(ActionError::INSUFFICIENT\_PRIVILEGES);}
+\DoxyCodeLine{00052             \} elseif (\$exception instanceof HttpBadRequestException) \{}
+\DoxyCodeLine{00053                 \$error-\/>setType(\mbox{\hyperlink{classApp_1_1Application_1_1Actions_1_1ActionError_a93b1f2355b125c0a606e0e101b90c741}{ActionError::BAD\_REQUEST}});}
+\DoxyCodeLine{00054             \} elseif (\$exception instanceof HttpNotImplementedException) \{}
+\DoxyCodeLine{00055                 \$error-\/>setType(ActionError::NOT\_IMPLEMENTED);}
+\DoxyCodeLine{00056             \}}
+\DoxyCodeLine{00057         \}}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059         \textcolor{keywordflow}{if} (}
+\DoxyCodeLine{00060             !(\$exception instanceof HttpException)}
+\DoxyCodeLine{00061             \&\& \$exception instanceof Throwable}
+\DoxyCodeLine{00062             \&\& \$this-\/>displayErrorDetails}
+\DoxyCodeLine{00063         ) \{}
+\DoxyCodeLine{00064             \$error-\/>setDescription(\$exception-\/>getMessage());}
+\DoxyCodeLine{00065         \}}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067         \$payload = \textcolor{keyword}{new} ActionPayload(\$statusCode, \textcolor{keyword}{null}, \$error);}
+\DoxyCodeLine{00068         \$encodedPayload = json\_encode(\$payload, JSON\_PRETTY\_PRINT);}
+\DoxyCodeLine{00069 }
+\DoxyCodeLine{00070         \$response = \$this-\/>responseFactory-\/>createResponse(\$statusCode);}
+\DoxyCodeLine{00071         \$response-\/>getBody()-\/>write(\$encodedPayload);}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073         \textcolor{keywordflow}{return} \$response-\/>withHeader(\textcolor{stringliteral}{'Content-\/Type'}, \textcolor{stringliteral}{'application/json'});}
+\DoxyCodeLine{00074     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Handlers/Http\+Error\+Handler.\+php\end{DoxyCompactItemize}
