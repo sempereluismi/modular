@@ -45,7 +45,8 @@ export function useModulosProfesores () {
 
       const newProfesores = profesoresResponse.map(profesor => ({
         ...profesor,
-        horasTotal: 0
+        horasTotal: 0,
+        info: {}
       }))
       setProfesores(newProfesores)
 

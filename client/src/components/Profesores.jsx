@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from 'react'
 import { ModulosProfesoresContext } from '../context/ModulosProfesoresContext'
+import { MAX_HORAS_SEMANALES, MIN_HORAS_SEMANALES } from '../helpers/constants'
 
 export function Profesores () {
   const { filteredProfesores, modulos } = useContext(ModulosProfesoresContext)
@@ -18,7 +19,7 @@ export function Profesores () {
 }
 
 const Profesor = ({ profesor, modulos }) => {
-  const { setModulos, draggedModulo, draggedFromBoard, setDraggedFromBoard, profesores, setProfesores, HORAS_SEMANALES } = useContext(ModulosProfesoresContext)
+  const { setModulos, draggedModulo, draggedFromBoard, setDraggedFromBoard, profesores, setProfesores } = useContext(ModulosProfesoresContext)
   const [active, setActive] = useState(false)
 
   const handleDragOver = (event) => {
@@ -76,9 +77,9 @@ const Profesor = ({ profesor, modulos }) => {
         <div className='flex justify-between'>
           <div className='flex align-center gap-x-2'>
             <div className={'h-6 w-1 rounded-sm ' +
-            (profesor.horasTotal > Math.max(...HORAS_SEMANALES) ? 'bg-red-700 ' : '') +
-            (profesor.horasTotal < Math.min(...HORAS_SEMANALES) ? 'bg-yellow-400 ' : '') +
-            (profesor.horasTotal >= Math.min(...HORAS_SEMANALES) && profesor.horasTotal <= Math.max(...HORAS_SEMANALES) ? 'bg-green-700 ' : '')}
+            (profesor.horasTotal > MAX_HORAS_SEMANALES ? 'bg-red-700 ' : '') +
+            (profesor.horasTotal < MIN_HORAS_SEMANALES ? 'bg-yellow-400 ' : '') +
+            (profesor.horasTotal >= MIN_HORAS_SEMANALES && profesor.horasTotal <= MAX_HORAS_SEMANALES ? 'bg-green-700 ' : '')}
             />
 
             {profesor.nombre}

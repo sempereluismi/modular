@@ -21,21 +21,14 @@ export function Board ({ handleDownloadClick, handleSaveClick, handleNewClick })
 
   const handleDrop = (event) => {
     event.preventDefault()
-
     if (draggedFromBoard) {
       updatePosition(draggedModulo, event)
     } else {
       const nuevosModulos = [...modulos, draggedModulo]
-      let newProfesores = profesores.map((profesor) => {
+      const newProfesores = profesores.map((profesor) => {
         return {
           ...profesor,
           modulos: profesor.modulos.filter(modulo => modulo.id !== draggedModulo.id)
-        }
-      })
-      newProfesores = newProfesores.map((profesor) => {
-        return {
-          ...profesor,
-          horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
         }
       })
       setModulos(nuevosModulos)

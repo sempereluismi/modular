@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react'
+import { checkProfesores } from '../helpers/CheckProfesores'
 import { setPositionsModulos } from '../helpers/OrderModulos'
 
 // Crear el contexto
@@ -33,7 +34,6 @@ export function ModulosProfesoresProvider ({ children }) {
     return savedModulos ? JSON.parse(savedModulos) : []
   })
 
-  const HORAS_SEMANALES = [20, 18]
   const MODULO_WIDTH = 144
   const MODULO_HEIGHT = 144
   const MAX_WIDTH_MODULO = 1300
@@ -59,7 +59,9 @@ export function ModulosProfesoresProvider ({ children }) {
         horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
       }
     })
-    setFilteredProfesores(newProfesores)
+    const profesresWithInfo = checkProfesores(newProfesores)
+    setFilteredProfesores(profesresWithInfo)
+    console.log(profesresWithInfo)
   }, [profesores, regimen])
 
   useEffect(() => {
@@ -88,7 +90,6 @@ export function ModulosProfesoresProvider ({ children }) {
     setAllRegimen,
     filteredModulos,
     filteredProfesores,
-    HORAS_SEMANALES,
     MODULO_WIDTH,
     MODULO_HEIGHT,
     MAX_WIDTH_MODULO
