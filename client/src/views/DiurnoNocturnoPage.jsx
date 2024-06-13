@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Board } from '../components/Board'
 import { Loader } from '../components/Loader'
+import { ModalProfesores } from '../components/ModalProfesores.jsx'
 import { Profesores } from '../components/Profesores'
 import '../components/css/animations.css'
 import { AuthContext } from '../context/AuthContext.jsx'
@@ -54,8 +55,31 @@ const BoardEntero = ({ handleNewClick }) => {
   const { profesores, modulos } = useContext(ModulosProfesoresContext)
   const { setModalInfo } = useContext(ModalContext)
   const { user } = useContext(AuthContext)
+  const [profesoresInfo, setProfesoresInfo] = useState([])
+  const [showModal, setShowModal] = useState(false)
 
   const handleDownloadClick = () => {
+    const profesoresNewInfo = profesores.map(profesor => {
+      const filteredInfo = Object.keys(profesor.info).reduce((acc, key) => {
+        if (profesor.info[key] !== null) {
+          acc[key] = profesor.info[key]
+        }
+        return acc
+      }, {})
+      const infoIsEmpty = Object.keys(filteredInfo).length === 0
+      if (!infoIsEmpty) {
+        return {
+          nombre: profesor.nombre,
+          info: filteredInfo
+        }
+      }
+      return null
+    }).filter(profesor => profesor !== null)
+    setProfesoresInfo(profesoresNewInfo)
+    setShowModal(true)
+  }
+
+  const handleDownloadCsv = () => {
     downloadCsv([profesores, modulos])
   }
 
@@ -75,10 +99,16 @@ const BoardEntero = ({ handleNewClick }) => {
       })
   }
 
+  const onCloseModal = () => {
+    setProfesoresInfo([])
+    setShowModal(false)
+  }
+
   return (
     <main className='bg-white grid grid-cols-[300px_1fr] h-screen text-white'>
       <Profesores />
       <Board handleDownloadClick={handleDownloadClick} handleSaveClick={handleSaveClick} handleNewClick={handleNewClick} />
+      <ModalProfesores profesoresInfo={profesoresInfo} showModal={showModal} onCloseModal={onCloseModal} handleDownloadCsv={handleDownloadCsv} />
     </main>
   )
 }
