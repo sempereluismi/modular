@@ -12,14 +12,14 @@ export function checkProfesores (profesores) {
 function checkProfesor (profesor) {
   const info = {}
   info.horas = checkHoras(profesor)
-  info.maxTipos = checkMaxTipos(profesor)
+  info.tipos = checkMaxTipos(profesor)
   info.especialidad = checkEspecialidad(profesor)
   return info
 }
 
 function checkHoras (profesor) {
   if (profesor.horasTotal < MIN_HORAS_SEMANALES || profesor.horasTotal > MAX_HORAS_SEMANALES) {
-    return `${profesor.nombre} no cumple con el rango de horas estipulado`
+    return 'No cumple con el rango de horas estipulado'
   }
   return null
 }
@@ -30,15 +30,14 @@ function checkMaxTipos (profesor) {
   profesor.modulos.forEach((modulo) => {
     tiposModulos.add(modulo.color)
   })
-  return (tiposModulos.size > MAX_TIPOS_MODULOS) ? `${profesor.nombre} tiene más de dos tipos de especialidad` : null
+  return (tiposModulos.size > MAX_TIPOS_MODULOS) ? 'Tiene más de dos tipos de especialidad' : null
 }
 
 function checkEspecialidad (profesor) {
   const especialidadModulos = new Set()
   profesor.modulos.forEach((modulo) => {
-    console.log(modulo)
     especialidadModulos.add(modulo.especialidad)
   })
-
-  // console.log(especialidadModulos)
+  const profesorEspecialidades = new Set(profesor.afin)
+  return Array.from(especialidadModulos).every((especialidad) => profesorEspecialidades.has(especialidad)) ? null : 'No tiene la especialidad necesaria'
 }
