@@ -36,9 +36,8 @@ function checkMaxTipos (profesor) {
 function checkEspecialidad (profesor) {
   const especialidadModulos = new Set()
   profesor.modulos.forEach((modulo) => {
-    console.log(modulo)
     especialidadModulos.add(modulo.especialidad)
   })
-
-  // console.log(especialidadModulos)
+  const profesorEspecialidades = new Set(profesor.afin)
+  return Array.from(especialidadModulos).every((especialidad) => profesorEspecialidades.has(especialidad)) ? null : `${profesor.nombre} no tiene la especialidad necesaria`
 }
