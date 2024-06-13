@@ -61,16 +61,22 @@ export function ModulosProfesoresProvider ({ children }) {
     }
   }, [profesores])
 
+  // Primer useEffect para calcular horasTotales de profesores
+  useEffect(() => {
+    const newProfesores = profesores.map(profesor => ({
+      ...profesor,
+      horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
+    }))
+
+    if (JSON.stringify(newProfesores) !== JSON.stringify(profesores)) {
+      setProfesores(newProfesores)
+    }
+  }, [filteredProfesores, profesores])
+
   useEffect(() => {
     sessionStorage.setItem('profesores', JSON.stringify(profesores))
     const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
-    const newProfesores = filteredProfesores.map(profesor => {
-      return {
-        ...profesor,
-        horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
-      }
-    })
-    setFilteredProfesores(newProfesores)
+    setFilteredProfesores(filteredProfesores)
   }, [profesores, regimen])
 
   useEffect(() => {
