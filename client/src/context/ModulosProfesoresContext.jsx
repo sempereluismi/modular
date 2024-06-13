@@ -51,17 +51,32 @@ export function ModulosProfesoresProvider ({ children }) {
   }, [regimen])
 
   useEffect(() => {
+    // Verificar profesores y actualizar el estado si ha cambiado
+    const profesresWithInfo = checkProfesores(profesores)
+    const profesoresString = JSON.stringify(profesores)
+    const profesresWithInfoString = JSON.stringify(profesresWithInfo)
+
+    if (profesoresString !== profesresWithInfoString) {
+      setProfesores(profesresWithInfo)
+    }
+  }, [profesores])
+
+  // Primer useEffect para calcular horasTotales de profesores
+  useEffect(() => {
+    const newProfesores = profesores.map(profesor => ({
+      ...profesor,
+      horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
+    }))
+
+    if (JSON.stringify(newProfesores) !== JSON.stringify(profesores)) {
+      setProfesores(newProfesores)
+    }
+  }, [filteredProfesores, profesores])
+
+  useEffect(() => {
     sessionStorage.setItem('profesores', JSON.stringify(profesores))
     const filteredProfesores = profesores.filter(profesor => profesor.regimen === regimen)
-    const newProfesores = filteredProfesores.map(profesor => {
-      return {
-        ...profesor,
-        horasTotal: profesor.modulos.reduce((acc, modulo) => acc + modulo.horas_semanales, 0)
-      }
-    })
-    const profesresWithInfo = checkProfesores(newProfesores)
-    setFilteredProfesores(profesresWithInfo)
-    console.log(profesresWithInfo)
+    setFilteredProfesores(filteredProfesores)
   }, [profesores, regimen])
 
   useEffect(() => {
