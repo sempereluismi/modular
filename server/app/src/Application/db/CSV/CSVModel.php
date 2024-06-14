@@ -70,7 +70,7 @@ class CSVModel
             }
             return $ultimoId;
         } catch (\Exception $e) {
-            throw new Exception("Internal server error", 500);
+            throw new \Exception("Internal server error", 500);
         }
     }
 
@@ -95,7 +95,7 @@ class CSVModel
         $idEspecialidadId = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($idEspecialidad === false) {
-            throw new Exception("Especialidad no encontrada", 404);
+            throw new \Exception("Especialidad no encontrada", 404);
         }
 
         $idEspecialidad = $idEspecialidadId['id'];
@@ -118,7 +118,7 @@ class CSVModel
             $ciclo = $ciclo->fetch(PDO::FETCH_ASSOC)['id'];
             $regimen = $regimen->fetch(PDO::FETCH_ASSOC)['id'];
             
-            if($ciclo === false || $regimen === false) throw new Exception("Ciclo o regimen no encontrados", 404);
+            if($ciclo === false || $regimen === false) throw new \Exception("Ciclo o regimen no encontrados", 404);
 
             $regimenModulo = [
                 $regimen,
@@ -129,7 +129,7 @@ class CSVModel
 
             $stmt = $dbInstance->execQuery($insertRegimenCicloModulo, $regimenModulo);
         } catch (\Exception $e) {
-            throw new Exception("Internal server error", 500);
+            throw new \Exception("Internal server error", 500);
         }
     }
 
@@ -147,8 +147,8 @@ class CSVModel
             $dbInstance = DatabaseConnection::getInstance();
             $stmt = $dbInstance->execQuery($sql, [$contentFile, $id_profesor]);
     
-        } catch (PDOException $e) {
-            $this->returnResponse($response, ["error" => "Error al guardar el archivo"], 500);
+        } catch (\PDOException $e) {
+            throw new \Exception("Internal server error", 500);
         }
 
     }
@@ -161,8 +161,8 @@ class CSVModel
             $stmt = $dbInstance->execQuery($sql, [$id_profesor]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
-        } catch (PDOException $e) {
-            throw new Exception("Internal server error", 500);
+        } catch (\PDOException $e) {
+            throw new \Exception("Internal server error", 500);
         }
     }
 
@@ -198,8 +198,8 @@ class CSVModel
             }
 
             return $result;
-        } catch (PDOException $e) {
-            throw new Exception("Internal server error", 500);
+        } catch (\PDOException $e) {
+            throw new \Exception("Internal server error", 500);
         }
     }
 }
