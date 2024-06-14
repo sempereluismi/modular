@@ -2,11 +2,14 @@
 
 ## Index. 
 
-1. [Overview](#overview)
-2. [Requirements](#requirements)
-3. [Installation](#installation)
-6. [Run](#run)
-7. [Project Organization](#folders)
+- [Modular](#modular)
+  - [Index.](#index)
+  - [Overview](#overview)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Run with docker in development enviroment](#run-with-docker-in-development-enviroment)
+  - [Deployment](#deployment)
+  - [ Project Organization](#-project-organization)
 
 ## <a name="overview">Overview</a>
 Este repositorio contiene el código para crear un programa de asignaión de módulos. Hay que insertar un CSV para la creació en la base de datos de los profesores y los módulos, y se obtiene otro CSV al finalizar la tarea.
@@ -24,7 +27,12 @@ Todo lo demás demás librerías que son requeridas puden instalarse usando el c
     npm install
 ```
 
-## <a name="run">Run</a>
+## <a name="rundocker">Run with docker in development enviroment</a>
+Para poder lanzar la parte del backend (servidor) es necesario crear el contenedor en Docker
+Puedes hacerlo con:
+```commandline
+ docker compose up -d .
+```
 
 Para poder lanzar la parte del frontend (cliente) sirve con lanzar el siguiente comando:
 
@@ -32,14 +40,23 @@ Para poder lanzar la parte del frontend (cliente) sirve con lanzar el siguiente 
 npm run dev
 ```
 
-## <a name="rundocker">Run with docker</a>
-Para poder lanzar la parte del backend (servidor) es necesario crear el contenedor en Docker
-Puedes hacerlo con:
-```commandline
- docker compose up -d .
+Una vez creado enciendelo y listo.
+
+## <a name="deployment">Deployment</a>
+
+Limpiar el cache de docker para no llenar la memoria de la maquina 
+
+```
+docker container prune -f
+docker image prune -a -f
+docker volume prune -f
+docker network prune -f
 ```
 
-Una vez creado enciendelo y listo.
+Lanzar el docker
+```
+docker compose up -d --force-recreate --build
+```
 
 ## <a name="folders"> Project Organization</a>
 
