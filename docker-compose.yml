@@ -29,17 +29,17 @@ services:
       - modularLan
       - modular
 
-  composer:
-    container_name: 'modular-mycomposer'
-    image: composer:2
-    volumes:
-      - ./server/app:/var/www/html
-    working_dir: /var/www/html
-    tty: true
-    command: '/bin/bash'
-    networks:
-      - modularLan
-      - modular
+  # composer:
+  #   container_name: 'modular-mycomposer'
+  #   image: composer:2
+  #   volumes:
+  #     - ./server/app:/var/www/html
+  #   working_dir: /var/www/html
+  #   tty: true
+  #   command: '/bin/bash'
+  #   networks:
+  #     - modularLan
+  #     - modular
 
   mariadb:
     container_name: 'modular-mariadb'
