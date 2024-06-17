@@ -81,6 +81,7 @@ const BoardEntero = ({ handleNewClick }) => {
 
   const handleDownloadCsv = () => {
     downloadCsv([profesores, modulos])
+    setShowModal(false)
   }
 
   const handleSaveClick = async () => {
