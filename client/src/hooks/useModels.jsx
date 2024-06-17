@@ -36,10 +36,18 @@ export function useModels () {
     navigate('/user/model')
   }
 
+  function loadModelFromCSV (csvText) {
+    const [profesores, modulos] = csvTextToJson(csvText)
+    setProfesores(profesores)
+    setModulos(modulos)
+    navigate('/user/model')
+  }
+
   return {
     adminModels,
     profesorModels,
     loadModels,
-    loadModel
+    loadModel,
+    loadModelFromCSV
   }
 }
