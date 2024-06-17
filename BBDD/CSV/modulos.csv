@@ -1,3 +1,2 @@
-nombre;tematica;especialidad
-EIE;5;programacion
-BD;6;sistemas
+nombre;tematica;especialidad;regimen;ciclo;horas
+DWCS;1;programacion;ordinario;DAW;10

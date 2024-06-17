@@ -29,18 +29,6 @@ services:
       - modularLan
       - modular
 
-  # composer:
-  #   container_name: 'modular-mycomposer'
-  #   image: composer:2
-  #   volumes:
-  #     - ./server/app:/var/www/html
-  #   working_dir: /var/www/html
-  #   tty: true
-  #   command: '/bin/bash'
-  #   networks:
-  #     - modularLan
-  #     - modular
-
   mariadb:
     container_name: 'modular-mariadb'
     image: mariadb:latest
@@ -48,6 +36,7 @@ services:
       - "3307:3306"
     volumes:
       - ./server/data:/var/lib/mysql
+      - ./server/initdb:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: Modular
@@ -77,4 +66,3 @@ networks:
     internal: true
   modular:
     driver: bridge
-
