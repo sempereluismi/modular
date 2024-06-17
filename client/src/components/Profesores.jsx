@@ -118,8 +118,9 @@ const MiniModulo = ({ profesor }) => {
                 style={{ backgroundColor: modulo.color }}
                 draggable='true' onDragStart={handleDragStart} onDragEnd={handleDragEnd}
               >
-                <div className='flex justify-center items-center h-full'>
-                  {modulo.nombre}
+                <div className='flex flex-col justify-center items-center h-full'>
+                  <p>{modulo.nombre}</p>
+                  <p className='text-sm'>{modulo.horas_semanales}h</p>
                 </div>
               </li>
             )
