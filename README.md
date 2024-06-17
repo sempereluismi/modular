@@ -47,10 +47,7 @@ Una vez creado enciendelo y listo.
 Limpiar el cache de docker para no llenar la memoria de la maquina 
 
 ```
-docker container prune -f
-docker image prune -a -f
-docker volume prune -f
-docker network prune -f
+docker system prune
 ```
 
 Lanzar el docker
