@@ -49,10 +49,8 @@ services:
     volumes:
       - ./server/data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: 1uVwHB25
       MYSQL_DATABASE: Modular
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
     networks:
       - modularLan
       - modular
@@ -66,7 +64,7 @@ services:
     environment:
       PMA_HOST: modular-mariadb
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: 1uVwHB25
       MYSQL_DATABASE: modular
     networks:
       - modularLan
