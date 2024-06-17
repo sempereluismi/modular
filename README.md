@@ -53,10 +53,7 @@ Para poder acceder a la parte del frontend (cliente) nos servimos del puerto 80:
 Limpiar el cache de docker para no llenar la memoria de la máquina 
 
 ```
-docker container prune -f
-docker image prune -a -f
-docker volume prune -f
-docker network prune -f
+docker system prune
 ```
 
 Lanzar el docker
@@ -110,5 +107,6 @@ docker compose up -d --force-recreate --build
 * *client*: La parte frontend del proyecto
 * *server*: La parte backend del proyecto
 * *archivos*: Hace referencia a diferentes archivos que pueden estar dentro de la carpeta
+
 
 Cabe recalcar que este es solo es el esqueleto de la primera capa, dentro de las subcarpetas hay más contenido impotante
