@@ -1,7 +1,6 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
---
 -- Servidor: modular-mariadb:3306
 -- Tiempo de generación: 17-06-2024 a las 12:06:24
 -- Versión del servidor: 11.4.2-MariaDB-ubu2404
@@ -11,371 +10,500 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-create database if not exists Modular
-  character set utf8
-  collate utf8_spanish_ci;
+drop database if exists Modular;
 
+create database Modular
+	character set utf8
+	collate utf8_spanish_ci;
+	
 use Modular;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de datos: `Modular`
+-- Base de datos: Modular
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `afin`
---
-
-CREATE TABLE IF NOT EXISTS `afin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id de la especialización',
-  `id_profesor` int(11) NOT NULL,
-  `id_especialidad` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_id_especialidad_afin` (`id_especialidad`),
-  KEY `fk_id_profesor_afin` (`id_profesor`)
+-- Estructura de tabla para la tabla afin
+CREATE TABLE afin (
+id int(11) NOT NULL COMMENT 'Id de la especialización',
+id_profesor int(11) NOT NULL,
+id_especialidad int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `afin`
---
-INSERT INTO `afin` (`id`, `id_profesor`, `id_especialidad`)
-SELECT * FROM (SELECT 3, 1, 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `afin` WHERE `id` = 3
-);
-
--- --------------------------------------------------------
+-- Volcado de datos para la tabla afin
+INSERT INTO afin (id, id_profesor, id_especialidad) VALUES
+(3, 1, 1);
 
 --
--- Estructura de tabla para la tabla `ciclo`
---
-
-CREATE TABLE IF NOT EXISTS `ciclo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del ciclo',
-  `nombre` varchar(100) NOT NULL COMMENT 'nombre del ciclo',
-  PRIMARY KEY (`id`)
+-- Estructura de tabla para la tabla ciclo
+CREATE TABLE ciclo (
+id int(11) NOT NULL COMMENT 'Id del ciclo',
+nombre varchar(100) NOT NULL COMMENT 'nombre del ciclo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `ciclo`
---
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 1, 'CS-DAW') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 1
-);
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 2, 'CS-DAM') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 2
-);
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 3, 'CB-IO') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 3
-);
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 4, 'CM-SMR') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 4
-);
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 5, 'CS-ASIR') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 5
-);
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 6, 'CE-IABD') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 6
-);
-INSERT INTO `ciclo` (`id`, `nombre`)
-SELECT * FROM (SELECT 7, 'CE-CS') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `ciclo` WHERE `id` = 7
-);
-
--- --------------------------------------------------------
+-- Volcado de datos para la tabla ciclo
+INSERT INTO ciclo (id, nombre) VALUES
+(1, 'CS-DAW'),
+(2, 'CS-DAM'),
+(3, 'CB-IO'),
+(4, 'CM-SMR'),
+(5, 'CS-ASIR'),
+(6, 'CE-IABD'),
+(7, 'CE-CS');
 
 --
--- Estructura de tabla para la tabla `departamento`
---
-
-CREATE TABLE IF NOT EXISTS `departamento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id que usaremos nosotros',
-  `nombre` varchar(100) NOT NULL COMMENT 'Nombre del instituto',
-  `id_instituto` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_id_instituto_departamento` (`id_instituto`)
+-- Estructura de tabla para la tabla departamento
+CREATE TABLE departamento (
+id int(11) NOT NULL COMMENT 'Id que usaremos nosotros',
+nombre varchar(100) NOT NULL COMMENT 'Nombre del instituto',
+id_instituto int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `departamento`
---
-INSERT INTO `departamento` (`id`, `nombre`, `id_instituto`)
-SELECT * FROM (SELECT 1, 'Departamento de Informática', 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `departamento` WHERE `id` = 1
-);
-
--- --------------------------------------------------------
+-- Volcado de datos para la tabla departamento
+INSERT INTO departamento (id, nombre, id_instituto) VALUES
+(1, 'Departamento de Informática', 1);
 
 --
--- Estructura de tabla para la tabla `especialidad`
---
-
-CREATE TABLE IF NOT EXISTS `especialidad` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id de la especialización',
-  `tipo` varchar(100) NOT NULL COMMENT 'Tipo de la especialización',
-  PRIMARY KEY (`id`)
+-- Estructura de tabla para la tabla especialidad
+CREATE TABLE especialidad (
+id int(11) NOT NULL COMMENT 'Id de la especialización',
+tipo varchar(100) NOT NULL COMMENT 'Tipo de la especialización'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `especialidad`
---
-INSERT INTO `especialidad` (`id`, `tipo`)
-SELECT * FROM (SELECT 1, 'Programación') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `especialidad` WHERE `id` = 1
-);
-INSERT INTO `especialidad` (`id`, `tipo`)
-SELECT * FROM (SELECT 2, 'Sistemas') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `especialidad` WHERE `id` = 2
-);
-
--- --------------------------------------------------------
+-- Volcado de datos para la tabla especialidad
+INSERT INTO especialidad (id, tipo) VALUES
+(1, 'Programación'),
+(2, 'Sistemas');
 
 --
--- Estructura de tabla para la tabla `imparte`
---
-
-CREATE TABLE IF NOT EXISTS `imparte` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_profesor` int(11) NOT NULL,
-  `id_regimen` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`id_profesor`,`id_regimen`),
-  KEY `fk_id_profesor_imparte` (`id_profesor`),
-  KEY `fk_id_regimen_imparte` (`id_regimen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `instituto`
---
-
-CREATE TABLE IF NOT EXISTS `instituto` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id que usaremos nosotros',
-  `nombre` varchar(100) NOT NULL COMMENT 'Nombre del instituto',
-  `email` varchar(100) NOT NULL COMMENT 'Correo de contacto',
-  `telefono` int(11) NOT NULL COMMENT 'Número del instituto',
-  PRIMARY KEY (`id`)
+-- Estructura de tabla para la tabla imparte
+CREATE TABLE imparte (
+id int(11) NOT NULL,
+id_profesor int(11) NOT NULL,
+id_regimen int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `instituto`
---
-INSERT INTO `instituto` (`id`, `nombre`, `email`, `telefono`)
-SELECT * FROM (SELECT 1, 'Instituto IES de Teis', '', 886120464) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `instituto` WHERE `id` = 1
-);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `modelo`
---
-
-CREATE TABLE IF NOT EXISTS `modelo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL DEFAULT curdate(),
-  `file` longblob NOT NULL,
-  `id_profesor` int(11) NOT NULL,
-  `create_date` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `fk_id_profesor_modelo` (`id_profesor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `modulo`
---
-
-CREATE TABLE IF NOT EXISTS `modulo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del módulo',
-  `nombre` varchar(100) NOT NULL COMMENT 'Nombre del módulo',
-  `id_departamento` int(11) NOT NULL,
-  `id_tematica` int(11) NOT NULL,
-  `id_especialidad` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_id_tematica` (`id_tematica`),
-  KEY `fk_id_modulo_departamento` (`id_departamento`),
-  KEY `fk_id_especialidad` (`id_especialidad`)
+-- Estructura de tabla para la tabla instituto
+CREATE TABLE instituto (
+id int(11) NOT NULL COMMENT 'Id que usaremos nosotros',
+nombre varchar(100) NOT NULL COMMENT 'Nombre del instituto',
+email varchar(100) NOT NULL COMMENT 'Correo de contacto',
+telefono int(11) NOT NULL COMMENT 'Número del instituto'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `modulo`
---
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 1, 'Implantación de Sistemas Operativos', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 1
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 2, 'Redes Locales', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 2
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 3, 'Fundamentos de Hardware', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 3
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 4, 'Sistemas Operativos Monopuesto', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 4
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 5, 'Aplicaciones Ofimáticas', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 5
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 6, 'Formación y Orientación Laboral', 1, 1, 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 6
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 7, 'Empresa e Iniciativa Emprendedora', 1, 1, 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 7
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 8, 'Seguridad Informática', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 8
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 9, 'Servicios en Red', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 9
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 10, 'Implantación de Aplicaciones Web', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 10
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 11, 'Administración de Sistemas Gestores de Bases de Datos', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 11
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 12, 'Planificación y Administración de Redes', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 12
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 13, 'Gestión de Bases de Datos', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 13
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 14, 'Lenguajes de Marcas y Sistemas de Gestión de Información', 1, 1, 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 14
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 15, 'Administración de Sistemas Operativos', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 15
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 16, 'Fundamentos de Hardware', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 16
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 17, 'Implantación de Sistemas Operativos', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 17
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 18, 'Planificación y Administración de Redes', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 18
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 19, 'Gestión de Bases de Datos', 1, 1, 2) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 19
-);
-INSERT INTO `modulo` (`id`, `nombre`, `id_departamento`, `id_tematica`, `id_especialidad`)
-SELECT * FROM (SELECT 20, 'Programación Básica', 1, 1, 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `modulo` WHERE `id` = 20
-);
-
--- --------------------------------------------------------
+-- Volcado de datos para la tabla instituto
+INSERT INTO instituto (id, nombre, email, telefono) VALUES
+(1, 'Instituto IES de Teis', '', 886120464);
 
 --
--- Estructura de tabla para la tabla `profesor`
---
-
-CREATE TABLE IF NOT EXISTS `profesor` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del profesor',
-  `dni` varchar(9) NOT NULL COMMENT 'DNI del profesor',
-  `nombre` varchar(50) NOT NULL COMMENT 'Nombre del profesor',
-  `apellido1` varchar(50) NOT NULL COMMENT 'Apellido1 del profesor',
-  `apellido2` varchar(50) NOT NULL COMMENT 'Apellido2 del profesor',
-  `email` varchar(100) DEFAULT NULL COMMENT 'Correo electrónico del profesor',
-  `id_departamento` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_id_departamento_profesor` (`id_departamento`)
+-- Estructura de tabla para la tabla modelo
+CREATE TABLE modelo (
+id int(11) NOT NULL,
+nombre varchar(100) NOT NULL DEFAULT curdate(),
+file longblob NOT NULL,
+id_profesor int(11) NOT NULL,
+create_date datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `profesor`
---
-INSERT INTO `profesor` (`id`, `dni`, `nombre`, `apellido1`, `apellido2`, `email`, `id_departamento`)
-SELECT * FROM (SELECT 1, '000000001', 'Nombre1', 'Apellido1', 'Apellido2', 'email1', 1) AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `profesor` WHERE `id` = 1
-);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `regimen`
---
-
-CREATE TABLE IF NOT EXISTS `regimen` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+-- Estructura de tabla para la tabla modulo
+CREATE TABLE modulo (
+id int(11) NOT NULL COMMENT 'Id del módulo',
+nombre varchar(100) NOT NULL COMMENT 'Nombre del módulo',
+id_departamento int(11) NOT NULL,
+id_tematica int(11) NOT NULL,
+id_especialidad int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
--- Volcado de datos para la tabla `regimen`
+-- Volcado de datos para la tabla modulo
+INSERT INTO modulo (id, nombre, id_departamento, id_tematica, id_especialidad) VALUES
+(1, 'DAW', 1, 1, 1);
+
 --
-INSERT INTO `regimen` (`id`, `tipo`)
-SELECT * FROM (SELECT 1, 'Ordinario') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `regimen` WHERE `id` = 1
-);
-INSERT INTO `regimen` (`id`, `tipo`)
-SELECT * FROM (SELECT 2, 'Dual') AS tmp
-WHERE NOT EXISTS (
-    SELECT 1 FROM `regimen` WHERE `id` = 2
-);
-INSERT INTO `regimen` (`id`, `
+-- Estructura de tabla para la tabla modulo_tematica
+CREATE TABLE modulo_tematica (
+id int(11) NOT NULL,
+id_modulo int(11) NOT NULL,
+id_tematica int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Volcado de datos para la tabla modulo_tematica
+INSERT INTO modulo_tematica (id, id_modulo, id_tematica) VALUES
+(1, 1, 1);
+
+--
+-- Estructura de tabla para la tabla profesor
+CREATE TABLE profesor (
+id int(11) NOT NULL COMMENT 'Código del profesor',
+email varchar(255) NOT NULL,
+password varchar(255) NOT NULL,
+nombre varchar(100) NOT NULL COMMENT 'Nombre del profesor',
+fecha_inicio date NOT NULL COMMENT 'Fecha en la que empezó el profesor',
+id_departamento int(11) NOT NULL,
+id_especialidad int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Volcado de datos para la tabla profesor
+INSERT INTO profesor (id, email, password, nombre, fecha_inicio, id_departamento, id_especialidad) VALUES
+(1, 'admin@admin.com', '$2y$10$lcuHHjAN0NuOu0ZW/vSvOuohclx4SaHn/YaFM4EqdEn26KuuRMkGG', 'admin', '2020-01-15', 1, 1);
+
+--
+-- Estructura de tabla para la tabla profesor_admin
+CREATE TABLE profesor_admin (
+id int(11) NOT NULL,
+id_profesor int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Volcado de datos para la tabla profesor_admin
+INSERT INTO profesor_admin (id, id_profesor) VALUES
+(1, 1);
+
+--
+-- Estructura de tabla para la tabla profesor_regimen
+CREATE TABLE profesor_regimen (
+id int(11) NOT NULL,
+id_profesor int(11) NOT NULL,
+id_regimen int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Estructura de tabla para la tabla reduccion
+CREATE TABLE reduccion (
+id int(11) NOT NULL,
+horas int(11) NOT NULL,
+nombre varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Estructura de tabla para la tabla reduccion_profesor
+CREATE TABLE reduccion_profesor (
+id int(11) NOT NULL,
+id_reduccion int(11) NOT NULL,
+id_profesor int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Estructura de tabla para la tabla regimen
+CREATE TABLE regimen (
+id int(11) NOT NULL COMMENT 'Id del régimen',
+tipo varchar(100) NOT NULL COMMENT 'Tipo del régimen ej
+o Adulto',
+id_departamento int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Volcado de datos para la tabla regimen
+INSERT INTO regimen (id, tipo, id_departamento) VALUES
+(1, 'Ordinario', 1),
+(2, 'Adulto', 1);
+
+--
+-- Estructura de tabla para la tabla regimen_ciclo_modulo
+CREATE TABLE regimen_ciclo_modulo (
+id int(11) NOT NULL,
+id_regimen int(11) NOT NULL,
+id_ciclo int(11) NOT NULL,
+id_modulo int(11) NOT NULL,
+horas_semanales int(11) NOT NULL COMMENT 'Número de horas que se imparten'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Volcado de datos para la tabla regimen_ciclo_modulo
+INSERT INTO regimen_ciclo_modulo (id, id_regimen, id_ciclo, id_modulo, horas_semanales) VALUES
+(6, 1, 1, 1, 5);
+
+--
+-- Estructura de tabla para la tabla tematica
+CREATE TABLE tematica (
+id int(11) NOT NULL COMMENT 'Id de la temática',
+color varchar(50) DEFAULT NULL COMMENT 'Color de la temática'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Volcado de datos para la tabla tematica
+INSERT INTO tematica (id, color) VALUES
+(1, '#b0f2c2'),
+(2, '#fdfd96'),
+(3, '#ffcba4'),
+(4, '#b0c2f2'),
+(5, '#55d6c2'),
+(6, '#ffc0cb'),
+(7, '#f9b7ff'),
+(8, '#ffcba4'),
+(9, '#f9b7ff');
+
+--
+-- Índices para tablas volcadas
+--
+-- Indices de la tabla afin
+ALTER TABLE afin
+ADD PRIMARY KEY (id),
+ADD KEY fk_id_especialidad_afin (id_especialidad),
+ADD KEY fk_id_profesor_afin (id_profesor);
+
+--
+-- Indices de la tabla ciclo
+ALTER TABLE ciclo
+ADD PRIMARY KEY (id);
+
+--
+-- Indices de la tabla departamento
+ALTER TABLE departamento
+ADD PRIMARY KEY (id),
+ADD KEY fk_id_instituto_departamento (id_instituto);
+
+--
+-- Indices de la tabla especialidad
+ALTER TABLE especialidad
+ADD PRIMARY KEY (id);
+
+--
+-- Indices de la tabla imparte
+ALTER TABLE imparte
+ADD PRIMARY KEY (id,id_profesor,id_regimen),
+ADD KEY fk_id_profesor_imparte (id_profesor),
+ADD KEY fk_id_regimen_imparte (id_regimen);
+
+--
+-- Indices de la tabla instituto
+ALTER TABLE instituto
+ADD PRIMARY KEY (id);
+
+--
+-- Indices de la tabla modelo
+ALTER TABLE modelo
+ADD PRIMARY KEY (id),
+ADD KEY fk_id_profesor_modelo (id_profesor);
+
+--
+-- Indices de la tabla modulo
+ALTER TABLE modulo
+ADD PRIMARY KEY (id),
+ADD KEY fk_id_tematica (id_tematica),
+ADD KEY fk_id_modulo_departamento (id_departamento),
+ADD KEY fk_id_especialidad (id_especialidad);
+
+--
+-- Indices de la tabla modulo_tematica
+ALTER TABLE modulo_tematica
+ADD PRIMARY KEY (id,id_modulo,id_tematica),
+ADD KEY fk_id_modulo_mt (id_modulo),
+ADD KEY fk_id_tematica_mt (id_tematica);
+
+--
+-- Indices de la tabla profesor
+ALTER TABLE profesor
+ADD PRIMARY KEY (id),
+ADD UNIQUE KEY email (email),
+ADD KEY fk_id_departamento_profesor (id_departamento),
+ADD KEY fk_id_especialidad_profesor (id_especialidad);
+
+--
+-- Indices de la tabla profesor_admin
+ALTER TABLE profesor_admin
+ADD PRIMARY KEY (id),
+ADD KEY fk_id_profesor_admin (id_profesor);
+
+--
+-- Indices de la tabla profesor_regimen
+ALTER TABLE profesor_regimen
+ADD PRIMARY KEY (id),
+ADD UNIQUE KEY id_profesor (id_profesor),
+ADD KEY fk_id_regimen_profesor_regimen (id_regimen);
+
+--
+-- Indices de la tabla reduccion
+ALTER TABLE reduccion
+ADD PRIMARY KEY (id);
+
+--
+-- Indices de la tabla reduccion_profesor
+ALTER TABLE reduccion_profesor
+ADD PRIMARY KEY (id,id_profesor,id_reduccion),
+ADD KEY fk_id_profesor_rp (id_profesor),
+ADD KEY fk_id_reduccion_rp (id_reduccion);
+
+--
+-- Indices de la tabla regimen
+ALTER TABLE regimen
+ADD PRIMARY KEY (id),
+ADD KEY fk_id_departamento_regimen (id_departamento);
+
+--
+-- Indices de la tabla regimen_ciclo_modulo
+ALTER TABLE regimen_ciclo_modulo
+ADD PRIMARY KEY (id,id_regimen,id_ciclo,id_modulo),
+ADD KEY fk_id_regimen (id_regimen),
+ADD KEY fk_id_ciclo (id_ciclo),
+ADD KEY fk_id_modulo (id_modulo);
+
+--
+-- Indices de la tabla tematica
+ALTER TABLE tematica
+ADD PRIMARY KEY (id);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+-- AUTO_INCREMENT de la tabla afin
+ALTER TABLE afin
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id de la especialización', AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla ciclo
+ALTER TABLE ciclo
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del ciclo', AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla departamento
+ALTER TABLE departamento
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id que usaremos nosotros', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla especialidad
+ALTER TABLE especialidad
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id de la especialización', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla imparte
+ALTER TABLE imparte
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla instituto
+ALTER TABLE instituto
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id que usaremos nosotros', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla modelo
+ALTER TABLE modelo
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla modulo
+ALTER TABLE modulo
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del módulo', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla modulo_tematica
+ALTER TABLE modulo_tematica
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla profesor
+ALTER TABLE profesor
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código del profesor', AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla profesor_admin
+ALTER TABLE profesor_admin
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla profesor_regimen
+ALTER TABLE profesor_regimen
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de la tabla reduccion
+ALTER TABLE reduccion
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla reduccion_profesor
+ALTER TABLE reduccion_profesor
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla regimen
+ALTER TABLE regimen
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del régimen', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla regimen_ciclo_modulo
+ALTER TABLE regimen_ciclo_modulo
+MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla tematica
+ALTER TABLE tematica
+MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id de la temática', AUTO_INCREMENT=10;
+
+--
+-- Restricciones para tablas volcadas
+--
+-- Filtros para la tabla afin
+ALTER TABLE afin
+ADD CONSTRAINT fk_id_especialidad_afin FOREIGN KEY (id_especialidad) REFERENCES especialidad (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_profesor_afin FOREIGN KEY (id_profesor) REFERENCES profesor (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla departamento
+ALTER TABLE departamento
+ADD CONSTRAINT fk_id_instituto_departamento FOREIGN KEY (id_instituto) REFERENCES instituto (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla imparte
+ALTER TABLE imparte
+ADD CONSTRAINT fk_id_profesor_imparte FOREIGN KEY (id_profesor) REFERENCES profesor (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_regimen_imparte FOREIGN KEY (id_regimen) REFERENCES regimen (id) ON UPDATE CASCADE;
+-- Filtros para la tabla modelo
+ALTER TABLE modelo
+ADD CONSTRAINT fk_id_profesor_modelo FOREIGN KEY (id_profesor) REFERENCES profesor (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla modulo
+ALTER TABLE modulo
+ADD CONSTRAINT fk_id_especialidad FOREIGN KEY (id_especialidad) REFERENCES especialidad (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_modulo_departamento FOREIGN KEY (id_departamento) REFERENCES departamento (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_tematica FOREIGN KEY (id_tematica) REFERENCES tematica (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla modulo_tematica
+ALTER TABLE modulo_tematica
+ADD CONSTRAINT fk_id_modulo_mt FOREIGN KEY (id_modulo) REFERENCES modulo (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_tematica_mt FOREIGN KEY (id_tematica) REFERENCES tematica (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla profesor
+ALTER TABLE profesor
+ADD CONSTRAINT fk_id_departamento_profesor FOREIGN KEY (id_departamento) REFERENCES departamento (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_especialidad_profesor FOREIGN KEY (id_especialidad) REFERENCES especialidad (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla profesor_admin
+ALTER TABLE profesor_admin
+ADD CONSTRAINT fk_id_profesor_admin FOREIGN KEY (id_profesor) REFERENCES profesor (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla profesor_regimen
+ALTER TABLE profesor_regimen
+ADD CONSTRAINT fk_id_profesor_profesor_regimen FOREIGN KEY (id_profesor) REFERENCES profesor (id),
+ADD CONSTRAINT fk_id_regimen_profesor_regimen FOREIGN KEY (id_regimen) REFERENCES regimen (id);
+
+--
+-- Filtros para la tabla reduccion_profesor
+ALTER TABLE reduccion_profesor
+ADD CONSTRAINT fk_id_profesor_rp FOREIGN KEY (id_profesor) REFERENCES profesor (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_reduccion_rp FOREIGN KEY (id_reduccion) REFERENCES reduccion (id) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla regimen
+ALTER TABLE regimen
+ADD CONSTRAINT fk_id_departamento_regimen FOREIGN KEY (id_departamento) REFERENCES departamento (id);
+
+--
+-- Filtros para la tabla regimen_ciclo_modulo
+ALTER TABLE regimen_ciclo_modulo
+ADD CONSTRAINT fk_id_ciclo FOREIGN KEY (id_ciclo) REFERENCES ciclo (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_modulo FOREIGN KEY (id_modulo) REFERENCES modulo (id) ON UPDATE CASCADE,
+ADD CONSTRAINT fk_id_regimen FOREIGN KEY (id_regimen) REFERENCES regimen (id) ON UPDATE CASCADE;
+COMMIT;
