@@ -34,8 +34,8 @@ export function ModulosProfesoresProvider ({ children }) {
     return savedModulos ? JSON.parse(savedModulos) : []
   })
 
-  const MODULO_WIDTH = 144
-  const MODULO_HEIGHT = 144
+  const MODULO_WIDTH = 100
+  const MODULO_HEIGHT = 100
   const MAX_WIDTH_MODULO = 1300
 
   useEffect(() => {
